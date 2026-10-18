@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconoMaster: Canada & Global Economic Simulator</title>
+    <title>EconoMaster: Canada & Global Economic Engine</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -40,37 +40,41 @@
             color: #38bdf8;
             background-color: rgba(56, 189, 248, 0.05);
         }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        .animate-pulse-subtle { animation: pulse-subtle 3s infinite ease-in-out; }
     </style>
 </head>
 <body class="h-full flex flex-col bg-slate-950 text-slate-100 overflow-x-hidden">
 
     <!-- Top Navigation Bar -->
-    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
+    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Brand Title -->
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-red-600 to-sky-500 flex items-center justify-center font-bold text-xl text-white shadow-lg shadow-sky-500/20">
-                        <i class="fa-solid font-bold text-lg"><span class="text-white">🍁</span></i>
+                        <span>🍁</span>
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
-                            <h1 class="font-bold text-lg text-slate-100 tracking-tight">EconoMaster</h1>
-                            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">Advanced Feedback Engine</span>
+                            <h1 class="font-bold text-base sm:text-lg text-slate-100 tracking-tight">EconoMaster</h1>
+                            <span class="text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">Sovereign Engine v3.2</span>
                         </div>
-                        <p class="text-xs text-slate-400 hidden sm:block">Macro Simulator with Inertial Anchors & Bond Spreads</p>
+                        <p class="text-[11px] text-slate-400 hidden sm:block">Internal Fiscal Struggle & Dynamic Feedback Simulator</p>
                     </div>
                 </div>
 
                 <!-- Simulation Controls & Info Header -->
-                <div class="flex items-center space-x-4">
-                    <div class="hidden md:flex flex-col text-right">
-                        <span class="text-xs text-slate-400">Current Quarter</span>
-                        <span id="current-quarter-display" class="font-bold text-sky-400 text-sm">Year 1 - Q1</span>
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <div class="flex flex-col text-right">
+                        <span class="text-[10px] text-slate-400 uppercase tracking-wider">Current Period</span>
+                        <span id="current-quarter-display" class="font-bold text-sky-400 text-xs sm:text-sm">Year 1 - Q1</span>
                     </div>
 
                     <div class="bg-slate-800/80 p-1.5 rounded-lg border border-slate-700 flex items-center gap-2">
-                        <button id="advance-btn" onclick="advanceQuarter()" class="px-4 py-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-semibold rounded-md shadow-md text-sm transition-all flex items-center gap-2 active:scale-95">
+                        <button id="advance-btn" onclick="advanceQuarter()" class="px-3 sm:px-4 py-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-semibold rounded-md shadow-md text-xs sm:text-sm transition-all flex items-center gap-2 active:scale-95 cursor-pointer">
                             <i class="fa-solid fa-forward text-xs"></i>
                             <span>Advance Quarter</span>
                         </button>
@@ -82,23 +86,23 @@
         <!-- Navigation Tabs -->
         <div class="bg-slate-900/90 border-t border-slate-800/80 px-4 sm:px-8 overflow-x-auto">
             <nav class="flex space-x-2 sm:space-x-6 min-w-max" id="nav-tabs">
-                <button onclick="switchTab('dashboard')" class="tab-btn active px-3 py-3 text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-chart-line text-sky-400"></i> Dashboard & Indicators
+                <button onclick="switchTab('dashboard')" class="tab-btn active px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-chart-line text-sky-400"></i> Executive Dashboard
                 </button>
-                <button onclick="switchTab('policy')" class="tab-btn px-3 py-3 text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-building-columns text-emerald-400"></i> Fiscal & Monetary Policy
+                <button onclick="switchTab('policy')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-building-columns text-emerald-400"></i> Fiscal & Monetary Struggle
                 </button>
-                <button onclick="switchTab('industries')" class="tab-btn px-3 py-3 text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-industry text-amber-400"></i> Sectors & Global Trade
+                <button onclick="switchTab('industries')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-industry text-amber-400"></i> Industries & Global Trade
                 </button>
-                <button onclick="switchTab('scenarios')" class="tab-btn px-3 py-3 text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-bullseye text-rose-400"></i> Scenarios & Challenges
+                <button onclick="switchTab('scenarios')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-bullseye text-rose-400"></i> Crisis Scenarios
                 </button>
-                <button onclick="switchTab('learn')" class="tab-btn px-3 py-3 text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2">
+                <button onclick="switchTab('learn')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
                     <i class="fa-solid fa-graduation-cap text-purple-400"></i> Economics Academy
                 </button>
-                <button onclick="switchTab('news')" class="tab-btn px-3 py-3 text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-newspaper text-indigo-400"></i> News & Event Logs
+                <button onclick="switchTab('news')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-newspaper text-indigo-400"></i> Press Ledger
                 </button>
             </nav>
         </div>
@@ -107,47 +111,47 @@
     <!-- Main Content Body -->
     <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
 
-        <!-- Banner for Scenario Objectives if active -->
+        <!-- Active Scenario Banner -->
         <div id="scenario-banner" class="hidden bg-slate-900 border border-sky-500/40 rounded-xl p-4 shadow-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
                 <div class="flex items-center gap-2">
                     <span class="px-2 py-0.5 text-xs font-bold bg-rose-500/20 text-rose-300 rounded border border-rose-500/30 uppercase">Active Scenario Challenge</span>
-                    <h3 id="scenario-title" class="font-bold text-slate-100">The Great Stagflation</h3>
+                    <h3 id="scenario-title" class="font-bold text-slate-100 text-sm">Crisis Mode</h3>
                 </div>
-                <p id="scenario-desc" class="text-xs text-slate-300 mt-1">Inflation is surging at 8.5% while growth stalls. Tame CPI below 2.5% and bring unemployment under 6% within 8 quarters.</p>
+                <p id="scenario-desc" class="text-xs text-slate-300 mt-1">Navigate the internal fiscal struggle and meet the target criteria.</p>
             </div>
             <div class="flex items-center gap-3">
                 <span id="scenario-timer" class="text-xs font-semibold text-sky-400 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">Time Left: 8 Quarters</span>
-                <button onclick="abandonScenario()" class="text-xs text-slate-400 hover:text-rose-400 underline">Reset Sim</button>
+                <button onclick="abandonScenario()" class="text-xs text-slate-400 hover:text-rose-400 underline cursor-pointer">Abort Scenario</button>
             </div>
         </div>
 
-        <!-- TAB 1: DASHBOARD & INDICATORS -->
+        <!-- TAB 1: EXECUTIVE DASHBOARD -->
         <section id="tab-dashboard" class="tab-content space-y-6">
             <!-- Key Performance Indicators Matrix -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
                     <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
-                        <span>Nominal GDP ($ CAD)</span>
+                        <span>Real GDP ($ CAD)</span>
                         <i class="fa-solid fa-coins text-sky-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-gdp" class="text-xl sm:text-2xl font-bold text-slate-100">$2.940 T</span>
-                        <span id="kpi-gdp-growth" class="text-xs font-semibold text-emerald-400 flex items-center gap-1">+2.1%</span>
+                        <span id="kpi-gdp-growth" class="text-xs font-semibold text-emerald-400">+2.1%</span>
                     </div>
                     <p class="text-[10px] text-slate-500 mt-1">Quarterly Annualized Growth Rate</p>
                 </div>
 
                 <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
                     <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
-                        <span>CPI Inflation (Inertial Anchor)</span>
+                        <span>CPI Inflation (Anchored)</span>
                         <i class="fa-solid fa-fire text-amber-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-inflation" class="text-xl sm:text-2xl font-bold text-slate-100">2.4%</span>
                         <span id="kpi-inflation-status" class="text-xs font-semibold text-emerald-400">Target Band</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-1">Bank of Canada Target: 1.0% - 3.0%</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Target: 1.0% - 3.0%</p>
                 </div>
 
                 <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
@@ -159,7 +163,7 @@
                         <span id="kpi-unemployment" class="text-xl sm:text-2xl font-bold text-slate-100">5.8%</span>
                         <span id="kpi-unemployment-trend" class="text-xs font-semibold text-slate-400">Stable</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-1">NAIRU Estimate ~ 5.5%</p>
+                    <p class="text-[10px] text-slate-500 mt-1">NAIRU Benchmark ~ 5.5%</p>
                 </div>
 
                 <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
@@ -169,21 +173,21 @@
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-rate" class="text-xl sm:text-2xl font-bold text-slate-100">3.75%</span>
-                        <span id="kpi-bond-spread" class="text-xs font-semibold text-sky-400">Yield: 3.75%</span>
+                        <span id="kpi-bond-spread" class="text-xs font-semibold text-sky-400">Spread: 0 bps</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-1">Includes Sovereign Risk Penalty Spread</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Sovereign Yield Curve Risk</p>
                 </div>
 
                 <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
                     <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
-                        <span>National Debt / GDP</span>
+                        <span>National Debt / Surplus</span>
                         <i class="fa-solid fa-vault text-rose-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-debt" class="text-xl sm:text-2xl font-bold text-slate-100">64.2%</span>
                         <span id="kpi-budget-balance" class="text-xs font-semibold text-rose-400">-$32.5B</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-1">>80% Debt triggers bond penalties</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Surplus reduces national debt over time</p>
                 </div>
 
                 <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
@@ -193,7 +197,7 @@
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-fx" class="text-xl sm:text-2xl font-bold text-slate-100">$0.745</span>
-                        <span id="kpi-fx-trend" class="text-xs font-semibold text-emerald-400">+0.2%</span>
+                        <span id="kpi-fx-trend" class="text-xs font-semibold text-emerald-400">Stable</span>
                     </div>
                     <p class="text-[10px] text-slate-500 mt-1">Floating Currency Terms of Trade</p>
                 </div>
@@ -217,7 +221,7 @@
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-approval" class="text-xl sm:text-2xl font-bold text-slate-100">54%</span>
-                        <span id="kpi-approval-status" class="text-xs font-semibold text-emerald-400">Moderate</span>
+                        <span id="kpi-approval-status" class="text-xs font-semibold text-emerald-400">Stable</span>
                     </div>
                     <p class="text-[10px] text-slate-500 mt-1">Voter support base</p>
                 </div>
@@ -228,7 +232,7 @@
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="font-semibold text-slate-200 text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-chart-area text-sky-400"></i> Output Growth & Inertial CPI Inflation Trend
+                            <i class="fa-solid fa-chart-area text-sky-400"></i> Output Growth & Inertial CPI Inflation
                         </h3>
                         <span class="text-[11px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Quarterly %</span>
                     </div>
@@ -240,7 +244,7 @@
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="font-semibold text-slate-200 text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-chart-line text-emerald-400"></i> BoC Rate, Bond Yields & Debt Trajectory
+                            <i class="fa-solid fa-chart-line text-emerald-400"></i> Bond Yields & Debt-to-GDP Trajectory
                         </h3>
                         <span class="text-[11px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Quarterly %</span>
                     </div>
@@ -250,29 +254,29 @@
                 </div>
             </div>
 
-            <!-- Macroeconomic Balance & Dynamic Insights -->
+            <!-- AI Chief Advisor Internal Struggle Diagnosis -->
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
                 <h3 class="font-semibold text-slate-200 text-sm mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-brain text-purple-400"></i> AI Economic Chief Advisor Feedback Loop Diagnosis
+                    <i class="fa-solid fa-brain text-purple-400"></i> Cabinet Chief Advisor: The Internal Fiscal Struggle
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                     <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                        <span class="font-bold text-sky-400 block mb-1">Transmission Queue Status</span>
-                        <p id="advisor-transmission" class="text-slate-300 leading-relaxed">Monetary lag queue active. Recent rate adjustments are filtering into aggregate demand over 3 quarters.</p>
+                        <span class="font-bold text-sky-400 block mb-1">Fiscal Dilemma & Surpluses</span>
+                        <p id="advisor-fiscal" class="text-slate-300 leading-relaxed">Running deficits piles up national debt and triggers bond risk spreads. Generating surpluses actively pays down debt and builds sovereign fiscal space.</p>
                     </div>
                     <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                        <span class="font-bold text-emerald-400 block mb-1">Sovereign Debt Risk Spread</span>
-                        <p id="advisor-spread" class="text-slate-300 leading-relaxed">Debt-to-GDP is below 80%. Sovereign risk premium is currently 0 basis points.</p>
+                        <span class="font-bold text-emerald-400 block mb-1">Monetary Transmission Lag</span>
+                        <p id="advisor-transmission" class="text-slate-300 leading-relaxed">Rate changes take 3 quarters to fully filter through credit channels into real economic activity.</p>
                     </div>
                     <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                        <span class="font-bold text-amber-400 block mb-1">Inflation Anchor Inertia</span>
-                        <p id="advisor-anchor" class="text-slate-300 leading-relaxed">Adaptive price expectations are anchored near the 2% target band.</p>
+                        <span class="font-bold text-amber-400 block mb-1">Political Trade-off</span>
+                        <p id="advisor-political" class="text-slate-300 leading-relaxed">Cutting spending or raising taxes pleases bond markets but risks voter backlash and lower approval ratings.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 2: FISCAL & MONETARY POLICY CONTROL -->
+        <!-- TAB 2: FISCAL & MONETARY POLICY STRUGGLE -->
         <section id="tab-policy" class="tab-content hidden space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Fiscal Policy Controls -->
@@ -282,7 +286,7 @@
                             <h3 class="font-bold text-slate-100 flex items-center gap-2">
                                 <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> Fiscal Policy (Department of Finance)
                             </h3>
-                            <p class="text-xs text-slate-400">Manage taxation rates and outlays. Watch for the 80% Debt Risk Threshold!</p>
+                            <p class="text-xs text-slate-400">Balance revenues and expenditures to achieve budget surpluses and pay down debt.</p>
                         </div>
                     </div>
 
@@ -292,7 +296,7 @@
                             <span id="val-pit" class="text-sky-400 font-bold">24%</span>
                         </div>
                         <input type="range" id="slider-pit" min="10" max="45" value="24" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Higher tax dampens consumer aggregate demand; lowers debt growth.</p>
+                        <p class="text-[10px] text-slate-500">Increases tax revenue to fight deficits; dampens consumer spending.</p>
                     </div>
 
                     <div class="space-y-1">
@@ -301,7 +305,7 @@
                             <span id="val-cit" class="text-sky-400 font-bold">15%</span>
                         </div>
                         <input type="range" id="slider-cit" min="5" max="35" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Affects business investment (I) and capital productivity gains.</p>
+                        <p class="text-[10px] text-slate-500">Affects corporate investment capital and business expansion.</p>
                     </div>
 
                     <div class="space-y-1">
@@ -310,7 +314,7 @@
                             <span id="val-gst" class="text-sky-400 font-bold">5%</span>
                         </div>
                         <input type="range" id="slider-gst" min="0" max="15" value="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Direct consumption tax on goods & services.</p>
+                        <p class="text-[10px] text-slate-500">Direct consumption tax bolstering federal revenue.</p>
                     </div>
 
                     <div class="space-y-1">
@@ -319,7 +323,7 @@
                             <span id="val-carbon" class="text-sky-400 font-bold">$65</span>
                         </div>
                         <input type="range" id="slider-carbon" min="0" max="170" value="65" step="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Incentivizes green transition; introduces cost-push price pressure.</p>
+                        <p class="text-[10px] text-slate-500">Drives green transition; adds minor cost-push price pressure.</p>
                     </div>
 
                     <div class="space-y-1">
@@ -328,7 +332,7 @@
                             <span id="val-infra" class="text-emerald-400 font-bold">$40B</span>
                         </div>
                         <input type="range" id="slider-infra" min="10" max="120" value="40" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Keynesian multiplier effect on long-term GDP supply capacity.</p>
+                        <p class="text-[10px] text-slate-500">Keynesian multiplier for long-term productivity; adds to expenditures.</p>
                     </div>
 
                     <div class="space-y-1">
@@ -337,7 +341,7 @@
                             <span id="val-social" class="text-emerald-400 font-bold">$110B</span>
                         </div>
                         <input type="range" id="slider-social" min="40" max="250" value="110" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Boosts public approval, income equality, and base consumption.</p>
+                        <p class="text-[10px] text-slate-500">Boosts voter approval and base consumption.</p>
                     </div>
                 </div>
 
@@ -348,7 +352,7 @@
                             <h3 class="font-bold text-slate-100 flex items-center gap-2">
                                 <i class="fa-solid fa-landmark text-sky-400"></i> Monetary Policy (Bank of Canada)
                             </h3>
-                            <p class="text-xs text-slate-400">Independent central bank mandate with delayed transmission queue.</p>
+                            <p class="text-xs text-slate-400">Independent central bank governing price stability and liquidity.</p>
                         </div>
                     </div>
 
@@ -358,7 +362,7 @@
                             <span id="val-boc-rate" class="text-purple-400 font-bold">3.75%</span>
                         </div>
                         <input type="range" id="slider-boc-rate" min="0.25" max="12.0" step="0.25" value="3.75" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Primary tool. Takes 2-3 quarters to fully bite into growth via transmission lag.</p>
+                        <p class="text-[10px] text-slate-500">Cools inflation and debt servicing costs when raised.</p>
                     </div>
 
                     <div class="space-y-1">
@@ -367,7 +371,7 @@
                             <span id="val-qe" class="text-purple-400 font-bold">$0 B/qtr</span>
                         </div>
                         <input type="range" id="slider-qe" min="-50" max="50" step="5" value="0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Buying bonds expands money supply; Selling shrinks liquidity.</p>
+                        <p class="text-[10px] text-slate-500">Expands or contracts base money supply.</p>
                     </div>
 
                     <div class="space-y-1">
@@ -376,7 +380,7 @@
                             <span id="val-reserve" class="text-purple-400 font-bold">3.5%</span>
                         </div>
                         <input type="range" id="slider-reserve" min="1.0" max="10.0" step="0.5" value="3.5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Controls private commercial bank credit creation.</p>
+                        <p class="text-[10px] text-slate-500">Regulates commercial lending capacity.</p>
                     </div>
 
                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs space-y-2 mt-4">
@@ -394,14 +398,14 @@
             </div>
         </section>
 
-        <!-- TAB 3: SECTORS & GLOBAL TRADE -->
+        <!-- TAB 3: INDUSTRIES & GLOBAL TRADE -->
         <section id="tab-industries" class="tab-content hidden space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3">
                     <h3 class="font-bold text-slate-100 flex items-center gap-2">
                         <i class="fa-solid fa-industry text-amber-400"></i> Canadian Key Sector Breakdown & Industry Subsidies
                     </h3>
-                    <p class="text-xs text-slate-400">Fine-tune capital investment, regulatory burden, and sector labor allocation.</p>
+                    <p class="text-xs text-slate-400">Examine sector outputs and economic contributions.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="sector-cards-container">
@@ -414,7 +418,7 @@
                         <h3 class="font-bold text-slate-100 flex items-center gap-2">
                             <i class="fa-solid fa-earth-americas text-sky-400"></i> International Trade, Tariffs & Foreign Policy
                         </h3>
-                        <p class="text-xs text-slate-400">Manage USMCA compliance, tariffs with USA, CPTPP, and Global Shocks.</p>
+                        <p class="text-xs text-slate-400">Manage trade barriers and global economic shocks.</p>
                     </div>
                 </div>
 
@@ -456,10 +460,10 @@
                         <div class="pt-2">
                             <span class="text-xs font-semibold text-slate-300 block mb-2">Inject Global Shock Scenario:</span>
                             <div class="grid grid-cols-2 gap-2">
-                                <button onclick="triggerShock('oil_spike')" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 rounded text-xs font-medium transition">
+                                <button onclick="triggerShock('oil_spike')" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 rounded text-xs font-medium transition cursor-pointer">
                                     ⚡ OPEC Oil Price Surge (+40%)
                                 </button>
-                                <button onclick="triggerShock('us_recession')" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-rose-300 border border-rose-500/30 rounded text-xs font-medium transition">
+                                <button onclick="triggerShock('us_recession')" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-rose-300 border border-rose-500/30 rounded text-xs font-medium transition cursor-pointer">
                                     ⚡ US Demand Slump / Recession
                                 </button>
                             </div>
@@ -469,14 +473,14 @@
             </div>
         </section>
 
-        <!-- TAB 4: SCENARIOS & CHALLENGES -->
+        <!-- TAB 4: CRISIS SCENARIOS -->
         <section id="tab-scenarios" class="tab-content hidden space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
                 <div class="border-b border-slate-800 pb-3 mb-4">
                     <h3 class="font-bold text-slate-100 flex items-center gap-2">
                         <i class="fa-solid fa-bullseye text-rose-400"></i> Macroeconomic Guided Scenario Challenges
                     </h3>
-                    <p class="text-xs text-slate-400">Step into the shoes of the Prime Minister and BoC Governor during crisis moments.</p>
+                    <p class="text-xs text-slate-400">Take command during high-stakes economic crises.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="scenarios-grid">
@@ -484,14 +488,14 @@
             </div>
         </section>
 
-        <!-- TAB 5: LEARN ECONOMICS ACADEMY -->
+        <!-- TAB 5: ECONOMICS ACADEMY -->
         <section id="tab-learn" class="tab-content hidden space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
                 <div class="border-b border-slate-800 pb-3 mb-6">
                     <h3 class="font-bold text-slate-100 flex items-center gap-2">
                         <i class="fa-solid fa-graduation-cap text-purple-400"></i> Economics Interactive Learning Hub
                     </h3>
-                    <p class="text-xs text-slate-400">Master core macroeconomic theory and Canadian-specific economic realities.</p>
+                    <p class="text-xs text-slate-400">Master sovereign debt dynamics, fiscal surpluses, and monetary transmission.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -503,7 +507,7 @@
             </div>
         </section>
 
-        <!-- TAB 6: NEWS & EVENT LOGS -->
+        <!-- TAB 6: PRESS LEDGER -->
         <section id="tab-news" class="tab-content hidden space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
@@ -511,9 +515,9 @@
                         <h3 class="font-bold text-slate-100 flex items-center gap-2">
                             <i class="fa-solid fa-newspaper text-indigo-400"></i> Financial Times & Event Ledger
                         </h3>
-                        <p class="text-xs text-slate-400">Historical sequence of all policy actions, news reports, and rating updates.</p>
+                        <p class="text-xs text-slate-400">Historical sequence of all policy actions and market reactions.</p>
                     </div>
-                    <button onclick="clearNewsLog()" class="text-xs text-slate-400 hover:text-white bg-slate-800 px-3 py-1.5 rounded border border-slate-700">Clear Logs</button>
+                    <button onclick="clearNewsLog()" class="text-xs text-slate-400 hover:text-white bg-slate-800 px-3 py-1.5 rounded border border-slate-700 cursor-pointer">Clear Logs</button>
                 </div>
 
                 <div class="space-y-3 max-h-[500px] overflow-y-auto pr-2" id="news-feed-container">
@@ -525,7 +529,7 @@
     <!-- Footer -->
     <footer class="bg-slate-900 border-t border-slate-800 py-4 px-4 sm:px-8 mt-auto text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
         <div>
-            EconoMaster Simulation Engine &copy; 2026. Designed with advanced inertial feedback loops & bond spreads.
+            EconoMaster Simulation Engine &copy; 2026. Fully Interactive Sovereign Fiscal & Monetary Struggle Engine.
         </div>
         <div class="flex gap-4">
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('learn')">Macro Theory</span>
@@ -534,7 +538,7 @@
         </div>
     </footer>
 
-    <!-- MAIN JAVASCRIPT SIMULATION ENGINE WITH UPGRADED FEEDBACK LOOPS -->
+    <!-- MAIN JAVASCRIPT ENGINE -->
     <script>
         const gameState = {
             quarter: 1,
@@ -546,28 +550,25 @@
             bocRate: 3.75, 
             usFedRate: 4.25, 
             debtToGdp: 64.2, 
-            nationalDebt: 1887.0, 
-            budgetDeficit: 32.5, 
+            nationalDebt: 1887.0, // $ Billion (Can go negative if surpluses pay it off!)
+            budgetDeficit: 32.5, // Positive = Deficit, Negative = Surplus
             cadToUsd: 0.745, 
             tradeBalance: 4.2, 
             oilPrice: 78.5, 
             publicApproval: 54, 
             carbonPrice: 65, 
             
-            // Fiscal Policy Sliders
             pit: 24, 
             cit: 15, 
             gst: 5,  
             infraSpend: 40, 
             socialSpend: 110, 
             
-            // Monetary Sliders
             qeAmount: 0, 
             reserveRatio: 3.5, 
 
-            // --- ADVANCED FEEDBACK LOOPS STATE ---
-            monetaryLagQueue: [3.75, 3.75, 3.75], // 3-quarter delayed monetary transmission queue
-            bondRiskSpread: 0.0, // Basis point risk premium added when debt > 80%
+            monetaryLagQueue: [3.75, 3.75, 3.75], 
+            bondRiskSpread: 0.0, 
             
             sectors: {
                 resources: { name: "Energy & Oil Sands", output: 320, subsidy: 5, reg: 6, tax: 18 },
@@ -714,7 +715,7 @@
             updateAdvisorDiagnosis();
         }
 
-        // --- ADVANCED MACROECONOMIC ENGINE WITH FEEDBACK LOOPS ---
+        // --- ADVANCED SOVEREIGN STRUGGLE ENGINE ---
         function advanceQuarter() {
             gameState.quarter++;
             if (gameState.quarter > 4) {
@@ -725,40 +726,49 @@
             const quarterLabel = `Year ${gameState.year} - Q${gameState.quarter}`;
             document.getElementById('current-quarter-display').innerText = quarterLabel;
 
-            // --- 1. SOVEREIGN DEBT BOND RISK SPREAD FEEDBACK LOOP ---
-            // If debt-to-GDP crosses 80%, bond investors demand a non-linear risk spread penalty
+            // 1. SOVEREIGN DEBT & SURPLUS STRUGGLE LOOP
+            // If national debt goes negative (surplus accumulation), Canada earns sovereign interest income!
             if (gameState.debtToGdp > 80.0) {
                 const excessDebt = gameState.debtToGdp - 80.0;
-                gameState.bondRiskSpread = parseFloat((excessDebt * 0.08).toFixed(2)); // +8 bps per 1% over 80%
+                gameState.bondRiskSpread = parseFloat((excessDebt * 0.08).toFixed(2));
+            } else if (gameState.debtToGdp < 30.0) {
+                gameState.bondRiskSpread = -0.25; // AAA Sovereign Prime Discount!
             } else {
                 gameState.bondRiskSpread = 0.0;
             }
-            const effectiveBorrowingRate = gameState.bocRate + gameState.bondRiskSpread;
+            const effectiveBorrowingRate = Math.max(0.1, gameState.bocRate + gameState.bondRiskSpread);
 
-            // --- 2. DELAYED MONETARY TRANSMISSION QUEUE ---
-            // Push current rate into queue and pull lagged rate from 3 quarters ago
-            gameState.monetaryLagQueue.push(effectiveBorrowingRate);
-            const laggedRate = gameState.monetaryLagQueue.shift(); 
-            const neutralRate = 2.5;
-            const laggedRateGap = laggedRate - neutralRate;
-            const monetaryDrag = laggedRateGap * 0.35;
-
-            // FISCAL REVENUES & OUTLAYS
+            // TAX REVENUES
             const pitRev = (gameState.gdp * 0.45) * (gameState.pit / 100);
             const citRev = (gameState.gdp * 0.20) * (gameState.cit / 100);
             const gstRev = (gameState.gdp * 0.35) * (gameState.gst / 100);
             const carbonRev = (gameState.carbonPrice * 0.3); 
             const totalTaxRev = (pitRev + citRev + gstRev + carbonRev);
 
-            // Debt servicing uses the effective bond yield (including risk spread)
-            const debtServiceCost = gameState.nationalDebt * (effectiveBorrowingRate / 100) * 0.25;
-            const totalGovOutlays = (gameState.infraSpend + gameState.socialSpend + debtServiceCost);
+            // INTEREST COST OR SOVEREIGN RETURN
+            // If nationalDebt > 0, pay interest. If nationalDebt < 0 (net asset surplus), earn sovereign investment returns!
+            let debtServiceCost = 0;
+            if (gameState.nationalDebt > 0) {
+                debtServiceCost = gameState.nationalDebt * (effectiveBorrowingRate / 100) * 0.25;
+            } else {
+                debtServiceCost = gameState.nationalDebt * (2.0 / 100) * 0.25; // earns sovereign wealth fund return
+            }
+
+            const totalGovOutlays = (gameState.infraSpend + gameState.socialSpend + Math.max(0, debtServiceCost));
             
+            // Budget Balance: Positive = Deficit (debt grows), Negative = Surplus (debt shrinks / goes positive into net assets!)
             gameState.budgetDeficit = totalGovOutlays - totalTaxRev;
             gameState.nationalDebt += (gameState.budgetDeficit / 4);
             gameState.debtToGdp = (gameState.nationalDebt / gameState.gdp) * 100;
 
-            // AGGREGATE DEMAND & GDP GROWTH
+            // 2. MONETARY TRANSMISSION QUEUE
+            gameState.monetaryLagQueue.push(effectiveBorrowingRate);
+            const laggedRate = gameState.monetaryLagQueue.shift(); 
+            const neutralRate = 2.5;
+            const laggedRateGap = laggedRate - neutralRate;
+            const monetaryDrag = laggedRateGap * 0.35;
+
+            // 3. AGGREGATE DEMAND & GDP GROWTH
             const taxBurden = (gameState.pit + gameState.cit + gameState.gst) - 44; 
             const taxDrag = taxBurden * 0.08;
             const infraStimulus = (gameState.infraSpend - 40) * 0.03;
@@ -766,15 +776,17 @@
             const tradeTariffImpact = - (gameState.tariffUs * 0.1) - (gameState.tariffRow * 0.05);
             const oilPriceBoom = (gameState.oilPrice - 75) * 0.02; 
 
-            let newGdpGrowth = 2.0 - monetaryDrag - taxDrag + infraStimulus + qeStimulus + tradeTariffImpact + oilPriceBoom;
+            // Surplus fiscal drag / stimulus balance: running massive surpluses causes slight short-term demand drag unless offset by public investment
+            const surplusDrag = (gameState.budgetDeficit < 0) ? (Math.abs(gameState.budgetDeficit) * 0.005) : 0;
+
+            let newGdpGrowth = 2.0 - monetaryDrag - taxDrag + infraStimulus + qeStimulus + tradeTariffImpact + oilPriceBoom - surplusDrag;
             const noise = (Math.random() - 0.5) * 0.3;
             newGdpGrowth = parseFloat((newGdpGrowth + noise).toFixed(2));
 
             gameState.gdpGrowthRate = newGdpGrowth;
             gameState.gdp = gameState.gdp * (1 + (newGdpGrowth / 400));
 
-            // --- 3. INERTIAL INFLATION ANCHOR FEEDBACK LOOP ---
-            // Sticky prices: 70% weight on previous inflation + 30% current economic pressure
+            // 4. INERTIAL INFLATION ANCHOR
             const demandPullInflation = (newGdpGrowth - 2.0) * 0.3;
             const costPushCarbon = (gameState.carbonPrice - 65) * 0.01;
             const qeInflation = (gameState.qeAmount > 0) ? gameState.qeAmount * 0.02 : 0;
@@ -783,31 +795,29 @@
             const targetAnchor = 2.0;
             const rawInstantInflation = targetAnchor + demandPullInflation + costPushCarbon + qeInflation - rateCooling;
             
-            // Apply Inertial Anchor smoothing
             let newInflation = (0.7 * gameState.cpiInflation) + (0.3 * rawInstantInflation);
             newInflation = Math.max(0.1, parseFloat(newInflation.toFixed(2)));
             gameState.cpiInflation = newInflation;
 
-            // UNEMPLOYMENT (OKUN'S LAW)
+            // 5. UNEMPLOYMENT & APPROVAL
             const growthGap = 2.0 - newGdpGrowth;
             let newUnemployment = gameState.unemploymentRate + (growthGap * 0.3);
             newUnemployment = Math.min(18.0, Math.max(3.2, parseFloat(newUnemployment.toFixed(2))));
             gameState.unemploymentRate = newUnemployment;
 
-            // EXCHANGE RATE (CAD vs USD)
-            const rateDiff = (effectiveBorrowingRate - gameState.usFedRate) * 0.015;
-            const oilFxImpact = (gameState.oilPrice - 75) * 0.0015;
-            let newFx = 0.745 + rateDiff + oilFxImpact;
-            gameState.cadToUsd = parseFloat(Math.min(0.95, Math.max(0.60, newFx)).toFixed(3));
-
-            // PUBLIC APPROVAL RATING
             let approvalChange = 0;
             if (gameState.cpiInflation > 4.0) approvalChange -= 3;
             if (gameState.unemploymentRate > 7.0) approvalChange -= 3;
             if (gameState.gdpGrowthRate > 2.5) approvalChange += 2;
-            if (gameState.budgetDeficit < 0) approvalChange += 1;
-            if (gameState.bondRiskSpread > 0) approvalChange -= 2; // bond penalty political backlash
+            if (gameState.budgetDeficit < 0) approvalChange += 2; // voters love surpluses and fiscal prudence!
+            if (gameState.bondRiskSpread > 0) approvalChange -= 2;
             gameState.publicApproval = Math.min(95, Math.max(15, gameState.publicApproval + approvalChange));
+
+            // 6. FX & TRADE
+            const rateDiff = (effectiveBorrowingRate - gameState.usFedRate) * 0.015;
+            const oilFxImpact = (gameState.oilPrice - 75) * 0.0015;
+            let newFx = 0.745 + rateDiff + oilFxImpact;
+            gameState.cadToUsd = parseFloat(Math.min(0.95, Math.max(0.60, newFx)).toFixed(3));
 
             // RECORD HISTORY
             gameState.history.labels.push(`Y${gameState.year} Q${gameState.quarter}`);
@@ -853,17 +863,34 @@
             
             const totalYield = gameState.bocRate + gameState.bondRiskSpread;
             const bondYieldEl = document.getElementById('kpi-bond-spread');
-            bondYieldEl.innerText = `Yield: ${totalYield.toFixed(2)}%`;
+            bondYieldEl.innerText = `Spread: ${(gameState.bondRiskSpread * 100).toFixed(0)} bps`;
             if (gameState.bondRiskSpread > 0) {
                 bondYieldEl.className = 'text-xs font-semibold text-rose-400';
+            } else if (gameState.bondRiskSpread < 0) {
+                bondYieldEl.className = 'text-xs font-semibold text-emerald-400';
             } else {
                 bondYieldEl.className = 'text-xs font-semibold text-sky-400';
             }
 
-            document.getElementById('kpi-debt').innerText = gameState.debtToGdp.toFixed(1) + '%';
+            // Display Debt or Positive Net Asset Surplus
+            const debtEl = document.getElementById('kpi-debt');
+            if (gameState.nationalDebt >= 0) {
+                debtEl.innerText = gameState.debtToGdp.toFixed(1) + '% (Debt)';
+                debtEl.className = 'text-xl sm:text-2xl font-bold text-slate-100';
+            } else {
+                const assetGdp = Math.abs(gameState.debtToGdp);
+                debtEl.innerText = '+' + assetGdp.toFixed(1) + '% (Surplus Assets)';
+                debtEl.className = 'text-xl sm:text-2xl font-bold text-emerald-400';
+            }
+
             const deficitEl = document.getElementById('kpi-budget-balance');
-            deficitEl.innerText = (gameState.budgetDeficit > 0 ? '-' : '+') + '$' + Math.abs(gameState.budgetDeficit).toFixed(1) + 'B';
-            deficitEl.className = `text-xs font-semibold ${gameState.budgetDeficit <= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
+            if (gameState.budgetDeficit > 0) {
+                deficitEl.innerText = '-$' + gameState.budgetDeficit.toFixed(1) + 'B (Deficit)';
+                deficitEl.className = 'text-xs font-semibold text-rose-400';
+            } else {
+                deficitEl.innerText = '+$' + Math.abs(gameState.budgetDeficit).toFixed(1) + 'B (Surplus)';
+                deficitEl.className = 'text-xs font-semibold text-emerald-400';
+            }
 
             document.getElementById('kpi-fx').innerText = '$' + gameState.cadToUsd;
             document.getElementById('kpi-approval').innerText = gameState.publicApproval + '%';
@@ -879,18 +906,14 @@
 
             document.getElementById('taylor-computed-val').innerText = formattedTaylor + '%';
 
-            const transEl = document.getElementById('advisor-transmission');
-            transEl.innerText = `Delayed transmission queue active. Rate changes made 2-3 quarters ago are currently driving real demand impact.`;
-
-            const spreadEl = document.getElementById('advisor-spread');
-            if (gameState.bondRiskSpread > 0) {
-                spreadEl.innerText = `WARNING: Debt-to-GDP is ${gameState.debtToGdp.toFixed(1)}% (>80%). Bond markets have penalized Canada with a +${(gameState.bondRiskSpread*100).toFixed(0)} bps risk spread!`;
+            const fiscalEl = document.getElementById('advisor-fiscal');
+            if (gameState.nationalDebt < 0) {
+                fiscalEl.innerText = `Sovereign triumph! National debt has been fully eliminated. Canada is operating with a positive net asset surplus (${Math.abs(gameState.debtToGdp).toFixed(1)}% of GDP), earning investment returns.`;
+            } else if (gameState.budgetDeficit < 0) {
+                fiscalEl.innerText = `Active fiscal surplus of $${Math.abs(gameState.budgetDeficit).toFixed(1)}B/qtr. Debt is actively shrinking toward zero!`;
             } else {
-                spreadEl.innerText = `Debt-to-GDP is ${gameState.debtToGdp.toFixed(1)}% (below 80% safe harbor). No bond risk penalty is active.`;
+                fiscalEl.innerText = `Running a deficit of $${gameState.budgetDeficit.toFixed(1)}B/qtr. Cut spending or raise taxes to force debt positive.`;
             }
-
-            const anchorEl = document.getElementById('advisor-anchor');
-            anchorEl.innerText = `Inertial inflation anchor smoothing keeps CPI at ${gameState.cpiInflation}%, preventing erratic month-to-month volatility.`;
         }
 
         function renderSectors() {
@@ -928,7 +951,7 @@
             if (type === 'oil_spike') {
                 gameState.oilPrice = 115.0;
                 document.getElementById('val-oil-price').innerText = '$115.00 / bbl';
-                logNews('GLOBAL EVENT', 'OPEC Middle East crisis triggers massive crude oil supply shock (+40% price surge). Energy revenues spike while transport costs rise.', 'alert');
+                logNews('GLOBAL EVENT', 'OPEC Middle East crisis triggers massive crude oil supply spike (+40% price surge). Energy revenues spike while transport costs rise.', 'alert');
             } else if (type === 'us_recession') {
                 gameState.usFedRate = 1.50;
                 document.getElementById('val-us-fed-rate').innerText = '1.50%';
@@ -957,12 +980,12 @@
         }
 
         function generateQuarterNewsLog() {
-            if (gameState.bondRiskSpread > 0) {
-                logNews('BOND MARKET ALERT', `Moody's and S&P warn on Canadian fiscal sustainability. Bond yield risk spread widened by +${(gameState.bondRiskSpread*100).toFixed(0)} bps due to debt exceeding 80% of GDP!`, 'alert');
-            } else if (gameState.cpiInflation > 4.5) {
-                logNews('INFLATION ALERT', `Statistics Canada reports CPI stands at ${gameState.cpiInflation}%. Inertial price expectations remain sticky.`, 'alert');
+            if (gameState.nationalDebt < 0) {
+                logNews('HISTORIC MILESTONE', `Canada achieves positive net asset surplus! National debt fully erased. Sovereign fund returns are now contributing to federal coffers.`, 'success');
+            } else if (gameState.budgetDeficit < 0) {
+                logNews('FISCAL SURPLUS', `Department of Finance reports quarterly budget surplus of $${Math.abs(gameState.budgetDeficit).toFixed(1)}B. National debt is shrinking!`, 'success');
             } else {
-                logNews('STATSCAN DATA', `Quarterly report: GDP Growth ${gameState.gdpGrowthRate}%, Inertial Inflation ${gameState.cpiInflation}%, Effective Bond Yield ${(gameState.bocRate+gameState.bondRiskSpread).toFixed(2)}%.`, 'info');
+                logNews('STATSCAN DATA', `Quarterly report: GDP Growth ${gameState.gdpGrowthRate}%, Inflation ${gameState.cpiInflation}%, Deficit $${gameState.budgetDeficit.toFixed(1)}B.`, 'info');
             }
         }
 
@@ -972,21 +995,21 @@
 
         const SCENARIOS = [
             {
-                id: 'debt_crisis',
-                title: 'The Sovereign Debt Cliff',
-                desc: 'National debt is dangerously close to the 80% threshold. Balance the budget and avoid bond market penalty spreads within 8 quarters.',
-                duration: 8,
+                id: 'zero_debt',
+                title: 'The Zero-Debt Sovereign Challenge',
+                desc: 'Erase Canada\'s national debt entirely and achieve a positive net asset surplus within 12 quarters through strict fiscal discipline.',
+                duration: 12,
                 setup: () => {
-                    gameState.debtToGdp = 78.5;
-                    gameState.nationalDebt = 2250.0;
-                    gameState.budgetDeficit = 45.0;
+                    gameState.debtToGdp = 65.0;
+                    gameState.nationalDebt = 1900.0;
+                    gameState.budgetDeficit = 25.0;
                 },
-                checkWin: () => gameState.debtToGdp < 75.0 && gameState.budgetDeficit <= 0
+                checkWin: () => gameState.nationalDebt < 0
             },
             {
                 id: 'stagflation',
                 title: 'The Great Stagflation Challenge',
-                desc: 'Tame high CPI inflation (currently 7.5%) without triggering severe unemployment above 7.5%.',
+                desc: 'Tame high CPI inflation (7.5%) without triggering severe unemployment above 7.5%.',
                 duration: 8,
                 setup: () => {
                     gameState.cpiInflation = 7.5;
@@ -1013,7 +1036,7 @@
                         </div>
                         <p class="text-xs text-slate-400 leading-relaxed">${sc.desc}</p>
                     </div>
-                    <button onclick="startScenario('${sc.id}')" class="w-full mt-3 py-2 bg-slate-800 hover:bg-sky-600 text-slate-200 hover:text-white font-semibold text-xs rounded transition">
+                    <button onclick="startScenario('${sc.id}')" class="w-full mt-3 py-2 bg-slate-800 hover:bg-sky-600 text-slate-200 hover:text-white font-semibold text-xs rounded transition cursor-pointer">
                         Launch Scenario
                     </button>
                 `;
@@ -1063,27 +1086,28 @@
 
         const LESSONS = [
             {
-                id: 'feedback_loops',
-                title: '1. Inertial Inflation & Transmission Lags',
+                id: 'surplus_dynamics',
+                title: '1. Positive Net Assets & Sovereign Surpluses',
                 content: `
-                    <h3 class="text-base font-bold text-sky-400 mb-2">Advanced Macroeconomic Feedback Loops</h3>
-                    <p class="text-xs text-slate-300 leading-relaxed mb-3">Real-world economies do not react instantly. EconoMaster now models three critical real-world frictions:</p>
+                    <h3 class="text-base font-bold text-emerald-400 mb-2">Turning Debt Positive: The Internal Struggle</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-3">In EconoMaster, national debt is no longer a one-way street of endless growth:</p>
                     <ul class="list-disc pl-4 text-xs text-slate-300 space-y-2 mb-3">
-                        <li><strong>Inertial Inflation Anchor:</strong> Prices and wage contracts are sticky. Inflation incorporates adaptive expectations, smoothing out erratic volatility and forcing central banks to maintain discipline over time.</li>
-                        <li><strong>Delayed Monetary Transmission Queue:</strong> Rate hikes entered today enter a 3-quarter distributed lag queue before fully compressing housing demand and corporate borrowing.</li>
-                        <li><strong>Sovereign Debt Risk Spread:</strong> Crossing the 80% debt-to-GDP threshold triggers non-linear bond market penalties, driving up debt-servicing costs and forcing difficult fiscal corrections.</li>
+                        <li><strong>Fiscal Surpluses:</strong> When tax revenues exceed government outlays, the budget deficit goes negative. This surplus directly pays down the national debt quarter after quarter.</li>
+                        <li><strong>Positive Net Assets:</strong> If you maintain fiscal discipline long enough, national debt drops below zero into positive net asset territory. Canada transitions from paying crushing interest to earning sovereign investment returns!</li>
+                        <li><strong>The Political Trade-off:</strong> Generating surpluses requires painful spending cuts or tax hikes, creating a genuine internal political struggle against voter approval.</li>
                     </ul>
                 `
             },
             {
-                id: 'taylor_phillips',
-                title: '2. Taylor Rule & Phillips Curve',
+                id: 'feedback_loops',
+                title: '2. Inertial Inflation & Transmission Lags',
                 content: `
-                    <h3 class="text-base font-bold text-emerald-400 mb-2">Central Banking Mechanics</h3>
-                    <p class="text-xs text-slate-300 leading-relaxed mb-3">Fundamental tools used to evaluate economic health:</p>
+                    <h3 class="text-base font-bold text-sky-400 mb-2">Advanced Macroeconomic Frictions</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-3">The simulation models three core real-world feedback loops:</p>
                     <ul class="list-disc pl-4 text-xs text-slate-300 space-y-2 mb-3">
-                        <li><strong>The Taylor Rule:</strong> Suggests how central banks should set rates based on inflation gaps and output gaps.</li>
-                        <li><strong>The Phillips Curve:</strong> Illustrates the short-run trade-off between unemployment and inflation.</li>
+                        <li><strong>Inertial Inflation Anchor:</strong> Prices are sticky and anchored by adaptive expectations.</li>
+                        <li><strong>Delayed Transmission Queue:</strong> Monetary policy takes 3 quarters to fully bite into growth.</li>
+                        <li><strong>Sovereign Risk Spreads:</strong> Debt over 80% triggers bond penalties; low debt below 30% yields AAA prime discounts.</li>
                     </ul>
                 `
             }
@@ -1095,13 +1119,13 @@
 
             LESSONS.forEach((item, index) => {
                 const btn = document.createElement('button');
-                btn.className = `w-full text-left p-3 rounded-lg border border-slate-800 text-xs font-semibold transition ${index === 0 ? 'bg-sky-950 text-sky-400 border-sky-800' : 'bg-slate-950 text-slate-300 hover:bg-slate-900'}`;
+                btn.className = `w-full text-left p-3 rounded-lg border border-slate-800 text-xs font-semibold transition cursor-pointer ${index === 0 ? 'bg-sky-950 text-sky-400 border-sky-800' : 'bg-slate-950 text-slate-300 hover:bg-slate-900'}`;
                 btn.innerText = item.title;
                 btn.onclick = (e) => {
                     document.querySelectorAll('#academy-topics-list button').forEach(b => {
-                        b.className = 'w-full text-left p-3 rounded-lg border border-slate-800 text-xs font-semibold bg-slate-950 text-slate-300 hover:bg-slate-900 transition';
+                        b.className = 'w-full text-left p-3 rounded-lg border border-slate-800 text-xs font-semibold bg-slate-950 text-slate-300 hover:bg-slate-900 transition cursor-pointer';
                     });
-                    e.currentTarget.className = 'w-full text-left p-3 rounded-lg border border-slate-800 text-xs font-semibold bg-sky-950 text-sky-400 border-sky-800 transition';
+                    e.currentTarget.className = 'w-full text-left p-3 rounded-lg border border-slate-800 text-xs font-semibold bg-sky-950 text-sky-400 border-sky-800 transition cursor-pointer';
                     document.getElementById('academy-content-display').innerHTML = item.content;
                 };
                 listContainer.appendChild(btn);
@@ -1116,7 +1140,7 @@
             renderSectors();
             renderScenarios();
             renderAcademy();
-            logNews('SYSTEM READY', 'EconoMaster Engine Initialized with Inertial Inflation Anchors, Delayed Transmission Queues, and Sovereign Debt Risk Spreads.', 'info');
+            logNews('SYSTEM READY', 'EconoMaster Engine Initialized. Sovereign surplus mechanics active: debt can now be fully paid down into positive net assets.', 'info');
         };
     </script>
 </body>
