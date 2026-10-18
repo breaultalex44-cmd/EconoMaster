@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconoMaster: Canada & Global Economic Engine</title>
+    <title>EconoMaster: Canada & Global Economic Engine v4.0</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -24,7 +24,7 @@
         }
     </script>
     <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://jsdelivr.com/npm/chart.js"></script>
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts Inter -->
@@ -43,6 +43,7 @@
         @keyframes pulse-subtle {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
+        }
         .animate-pulse-subtle { animation: pulse-subtle 3s infinite ease-in-out; }
     </style>
 </head>
@@ -60,9 +61,9 @@
                     <div>
                         <div class="flex items-center gap-2">
                             <h1 class="font-bold text-base sm:text-lg text-slate-100 tracking-tight">EconoMaster</h1>
-                            <span class="text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">Sovereign Engine v3.2</span>
+                            <span class="text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">Sovereign Engine v4.0</span>
                         </div>
-                        <p class="text-[11px] text-slate-400 hidden sm:block">Internal Fiscal Struggle & Dynamic Feedback Simulator</p>
+                        <p class="text-[11px] text-slate-400 hidden sm:block">Advanced Fiscal, Industrial & Social Feedback Simulator</p>
                     </div>
                 </div>
 
@@ -90,19 +91,22 @@
                     <i class="fa-solid fa-chart-line text-sky-400"></i> Executive Dashboard
                 </button>
                 <button onclick="switchTab('policy')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-building-columns text-emerald-400"></i> Fiscal & Monetary Struggle
+                    <i class="fa-solid fa-building-columns text-emerald-400"></i> Finance & Policy Hub
+                </button>
+                <button onclick="switchTab('funding')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-hand-holding-dollar text-purple-400"></i> Public Services & Funding
                 </button>
                 <button onclick="switchTab('industries')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-industry text-amber-400"></i> Industries & Global Trade
+                    <i class="fa-solid fa-industry text-amber-400"></i> 15 Industries & Trade Hub
                 </button>
                 <button onclick="switchTab('scenarios')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
                     <i class="fa-solid fa-bullseye text-rose-400"></i> Crisis Scenarios
                 </button>
                 <button onclick="switchTab('learn')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-graduation-cap text-purple-400"></i> Economics Academy
+                    <i class="fa-solid fa-graduation-cap text-indigo-400"></i> Economics Academy
                 </button>
                 <button onclick="switchTab('news')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-newspaper text-indigo-400"></i> Press Ledger
+                    <i class="fa-solid fa-newspaper text-teal-400"></i> Press Ledger
                 </button>
             </nav>
         </div>
@@ -254,10 +258,10 @@
                 </div>
             </div>
 
-            <!-- AI Chief Advisor Internal Struggle Diagnosis -->
+            <!-- AI Chief Advisor Diagnosis -->
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
                 <h3 class="font-semibold text-slate-200 text-sm mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-brain text-purple-400"></i> Cabinet Chief Advisor: The Internal Fiscal Struggle
+                    <i class="fa-solid fa-brain text-purple-400"></i> Cabinet Chief Advisor: Sovereign Economic Diagnosis
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                     <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
@@ -265,18 +269,18 @@
                         <p id="advisor-fiscal" class="text-slate-300 leading-relaxed">Running deficits piles up national debt and triggers bond risk spreads. Generating surpluses actively pays down debt and builds sovereign fiscal space.</p>
                     </div>
                     <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                        <span class="font-bold text-emerald-400 block mb-1">Monetary Transmission Lag</span>
-                        <p id="advisor-transmission" class="text-slate-300 leading-relaxed">Rate changes take 3 quarters to fully filter through credit channels into real economic activity.</p>
+                        <span class="font-bold text-emerald-400 block mb-1">Industrial Embargoes & Trade</span>
+                        <p id="advisor-transmission" class="text-slate-300 leading-relaxed">Adjusting tariffs, export taxes, and embargos across 15 key industries alters domestic supply security and trade balances.</p>
                     </div>
                     <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                        <span class="font-bold text-amber-400 block mb-1">Political Trade-off</span>
-                        <p id="advisor-political" class="text-slate-300 leading-relaxed">Cutting spending or raising taxes pleases bond markets but risks voter backlash and lower approval ratings.</p>
+                        <span class="font-bold text-amber-400 block mb-1">Public Funding Impact</span>
+                        <p id="advisor-political" class="text-slate-300 leading-relaxed">Funding health, research, education, and police directly boosts public approval and long-term productivity multipliers.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 2: FISCAL & MONETARY POLICY STRUGGLE -->
+        <!-- TAB 2: FINANCE & POLICY HUB (Original + 10 New Policy Adjustments) -->
         <section id="tab-policy" class="tab-content hidden space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Fiscal Policy Controls -->
@@ -284,9 +288,9 @@
                     <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                         <div>
                             <h3 class="font-bold text-slate-100 flex items-center gap-2">
-                                <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> Fiscal Policy (Department of Finance)
+                                <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> Department of Finance: Core Fiscal & 10 New Policies
                             </h3>
-                            <p class="text-xs text-slate-400">Balance revenues and expenditures to achieve budget surpluses and pay down debt.</p>
+                            <p class="text-xs text-slate-400">Fine-tune taxes, levies, and structural economic levers.</p>
                         </div>
                     </div>
 
@@ -296,7 +300,6 @@
                             <span id="val-pit" class="text-sky-400 font-bold">24%</span>
                         </div>
                         <input type="range" id="slider-pit" min="10" max="45" value="24" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Increases tax revenue to fight deficits; dampens consumer spending.</p>
                     </div>
 
                     <div class="space-y-1">
@@ -305,7 +308,6 @@
                             <span id="val-cit" class="text-sky-400 font-bold">15%</span>
                         </div>
                         <input type="range" id="slider-cit" min="5" max="35" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Affects corporate investment capital and business expansion.</p>
                     </div>
 
                     <div class="space-y-1">
@@ -314,7 +316,6 @@
                             <span id="val-gst" class="text-sky-400 font-bold">5%</span>
                         </div>
                         <input type="range" id="slider-gst" min="0" max="15" value="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Direct consumption tax bolstering federal revenue.</p>
                     </div>
 
                     <div class="space-y-1">
@@ -323,25 +324,91 @@
                             <span id="val-carbon" class="text-sky-400 font-bold">$65</span>
                         </div>
                         <input type="range" id="slider-carbon" min="0" max="170" value="65" step="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Drives green transition; adds minor cost-push price pressure.</p>
                     </div>
 
-                    <div class="space-y-1">
-                        <div class="flex justify-between text-xs font-medium">
-                            <label for="slider-infra" class="text-slate-300">Infrastructure & Transport Spending ($B)</label>
-                            <span id="val-infra" class="text-emerald-400 font-bold">$40B</span>
-                        </div>
-                        <input type="range" id="slider-infra" min="10" max="120" value="40" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Keynesian multiplier for long-term productivity; adds to expenditures.</p>
-                    </div>
+                    <!-- 10 NEW POLICY ADJUSTMENTS -->
+                    <div class="pt-3 border-t border-slate-800 space-y-4">
+                        <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider">Expanded Department of Finance Policy Levers (10 New)</h4>
 
-                    <div class="space-y-1">
-                        <div class="flex justify-between text-xs font-medium">
-                            <label for="slider-social" class="text-slate-300">Social Safety Net & Transfers ($B)</label>
-                            <span id="val-social" class="text-emerald-400 font-bold">$110B</span>
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="slider-capgains" class="text-slate-300">1. Capital Gains Tax Inclusion Rate (%)</label>
+                                <span id="val-capgains" class="text-sky-400 font-bold">50%</span>
+                            </div>
+                            <input type="range" id="slider-capgains" min="25" max="100" step="5" value="50" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
                         </div>
-                        <input type="range" id="slider-social" min="40" max="250" value="110" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Boosts voter approval and base consumption.</p>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="slider-luxury" class="text-slate-300">2. Luxury & Wealth Asset Tax (%)</label>
+                                <span id="val-luxury" class="text-sky-400 font-bold">1.0%</span>
+                            </div>
+                            <input type="range" id="slider-luxury" min="0" max="10" step="0.5" value="1.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="slider-smallbiz" class="text-slate-300">3. Small Business Tax Deduction Rate (%)</label>
+                                <span id="val-smallbiz" class="text-sky-400 font-bold">9.0%</span>
+                            </div>
+                            <input type="range" id="slider-smallbiz" min="0" max="15" step="0.5" value="9.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="slider-migration" class="text-slate-300">4. Net Immigration Inflow (Thousands / Qtr)</label>
+                                <span id="val-migration" class="text-sky-400 font-bold">120K</span>
+                            </div>
+                            <input type="range" id="slider-migration" min="20" max="300" step="10" value="120" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="slider-pension" class="text-slate-300">5. National Pension Contribution Rate (%)</label>
+                                <span id="val-pension" class="text-sky-400 font-bold">5.9%</span>
+                            </div>
+                            <input type="range" id="slider-pension" min="2.0" max="12.0" step="0.5" value="5.9" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="slider-foreignprop" class="text-slate-300">6. Foreign Real Estate Ownership Levy (%)</label>
+                                <span id="val-foreignprop" class="text-sky-400 font-bold">15%</span>
+                            </div>
+                            <input type="range" id="slider-foreignprop" min="0" max="35" step="1" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="slider-cleantech" class="text-slate-300">7. Clean Energy Investment Tax Credit (%)</label>
+                                <span id="val-cleantech" class="text-sky-400 font-bold">30%</span>
+                            </div>
+                            <input type="range" id="slider-cleantech" min="0" max="60" step="5" value="30" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="slider-ubi" class="text-slate-300">8. Universal Citizen Dividend / UBI ($B/qtr)</label>
+                                <span id="val-ubi" class="text-sky-400 font-bold">$15B</span>
+                            </div>
+                            <input type="range" id="slider-ubi" min="0" max="60" step="5" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="slider-digitalserv" class="text-slate-300">9. Digital Services & Tech Monopoly Tax (%)</label>
+                                <span id="val-digitalserv" class="text-sky-400 font-bold">3.0%</span>
+                            </div>
+                            <input type="range" id="slider-digitalserv" min="0" max="15" step="0.5" value="3.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="slider-stockpile" class="text-slate-300">10. Strategic National Reserve Stockpile ($B/qtr)</label>
+                                <span id="val-stockpile" class="text-sky-400 font-bold">$5B</span>
+                            </div>
+                            <input type="range" id="slider-stockpile" min="0" max="30" step="2" value="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        </div>
                     </div>
                 </div>
 
@@ -362,7 +429,6 @@
                             <span id="val-boc-rate" class="text-purple-400 font-bold">3.75%</span>
                         </div>
                         <input type="range" id="slider-boc-rate" min="0.25" max="12.0" step="0.25" value="3.75" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Cools inflation and debt servicing costs when raised.</p>
                     </div>
 
                     <div class="space-y-1">
@@ -371,7 +437,6 @@
                             <span id="val-qe" class="text-purple-400 font-bold">$0 B/qtr</span>
                         </div>
                         <input type="range" id="slider-qe" min="-50" max="50" step="5" value="0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Expands or contracts base money supply.</p>
                     </div>
 
                     <div class="space-y-1">
@@ -380,7 +445,6 @@
                             <span id="val-reserve" class="text-purple-400 font-bold">3.5%</span>
                         </div>
                         <input type="range" id="slider-reserve" min="1.0" max="10.0" step="0.5" value="3.5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400" oninput="updatePolicies()">
-                        <p class="text-[10px] text-slate-500">Regulates commercial lending capacity.</p>
                     </div>
 
                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs space-y-2 mt-4">
@@ -398,34 +462,56 @@
             </div>
         </section>
 
-        <!-- TAB 3: INDUSTRIES & GLOBAL TRADE -->
-        <section id="tab-industries" class="tab-content hidden space-y-6">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
-                <div class="border-b border-slate-800 pb-3">
-                    <h3 class="font-bold text-slate-100 flex items-center gap-2">
-                        <i class="fa-solid fa-industry text-amber-400"></i> Canadian Key Sector Breakdown & Industry Subsidies
-                    </h3>
-                    <p class="text-xs text-slate-400">Examine sector outputs and economic contributions.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="sector-cards-container">
-                </div>
-            </div>
-
+        <!-- TAB 3: PUBLIC SERVICES & FUNDING (10 Categories) -->
+        <section id="tab-funding" class="tab-content hidden space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                     <div>
                         <h3 class="font-bold text-slate-100 flex items-center gap-2">
-                            <i class="fa-solid fa-earth-americas text-sky-400"></i> International Trade, Tariffs & Foreign Policy
+                            <i class="fa-solid fa-hand-holding-dollar text-purple-400"></i> 10 Dedicated Public Services & Social Funding Categories
                         </h3>
-                        <p class="text-xs text-slate-400">Manage trade barriers and global economic shocks.</p>
+                        <p class="text-xs text-slate-400">Allocate federal budgets toward critical social infrastructure. Higher spending improves approval and productivity multipliers.</p>
                     </div>
+                    <div class="text-right">
+                        <span class="text-xs text-slate-400">Total Social & Public Outlays:</span>
+                        <span id="total-funding-display" class="text-sm font-bold text-purple-400 ml-2">$345.0B / qtr</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="funding-sliders-container">
+                    <!-- Dynamically populated or explicitly structured 10 funding sliders -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: 15 INDUSTRIES & GLOBAL TRADE -->
+        <section id="tab-industries" class="tab-content hidden space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
+                <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
+                    <div>
+                        <h3 class="font-bold text-slate-100 flex items-center gap-2">
+                            <i class="fa-solid fa-industry text-amber-400"></i> 15 Fully Fledged Canadian Industries & Trade Controls
+                        </h3>
+                        <p class="text-xs text-slate-400">Adjust custom duties, export taxes, subsidies, tax exonerations, regular price per ton, and import/export embargos for each specific industry.</p>
+                    </div>
+                </div>
+
+                <!-- 15 Industries Container -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4" id="industry-cards-container">
+                </div>
+            </div>
+
+            <!-- Global Trade & Tariff Settings -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
+                <div class="border-b border-slate-800 pb-3">
+                    <h3 class="font-bold text-slate-100 flex items-center gap-2">
+                        <i class="fa-solid fa-earth-americas text-sky-400"></i> International Trade Agreements & Global Shocks
+                    </h3>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
-                        <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Tariff & Trade Barriers</h4>
-                        
+                        <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider">General Tariff Baselines</h4>
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
                                 <label for="slider-tariff-us" class="text-slate-300">Avg Import Tariff on US Goods (%)</label>
@@ -433,7 +519,6 @@
                             </div>
                             <input type="range" id="slider-tariff-us" min="0" max="25" step="0.5" value="1.5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-rose-400" oninput="updatePolicies()">
                         </div>
-
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
                                 <label for="slider-tariff-row" class="text-slate-300">Tariff on Rest of World (EU/China/CPTPP) (%)</label>
@@ -445,7 +530,6 @@
 
                     <div class="space-y-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
                         <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Global Exogenous Factors</h4>
-
                         <div class="grid grid-cols-2 gap-3 text-xs">
                             <div class="bg-slate-900 p-2.5 rounded border border-slate-800">
                                 <span class="text-slate-400 block text-[10px]">WTI Crude Oil Price</span>
@@ -456,7 +540,6 @@
                                 <span id="val-us-fed-rate" class="font-bold text-sky-400 text-sm">4.25%</span>
                             </div>
                         </div>
-
                         <div class="pt-2">
                             <span class="text-xs font-semibold text-slate-300 block mb-2">Inject Global Shock Scenario:</span>
                             <div class="grid grid-cols-2 gap-2">
@@ -473,7 +556,7 @@
             </div>
         </section>
 
-        <!-- TAB 4: CRISIS SCENARIOS -->
+        <!-- TAB 5: CRISIS SCENARIOS -->
         <section id="tab-scenarios" class="tab-content hidden space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
                 <div class="border-b border-slate-800 pb-3 mb-4">
@@ -482,22 +565,20 @@
                     </h3>
                     <p class="text-xs text-slate-400">Take command during high-stakes economic crises.</p>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="scenarios-grid">
                 </div>
             </div>
         </section>
 
-        <!-- TAB 5: ECONOMICS ACADEMY -->
+        <!-- TAB 6: ECONOMICS ACADEMY -->
         <section id="tab-learn" class="tab-content hidden space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
                 <div class="border-b border-slate-800 pb-3 mb-6">
                     <h3 class="font-bold text-slate-100 flex items-center gap-2">
-                        <i class="fa-solid fa-graduation-cap text-purple-400"></i> Economics Interactive Learning Hub
+                        <i class="fa-solid fa-graduation-cap text-indigo-400"></i> Economics Interactive Learning Hub
                     </h3>
-                    <p class="text-xs text-slate-400">Master sovereign debt dynamics, fiscal surpluses, and monetary transmission.</p>
+                    <p class="text-xs text-slate-400">Master sovereign debt dynamics, industrial embargos, and monetary transmission.</p>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="space-y-2" id="academy-topics-list">
                     </div>
@@ -507,19 +588,18 @@
             </div>
         </section>
 
-        <!-- TAB 6: PRESS LEDGER -->
+        <!-- TAB 7: PRESS LEDGER -->
         <section id="tab-news" class="tab-content hidden space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                     <div>
                         <h3 class="font-bold text-slate-100 flex items-center gap-2">
-                            <i class="fa-solid fa-newspaper text-indigo-400"></i> Financial Times & Event Ledger
+                            <i class="fa-solid fa-newspaper text-teal-400"></i> Financial Times & Event Ledger
                         </h3>
                         <p class="text-xs text-slate-400">Historical sequence of all policy actions and market reactions.</p>
                     </div>
                     <button onclick="clearNewsLog()" class="text-xs text-slate-400 hover:text-white bg-slate-800 px-3 py-1.5 rounded border border-slate-700 cursor-pointer">Clear Logs</button>
                 </div>
-
                 <div class="space-y-3 max-h-[500px] overflow-y-auto pr-2" id="news-feed-container">
                 </div>
             </div>
@@ -529,7 +609,7 @@
     <!-- Footer -->
     <footer class="bg-slate-900 border-t border-slate-800 py-4 px-4 sm:px-8 mt-auto text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
         <div>
-            EconoMaster Simulation Engine &copy; 2026. Fully Interactive Sovereign Fiscal & Monetary Struggle Engine.
+            EconoMaster Simulation Engine v4.0 &copy; 2026. Fully Interactive Sovereign Fiscal & Industrial Engine.
         </div>
         <div class="flex gap-4">
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('learn')">Macro Theory</span>
@@ -550,7 +630,7 @@
             bocRate: 3.75, 
             usFedRate: 4.25, 
             debtToGdp: 64.2, 
-            nationalDebt: 1887.0, // $ Billion (Can go negative if surpluses pay it off!)
+            nationalDebt: 1887.0, // $ Billion 
             budgetDeficit: 32.5, // Positive = Deficit, Negative = Surplus
             cadToUsd: 0.745, 
             tradeBalance: 4.2, 
@@ -558,11 +638,36 @@
             publicApproval: 54, 
             carbonPrice: 65, 
             
+            // Core Fiscal
             pit: 24, 
             cit: 15, 
             gst: 5,  
-            infraSpend: 40, 
-            socialSpend: 110, 
+            
+            // 10 New Department of Finance Policies
+            capGainsRate: 50,
+            luxuryTax: 1.0,
+            smallBizTax: 9.0,
+            migrationInflow: 120, // thousands/qtr
+            pensionRate: 5.9,
+            foreignPropLevy: 15,
+            cleanTechCredit: 30,
+            ubiAmount: 15, // $B/qtr
+            digitalServTax: 3.0,
+            stockpileSpend: 5, // $B/qtr
+
+            // 10 Public Services & Social Funding Categories ($B / qtr)
+            funding: {
+                health: 95.0,
+                education: 55.0,
+                research: 18.0,
+                police: 22.0,
+                transport: 35.0,
+                defense: 30.0,
+                environment: 15.0,
+                housing: 25.0,
+                veterans: 12.0,
+                childcare: 20.0
+            },
             
             qeAmount: 0, 
             reserveRatio: 3.5, 
@@ -570,13 +675,23 @@
             monetaryLagQueue: [3.75, 3.75, 3.75], 
             bondRiskSpread: 0.0, 
             
-            sectors: {
-                resources: { name: "Energy & Oil Sands", output: 320, subsidy: 5, reg: 6, tax: 18 },
-                manufacturing: { name: "Manufacturing & Auto", output: 280, subsidy: 8, reg: 4, tax: 15 },
-                tech: { name: "Tech, AI & Telecom", output: 240, subsidy: 12, reg: 2, tax: 12 },
-                realestate: { name: "Housing & Real Estate", output: 410, subsidy: 3, reg: 5, tax: 10 },
-                agri: { name: "Agriculture & Food", output: 130, subsidy: 6, reg: 3, tax: 12 },
-                finance: { name: "Banking & Finance", output: 350, subsidy: 2, reg: 7, tax: 20 }
+            // 15 Fully Fledged Industries
+            industries: {
+                oil_gas: { name: "1. Oil, Gas & Mining", output: 340, duty: 2.0, exportTax: 1.5, subsidy: 8.0, exoneration: false, pricePerTon: 850, importEmbargo: false, exportEmbargo: false },
+                auto_mfg: { name: "2. Automotive & Heavy Mfg", output: 290, duty: 3.5, exportTax: 0.5, subsidy: 10.0, exoneration: false, pricePerTon: 1400, importEmbargo: false, exportEmbargo: false },
+                tech_ai: { name: "3. Tech, AI & Software", output: 260, duty: 1.0, exportTax: 0.0, subsidy: 14.0, exoneration: true, pricePerTon: 3200, importEmbargo: false, exportEmbargo: false },
+                real_estate: { name: "4. Real Estate & Construction", output: 420, duty: 0.0, exportTax: 0.0, subsidy: 4.0, exoneration: false, pricePerTon: 2100, importEmbargo: false, exportEmbargo: false },
+                agri_food: { name: "5. Agriculture & Food Processing", output: 140, duty: 5.0, exportTax: 1.0, subsidy: 7.0, exoneration: false, pricePerTon: 450, importEmbargo: false, exportEmbargo: false },
+                finance_bank: { name: "6. Banking & Financial Services", output: 360, duty: 0.5, exportTax: 0.0, subsidy: 2.0, exoneration: false, pricePerTon: 5000, importEmbargo: false, exportEmbargo: false },
+                aerospace: { name: "7. Aerospace & Defense", output: 110, duty: 2.0, exportTax: 2.0, subsidy: 12.0, exoneration: false, pricePerTon: 7500, importEmbargo: false, exportEmbargo: false },
+                forestry: { name: "8. Forestry & Wood Products", output: 95, duty: 3.0, exportTax: 2.5, subsidy: 5.0, exoneration: false, pricePerTon: 380, importEmbargo: false, exportEmbargo: false },
+                pharma_bio: { name: "9. Pharmaceuticals & Biotech", output: 130, duty: 1.5, exportTax: 0.0, subsidy: 15.0, exoneration: true, pricePerTon: 6200, importEmbargo: false, exportEmbargo: false },
+                clean_energy: { name: "10. Clean Energy & Renewables", output: 105, duty: 1.0, exportTax: 0.0, subsidy: 18.0, exoneration: true, pricePerTon: 950, importEmbargo: false, exportEmbargo: false },
+                telecom: { name: "11. Telecommunications & Media", output: 180, duty: 0.0, exportTax: 0.0, subsidy: 3.0, exoneration: false, pricePerTon: 2400, importEmbargo: false, exportEmbargo: false },
+                tourism: { name: "12. Tourism & Hospitality", output: 120, duty: 0.0, exportTax: 0.0, subsidy: 6.0, exoneration: false, pricePerTon: 1100, importEmbargo: false, exportEmbargo: false },
+                fisheries: { name: "13. Fisheries & Aquaculture", output: 65, duty: 4.0, exportTax: 1.5, subsidy: 4.0, exoneration: false, pricePerTon: 720, importEmbargo: false, exportEmbargo: false },
+                shipping_log: { name: "14. Shipping, Rail & Logistics", output: 150, duty: 1.0, exportTax: 0.5, subsidy: 8.0, exoneration: false, pricePerTon: 1250, importEmbargo: false, exportEmbargo: false },
+                chemicals: { name: "15. Chemicals & Plastics", output: 175, duty: 2.5, exportTax: 1.0, subsidy: 6.0, exoneration: false, pricePerTon: 1600, importEmbargo: false, exportEmbargo: false }
             },
             
             tariffUs: 1.5,
@@ -688,8 +803,18 @@
             gameState.cit = parseFloat(document.getElementById('slider-cit').value);
             gameState.gst = parseFloat(document.getElementById('slider-gst').value);
             gameState.carbonPrice = parseFloat(document.getElementById('slider-carbon').value);
-            gameState.infraSpend = parseFloat(document.getElementById('slider-infra').value);
-            gameState.socialSpend = parseFloat(document.getElementById('slider-social').value);
+
+            // 10 new policies
+            gameState.capGainsRate = parseFloat(document.getElementById('slider-capgains').value);
+            gameState.luxuryTax = parseFloat(document.getElementById('slider-luxury').value);
+            gameState.smallBizTax = parseFloat(document.getElementById('slider-smallbiz').value);
+            gameState.migrationInflow = parseFloat(document.getElementById('slider-migration').value);
+            gameState.pensionRate = parseFloat(document.getElementById('slider-pension').value);
+            gameState.foreignPropLevy = parseFloat(document.getElementById('slider-foreignprop').value);
+            gameState.cleanTechCredit = parseFloat(document.getElementById('slider-cleantech').value);
+            gameState.ubiAmount = parseFloat(document.getElementById('slider-ubi').value);
+            gameState.digitalServTax = parseFloat(document.getElementById('slider-digitalserv').value);
+            gameState.stockpileSpend = parseFloat(document.getElementById('slider-stockpile').value);
 
             gameState.bocRate = parseFloat(document.getElementById('slider-boc-rate').value);
             gameState.qeAmount = parseFloat(document.getElementById('slider-qe').value);
@@ -698,12 +823,22 @@
             gameState.tariffUs = parseFloat(document.getElementById('slider-tariff-us').value);
             gameState.tariffRow = parseFloat(document.getElementById('slider-tariff-row').value);
 
+            // Update UI text values
             document.getElementById('val-pit').innerText = gameState.pit + '%';
             document.getElementById('val-cit').innerText = gameState.cit + '%';
             document.getElementById('val-gst').innerText = gameState.gst + '%';
             document.getElementById('val-carbon').innerText = '$' + gameState.carbonPrice;
-            document.getElementById('val-infra').innerText = '$' + gameState.infraSpend + 'B';
-            document.getElementById('val-social').innerText = '$' + gameState.socialSpend + 'B';
+
+            document.getElementById('val-capgains').innerText = gameState.capGainsRate + '%';
+            document.getElementById('val-luxury').innerText = gameState.luxuryTax + '%';
+            document.getElementById('val-smallbiz').innerText = gameState.smallBizTax + '%';
+            document.getElementById('val-migration').innerText = gameState.migrationInflow + 'K';
+            document.getElementById('val-pension').innerText = gameState.pensionRate + '%';
+            document.getElementById('val-foreignprop').innerText = gameState.foreignPropLevy + '%';
+            document.getElementById('val-cleantech').innerText = gameState.cleanTechCredit + '%';
+            document.getElementById('val-ubi').innerText = '$' + gameState.ubiAmount + 'B';
+            document.getElementById('val-digitalserv').innerText = gameState.digitalServTax + '%';
+            document.getElementById('val-stockpile').innerText = '$' + gameState.stockpileSpend + 'B';
 
             document.getElementById('val-boc-rate').innerText = gameState.bocRate.toFixed(2) + '%';
             document.getElementById('val-qe').innerText = (gameState.qeAmount >= 0 ? '+' : '') + gameState.qeAmount + ' B/qtr';
@@ -713,6 +848,26 @@
             document.getElementById('val-tariff-row').innerText = gameState.tariffRow.toFixed(1) + '%';
 
             updateAdvisorDiagnosis();
+        }
+
+        function updateFunding(category, val) {
+            gameState.funding[category] = parseFloat(val);
+            document.getElementById(`val-fund-${category}`).innerText = '$' + parseFloat(val).toFixed(1) + 'B';
+            
+            let total = 0;
+            for (const key in gameState.funding) {
+                total += gameState.funding[key];
+            }
+            document.getElementById('total-funding-display').innerText = '$' + total.toFixed(1) + 'B / qtr';
+        }
+
+        function updateIndustryParam(key, param, val) {
+            if (param === 'exoneration' || param === 'importEmbargo' || param === 'exportEmbargo') {
+                gameState.industries[key][param] = val;
+            } else {
+                gameState.industries[key][param] = parseFloat(val);
+            }
+            renderIndustries();
         }
 
         // --- ADVANCED SOVEREIGN STRUGGLE ENGINE ---
@@ -726,98 +881,114 @@
             const quarterLabel = `Year ${gameState.year} - Q${gameState.quarter}`;
             document.getElementById('current-quarter-display').innerText = quarterLabel;
 
-            // 1. SOVEREIGN DEBT & SURPLUS STRUGGLE LOOP
-            // If national debt goes negative (surplus accumulation), Canada earns sovereign interest income!
+            // 1. BOND RISK & BORROWING RATE
             if (gameState.debtToGdp > 80.0) {
                 const excessDebt = gameState.debtToGdp - 80.0;
                 gameState.bondRiskSpread = parseFloat((excessDebt * 0.08).toFixed(2));
             } else if (gameState.debtToGdp < 30.0) {
-                gameState.bondRiskSpread = -0.25; // AAA Sovereign Prime Discount!
+                gameState.bondRiskSpread = -0.25; 
             } else {
                 gameState.bondRiskSpread = 0.0;
             }
             const effectiveBorrowingRate = Math.max(0.1, gameState.bocRate + gameState.bondRiskSpread);
 
-            // TAX REVENUES
-            const pitRev = (gameState.gdp * 0.45) * (gameState.pit / 100);
+            // 2. REVENUES FROM TAXES & NEW POLICIES
+            const pitRev = (gameState.gdp * 0.40) * (gameState.pit / 100);
             const citRev = (gameState.gdp * 0.20) * (gameState.cit / 100);
             const gstRev = (gameState.gdp * 0.35) * (gameState.gst / 100);
-            const carbonRev = (gameState.carbonPrice * 0.3); 
-            const totalTaxRev = (pitRev + citRev + gstRev + carbonRev);
+            const carbonRev = (gameState.carbonPrice * 0.25); 
+            
+            // New Policy Revenues
+            const capGainsRev = (gameState.gdp * 0.08) * (gameState.capGainsRate / 100) * 0.25;
+            const luxuryRev = (gameState.gdp * 0.05) * (gameState.luxuryTax / 100);
+            const smallBizRev = (gameState.gdp * 0.12) * (gameState.smallBizTax / 100);
+            const digitalRev = (gameState.gdp * 0.06) * (gameState.digitalServTax / 100);
+            const foreignPropRev = (gameState.gdp * 0.10) * (gameState.foreignPropLevy / 100) * 0.25;
 
-            // INTEREST COST OR SOVEREIGN RETURN
-            // If nationalDebt > 0, pay interest. If nationalDebt < 0 (net asset surplus), earn sovereign investment returns!
+            // Industry custom duties & export taxes
+            let industryTaxRev = 0;
+            let totalSubsidyOutlays = 0;
+            let totalIndustryOutput = 0;
+
+            for (const key in gameState.industries) {
+                const ind = gameState.industries[key];
+                totalIndustryOutput += ind.output;
+                totalSubsidyOutlays += ind.subsidy;
+                if (!ind.exoneration) {
+                    industryTaxRev += (ind.output * (ind.duty / 100)) + (ind.output * (ind.exportTax / 100));
+                }
+            }
+
+            const totalTaxRev = pitRev + citRev + gstRev + carbonRev + capGainsRev + luxuryRev + smallBizRev + digitalRev + foreignPropRev + industryTaxRev;
+
+            // 3. PUBLIC OUTLAYS & SOCIAL FUNDING
+            let totalSocialFunding = 0;
+            for (const key in gameState.funding) {
+                totalSocialFunding += gameState.funding[key];
+            }
+
             let debtServiceCost = 0;
             if (gameState.nationalDebt > 0) {
                 debtServiceCost = gameState.nationalDebt * (effectiveBorrowingRate / 100) * 0.25;
             } else {
-                debtServiceCost = gameState.nationalDebt * (2.0 / 100) * 0.25; // earns sovereign wealth fund return
+                debtServiceCost = gameState.nationalDebt * (2.0 / 100) * 0.25; 
             }
 
-            const totalGovOutlays = (gameState.infraSpend + gameState.socialSpend + Math.max(0, debtServiceCost));
+            const totalGovOutlays = totalSocialFunding + totalSubsidyOutlays + gameState.ubiAmount + gameState.stockpileSpend + Math.max(0, debtServiceCost);
             
-            // Budget Balance: Positive = Deficit (debt grows), Negative = Surplus (debt shrinks / goes positive into net assets!)
             gameState.budgetDeficit = totalGovOutlays - totalTaxRev;
             gameState.nationalDebt += (gameState.budgetDeficit / 4);
             gameState.debtToGdp = (gameState.nationalDebt / gameState.gdp) * 100;
 
-            // 2. MONETARY TRANSMISSION QUEUE
+            // 4. MONETARY TRANSMISSION & GROWTH
             gameState.monetaryLagQueue.push(effectiveBorrowingRate);
             const laggedRate = gameState.monetaryLagQueue.shift(); 
             const neutralRate = 2.5;
             const laggedRateGap = laggedRate - neutralRate;
-            const monetaryDrag = laggedRateGap * 0.35;
+            const monetaryDrag = laggedRateGap * 0.30;
 
-            // 3. AGGREGATE DEMAND & GDP GROWTH
-            const taxBurden = (gameState.pit + gameState.cit + gameState.gst) - 44; 
-            const taxDrag = taxBurden * 0.08;
-            const infraStimulus = (gameState.infraSpend - 40) * 0.03;
-            const qeStimulus = (gameState.qeAmount) * 0.02;
-            const tradeTariffImpact = - (gameState.tariffUs * 0.1) - (gameState.tariffRow * 0.05);
-            const oilPriceBoom = (gameState.oilPrice - 75) * 0.02; 
+            const ubiBoost = gameState.ubiAmount * 0.02;
+            const migrationBoost = (gameState.migrationInflow - 100) * 0.005;
+            const surplusDrag = (gameState.budgetDeficit < 0) ? (Math.abs(gameState.budgetDeficit) * 0.004) : 0;
 
-            // Surplus fiscal drag / stimulus balance: running massive surpluses causes slight short-term demand drag unless offset by public investment
-            const surplusDrag = (gameState.budgetDeficit < 0) ? (Math.abs(gameState.budgetDeficit) * 0.005) : 0;
+            let embargoPenalty = 0;
+            for (const key in gameState.industries) {
+                if (gameState.industries[key].importEmbargo || gameState.industries[key].exportEmbargo) {
+                    embargoPenalty += 0.15;
+                }
+            }
 
-            let newGdpGrowth = 2.0 - monetaryDrag - taxDrag + infraStimulus + qeStimulus + tradeTariffImpact + oilPriceBoom - surplusDrag;
-            const noise = (Math.random() - 0.5) * 0.3;
+            let newGdpGrowth = 2.0 - monetaryDrag + ubiBoost + migrationBoost - surplusDrag - embargoPenalty + (totalIndustryOutput / 4000);
+            const noise = (Math.random() - 0.5) * 0.25;
             newGdpGrowth = parseFloat((newGdpGrowth + noise).toFixed(2));
 
             gameState.gdpGrowthRate = newGdpGrowth;
             gameState.gdp = gameState.gdp * (1 + (newGdpGrowth / 400));
 
-            // 4. INERTIAL INFLATION ANCHOR
-            const demandPullInflation = (newGdpGrowth - 2.0) * 0.3;
-            const costPushCarbon = (gameState.carbonPrice - 65) * 0.01;
-            const qeInflation = (gameState.qeAmount > 0) ? gameState.qeAmount * 0.02 : 0;
-            const rateCooling = laggedRateGap * 0.25;
-
+            // 5. INFLATION & UNEMPLOYMENT
+            const demandPullInflation = (newGdpGrowth - 2.0) * 0.25;
+            const costPushCarbon = (gameState.carbonPrice - 65) * 0.008;
             const targetAnchor = 2.0;
-            const rawInstantInflation = targetAnchor + demandPullInflation + costPushCarbon + qeInflation - rateCooling;
+            const rawInstantInflation = targetAnchor + demandPullInflation + costPushCarbon;
             
             let newInflation = (0.7 * gameState.cpiInflation) + (0.3 * rawInstantInflation);
             newInflation = Math.max(0.1, parseFloat(newInflation.toFixed(2)));
             gameState.cpiInflation = newInflation;
 
-            // 5. UNEMPLOYMENT & APPROVAL
             const growthGap = 2.0 - newGdpGrowth;
-            let newUnemployment = gameState.unemploymentRate + (growthGap * 0.3);
+            let newUnemployment = gameState.unemploymentRate + (growthGap * 0.25) - (gameState.migrationInflow * 0.001);
             newUnemployment = Math.min(18.0, Math.max(3.2, parseFloat(newUnemployment.toFixed(2))));
             gameState.unemploymentRate = newUnemployment;
 
+            // 6. PUBLIC APPROVAL & TRADE
             let approvalChange = 0;
             if (gameState.cpiInflation > 4.0) approvalChange -= 3;
             if (gameState.unemploymentRate > 7.0) approvalChange -= 3;
             if (gameState.gdpGrowthRate > 2.5) approvalChange += 2;
-            if (gameState.budgetDeficit < 0) approvalChange += 2; // voters love surpluses and fiscal prudence!
-            if (gameState.bondRiskSpread > 0) approvalChange -= 2;
+            if (gameState.budgetDeficit < 0) approvalChange += 2; 
+            if (gameState.funding.health > 100) approvalChange += 1;
+            if (gameState.funding.education > 60) approvalChange += 1;
             gameState.publicApproval = Math.min(95, Math.max(15, gameState.publicApproval + approvalChange));
-
-            // 6. FX & TRADE
-            const rateDiff = (effectiveBorrowingRate - gameState.usFedRate) * 0.015;
-            const oilFxImpact = (gameState.oilPrice - 75) * 0.0015;
-            let newFx = 0.745 + rateDiff + oilFxImpact;
-            gameState.cadToUsd = parseFloat(Math.min(0.95, Math.max(0.60, newFx)).toFixed(3));
 
             // RECORD HISTORY
             gameState.history.labels.push(`Y${gameState.year} Q${gameState.quarter}`);
@@ -861,7 +1032,6 @@
             document.getElementById('kpi-unemployment').innerText = gameState.unemploymentRate + '%';
             document.getElementById('kpi-rate').innerText = gameState.bocRate.toFixed(2) + '%';
             
-            const totalYield = gameState.bocRate + gameState.bondRiskSpread;
             const bondYieldEl = document.getElementById('kpi-bond-spread');
             bondYieldEl.innerText = `Spread: ${(gameState.bondRiskSpread * 100).toFixed(0)} bps`;
             if (gameState.bondRiskSpread > 0) {
@@ -872,7 +1042,6 @@
                 bondYieldEl.className = 'text-xs font-semibold text-sky-400';
             }
 
-            // Display Debt or Positive Net Asset Surplus
             const debtEl = document.getElementById('kpi-debt');
             if (gameState.nationalDebt >= 0) {
                 debtEl.innerText = gameState.debtToGdp.toFixed(1) + '% (Debt)';
@@ -899,47 +1068,91 @@
         }
 
         function updateAdvisorDiagnosis() {
-            const targetInflation = 2.0;
-            const neutralRealRate = 1.5;
-            const taylorRate = neutralRealRate + gameState.cpiInflation + 0.5 * (gameState.cpiInflation - targetInflation) + 0.5 * (gameState.gdpGrowthRate - 2.0);
-            const formattedTaylor = Math.max(0.25, parseFloat(taylorRate.toFixed(2)));
-
-            document.getElementById('taylor-computed-val').innerText = formattedTaylor + '%';
-
             const fiscalEl = document.getElementById('advisor-fiscal');
             if (gameState.nationalDebt < 0) {
-                fiscalEl.innerText = `Sovereign triumph! National debt has been fully eliminated. Canada is operating with a positive net asset surplus (${Math.abs(gameState.debtToGdp).toFixed(1)}% of GDP), earning investment returns.`;
+                fiscalEl.innerText = `Sovereign triumph! National debt fully eliminated. Positive net asset surplus (${Math.abs(gameState.debtToGdp).toFixed(1)}% of GDP) generating investment returns.`;
             } else if (gameState.budgetDeficit < 0) {
                 fiscalEl.innerText = `Active fiscal surplus of $${Math.abs(gameState.budgetDeficit).toFixed(1)}B/qtr. Debt is actively shrinking toward zero!`;
             } else {
-                fiscalEl.innerText = `Running a deficit of $${gameState.budgetDeficit.toFixed(1)}B/qtr. Cut spending or raise taxes to force debt positive.`;
+                fiscalEl.innerText = `Running a deficit of $${gameState.budgetDeficit.toFixed(1)}B/qtr. Use the 10 new finance policies or adjust funding to balance the budget.`;
             }
         }
 
-        function renderSectors() {
-            const container = document.getElementById('sector-cards-container');
+        function renderFundingSliders() {
+            const container = document.getElementById('funding-sliders-container');
             container.innerHTML = '';
 
-            for (const [key, sector] of Object.entries(gameState.sectors)) {
+            const fundingMeta = {
+                health: { name: "1. Universal Healthcare & Hospitals", max: 180 },
+                education: { name: "2. Public Education & Universities", max: 120 },
+                research: { name: "3. Scientific Research & R&D Grants", max: 50 },
+                police: { name: "4. Federal Law Enforcement & Police", max: 60 },
+                transport: { name: "5. Public Transportation & Rail", max: 90 },
+                defense: { name: "6. National Defense & Armed Forces", max: 100 },
+                environment: { name: "7. Environmental Protection & Parks", max: 40 },
+                housing: { name: "8. Social Housing & Affordability", max: 80 },
+                veterans: { name: "9. Veterans Affairs & Support", max: 40 },
+                childcare: { name: "10. Childcare & Family Subsidies", max: 60 }
+            };
+
+            for (const key in fundingMeta) {
+                const meta = fundingMeta[key];
+                const val = gameState.funding[key];
+                const card = document.createElement('div');
+                card.className = 'bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2';
+                card.innerHTML = `
+                    <div class="flex justify-between text-xs font-medium">
+                        <label for="fund-${key}" class="text-slate-300 font-semibold">${meta.name}</label>
+                        <span id="val-fund-${key}" class="text-purple-400 font-bold">$${val.toFixed(1)}B</span>
+                    </div>
+                    <input type="range" id="fund-${key}" min="5" max="${meta.max}" step="1" value="${val}" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400" oninput="updateFunding('${key}', this.value)">
+                `;
+                container.appendChild(card);
+            }
+            updateFunding('health', gameState.funding.health);
+        }
+
+        function renderIndustries() {
+            const container = document.getElementById('industry-cards-container');
+            container.innerHTML = '';
+
+            for (const key in gameState.industries) {
+                const ind = gameState.industries[key];
                 const card = document.createElement('div');
                 card.className = 'bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3';
                 card.innerHTML = `
                     <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-                        <span class="font-bold text-xs text-slate-100">${sector.name}</span>
-                        <span class="text-[11px] font-semibold text-emerald-400">$${sector.output}B GDP</span>
+                        <span class="font-bold text-xs text-slate-100">${ind.name}</span>
+                        <span class="text-[11px] font-semibold text-emerald-400">$${ind.output}B GDP</span>
                     </div>
                     <div class="space-y-2 text-xs">
-                        <div class="flex justify-between">
-                            <span class="text-slate-400">Sector Tax Rate</span>
-                            <span class="text-sky-400 font-bold">${sector.tax}%</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Regular Price/Ton ($)</span>
+                            <input type="number" value="${ind.pricePerTon}" class="w-20 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-sky-400 font-bold" onchange="updateIndustryParam('${key}', 'pricePerTon', this.value)">
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-slate-400">Regulatory Index</span>
-                            <span class="text-amber-400 font-bold">Lvl ${sector.reg}/10</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Custom Duty / Tariff (%)</span>
+                            <input type="number" step="0.5" value="${ind.duty}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold" onchange="updateIndustryParam('${key}', 'duty', this.value)">
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-slate-400">Gov Subsidies</span>
-                            <span class="text-emerald-400 font-bold">$${sector.subsidy}B/yr</span>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Export Tax (%)</span>
+                            <input type="number" step="0.5" value="${ind.exportTax}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold" onchange="updateIndustryParam('${key}', 'exportTax', this.value)">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Gov Subsidy ($B/yr)</span>
+                            <input type="number" step="1" value="${ind.subsidy}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-emerald-400 font-bold" onchange="updateIndustryParam('${key}', 'subsidy', this.value)">
+                        </div>
+                        <div class="flex justify-between items-center pt-1 border-t border-slate-900">
+                            <span class="text-slate-400">Tax Exoneration</span>
+                            <input type="checkbox" ${ind.exoneration ? 'checked' : ''} class="cursor-pointer accent-sky-500" onchange="updateIndustryParam('${key}', 'exoneration', this.checked)">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rose-400 font-medium">Import Embargo</span>
+                            <input type="checkbox" ${ind.importEmbargo ? 'checked' : ''} class="cursor-pointer accent-rose-500" onchange="updateIndustryParam('${key}', 'importEmbargo', this.checked)">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rose-400 font-medium">Export Embargo</span>
+                            <input type="checkbox" ${ind.exportEmbargo ? 'checked' : ''} class="cursor-pointer accent-rose-500" onchange="updateIndustryParam('${key}', 'exportEmbargo', this.checked)">
                         </div>
                     </div>
                 `;
@@ -951,7 +1164,7 @@
             if (type === 'oil_spike') {
                 gameState.oilPrice = 115.0;
                 document.getElementById('val-oil-price').innerText = '$115.00 / bbl';
-                logNews('GLOBAL EVENT', 'OPEC Middle East crisis triggers massive crude oil supply spike (+40% price surge). Energy revenues spike while transport costs rise.', 'alert');
+                logNews('GLOBAL EVENT', 'OPEC Middle East crisis triggers massive crude oil supply spike (+40% price surge).', 'alert');
             } else if (type === 'us_recession') {
                 gameState.usFedRate = 1.50;
                 document.getElementById('val-us-fed-rate').innerText = '1.50%';
@@ -981,9 +1194,9 @@
 
         function generateQuarterNewsLog() {
             if (gameState.nationalDebt < 0) {
-                logNews('HISTORIC MILESTONE', `Canada achieves positive net asset surplus! National debt fully erased. Sovereign fund returns are now contributing to federal coffers.`, 'success');
+                logNews('HISTORIC MILESTONE', `Canada achieves positive net asset surplus! National debt fully erased.`, 'success');
             } else if (gameState.budgetDeficit < 0) {
-                logNews('FISCAL SURPLUS', `Department of Finance reports quarterly budget surplus of $${Math.abs(gameState.budgetDeficit).toFixed(1)}B. National debt is shrinking!`, 'success');
+                logNews('FISCAL SURPLUS', `Department of Finance reports quarterly budget surplus of $${Math.abs(gameState.budgetDeficit).toFixed(1)}B.`, 'success');
             } else {
                 logNews('STATSCAN DATA', `Quarterly report: GDP Growth ${gameState.gdpGrowthRate}%, Inflation ${gameState.cpiInflation}%, Deficit $${gameState.budgetDeficit.toFixed(1)}B.`, 'info');
             }
@@ -997,7 +1210,7 @@
             {
                 id: 'zero_debt',
                 title: 'The Zero-Debt Sovereign Challenge',
-                desc: 'Erase Canada\'s national debt entirely and achieve a positive net asset surplus within 12 quarters through strict fiscal discipline.',
+                desc: 'Erase Canada\'s national debt entirely and achieve a positive net asset surplus within 12 quarters.',
                 duration: 12,
                 setup: () => {
                     gameState.debtToGdp = 65.0;
@@ -1064,7 +1277,6 @@
 
         function checkScenarioProgress() {
             if (!gameState.activeScenario) return;
-
             gameState.scenarioTimeLeft--;
             document.getElementById('scenario-timer').innerText = `Time Left: ${gameState.scenarioTimeLeft} Quarters`;
 
@@ -1073,7 +1285,7 @@
                 alert(`🎉 Victory! You completed the ${gameState.activeScenario.title}!`);
                 abandonScenario();
             } else if (gameState.scenarioTimeLeft <= 0) {
-                logNews('SCENARIO FAILED', `Time expired for ${gameState.activeScenario.title}. Goals were not achieved.`, 'alert');
+                logNews('SCENARIO FAILED', `Time expired for ${gameState.activeScenario.title}.`, 'alert');
                 alert(`❌ Scenario Time Expired.`);
                 abandonScenario();
             }
@@ -1089,26 +1301,16 @@
                 id: 'surplus_dynamics',
                 title: '1. Positive Net Assets & Sovereign Surpluses',
                 content: `
-                    <h3 class="text-base font-bold text-emerald-400 mb-2">Turning Debt Positive: The Internal Struggle</h3>
-                    <p class="text-xs text-slate-300 leading-relaxed mb-3">In EconoMaster, national debt is no longer a one-way street of endless growth:</p>
-                    <ul class="list-disc pl-4 text-xs text-slate-300 space-y-2 mb-3">
-                        <li><strong>Fiscal Surpluses:</strong> When tax revenues exceed government outlays, the budget deficit goes negative. This surplus directly pays down the national debt quarter after quarter.</li>
-                        <li><strong>Positive Net Assets:</strong> If you maintain fiscal discipline long enough, national debt drops below zero into positive net asset territory. Canada transitions from paying crushing interest to earning sovereign investment returns!</li>
-                        <li><strong>The Political Trade-off:</strong> Generating surpluses requires painful spending cuts or tax hikes, creating a genuine internal political struggle against voter approval.</li>
-                    </ul>
+                    <h3 class="text-base font-bold text-emerald-400 mb-2">Turning Debt Positive</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-3">When tax revenues (boosted by capital gains, wealth taxes, and custom duties) exceed public spending across health, education, and UBI, fiscal surpluses pay down national debt into positive net assets.</p>
                 `
             },
             {
-                id: 'feedback_loops',
-                title: '2. Inertial Inflation & Transmission Lags',
+                id: 'industrial_embargoes',
+                title: '2. Industrial Duties & Embargoes',
                 content: `
-                    <h3 class="text-base font-bold text-sky-400 mb-2">Advanced Macroeconomic Frictions</h3>
-                    <p class="text-xs text-slate-300 leading-relaxed mb-3">The simulation models three core real-world feedback loops:</p>
-                    <ul class="list-disc pl-4 text-xs text-slate-300 space-y-2 mb-3">
-                        <li><strong>Inertial Inflation Anchor:</strong> Prices are sticky and anchored by adaptive expectations.</li>
-                        <li><strong>Delayed Transmission Queue:</strong> Monetary policy takes 3 quarters to fully bite into growth.</li>
-                        <li><strong>Sovereign Risk Spreads:</strong> Debt over 80% triggers bond penalties; low debt below 30% yields AAA prime discounts.</li>
-                    </ul>
+                    <h3 class="text-base font-bold text-amber-400 mb-2">Managing 15 Key Sectors</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-3">Imposing import and export embargos on key industries protects domestic strategic reserves but creates GDP contraction penalties and supply chain friction.</p>
                 `
             }
         ];
@@ -1130,17 +1332,17 @@
                 };
                 listContainer.appendChild(btn);
             });
-
             document.getElementById('academy-content-display').innerHTML = LESSONS[0].content;
         }
 
         window.onload = function() {
             initCharts();
             renderKPIs();
-            renderSectors();
+            renderFundingSliders();
+            renderIndustries();
             renderScenarios();
             renderAcademy();
-            logNews('SYSTEM READY', 'EconoMaster Engine Initialized. Sovereign surplus mechanics active: debt can now be fully paid down into positive net assets.', 'info');
+            logNews('SYSTEM READY', 'EconoMaster Engine v4.0 Initialized with 15 fully functional industries, 10 new finance policies, and 10 public service funding categories.', 'info');
         };
     </script>
 </body>
