@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>EconoMaster: Canada & Global Economic Engine v4.1</title>
+    <title>EconoMaster: Canada & Global Economic Engine v4.2</title>
     
     <!-- PWA Meta Tags & Manifest Link -->
     <link rel="manifest" href="manifest.json">
@@ -47,16 +47,10 @@
             color: #38bdf8;
             background-color: rgba(56, 189, 248, 0.05);
         }
-        /* Mobile Touch Target & Layout Adjustments */
         input[type="range"] { accent-color: #38bdf8; min-height: 24px; }
-        @keyframes spin-slow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .animate-spin-slow { animation: spin-slow 3s linear infinite; }
     </style>
 </head>
-<body class="h-full flex flex-col bg-slate-950 text-slate-100 overflow-x-hidden selection:bg-sky-500 selection:text-white">
+<body class="h-full flex flex-col bg-slate-950 text-slate-100 overflow-x-hidden">
 
     <!-- Loading Screen Overlay -->
     <div id="loading-screen" class="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-500">
@@ -66,8 +60,8 @@
                 <span>🍁</span>
             </div>
         </div>
-        <h2 class="text-lg font-bold text-slate-100 tracking-tight">EconoMaster Engine</h2>
-        <p class="text-xs text-slate-400 mt-1">Initializing Sovereign Financial & Industrial Matrix...</p>
+        <h2 class="text-lg font-bold text-slate-100 tracking-tight">EconoMaster Engine v4.2</h2>
+        <p class="text-xs text-slate-400 mt-1">Initializing Centre-Right Sovereign & Trade Matrix...</p>
         <div class="w-48 h-1.5 bg-slate-800 rounded-full mt-6 overflow-hidden">
             <div id="loading-bar" class="h-full bg-gradient-to-r from-sky-500 to-emerald-400 w-0 transition-all duration-300"></div>
         </div>
@@ -77,7 +71,6 @@
     <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40 shadow-md">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-14 sm:h-16">
-                <!-- Brand Title -->
                 <div class="flex items-center space-x-2 sm:space-x-3">
                     <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-red-600 to-sky-500 flex items-center justify-center font-bold text-sm sm:text-xl text-white shadow-lg shadow-sky-500/20 shrink-0">
                         <span>🍁</span>
@@ -85,13 +78,12 @@
                     <div>
                         <div class="flex items-center gap-1.5">
                             <h1 class="font-bold text-sm sm:text-lg text-slate-100 tracking-tight">EconoMaster</h1>
-                            <span class="text-[9px] sm:text-xs font-semibold px-1.5 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">v4.1</span>
+                            <span class="text-[9px] sm:text-xs font-semibold px-1.5 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">v4.2</span>
                         </div>
-                        <p class="text-[10px] text-slate-400 hidden md:block">Advanced Fiscal, Industrial & Social Feedback Simulator</p>
+                        <p class="text-[10px] text-slate-400 hidden md:block">Centre-Right Sovereign Fiscal, Trade & Defense Engine</p>
                     </div>
                 </div>
 
-                <!-- Simulation Controls & Info Header -->
                 <div class="flex items-center space-x-2 sm:space-x-4">
                     <div class="flex flex-col text-right">
                         <span class="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-wider">Period</span>
@@ -108,7 +100,7 @@
             </div>
         </div>
 
-        <!-- Navigation Tabs (Horizontally Scrollable on Mobile) -->
+        <!-- Navigation Tabs -->
         <div class="bg-slate-900/90 border-t border-slate-800/80 px-2 sm:px-8 overflow-x-auto scrollbar-none">
             <nav class="flex space-x-1 sm:space-x-6 min-w-max" id="nav-tabs">
                 <button onclick="switchTab('dashboard')" class="tab-btn active px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
@@ -121,16 +113,19 @@
                     <i class="fa-solid fa-hand-holding-dollar text-purple-400"></i> Public Services
                 </button>
                 <button onclick="switchTab('industries')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-industry text-amber-400"></i> 15 Industries & Trade
+                    <i class="fa-solid fa-industry text-amber-400"></i> Industries & FTAs
+                </button>
+                <button onclick="switchTab('diplomacy')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-globe text-teal-400"></i> UN & Associations
+                </button>
+                <button onclick="switchTab('defense')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-shield-halved text-rose-400"></i> Defence Dept <span class="text-[9px] bg-rose-950 text-rose-300 px-1 py-0.2 rounded border border-rose-800">Soon</span>
                 </button>
                 <button onclick="switchTab('scenarios')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
                     <i class="fa-solid fa-bullseye text-rose-400"></i> Crises
                 </button>
-                <button onclick="switchTab('learn')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-graduation-cap text-indigo-400"></i> Academy
-                </button>
                 <button onclick="switchTab('news')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-newspaper text-teal-400"></i> Press Ledger
+                    <i class="fa-solid fa-newspaper text-indigo-400"></i> Press Ledger
                 </button>
             </nav>
         </div>
@@ -146,7 +141,7 @@
                     <span class="px-2 py-0.5 text-[10px] font-bold bg-rose-500/20 text-rose-300 rounded border border-rose-500/30 uppercase">Active Scenario Challenge</span>
                     <h3 id="scenario-title" class="font-bold text-slate-100 text-xs sm:text-sm">Crisis Mode</h3>
                 </div>
-                <p id="scenario-desc" class="text-[11px] sm:text-xs text-slate-300 mt-1">Navigate the internal fiscal struggle and meet target criteria.</p>
+                <p id="scenario-desc" class="text-[11px] sm:text-xs text-slate-300 mt-1">Navigate sovereign fiscal targets.</p>
             </div>
             <div class="flex items-center justify-between w-full sm:w-auto gap-3">
                 <span id="scenario-timer" class="text-[11px] font-semibold text-sky-400 bg-slate-800 px-2.5 py-1 rounded-lg border border-slate-700">Time Left: 8 Qtrs</span>
@@ -156,147 +151,134 @@
 
         <!-- TAB 1: EXECUTIVE DASHBOARD -->
         <section id="tab-dashboard" class="tab-content space-y-4 sm:space-y-6">
-            <!-- Key Performance Indicators Matrix -->
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
-                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4">
+                    <div class="text-[11px] font-medium text-slate-400 flex items-center justify-between">
                         <span>Real GDP ($ CAD)</span>
                         <i class="fa-solid fa-coins text-sky-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-gdp" class="text-lg sm:text-2xl font-bold text-slate-100">$2.940 T</span>
-                        <span id="kpi-gdp-growth" class="text-[11px] sm:text-xs font-semibold text-emerald-400">+2.1%</span>
+                        <span id="kpi-gdp-growth" class="text-[11px] font-semibold text-emerald-400">+2.1%</span>
                     </div>
-                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Annualized Growth Rate</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
-                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4">
+                    <div class="text-[11px] font-medium text-slate-400 flex items-center justify-between">
                         <span>CPI Inflation</span>
                         <i class="fa-solid fa-fire text-amber-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-inflation" class="text-lg sm:text-2xl font-bold text-slate-100">2.4%</span>
-                        <span id="kpi-inflation-status" class="text-[11px] sm:text-xs font-semibold text-emerald-400">Target Band</span>
+                        <span id="kpi-inflation-status" class="text-[11px] font-semibold text-emerald-400">Target Band</span>
                     </div>
-                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Target: 1.0% - 3.0%</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
-                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4">
+                    <div class="text-[11px] font-medium text-slate-400 flex items-center justify-between">
                         <span>Unemployment</span>
                         <i class="fa-solid fa-users text-purple-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-unemployment" class="text-lg sm:text-2xl font-bold text-slate-100">5.8%</span>
-                        <span id="kpi-unemployment-trend" class="text-[11px] sm:text-xs font-semibold text-slate-400">Stable</span>
+                        <span class="text-[11px] font-semibold text-slate-400">Stable</span>
                     </div>
-                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">NAIRU ~ 5.5%</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
-                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
-                        <span>BoC Rate & Yield</span>
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4">
+                    <div class="text-[11px] font-medium text-slate-400 flex items-center justify-between">
+                        <span>BoC Rate & Spread</span>
                         <i class="fa-solid fa-landmark text-emerald-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-rate" class="text-lg sm:text-2xl font-bold text-slate-100">3.75%</span>
-                        <span id="kpi-bond-spread" class="text-[10px] sm:text-xs font-semibold text-sky-400">0 bps</span>
+                        <span id="kpi-bond-spread" class="text-[10px] font-semibold text-sky-400">0 bps</span>
                     </div>
-                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Sovereign Yield Curve</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
-                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4">
+                    <div class="text-[11px] font-medium text-slate-400 flex items-center justify-between">
                         <span>Debt / Surplus</span>
                         <i class="fa-solid fa-vault text-rose-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-debt" class="text-base sm:text-xl font-bold text-slate-100">64.2%</span>
-                        <span id="kpi-budget-balance" class="text-[11px] sm:text-xs font-semibold text-rose-400">-$32.5B</span>
+                        <span id="kpi-budget-balance" class="text-[11px] font-semibold text-rose-400">-$32.5B</span>
                     </div>
-                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Surplus reduces debt</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
-                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4">
+                    <div class="text-[11px] font-medium text-slate-400 flex items-center justify-between">
                         <span>Exchange (CAD/USD)</span>
                         <i class="fa-solid fa-dollar-sign text-emerald-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-fx" class="text-lg sm:text-2xl font-bold text-slate-100">$0.745</span>
-                        <span id="kpi-fx-trend" class="text-[11px] sm:text-xs font-semibold text-emerald-400">Stable</span>
+                        <span class="text-[11px] font-semibold text-emerald-400">Floating</span>
                     </div>
-                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Floating Currency</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
-                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4">
+                    <div class="text-[11px] font-medium text-slate-400 flex items-center justify-between">
                         <span>Trade Balance</span>
                         <i class="fa-solid fa-ship text-sky-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-trade" class="text-lg sm:text-2xl font-bold text-slate-100">+$4.2B</span>
-                        <span class="text-[11px] sm:text-xs font-semibold text-emerald-400">Surplus</span>
+                        <span class="text-[11px] font-semibold text-emerald-400">Surplus</span>
                     </div>
-                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Net Exports (X - M)</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
-                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4">
+                    <div class="text-[11px] font-medium text-slate-400 flex items-center justify-between">
                         <span>Voter Approval</span>
                         <i class="fa-solid fa-square-poll-vertical text-amber-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
                         <span id="kpi-approval" class="text-lg sm:text-2xl font-bold text-slate-100">54%</span>
-                        <span id="kpi-approval-status" class="text-[11px] sm:text-xs font-semibold text-emerald-400">Stable</span>
+                        <span class="text-[11px] font-semibold text-emerald-400">Stable</span>
                     </div>
-                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Public support base</p>
                 </div>
             </div>
 
-            <!-- Charts Grid -->
+            <!-- Charts Grid with robust error handling -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
-                    <div class="flex items-center justify-between mb-3">
-                        <h3 class="font-semibold text-slate-200 text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-chart-area text-sky-400"></i> Output Growth & CPI Inflation
-                        </h3>
-                    </div>
+                    <h3 class="font-semibold text-slate-200 text-xs sm:text-sm mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-area text-sky-400"></i> Output Growth & CPI Inflation
+                    </h3>
                     <div class="relative h-56 sm:h-64 w-full">
                         <canvas id="macroChart"></canvas>
                     </div>
                 </div>
 
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
-                    <div class="flex items-center justify-between mb-3">
-                        <h3 class="font-semibold text-slate-200 text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-chart-line text-emerald-400"></i> Bond Yields & Debt-to-GDP
-                        </h3>
-                    </div>
+                    <h3 class="font-semibold text-slate-200 text-xs sm:text-sm mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line text-emerald-400"></i> Bond Yields & Debt-to-GDP
+                    </h3>
                     <div class="relative h-56 sm:h-64 w-full">
                         <canvas id="financeChart"></canvas>
                     </div>
                 </div>
             </div>
 
-            <!-- AI Chief Advisor Diagnosis -->
+            <!-- Centre-Right Cabinet Advisor -->
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
                 <h3 class="font-semibold text-slate-200 text-xs sm:text-sm mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-brain text-purple-400"></i> Cabinet Chief Advisor: Economic Diagnosis
+                    <i class="fa-solid fa-brain text-purple-400"></i> Centre-Right Cabinet Advisory Board
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
                     <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
-                        <span class="font-bold text-sky-400 block mb-1">Fiscal Dilemma</span>
-                        <p id="advisor-fiscal" class="text-slate-300 leading-relaxed text-[11px] sm:text-xs">Running deficits piles up national debt. Generating surpluses pays down debt and builds sovereign fiscal space.</p>
+                        <span class="font-bold text-sky-400 block mb-1">Fiscal Discipline</span>
+                        <p id="advisor-fiscal" class="text-slate-300 leading-relaxed text-[11px]">Lower corporate taxes, streamlined spending, and restrained public bureaucracy stimulate capital investment and growth.</p>
                     </div>
                     <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
-                        <span class="font-bold text-emerald-400 block mb-1">Trade & Embargoes</span>
-                        <p id="advisor-transmission" class="text-slate-300 leading-relaxed text-[11px] sm:text-xs">Adjusting tariffs, export taxes, and embargos across 15 key industries alters domestic supply security.</p>
+                        <span class="font-bold text-emerald-400 block mb-1">Bilateral Trade & FTAs</span>
+                        <p class="text-slate-300 leading-relaxed text-[11px]">Leverage AI negotiation power and bilateral free trade agreements to expand market access without supranational regulatory drag.</p>
                     </div>
                     <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
-                        <span class="font-bold text-amber-400 block mb-1">Public Funding Impact</span>
-                        <p id="advisor-political" class="text-slate-300 leading-relaxed text-[11px] sm:text-xs">Funding health, research, and education boosts public approval and long-term productivity multipliers.</p>
+                        <span class="font-bold text-amber-400 block mb-1">Rationalized Services</span>
+                        <p class="text-slate-300 leading-relaxed text-[11px]">Prioritize core security, defense readiness, and targeted tax relief over expansive entitlement programs.</p>
                     </div>
                 </div>
             </div>
@@ -305,28 +287,27 @@
         <!-- TAB 2: FINANCE & POLICY HUB -->
         <section id="tab-policy" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                <!-- Fiscal Policy Controls -->
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                     <div class="border-b border-slate-800 pb-3">
                         <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> Department of Finance: Core & 10 New Policies
+                            <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> Centre-Right Fiscal Levers & Taxes
                         </h3>
                     </div>
 
                     <div class="space-y-1">
                         <div class="flex justify-between text-xs font-medium">
                             <label for="slider-pit" class="text-slate-300">Avg Personal Income Tax Rate</label>
-                            <span id="val-pit" class="text-sky-400 font-bold">24%</span>
+                            <span id="val-pit" class="text-sky-400 font-bold">22%</span>
                         </div>
-                        <input type="range" id="slider-pit" min="10" max="45" value="24" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
+                        <input type="range" id="slider-pit" min="10" max="45" value="22" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
                     </div>
 
                     <div class="space-y-1">
                         <div class="flex justify-between text-xs font-medium">
-                            <label for="slider-cit" class="text-slate-300">Corporate Income Tax Rate</label>
-                            <span id="val-cit" class="text-sky-400 font-bold">15%</span>
+                            <label for="slider-cit" class="text-slate-300">Corporate Income Tax Rate (Competitive)</label>
+                            <span id="val-cit" class="text-sky-400 font-bold">13%</span>
                         </div>
-                        <input type="range" id="slider-cit" min="5" max="35" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
+                        <input type="range" id="slider-cit" min="5" max="35" value="13" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
                     </div>
 
                     <div class="space-y-1">
@@ -334,104 +315,47 @@
                             <label for="slider-gst" class="text-slate-300">Federal Sales Tax Rate (GST/HST)</label>
                             <span id="val-gst" class="text-sky-400 font-bold">5%</span>
                         </div>
-                        <input type="range" id="slider-gst" min="0" max="15" value="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
+                        <input type="range" id="slider-gst" min="0" max="15" value="5" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
                     </div>
 
                     <div class="space-y-1">
                         <div class="flex justify-between text-xs font-medium">
-                            <label for="slider-carbon" class="text-slate-300">Carbon Price ($ / Tonne CAD)</label>
-                            <span id="val-carbon" class="text-sky-400 font-bold">$65</span>
+                            <label for="slider-carbon" class="text-slate-300">Carbon Price ($ / Tonne CAD - Reduced)</label>
+                            <span id="val-carbon" class="text-sky-400 font-bold">$30</span>
                         </div>
-                        <input type="range" id="slider-carbon" min="0" max="170" value="65" step="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
+                        <input type="range" id="slider-carbon" min="0" max="170" value="30" step="5" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
                     </div>
 
-                    <!-- 10 NEW POLICY ADJUSTMENTS -->
+                    <!-- Additional Levers -->
                     <div class="pt-3 border-t border-slate-800 space-y-3">
-                        <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider">Expanded Levers (10 New)</h4>
+                        <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider">Regulatory & Structural Levers</h4>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-capgains" class="text-slate-300">1. Capital Gains Inclusion (%)</label>
-                                <span id="val-capgains" class="text-sky-400 font-bold">50%</span>
+                                <label for="slider-capgains" class="text-slate-300">Capital Gains Inclusion (%)</label>
+                                <span id="val-capgains" class="text-sky-400 font-bold">40%</span>
                             </div>
-                            <input type="range" id="slider-capgains" min="25" max="100" step="5" value="50" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
+                            <input type="range" id="slider-capgains" min="25" max="100" step="5" value="40" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
                         </div>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-luxury" class="text-slate-300">2. Luxury & Wealth Asset Tax (%)</label>
-                                <span id="val-luxury" class="text-sky-400 font-bold">1.0%</span>
+                                <label for="slider-smallbiz" class="text-slate-300">Small Business Tax Rate (%)</label>
+                                <span id="val-smallbiz" class="text-sky-400 font-bold">8.0%</span>
                             </div>
-                            <input type="range" id="slider-luxury" min="0" max="10" step="0.5" value="1.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
+                            <input type="range" id="slider-smallbiz" min="0" max="15" step="0.5" value="8.0" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
                         </div>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-smallbiz" class="text-slate-300">3. Small Business Tax Rate (%)</label>
-                                <span id="val-smallbiz" class="text-sky-400 font-bold">9.0%</span>
+                                <label for="slider-migration" class="text-slate-300">Controlled Net Immigration (K/Qtr)</label>
+                                <span id="val-migration" class="text-sky-400 font-bold">80K</span>
                             </div>
-                            <input type="range" id="slider-smallbiz" min="0" max="15" step="0.5" value="9.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
-                        </div>
-
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-migration" class="text-slate-300">4. Net Immigration (Thousands/Qtr)</label>
-                                <span id="val-migration" class="text-sky-400 font-bold">120K</span>
-                            </div>
-                            <input type="range" id="slider-migration" min="20" max="300" step="10" value="120" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
-                        </div>
-
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-pension" class="text-slate-300">5. National Pension Rate (%)</label>
-                                <span id="val-pension" class="text-sky-400 font-bold">5.9%</span>
-                            </div>
-                            <input type="range" id="slider-pension" min="2.0" max="12.0" step="0.5" value="5.9" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
-                        </div>
-
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-foreignprop" class="text-slate-300">6. Foreign Property Levy (%)</label>
-                                <span id="val-foreignprop" class="text-sky-400 font-bold">15%</span>
-                            </div>
-                            <input type="range" id="slider-foreignprop" min="0" max="35" step="1" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
-                        </div>
-
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-cleantech" class="text-slate-300">7. Clean Energy Credit (%)</label>
-                                <span id="val-cleantech" class="text-sky-400 font-bold">30%</span>
-                            </div>
-                            <input type="range" id="slider-cleantech" min="0" max="60" step="5" value="30" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
-                        </div>
-
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-ubi" class="text-slate-300">8. Universal Dividend / UBI ($B/qtr)</label>
-                                <span id="val-ubi" class="text-sky-400 font-bold">$15B</span>
-                            </div>
-                            <input type="range" id="slider-ubi" min="0" max="60" step="5" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
-                        </div>
-
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-digitalserv" class="text-slate-300">9. Digital Services Tax (%)</label>
-                                <span id="val-digitalserv" class="text-sky-400 font-bold">3.0%</span>
-                            </div>
-                            <input type="range" id="slider-digitalserv" min="0" max="15" step="0.5" value="3.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
-                        </div>
-
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-stockpile" class="text-slate-300">10. Strategic Reserve Spend ($B/qtr)</label>
-                                <span id="val-stockpile" class="text-sky-400 font-bold">$5B</span>
-                            </div>
-                            <input type="range" id="slider-stockpile" min="0" max="30" step="2" value="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
+                            <input type="range" id="slider-migration" min="20" max="300" step="10" value="80" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
                         </div>
                     </div>
                 </div>
 
-                <!-- Monetary Policy Controls -->
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                     <div class="border-b border-slate-800 pb-3">
                         <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
@@ -442,54 +366,44 @@
                     <div class="space-y-1">
                         <div class="flex justify-between text-xs font-medium">
                             <label for="slider-boc-rate" class="text-slate-300">BoC Overnight Rate (%)</label>
-                            <span id="val-boc-rate" class="text-purple-400 font-bold">3.75%</span>
+                            <span id="val-boc-rate" class="text-purple-400 font-bold">3.50%</span>
                         </div>
-                        <input type="range" id="slider-boc-rate" min="0.25" max="12.0" step="0.25" value="3.75" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
-                    </div>
-
-                    <div class="space-y-1">
-                        <div class="flex justify-between text-xs font-medium">
-                            <label for="slider-qe" class="text-slate-300">Quantitative Easing / Tightening</label>
-                            <span id="val-qe" class="text-purple-400 font-bold">$0 B/qtr</span>
-                        </div>
-                        <input type="range" id="slider-qe" min="-50" max="50" step="5" value="0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
+                        <input type="range" id="slider-boc-rate" min="0.25" max="12.0" step="0.25" value="3.50" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
                     </div>
 
                     <div class="space-y-1">
                         <div class="flex justify-between text-xs font-medium">
                             <label for="slider-reserve" class="text-slate-300">Bank Reserve Ratio (%)</label>
-                            <span id="val-reserve" class="text-purple-400 font-bold">3.5%</span>
+                            <span id="val-reserve" class="text-purple-400 font-bold">3.0%</span>
                         </div>
-                        <input type="range" id="slider-reserve" min="1.0" max="10.0" step="0.5" value="3.5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
+                        <input type="range" id="slider-reserve" min="1.0" max="10.0" step="0.5" value="3.0" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
                     </div>
 
                     <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 text-xs space-y-2 mt-4">
                         <span class="font-bold text-sky-400 flex items-center gap-1">
-                            <i class="fa-solid fa-calculator"></i> Taylor Rule Model Estimate
+                            <i class="fa-solid fa-calculator"></i> Taylor Rule Benchmark
                         </span>
                         <p class="text-slate-300 leading-relaxed text-[11px]">
-                            <code class="bg-slate-900 px-1 py-0.5 rounded text-amber-300">Target = Neutral (2.5%) + Inflation Gap + Output Gap</code>
-                        </p>
-                        <p class="text-[11px] text-slate-400">
-                            Computed Benchmark Rate: <span id="taylor-computed-val" class="font-bold text-slate-200">3.80%</span>
+                            Computed Benchmark Rate: <span id="taylor-computed-val" class="font-bold text-slate-200">3.50%</span>
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 3: PUBLIC SERVICES & FUNDING -->
+        <!-- TAB 3: PUBLIC SERVICES & FUNDING (Less Liberal / Rationalized) -->
         <section id="tab-funding" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                     <div>
                         <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-hand-holding-dollar text-purple-400"></i> 10 Public Services & Social Funding Categories
+                            <i class="fa-solid fa-hand-holding-dollar text-purple-400"></i> Rationalized Public Services & Funding
                         </h3>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Optimized for fiscal restraint, value for taxpayers, and core infrastructure.</p>
                     </div>
                     <div class="text-left sm:text-right">
                         <span class="text-xs text-slate-400">Total Outlays:</span>
-                        <span id="total-funding-display" class="text-xs sm:text-sm font-bold text-purple-400 ml-1">$345.0B / qtr</span>
+                        <span id="total-funding-display" class="text-xs sm:text-sm font-bold text-purple-400 ml-1">$310.0B / qtr</span>
                     </div>
                 </div>
 
@@ -498,75 +412,143 @@
             </div>
         </section>
 
-        <!-- TAB 4: 15 INDUSTRIES & GLOBAL TRADE -->
+        <!-- TAB 4: 15 INDUSTRIES & FREE TRADE AGREEMENTS (FTAs) & AI NEGOTIATION -->
         <section id="tab-industries" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
-                <div class="border-b border-slate-800 pb-3">
+                <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                     <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-industry text-amber-400"></i> 15 Fully Fledged Canadian Industries & Trade Controls
+                        <i class="fa-solid fa-industry text-amber-400"></i> 15 Canadian Industries & Trade Controls
                     </h3>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4" id="industry-cards-container">
                 </div>
             </div>
 
-            <!-- Global Trade & Tariff Settings -->
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
-                <div class="border-b border-slate-800 pb-3">
-                    <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-earth-americas text-sky-400"></i> International Trade Agreements & Shocks
-                    </h3>
+            <!-- Free Trade Agreements & AI Negotiating Power -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
+                    <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
+                        <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-handshake text-sky-400"></i> Bilateral Free Trade Agreements (FTAs)
+                        </h3>
+                    </div>
+                    <p class="text-xs text-slate-400">Execute bilateral trade contracts to lower tariffs, boost exports, and secure vital resource supply chains.</p>
+                    <div class="space-y-3" id="fta-container">
+                        <!-- FTA items populated dynamically -->
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    <div class="space-y-3 bg-slate-950 p-3 sm:p-4 rounded-xl border border-slate-800">
-                        <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Tariff Baselines</h4>
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-tariff-us" class="text-slate-300">US Goods Import Tariff (%)</label>
-                                <span id="val-tariff-us" class="text-rose-400 font-bold">1.5%</span>
-                            </div>
-                            <input type="range" id="slider-tariff-us" min="0" max="25" step="0.5" value="1.5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
+                    <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
+                        <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-robot text-purple-400"></i> AI-Powered Live Negotiating Power
+                        </h3>
+                        <span id="ai-negotiation-status" class="text-[10px] font-semibold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Ready</span>
+                    </div>
+                    <p class="text-xs text-slate-400">Deploy sovereign AI negotiators to secure favorable terms, tariff reductions, and trade concessions with global partners in real-time.</p>
+                    
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-300">Select Negotiation Target:</span>
+                            <select id="ai-nego-partner" class="bg-slate-900 text-slate-200 border border-slate-700 rounded px-2 py-1 text-xs">
+                                <option value="us">United States (USMCA / Bilateral)</option>
+                                <option value="uk">United Kingdom (UK-Canada FTA)</option>
+                                <option value="eu">European Union (CETA Optimization)</option>
+                                <option value="japan">Japan (CPTPP Partner)</option>
+                                <option value="pacific">Pacific Alliance</option>
+                            </select>
                         </div>
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-tariff-row" class="text-slate-300">Rest of World Tariff (%)</label>
-                                <span id="val-tariff-row" class="text-rose-400 font-bold">4.0%</span>
-                            </div>
-                            <input type="range" id="slider-tariff-row" min="0" max="30" step="0.5" value="4.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-300">Strategy Stance:</span>
+                            <select id="ai-nego-strategy" class="bg-slate-900 text-slate-200 border border-slate-700 rounded px-2 py-1 text-xs">
+                                <option value="aggressive">Aggressive Tariff Elimination</option>
+                                <option value="balanced">Balanced Bilateral Compromise</option>
+                                <option value="resource_swap">Critical Minerals for Tech Access</option>
+                            </select>
                         </div>
+                        <button onclick="runAiNegotiation()" class="w-full py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold rounded text-xs transition shadow cursor-pointer flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-microchip"></i> Execute AI Live Negotiation
+                        </button>
                     </div>
 
-                    <div class="space-y-3 bg-slate-950 p-3 sm:p-4 rounded-xl border border-slate-800">
-                        <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Exogenous Factors</h4>
-                        <div class="grid grid-cols-2 gap-3 text-xs">
-                            <div class="bg-slate-900 p-2.5 rounded border border-slate-800">
-                                <span class="text-slate-400 block text-[9px]">WTI Crude Oil Price</span>
-                                <span id="val-oil-price" class="font-bold text-emerald-400 text-xs sm:text-sm">$78.50 / bbl</span>
-                            </div>
-                            <div class="bg-slate-900 p-2.5 rounded border border-slate-800">
-                                <span class="text-slate-400 block text-[9px]">US Fed Rate</span>
-                                <span id="val-us-fed-rate" class="font-bold text-sky-400 text-xs sm:text-sm">4.25%</span>
-                            </div>
-                        </div>
-                        <div class="pt-1">
-                            <span class="text-xs font-semibold text-slate-300 block mb-2">Inject Global Shock:</span>
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="triggerShock('oil_spike')" class="px-2 py-1.5 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 rounded text-[11px] font-medium transition cursor-pointer">
-                                    ⚡ Oil Surge (+40%)
-                                </button>
-                                <button onclick="triggerShock('us_recession')" class="px-2 py-1.5 bg-slate-800 hover:bg-slate-700 text-rose-300 border border-rose-500/30 rounded text-[11px] font-medium transition cursor-pointer">
-                                    ⚡ US Slump / Recession
-                                </button>
-                            </div>
-                        </div>
+                    <div id="ai-nego-result" class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 min-h-[70px] flex items-center justify-center text-center text-slate-400">
+                        AI negotiation engine standing by for sovereign instructions...
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 5: CRISIS SCENARIOS -->
+        <!-- TAB 5: UN & ASSOCIATIONS (Less Liberal Funding & Centre-Right Alignment) -->
+        <section id="tab-diplomacy" class="tab-content hidden space-y-4 sm:space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
+                <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
+                    <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-globe text-teal-400"></i> United Nations & International Associations
+                    </h3>
+                    <span class="text-xs text-slate-400">Sovereign Membership & Funding</span>
+                </div>
+                <p class="text-xs text-slate-300">Under centre-right governance, international financial commitments are rationalized to prioritize national interest, reciprocal trade, and strict auditing over unconditional foreign aid.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="associations-container">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: DEFENCE DEPARTMENT (Coming Soon Banner) -->
+        <section id="tab-defense" class="tab-content hidden space-y-4 sm:space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 sm:p-8 relative overflow-hidden text-center space-y-6">
+                <!-- Coming Soon Banner Overlay Badge -->
+                <div class="absolute top-4 right-4 bg-gradient-to-r from-rose-600 to-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider animate-pulse">
+                    Coming Soon in v5.0
+                </div>
+
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-rose-950 border border-rose-800 flex items-center justify-center text-rose-400 text-2xl shadow-lg">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+                <div class="max-w-xl mx-auto space-y-2">
+                    <h2 class="text-xl sm:text-2xl font-bold text-slate-100">Department of National Defence (DND)</h2>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Constructing a fully integrated military command matrix. Manage active troop deployments, naval fleets, Arctic sovereignty patrols, aerospace fighter procurement (F-35s), and strategic defense alliances.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-left max-w-3xl mx-auto pt-2">
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1.5 opacity-75">
+                        <div class="flex items-center justify-between text-xs font-bold text-slate-200">
+                            <span>Active Personnel</span>
+                            <span class="text-rose-400">71,500</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400">Manage recruitment quotas, reserve readiness, and payroll budgets.</p>
+                    </div>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1.5 opacity-75">
+                        <div class="flex items-center justify-between text-xs font-bold text-slate-200">
+                            <span>Equipment & Procurement</span>
+                            <span class="text-amber-400">$14.2B</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400">Procure destroyers, armored vehicles, radar networks, and aircraft.</p>
+                    </div>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1.5 opacity-75">
+                        <div class="flex items-center justify-between text-xs font-bold text-slate-200">
+                            <span>NATO / NORAD Readiness</span>
+                            <span class="text-emerald-400">2.0% GDP</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400">Meet alliance obligations and secure North American continental defense.</p>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button onclick="alert('Defence Department command matrix is currently under active development for v5.0 release.')" class="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-lg transition border border-slate-700 cursor-pointer">
+                        <i class="fa-solid fa-bell mr-1.5"></i> Notify Me When Available
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 7: CRISIS SCENARIOS -->
         <section id="tab-scenarios" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
                 <div class="border-b border-slate-800 pb-3 mb-4">
@@ -579,32 +561,13 @@
             </div>
         </section>
 
-        <!-- TAB 6: ECONOMICS ACADEMY -->
-        <section id="tab-learn" class="tab-content hidden space-y-4 sm:space-y-6">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
-                <div class="border-b border-slate-800 pb-3 mb-4">
-                    <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-graduation-cap text-indigo-400"></i> Economics Interactive Learning Hub
-                    </h3>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="space-y-2" id="academy-topics-list">
-                    </div>
-                    <div class="md:col-span-2 bg-slate-950 p-4 sm:p-6 rounded-xl border border-slate-800 space-y-3" id="academy-content-display">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TAB 7: PRESS LEDGER -->
+        <!-- TAB 8: PRESS LEDGER -->
         <section id="tab-news" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
-                    <div>
-                        <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-newspaper text-teal-400"></i> Financial Times & Event Ledger
-                        </h3>
-                    </div>
+                    <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-newspaper text-teal-400"></i> Financial Times & Event Ledger
+                    </h3>
                     <button onclick="clearNewsLog()" class="text-xs text-slate-400 hover:text-white bg-slate-800 px-2.5 py-1 rounded border border-slate-700 cursor-pointer">Clear Logs</button>
                 </div>
                 <div class="space-y-2.5 max-h-[450px] overflow-y-auto pr-1" id="news-feed-container">
@@ -615,242 +578,239 @@
 
     <!-- Footer -->
     <footer class="bg-slate-900 border-t border-slate-800 py-3 px-4 sm:px-8 mt-auto text-[11px] text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
-        <div>EconoMaster Engine v4.1 &copy; 2026. Mobile-Ready Progressive Web App.</div>
+        <div>EconoMaster Engine v4.2 &copy; 2026. Centre-Right Sovereign Economic Simulator.</div>
         <div class="flex gap-4">
-            <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('learn')">Academy</span>
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('policy')">Policy</span>
+            <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('diplomacy')">UN & Orgs</span>
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('dashboard')">Dashboard</span>
         </div>
     </footer>
 
-    <!-- MAIN JAVASCRIPT & APP LOGIC -->
+    <!-- JAVASCRIPT & FAIL-SAFE LOGIC -->
     <script>
         const gameState = {
             quarter: 1,
             year: 1,
             gdp: 2940.0, 
             gdpGrowthRate: 2.1, 
-            cpiInflation: 2.4, 
-            unemploymentRate: 5.8, 
-            bocRate: 3.75, 
-            usFedRate: 4.25, 
-            debtToGdp: 64.2, 
-            nationalDebt: 1887.0, 
-            budgetDeficit: 32.5, 
-            cadToUsd: 0.745, 
-            tradeBalance: 4.2, 
-            oilPrice: 78.5, 
-            publicApproval: 54, 
-            carbonPrice: 65, 
+            cpiInflation: 2.2, 
+            unemploymentRate: 5.6, 
+            bocRate: 3.50, 
+            usFedRate: 4.00, 
+            debtToGdp: 62.0, 
+            nationalDebt: 1822.0, 
+            budgetDeficit: 18.5, 
+            cadToUsd: 0.752, 
+            tradeBalance: 6.2, 
+            oilPrice: 82.0, 
+            publicApproval: 58, 
+            carbonPrice: 30, 
             
-            pit: 24, 
-            cit: 15, 
+            pit: 22, 
+            cit: 13, 
             gst: 5,  
             
-            capGainsRate: 50,
-            luxuryTax: 1.0,
-            smallBizTax: 9.0,
-            migrationInflow: 120, 
-            pensionRate: 5.9,
-            foreignPropLevy: 15,
-            cleanTechCredit: 30,
-            ubiAmount: 15, 
-            digitalServTax: 3.0,
-            stockpileSpend: 5, 
+            capGainsRate: 40,
+            smallBizTax: 8.0,
+            migrationInflow: 80, 
 
             funding: {
-                health: 95.0,
-                education: 55.0,
-                research: 18.0,
-                police: 22.0,
-                transport: 35.0,
-                defense: 30.0,
-                environment: 15.0,
-                housing: 25.0,
-                veterans: 12.0,
-                childcare: 20.0
+                health: 85.0,
+                education: 48.0,
+                research: 16.0,
+                police: 28.0,
+                transport: 30.0,
+                defense: 38.0,
+                environment: 10.0,
+                housing: 20.0,
+                veterans: 14.0,
+                childcare: 15.0
             },
             
-            qeAmount: 0, 
-            reserveRatio: 3.5, 
-
-            monetaryLagQueue: [3.75, 3.75, 3.75], 
+            reserveRatio: 3.0,
+            monetaryLagQueue: [3.50, 3.50, 3.50], 
             bondRiskSpread: 0.0, 
             
             industries: {
-                oil_gas: { name: "1. Oil, Gas & Mining", output: 340, duty: 2.0, exportTax: 1.5, subsidy: 8.0, exoneration: false, pricePerTon: 850, importEmbargo: false, exportEmbargo: false },
-                auto_mfg: { name: "2. Automotive & Heavy Mfg", output: 290, duty: 3.5, exportTax: 0.5, subsidy: 10.0, exoneration: false, pricePerTon: 1400, importEmbargo: false, exportEmbargo: false },
-                tech_ai: { name: "3. Tech, AI & Software", output: 260, duty: 1.0, exportTax: 0.0, subsidy: 14.0, exoneration: true, pricePerTon: 3200, importEmbargo: false, exportEmbargo: false },
-                real_estate: { name: "4. Real Estate & Construction", output: 420, duty: 0.0, exportTax: 0.0, subsidy: 4.0, exoneration: false, pricePerTon: 2100, importEmbargo: false, exportEmbargo: false },
-                agri_food: { name: "5. Agriculture & Food Processing", output: 140, duty: 5.0, exportTax: 1.0, subsidy: 7.0, exoneration: false, pricePerTon: 450, importEmbargo: false, exportEmbargo: false },
-                finance_bank: { name: "6. Banking & Financial Services", output: 360, duty: 0.5, exportTax: 0.0, subsidy: 2.0, exoneration: false, pricePerTon: 5000, importEmbargo: false, exportEmbargo: false },
-                aerospace: { name: "7. Aerospace & Defense", output: 110, duty: 2.0, exportTax: 2.0, subsidy: 12.0, exoneration: false, pricePerTon: 7500, importEmbargo: false, exportEmbargo: false },
-                forestry: { name: "8. Forestry & Wood Products", output: 95, duty: 3.0, exportTax: 2.5, subsidy: 5.0, exoneration: false, pricePerTon: 380, importEmbargo: false, exportEmbargo: false },
-                pharma_bio: { name: "9. Pharmaceuticals & Biotech", output: 130, duty: 1.5, exportTax: 0.0, subsidy: 15.0, exoneration: true, pricePerTon: 6200, importEmbargo: false, exportEmbargo: false },
-                clean_energy: { name: "10. Clean Energy & Renewables", output: 105, duty: 1.0, exportTax: 0.0, subsidy: 18.0, exoneration: true, pricePerTon: 950, importEmbargo: false, exportEmbargo: false },
-                telecom: { name: "11. Telecommunications & Media", output: 180, duty: 0.0, exportTax: 0.0, subsidy: 3.0, exoneration: false, pricePerTon: 2400, importEmbargo: false, exportEmbargo: false },
-                tourism: { name: "12. Tourism & Hospitality", output: 120, duty: 0.0, exportTax: 0.0, subsidy: 6.0, exoneration: false, pricePerTon: 1100, importEmbargo: false, exportEmbargo: false },
-                fisheries: { name: "13. Fisheries & Aquaculture", output: 65, duty: 4.0, exportTax: 1.5, subsidy: 4.0, exoneration: false, pricePerTon: 720, importEmbargo: false, exportEmbargo: false },
-                shipping_log: { name: "14. Shipping, Rail & Logistics", output: 150, duty: 1.0, exportTax: 0.5, subsidy: 8.0, exoneration: false, pricePerTon: 1250, importEmbargo: false, exportEmbargo: false },
-                chemicals: { name: "15. Chemicals & Plastics", output: 175, duty: 2.5, exportTax: 1.0, subsidy: 6.0, exoneration: false, pricePerTon: 1600, importEmbargo: false, exportEmbargo: false }
+                oil_gas: { name: "1. Oil, Gas & Mining", output: 360, duty: 1.5, exportTax: 1.0, subsidy: 10.0, exoneration: false, pricePerTon: 880, importEmbargo: false, exportEmbargo: false },
+                auto_mfg: { name: "2. Automotive & Heavy Mfg", output: 300, duty: 2.5, exportTax: 0.0, subsidy: 12.0, exoneration: false, pricePerTon: 1420, importEmbargo: false, exportEmbargo: false },
+                tech_ai: { name: "3. Tech, AI & Software", output: 280, duty: 0.5, exportTax: 0.0, subsidy: 16.0, exoneration: true, pricePerTon: 3300, importEmbargo: false, exportEmbargo: false },
+                real_estate: { name: "4. Real Estate & Construction", output: 410, duty: 0.0, exportTax: 0.0, subsidy: 3.0, exoneration: false, pricePerTon: 2150, importEmbargo: false, exportEmbargo: false },
+                agri_food: { name: "5. Agriculture & Food Processing", output: 150, duty: 3.0, exportTax: 0.5, subsidy: 8.0, exoneration: false, pricePerTon: 460, importEmbargo: false, exportEmbargo: false },
+                finance_bank: { name: "6. Banking & Financial Services", output: 380, duty: 0.0, exportTax: 0.0, subsidy: 2.0, exoneration: false, pricePerTon: 5100, importEmbargo: false, exportEmbargo: false },
+                aerospace: { name: "7. Aerospace & Defense", output: 125, duty: 1.0, exportTax: 1.0, subsidy: 18.0, exoneration: true, pricePerTon: 7800, importEmbargo: false, exportEmbargo: false },
+                forestry: { name: "8. Forestry & Wood Products", output: 100, duty: 2.0, exportTax: 1.5, subsidy: 5.0, exoneration: false, pricePerTon: 390, importEmbargo: false, exportEmbargo: false },
+                pharma_bio: { name: "9. Pharmaceuticals & Biotech", output: 135, duty: 1.0, exportTax: 0.0, subsidy: 14.0, exoneration: false, pricePerTon: 6300, importEmbargo: false, exportEmbargo: false },
+                clean_energy: { name: "10. Clean Energy & Renewables", output: 110, duty: 1.0, exportTax: 0.0, subsidy: 15.0, exoneration: false, pricePerTon: 970, importEmbargo: false, exportEmbargo: false },
+                telecom: { name: "11. Telecommunications & Media", output: 185, duty: 0.0, exportTax: 0.0, subsidy: 2.0, exoneration: false, pricePerTon: 2450, importEmbargo: false, exportEmbargo: false },
+                tourism: { name: "12. Tourism & Hospitality", output: 125, duty: 0.0, exportTax: 0.0, subsidy: 5.0, exoneration: false, pricePerTon: 1120, importEmbargo: false, exportEmbargo: false },
+                fisheries: { name: "13. Fisheries & Aquaculture", output: 70, duty: 2.5, exportTax: 1.0, subsidy: 3.0, exoneration: false, pricePerTon: 740, importEmbargo: false, exportEmbargo: false },
+                shipping_log: { name: "14. Shipping, Rail & Logistics", output: 160, duty: 0.5, exportTax: 0.0, subsidy: 9.0, exoneration: false, pricePerTon: 1280, importEmbargo: false, exportEmbargo: false },
+                chemicals: { name: "15. Chemicals & Plastics", output: 180, duty: 1.5, exportTax: 0.5, subsidy: 6.0, exoneration: false, pricePerTon: 1620, importEmbargo: false, exportEmbargo: false }
             },
-            
-            tariffUs: 1.5,
-            tariffRow: 4.0,
+
+            ftas: {
+                usmca: { name: "USMCA (North America)", active: true, bonus: "Tariff-free automotive & energy access" },
+                ceta: { name: "CETA (European Union)", active: true, bonus: "98% industrial tariff elimination" },
+                uk_fta: { name: "UK-Canada Continuity FTA", active: true, bonus: "Preserved bilateral financial trade" },
+                cptpp: { name: "CPTPP (Indo-Pacific)", active: true, bonus: "Access to Japan, Australia & Vietnam" },
+                latin_trade: { name: "Pacific Alliance FTA", active: false, bonus: "Latin American mining & tech corridors" }
+            },
+
+            associations: {
+                un_core: { name: "United Nations Core Budget", funded: true, cost: 4.5, desc: "Mandatory UN membership dues." },
+                un_climate: { name: "UN Climate Adaptation Fund", funded: false, cost: 8.0, desc: "Multilateral climate grants (rationalized under centre-right policy)." },
+                who: { name: "World Health Organization", funded: true, cost: 3.2, desc: "Global health surveillance and standards." },
+                nato: { name: "NATO Defense Alliance", funded: true, cost: 12.5, desc: "Collective defense and interoperability." },
+                WEF: { name: "World Economic Forum Partnership", funded: false, cost: 2.0, desc: "Global economic policy forums." }
+            },
+
             activeScenario: null,
             scenarioTimeLeft: 0,
 
             history: {
                 labels: ["Y1 Q1"],
                 gdpGrowth: [2.1],
-                inflation: [2.4],
-                bocRate: [3.75],
-                debtGdp: [64.2]
+                inflation: [2.2],
+                bocRate: [3.50],
+                debtGdp: [62.0]
             },
             logs: []
         };
 
-        let macroChartObj, financeChartObj;
+        let macroChartObj = null;
+        let financeChartObj = null;
 
+        // Fail-safe Chart Initialization
         function initCharts() {
-            const ctxMacro = document.getElementById('macroChart').getContext('2d');
-            macroChartObj = new Chart(ctxMacro, {
-                type: 'line',
-                data: {
-                    labels: gameState.history.labels,
-                    datasets: [
-                        {
-                            label: 'GDP Growth (%)',
-                            data: gameState.history.gdpGrowth,
-                            borderColor: '#38bdf8',
-                            backgroundColor: 'rgba(56, 189, 248, 0.1)',
-                            borderWidth: 2,
-                            fill: true,
-                            tension: 0.3
-                        },
-                        {
-                            label: 'Inflation (%)',
-                            data: gameState.history.inflation,
-                            borderColor: '#f59e0b',
-                            backgroundColor: 'transparent',
-                            borderWidth: 2,
-                            borderDash: [4, 4],
-                            tension: 0.3
+            try {
+                const ctxMacro = document.getElementById('macroChart').getContext('2d');
+                if (macroChartObj) macroChartObj.destroy();
+                macroChartObj = new Chart(ctxMacro, {
+                    type: 'line',
+                    data: {
+                        labels: gameState.history.labels,
+                        datasets: [
+                            {
+                                label: 'GDP Growth (%)',
+                                data: gameState.history.gdpGrowth,
+                                borderColor: '#38bdf8',
+                                backgroundColor: 'rgba(56, 189, 248, 0.1)',
+                                borderWidth: 2,
+                                fill: true,
+                                tension: 0.3
+                            },
+                            {
+                                label: 'Inflation (%)',
+                                data: gameState.history.inflation,
+                                borderColor: '#f59e0b',
+                                backgroundColor: 'transparent',
+                                borderWidth: 2,
+                                borderDash: [4, 4],
+                                tension: 0.3
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { labels: { color: '#94a3b8', font: { size: 10 } } } },
+                        scales: {
+                            x: { ticks: { color: '#64748b', font: { size: 9 } }, grid: { color: '#1e293b' } },
+                            y: { ticks: { color: '#64748b', font: { size: 9 } }, grid: { color: '#1e293b' } }
                         }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { labels: { color: '#94a3b8', font: { size: 10 } } } },
-                    scales: {
-                        x: { ticks: { color: '#64748b', font: { size: 9 } }, grid: { color: '#1e293b' } },
-                        y: { ticks: { color: '#64748b', font: { size: 9 } }, grid: { color: '#1e293b' } }
                     }
-                }
-            });
+                });
 
-            const ctxFinance = document.getElementById('financeChart').getContext('2d');
-            financeChartObj = new Chart(ctxFinance, {
-                type: 'line',
-                data: {
-                    labels: gameState.history.labels,
-                    datasets: [
-                        {
-                            label: 'Bond Yield (%)',
-                            data: gameState.history.bocRate,
-                            borderColor: '#10b981',
-                            backgroundColor: 'transparent',
-                            borderWidth: 2,
-                            tension: 0.2
-                        },
-                        {
-                            label: 'Debt-to-GDP (%)',
-                            data: gameState.history.debtGdp,
-                            borderColor: '#f43f5e',
-                            backgroundColor: 'transparent',
-                            borderWidth: 2,
-                            tension: 0.2
+                const ctxFinance = document.getElementById('financeChart').getContext('2d');
+                if (financeChartObj) financeChartObj.destroy();
+                financeChartObj = new Chart(ctxFinance, {
+                    type: 'line',
+                    data: {
+                        labels: gameState.history.labels,
+                        datasets: [
+                            {
+                                label: 'Bond Yield (%)',
+                                data: gameState.history.bocRate,
+                                borderColor: '#10b981',
+                                backgroundColor: 'transparent',
+                                borderWidth: 2,
+                                tension: 0.2
+                            },
+                            {
+                                label: 'Debt-to-GDP (%)',
+                                data: gameState.history.debtGdp,
+                                borderColor: '#f43f5e',
+                                backgroundColor: 'transparent',
+                                borderWidth: 2,
+                                tension: 0.2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { labels: { color: '#94a3b8', font: { size: 10 } } } },
+                        scales: {
+                            x: { ticks: { color: '#64748b', font: { size: 9 } }, grid: { color: '#1e293b' } },
+                            y: { ticks: { color: '#64748b', font: { size: 9 } }, grid: { color: '#1e293b' } }
                         }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { labels: { color: '#94a3b8', font: { size: 10 } } } },
-                    scales: {
-                        x: { ticks: { color: '#64748b', font: { size: 9 } }, grid: { color: '#1e293b' } },
-                        y: { ticks: { color: '#64748b', font: { size: 9 } }, grid: { color: '#1e293b' } }
                     }
-                }
-            });
+                });
+            } catch (err) {
+                console.error("Chart initialization error fallback triggered:", err);
+            }
         }
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const target = document.getElementById(`tab-${tabId}`);
+            if (target) target.classList.remove('hidden');
 
             document.querySelectorAll('#nav-tabs button').forEach(btn => btn.classList.remove('active'));
             if (event && event.currentTarget) {
                 event.currentTarget.classList.add('active');
             }
 
-            if (tabId === 'dashboard' && macroChartObj && financeChartObj) {
-                macroChartObj.update();
-                financeChartObj.update();
+            if (tabId === 'dashboard') {
+                setTimeout(() => {
+                    if (macroChartObj) macroChartObj.resize();
+                    if (financeChartObj) financeChartObj.resize();
+                }, 50);
             }
         }
 
         function updatePolicies() {
-            gameState.pit = parseFloat(document.getElementById('slider-pit').value);
-            gameState.cit = parseFloat(document.getElementById('slider-cit').value);
-            gameState.gst = parseFloat(document.getElementById('slider-gst').value);
-            gameState.carbonPrice = parseFloat(document.getElementById('slider-carbon').value);
+            try {
+                gameState.pit = parseFloat(document.getElementById('slider-pit').value) || 22;
+                gameState.cit = parseFloat(document.getElementById('slider-cit').value) || 13;
+                gameState.gst = parseFloat(document.getElementById('slider-gst').value) || 5;
+                gameState.carbonPrice = parseFloat(document.getElementById('slider-carbon').value) || 30;
 
-            gameState.capGainsRate = parseFloat(document.getElementById('slider-capgains').value);
-            gameState.luxuryTax = parseFloat(document.getElementById('slider-luxury').value);
-            gameState.smallBizTax = parseFloat(document.getElementById('slider-smallbiz').value);
-            gameState.migrationInflow = parseFloat(document.getElementById('slider-migration').value);
-            gameState.pensionRate = parseFloat(document.getElementById('slider-pension').value);
-            gameState.foreignPropLevy = parseFloat(document.getElementById('slider-foreignprop').value);
-            gameState.cleanTechCredit = parseFloat(document.getElementById('slider-cleantech').value);
-            gameState.ubiAmount = parseFloat(document.getElementById('slider-ubi').value);
-            gameState.digitalServTax = parseFloat(document.getElementById('slider-digitalserv').value);
-            gameState.stockpileSpend = parseFloat(document.getElementById('slider-stockpile').value);
+                gameState.capGainsRate = parseFloat(document.getElementById('slider-capgains').value) || 40;
+                gameState.smallBizTax = parseFloat(document.getElementById('slider-smallbiz').value) || 8;
+                gameState.migrationInflow = parseFloat(document.getElementById('slider-migration').value) || 80;
 
-            gameState.bocRate = parseFloat(document.getElementById('slider-boc-rate').value);
-            gameState.qeAmount = parseFloat(document.getElementById('slider-qe').value);
-            gameState.reserveRatio = parseFloat(document.getElementById('slider-reserve').value);
+                gameState.bocRate = parseFloat(document.getElementById('slider-boc-rate').value) || 3.50;
+                gameState.reserveRatio = parseFloat(document.getElementById('slider-reserve').value) || 3.0;
 
-            gameState.tariffUs = parseFloat(document.getElementById('slider-tariff-us').value);
-            gameState.tariffRow = parseFloat(document.getElementById('slider-tariff-row').value);
-
-            document.getElementById('val-pit').innerText = gameState.pit + '%';
-            document.getElementById('val-cit').innerText = gameState.cit + '%';
-            document.getElementById('val-gst').innerText = gameState.gst + '%';
-            document.getElementById('val-carbon').innerText = '$' + gameState.carbonPrice;
-
-            document.getElementById('val-capgains').innerText = gameState.capGainsRate + '%';
-            document.getElementById('val-luxury').innerText = gameState.luxuryTax + '%';
-            document.getElementById('val-smallbiz').innerText = gameState.smallBizTax + '%';
-            document.getElementById('val-migration').innerText = gameState.migrationInflow + 'K';
-            document.getElementById('val-pension').innerText = gameState.pensionRate + '%';
-            document.getElementById('val-foreignprop').innerText = gameState.foreignPropLevy + '%';
-            document.getElementById('val-cleantech').innerText = gameState.cleanTechCredit + '%';
-            document.getElementById('val-ubi').innerText = '$' + gameState.ubiAmount + 'B';
-            document.getElementById('val-digitalserv').innerText = gameState.digitalServTax + '%';
-            document.getElementById('val-stockpile').innerText = '$' + gameState.stockpileSpend + 'B';
-
-            document.getElementById('val-boc-rate').innerText = gameState.bocRate.toFixed(2) + '%';
-            document.getElementById('val-qe').innerText = (gameState.qeAmount >= 0 ? '+' : '') + gameState.qeAmount + ' B/qtr';
-            document.getElementById('val-reserve').innerText = gameState.reserveRatio.toFixed(1) + '%';
-
-            document.getElementById('val-tariff-us').innerText = gameState.tariffUs.toFixed(1) + '%';
-            document.getElementById('val-tariff-row').innerText = gameState.tariffRow.toFixed(1) + '%';
+                document.getElementById('val-pit').innerText = gameState.pit + '%';
+                document.getElementById('val-cit').innerText = gameState.cit + '%';
+                document.getElementById('val-gst').innerText = gameState.gst + '%';
+                document.getElementById('val-carbon').innerText = '$' + gameState.carbonPrice;
+                document.getElementById('val-capgains').innerText = gameState.capGainsRate + '%';
+                document.getElementById('val-smallbiz').innerText = gameState.smallBizTax + '%';
+                document.getElementById('val-migration').innerText = gameState.migrationInflow + 'K';
+                document.getElementById('val-boc-rate').innerText = gameState.bocRate.toFixed(2) + '%';
+                document.getElementById('val-reserve').innerText = gameState.reserveRatio.toFixed(1) + '%';
+                document.getElementById('taylor-computed-val').innerText = gameState.bocRate.toFixed(2) + '%';
+            } catch (err) {
+                console.error("Policy update error:", err);
+            }
         }
 
         function updateFunding(category, val) {
-            gameState.funding[category] = parseFloat(val);
+            gameState.funding[category] = parseFloat(val) || 0;
             const displayEl = document.getElementById(`val-fund-${category}`);
             if (displayEl) {
                 displayEl.innerText = '$' + parseFloat(val).toFixed(1) + 'B';
@@ -860,9 +820,30 @@
             for (const key in gameState.funding) {
                 total += gameState.funding[key];
             }
+            for (const key in gameState.associations) {
+                if (gameState.associations[key].funded) {
+                    total += gameState.associations[key].cost;
+                }
+            }
             const totalDisplay = document.getElementById('total-funding-display');
             if (totalDisplay) {
                 totalDisplay.innerText = '$' + total.toFixed(1) + 'B / qtr';
+            }
+        }
+
+        function toggleAssociation(key) {
+            if (gameState.associations[key]) {
+                gameState.associations[key].funded = !gameState.associations[key].funded;
+                renderAssociations();
+                updateFunding('defense', gameState.funding.defense);
+            }
+        }
+
+        function toggleFta(key) {
+            if (gameState.ftas[key]) {
+                gameState.ftas[key].active = !gameState.ftas[key].active;
+                renderFtas();
+                logNews('TRADE POLICY', `FTA status updated for ${gameState.ftas[key].name}.`, 'info');
             }
         }
 
@@ -874,221 +855,177 @@
             }
         }
 
+        function runAiNegotiation() {
+            const partner = document.getElementById('ai-nego-partner').value;
+            const strategy = document.getElementById('ai-nego-strategy').value;
+            const resultBox = document.getElementById('ai-nego-result');
+            
+            resultBox.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-purple-400 mr-2"></i> AI agent analyzing trade tariffs and contracting terms with ${partner.toUpperCase()}...`;
+            
+            setTimeout(() => {
+                let outcomeText = "";
+                if (strategy === 'aggressive') {
+                    gameState.tradeBalance += 1.8;
+                    outcomeText = `✅ AI Agent successfully negotiated aggressive tariff reductions with ${partner.toUpperCase()}. Trade surplus increased by +$1.8B.`;
+                } else if (strategy === 'resource_swap') {
+                    gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate + 0.15).toFixed(2));
+                    outcomeText = `✅ AI Agent secured critical mineral supply accords with ${partner.toUpperCase()}. Long-term industrial output augmented.`;
+                } else {
+                    gameState.publicApproval = Math.min(95, gameState.publicApproval + 2);
+                    outcomeText = `✅ Balanced bilateral trade pact ratified with ${partner.toUpperCase()}. Diplomatic and economic stability reinforced.`;
+                }
+                resultBox.innerText = outcomeText;
+                logNews('AI TRADE NEGOTIATION', outcomeText, 'success');
+                renderKPIs();
+            }, 1200);
+        }
+
         function advanceQuarter() {
-            gameState.quarter++;
-            if (gameState.quarter > 4) {
-                gameState.quarter = 1;
-                gameState.year++;
-            }
-
-            const quarterLabel = `Year ${gameState.year} - Q${gameState.quarter}`;
-            document.getElementById('current-quarter-display').innerText = quarterLabel;
-
-            if (gameState.debtToGdp > 80.0) {
-                const excessDebt = gameState.debtToGdp - 80.0;
-                gameState.bondRiskSpread = parseFloat((excessDebt * 0.08).toFixed(2));
-            } else if (gameState.debtToGdp < 30.0) {
-                gameState.bondRiskSpread = -0.25; 
-            } else {
-                gameState.bondRiskSpread = 0.0;
-            }
-            const effectiveBorrowingRate = Math.max(0.1, gameState.bocRate + gameState.bondRiskSpread);
-
-            const pitRev = (gameState.gdp * 0.40) * (gameState.pit / 100);
-            const citRev = (gameState.gdp * 0.20) * (gameState.cit / 100);
-            const gstRev = (gameState.gdp * 0.35) * (gameState.gst / 100);
-            const carbonRev = (gameState.carbonPrice * 0.25); 
-            
-            const capGainsRev = (gameState.gdp * 0.08) * (gameState.capGainsRate / 100) * 0.25;
-            const luxuryRev = (gameState.gdp * 0.05) * (gameState.luxuryTax / 100);
-            const smallBizRev = (gameState.gdp * 0.12) * (gameState.smallBizTax / 100);
-            const digitalRev = (gameState.gdp * 0.06) * (gameState.digitalServTax / 100);
-            const foreignPropRev = (gameState.gdp * 0.10) * (gameState.foreignPropLevy / 100) * 0.25;
-
-            let industryTaxRev = 0;
-            let totalSubsidyOutlays = 0;
-            let totalIndustryOutput = 0;
-
-            for (const key in gameState.industries) {
-                const ind = gameState.industries[key];
-                totalIndustryOutput += ind.output;
-                totalSubsidyOutlays += ind.subsidy;
-                if (!ind.exoneration) {
-                    industryTaxRev += (ind.output * (ind.duty / 100)) + (ind.output * (ind.exportTax / 100));
+            try {
+                gameState.quarter++;
+                if (gameState.quarter > 4) {
+                    gameState.quarter = 1;
+                    gameState.year++;
                 }
-            }
 
-            const totalTaxRev = pitRev + citRev + gstRev + carbonRev + capGainsRev + luxuryRev + smallBizRev + digitalRev + foreignPropRev + industryTaxRev;
+                document.getElementById('current-quarter-display').innerText = `Year ${gameState.year} - Q${gameState.quarter}`;
 
-            let totalSocialFunding = 0;
-            for (const key in gameState.funding) {
-                totalSocialFunding += gameState.funding[key];
-            }
-
-            let debtServiceCost = 0;
-            if (gameState.nationalDebt > 0) {
-                debtServiceCost = gameState.nationalDebt * (effectiveBorrowingRate / 100) * 0.25;
-            } else {
-                debtServiceCost = gameState.nationalDebt * (2.0 / 100) * 0.25; 
-            }
-
-            const totalGovOutlays = totalSocialFunding + totalSubsidyOutlays + gameState.ubiAmount + gameState.stockpileSpend + Math.max(0, debtServiceCost);
-            
-            gameState.budgetDeficit = totalGovOutlays - totalTaxRev;
-            gameState.nationalDebt += (gameState.budgetDeficit / 4);
-            gameState.debtToGdp = (gameState.nationalDebt / gameState.gdp) * 100;
-
-            gameState.monetaryLagQueue.push(effectiveBorrowingRate);
-            const laggedRate = gameState.monetaryLagQueue.shift(); 
-            const neutralRate = 2.5;
-            const laggedRateGap = laggedRate - neutralRate;
-            const monetaryDrag = laggedRateGap * 0.30;
-
-            const ubiBoost = gameState.ubiAmount * 0.02;
-            const migrationBoost = (gameState.migrationInflow - 100) * 0.005;
-            const surplusDrag = (gameState.budgetDeficit < 0) ? (Math.abs(gameState.budgetDeficit) * 0.004) : 0;
-
-            let embargoPenalty = 0;
-            for (const key in gameState.industries) {
-                if (gameState.industries[key].importEmbargo || gameState.industries[key].exportEmbargo) {
-                    embargoPenalty += 0.15;
+                if (gameState.debtToGdp > 80.0) {
+                    const excess = gameState.debtToGdp - 80.0;
+                    gameState.bondRiskSpread = parseFloat((excess * 0.07).toFixed(2));
+                } else if (gameState.debtToGdp < 35.0) {
+                    gameState.bondRiskSpread = -0.20; 
+                } else {
+                    gameState.bondRiskSpread = 0.0;
                 }
+                const effectiveBorrowingRate = Math.max(0.1, gameState.bocRate + gameState.bondRiskSpread);
+
+                const pitRev = (gameState.gdp * 0.38) * (gameState.pit / 100);
+                const citRev = (gameState.gdp * 0.22) * (gameState.cit / 100);
+                const gstRev = (gameState.gdp * 0.35) * (gameState.gst / 100);
+                const carbonRev = (gameState.carbonPrice * 0.20); 
+                const capGainsRev = (gameState.gdp * 0.08) * (gameState.capGainsRate / 100) * 0.25;
+                const smallBizRev = (gameState.gdp * 0.12) * (gameState.smallBizTax / 100);
+
+                let industryTaxRev = 0;
+                let totalSubsidyOutlays = 0;
+                let totalIndustryOutput = 0;
+
+                for (const key in gameState.industries) {
+                    const ind = gameState.industries[key];
+                    totalIndustryOutput += ind.output;
+                    totalSubsidyOutlays += ind.subsidy;
+                    if (!ind.exoneration) {
+                        industryTaxRev += (ind.output * (ind.duty / 100)) + (ind.output * (ind.exportTax / 100));
+                    }
+                }
+
+                const totalTaxRev = pitRev + citRev + gstRev + carbonRev + capGainsRev + smallBizRev + industryTaxRev;
+
+                let totalSocialFunding = 0;
+                for (const key in gameState.funding) {
+                    totalSocialFunding += gameState.funding[key];
+                }
+                for (const key in gameState.associations) {
+                    if (gameState.associations[key].funded) {
+                        totalSocialFunding += gameState.associations[key].cost;
+                    }
+                }
+
+                let debtServiceCost = gameState.nationalDebt * (effectiveBorrowingRate / 100) * 0.25;
+                const totalGovOutlays = totalSocialFunding + totalSubsidyOutlays + Math.max(0, debtServiceCost);
+                
+                gameState.budgetDeficit = totalGovOutlays - totalTaxRev;
+                gameState.nationalDebt += (gameState.budgetDeficit / 4);
+                gameState.debtToGdp = (gameState.nationalDebt / gameState.gdp) * 100;
+
+                gameState.monetaryLagQueue.push(effectiveBorrowingRate);
+                const laggedRate = gameState.monetaryLagQueue.shift(); 
+                const monetaryDrag = (laggedRate - 2.5) * 0.25;
+
+                const migrationBoost = (gameState.migrationInflow - 75) * 0.004;
+                const surplusDrag = (gameState.budgetDeficit < 0) ? (Math.abs(gameState.budgetDeficit) * 0.003) : 0;
+
+                let newGdpGrowth = 2.2 - monetaryDrag + migrationBoost - surplusDrag + (totalIndustryOutput / 4200);
+                newGdpGrowth = parseFloat((newGdpGrowth + (Math.random() - 0.5) * 0.2).toFixed(2));
+
+                gameState.gdpGrowthRate = newGdpGrowth;
+                gameState.gdp = gameState.gdp * (1 + (newGdpGrowth / 400));
+
+                const demandPullInflation = (newGdpGrowth - 2.0) * 0.22;
+                const rawInstantInflation = 2.0 + demandPullInflation;
+                let newInflation = (0.7 * gameState.cpiInflation) + (0.3 * rawInstantInflation);
+                gameState.cpiInflation = Math.max(0.1, parseFloat(newInflation.toFixed(2)));
+
+                let newUnemployment = gameState.unemploymentRate + ((2.0 - newGdpGrowth) * 0.2) - (gameState.migrationInflow * 0.0008);
+                gameState.unemploymentRate = Math.min(15.0, Math.max(3.2, parseFloat(newUnemployment.toFixed(2))));
+
+                gameState.history.labels.push(`Y${gameState.year} Q${gameState.quarter}`);
+                gameState.history.gdpGrowth.push(gameState.gdpGrowthRate);
+                gameState.history.inflation.push(gameState.cpiInflation);
+                gameState.history.bocRate.push(effectiveBorrowingRate);
+                gameState.history.debtGdp.push(parseFloat(gameState.debtToGdp.toFixed(1)));
+
+                if (gameState.history.labels.length > 20) {
+                    gameState.history.labels.shift();
+                    gameState.history.gdpGrowth.shift();
+                    gameState.history.inflation.shift();
+                    gameState.history.bocRate.shift();
+                    gameState.history.debtGdp.shift();
+                }
+
+                if (macroChartObj) macroChartObj.update();
+                if (financeChartObj) financeChartObj.update();
+
+                renderKPIs();
+                checkScenarioProgress();
+                logNews('STATSCAN', `Quarterly report: GDP Growth ${gameState.gdpGrowthRate}%, Inflation ${gameState.cpiInflation}%, Deficit $${gameState.budgetDeficit.toFixed(1)}B.`, 'info');
+            } catch (err) {
+                console.error("Error during advanceQuarter execution:", err);
             }
-
-            let newGdpGrowth = 2.0 - monetaryDrag + ubiBoost + migrationBoost - surplusDrag - embargoPenalty + (totalIndustryOutput / 4000);
-            const noise = (Math.random() - 0.5) * 0.25;
-            newGdpGrowth = parseFloat((newGdpGrowth + noise).toFixed(2));
-
-            gameState.gdpGrowthRate = newGdpGrowth;
-            gameState.gdp = gameState.gdp * (1 + (newGdpGrowth / 400));
-
-            const demandPullInflation = (newGdpGrowth - 2.0) * 0.25;
-            const costPushCarbon = (gameState.carbonPrice - 65) * 0.008;
-            const targetAnchor = 2.0;
-            const rawInstantInflation = targetAnchor + demandPullInflation + costPushCarbon;
-            
-            let newInflation = (0.7 * gameState.cpiInflation) + (0.3 * rawInstantInflation);
-            newInflation = Math.max(0.1, parseFloat(newInflation.toFixed(2)));
-            gameState.cpiInflation = newInflation;
-
-            const growthGap = 2.0 - newGdpGrowth;
-            let newUnemployment = gameState.unemploymentRate + (growthGap * 0.25) - (gameState.migrationInflow * 0.001);
-            newUnemployment = Math.min(18.0, Math.max(3.2, parseFloat(newUnemployment.toFixed(2))));
-            gameState.unemploymentRate = newUnemployment;
-
-            let approvalChange = 0;
-            if (gameState.cpiInflation > 4.0) approvalChange -= 3;
-            if (gameState.unemploymentRate > 7.0) approvalChange -= 3;
-            if (gameState.gdpGrowthRate > 2.5) approvalChange += 2;
-            if (gameState.budgetDeficit < 0) approvalChange += 2; 
-            if (gameState.funding.health > 100) approvalChange += 1;
-            if (gameState.funding.education > 60) approvalChange += 1;
-            gameState.publicApproval = Math.min(95, Math.max(15, gameState.publicApproval + approvalChange));
-
-            gameState.history.labels.push(`Y${gameState.year} Q${gameState.quarter}`);
-            gameState.history.gdpGrowth.push(gameState.gdpGrowthRate);
-            gameState.history.inflation.push(gameState.cpiInflation);
-            gameState.history.bocRate.push(effectiveBorrowingRate);
-            gameState.history.debtGdp.push(parseFloat(gameState.debtToGdp.toFixed(1)));
-
-            if (gameState.history.labels.length > 20) {
-                gameState.history.labels.shift();
-                gameState.history.gdpGrowth.shift();
-                gameState.history.inflation.shift();
-                gameState.history.bocRate.shift();
-                gameState.history.debtGdp.shift();
-            }
-
-            if (macroChartObj && financeChartObj) {
-                macroChartObj.update();
-                financeChartObj.update();
-            }
-
-            generateQuarterNewsLog();
-            checkScenarioProgress();
-            renderKPIs();
         }
 
         function renderKPIs() {
-            document.getElementById('kpi-gdp').innerText = '$' + (gameState.gdp / 1000).toFixed(3) + ' T';
-            const growthEl = document.getElementById('kpi-gdp-growth');
-            growthEl.innerText = (gameState.gdpGrowthRate >= 0 ? '+' : '') + gameState.gdpGrowthRate + '%';
-            growthEl.className = `text-[11px] sm:text-xs font-semibold ${gameState.gdpGrowthRate >= 1.5 ? 'text-emerald-400' : gameState.gdpGrowthRate >= 0 ? 'text-amber-400' : 'text-rose-400'}`;
+            try {
+                document.getElementById('kpi-gdp').innerText = '$' + (gameState.gdp / 1000).toFixed(3) + ' T';
+                document.getElementById('kpi-gdp-growth').innerText = (gameState.gdpGrowthRate >= 0 ? '+' : '') + gameState.gdpGrowthRate + '%';
+                document.getElementById('kpi-inflation').innerText = gameState.cpiInflation + '%';
+                document.getElementById('kpi-unemployment').innerText = gameState.unemploymentRate + '%';
+                document.getElementById('kpi-rate').innerText = gameState.bocRate.toFixed(2) + '%';
+                document.getElementById('kpi-debt').innerText = gameState.debtToGdp.toFixed(1) + '%';
+                document.getElementById('kpi-fx').innerText = '$' + gameState.cadToUsd;
+                document.getElementById('kpi-approval').innerText = gameState.publicApproval + '%';
+                document.getElementById('kpi-trade').innerText = (gameState.tradeBalance >= 0 ? '+$' : '-$') + Math.abs(gameState.tradeBalance).toFixed(1) + 'B';
 
-            document.getElementById('kpi-inflation').innerText = gameState.cpiInflation + '%';
-            const cpiStatus = document.getElementById('kpi-inflation-status');
-            if (gameState.cpiInflation >= 1.0 && gameState.cpiInflation <= 3.0) {
-                cpiStatus.innerText = 'Target Band';
-                cpiStatus.className = 'text-[11px] sm:text-xs font-semibold text-emerald-400';
-            } else {
-                cpiStatus.innerText = 'Out of Band';
-                cpiStatus.className = 'text-[11px] sm:text-xs font-semibold text-rose-400';
-            }
-
-            document.getElementById('kpi-unemployment').innerText = gameState.unemploymentRate + '%';
-            document.getElementById('kpi-rate').innerText = gameState.bocRate.toFixed(2) + '%';
-            
-            const bondYieldEl = document.getElementById('kpi-bond-spread');
-            bondYieldEl.innerText = `${(gameState.bondRiskSpread * 100).toFixed(0)} bps`;
-            if (gameState.bondRiskSpread > 0) {
-                bondYieldEl.className = 'text-[10px] sm:text-xs font-semibold text-rose-400';
-            } else if (gameState.bondRiskSpread < 0) {
-                bondYieldEl.className = 'text-[10px] sm:text-xs font-semibold text-emerald-400';
-            } else {
-                bondYieldEl.className = 'text-[10px] sm:text-xs font-semibold text-sky-400';
-            }
-
-            const debtEl = document.getElementById('kpi-debt');
-            if (gameState.nationalDebt >= 0) {
-                debtEl.innerText = gameState.debtToGdp.toFixed(1) + '% (Debt)';
-                debtEl.className = 'text-base sm:text-xl font-bold text-slate-100';
-            } else {
-                const assetGdp = Math.abs(gameState.debtToGdp);
-                debtEl.innerText = '+' + assetGdp.toFixed(1) + '% (Surplus)';
-                debtEl.className = 'text-base sm:text-xl font-bold text-emerald-400';
-            }
-
-            const deficitEl = document.getElementById('kpi-budget-balance');
-            if (gameState.budgetDeficit > 0) {
-                deficitEl.innerText = '-$' + gameState.budgetDeficit.toFixed(1) + 'B (Deficit)';
-                deficitEl.className = 'text-[11px] sm:text-xs font-semibold text-rose-400';
-            } else {
-                deficitEl.innerText = '+$' + Math.abs(gameState.budgetDeficit).toFixed(1) + 'B (Surplus)';
-                deficitEl.className = 'text-[11px] sm:text-xs font-semibold text-emerald-400';
-            }
-
-            document.getElementById('kpi-fx').innerText = '$' + gameState.cadToUsd;
-            document.getElementById('kpi-approval').innerText = gameState.publicApproval + '%';
-
-            updateAdvisorDiagnosis();
-        }
-
-        function updateAdvisorDiagnosis() {
-            const fiscalEl = document.getElementById('advisor-fiscal');
-            if (gameState.nationalDebt < 0) {
-                fiscalEl.innerText = `Sovereign triumph! National debt fully eliminated. Positive net asset surplus (${Math.abs(gameState.debtToGdp).toFixed(1)}% of GDP).`;
-            } else if (gameState.budgetDeficit < 0) {
-                fiscalEl.innerText = `Active fiscal surplus of $${Math.abs(gameState.budgetDeficit).toFixed(1)}B/qtr. Debt is actively shrinking!`;
-            } else {
-                fiscalEl.innerText = `Running a deficit of $${gameState.budgetDeficit.toFixed(1)}B/qtr. Use the finance policy levers to balance the budget.`;
+                const deficitEl = document.getElementById('kpi-budget-balance');
+                if (gameState.budgetDeficit > 0) {
+                    deficitEl.innerText = '-$' + gameState.budgetDeficit.toFixed(1) + 'B';
+                    deficitEl.className = 'text-[11px] font-semibold text-rose-400';
+                } else {
+                    deficitEl.innerText = '+$' + Math.abs(gameState.budgetDeficit).toFixed(1) + 'B (Surplus)';
+                    deficitEl.className = 'text-[11px] font-semibold text-emerald-400';
+                }
+            } catch (err) {
+                console.error("Error rendering KPIs:", err);
             }
         }
 
         function renderFundingSliders() {
             const container = document.getElementById('funding-sliders-container');
+            if (!container) return;
             container.innerHTML = '';
 
             const fundingMeta = {
-                health: { name: "1. Universal Healthcare", max: 180 },
-                education: { name: "2. Public Education", max: 120 },
-                research: { name: "3. Scientific Research & R&D", max: 50 },
-                police: { name: "4. Federal Law Enforcement", max: 60 },
-                transport: { name: "5. Public Transit & Rail", max: 90 },
-                defense: { name: "6. National Defense", max: 100 },
-                environment: { name: "7. Environmental Protection", max: 40 },
-                housing: { name: "8. Social Housing", max: 80 },
-                veterans: { name: "9. Veterans Affairs", max: 40 },
-                childcare: { name: "10. Childcare & Family Subsidies", max: 60 }
+                health: { name: "1. Universal Healthcare", max: 150 },
+                education: { name: "2. Public Education", max: 100 },
+                research: { name: "3. Scientific Research & R&D", max: 40 },
+                police: { name: "4. Federal Law Enforcement", max: 50 },
+                transport: { name: "5. Public Transit & Rail", max: 70 },
+                defense: { name: "6. National Defense (Prioritized)", max: 100 },
+                environment: { name: "7. Environmental Protection", max: 30 },
+                housing: { name: "8. Social Housing", max: 60 },
+                veterans: { name: "9. Veterans Affairs", max: 35 },
+                childcare: { name: "10. Childcare Subsidies", max: 45 }
             };
 
             for (const key in fundingMeta) {
@@ -1098,18 +1035,69 @@
                 card.className = 'bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1.5';
                 card.innerHTML = `
                     <div class="flex justify-between text-xs font-medium">
-                        <label for="fund-${key}" class="text-slate-300 font-semibold text-[11px] sm:text-xs">${meta.name}</label>
+                        <label class="text-slate-300 font-semibold text-[11px]">${meta.name}</label>
                         <span id="val-fund-${key}" class="text-purple-400 font-bold">$${val.toFixed(1)}B</span>
                     </div>
-                    <input type="range" id="fund-${key}" min="5" max="${meta.max}" step="1" value="${val}" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updateFunding('${key}', this.value)">
+                    <input type="range" min="5" max="${meta.max}" step="1" value="${val}" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updateFunding('${key}', this.value)">
                 `;
                 container.appendChild(card);
             }
             updateFunding('health', gameState.funding.health);
         }
 
+        function renderAssociations() {
+            const container = document.getElementById('associations-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            for (const key in gameState.associations) {
+                const assoc = gameState.associations[key];
+                const card = document.createElement('div');
+                card.className = 'bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2 flex flex-col justify-between';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-xs text-slate-100">${assoc.name}</span>
+                            <span class="text-[10px] font-semibold text-purple-400">$${assoc.cost}B/qtr</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-1">${assoc.desc}</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-2 border-t border-slate-900 text-xs">
+                        <span class="text-slate-300">Sovereign Funding Membership</span>
+                        <button onclick="toggleAssociation('${key}')" class="px-3 py-1 rounded text-xs font-semibold cursor-pointer ${assoc.funded ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-slate-900 text-slate-400 border border-slate-700'}">
+                            ${assoc.funded ? 'Active & Funded' : 'Opted Out / Reduced'}
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            }
+        }
+
+        function renderFtas() {
+            const container = document.getElementById('fta-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            for (const key in gameState.ftas) {
+                const fta = gameState.ftas[key];
+                const item = document.createElement('div');
+                item.className = 'bg-slate-950 p-3 rounded-xl border border-slate-800 flex items-center justify-between text-xs';
+                item.innerHTML = `
+                    <div>
+                        <span class="font-bold text-slate-200 block">${fta.name}</span>
+                        <span class="text-[10px] text-slate-400">${fta.bonus}</span>
+                    </div>
+                    <button onclick="toggleFta('${key}')" class="px-2.5 py-1 rounded font-semibold cursor-pointer ${fta.active ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-slate-900 text-slate-400 border border-slate-700'}">
+                        ${fta.active ? 'Ratified' : 'Suspended'}
+                    </button>
+                `;
+                container.appendChild(item);
+            }
+        }
+
         function renderIndustries() {
             const container = document.getElementById('industry-cards-container');
+            if (!container) return;
             container.innerHTML = '';
 
             for (const key in gameState.industries) {
@@ -1131,42 +1119,13 @@
                             <input type="number" step="0.5" value="${ind.duty}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold text-xs" oninput="updateIndustryParam('${key}', 'duty', this.value)">
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-slate-400 text-[11px]">Export Tax (%)</span>
-                            <input type="number" step="0.5" value="${ind.exportTax}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold text-xs" oninput="updateIndustryParam('${key}', 'exportTax', this.value)">
-                        </div>
-                        <div class="flex justify-between items-center">
                             <span class="text-slate-400 text-[11px]">Subsidy ($B/yr)</span>
                             <input type="number" step="1" value="${ind.subsidy}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-emerald-400 font-bold text-xs" oninput="updateIndustryParam('${key}', 'subsidy', this.value)">
-                        </div>
-                        <div class="flex justify-between items-center pt-1 border-t border-slate-900 text-[11px]">
-                            <span class="text-slate-400">Tax Exoneration</span>
-                            <input type="checkbox" ${ind.exoneration ? 'checked' : ''} class="cursor-pointer accent-sky-500 scale-110" onchange="updateIndustryParam('${key}', 'exoneration', this.checked)">
-                        </div>
-                        <div class="flex justify-between items-center text-[11px]">
-                            <span class="text-rose-400 font-medium">Import Embargo</span>
-                            <input type="checkbox" ${ind.importEmbargo ? 'checked' : ''} class="cursor-pointer accent-rose-500 scale-110" onchange="updateIndustryParam('${key}', 'importEmbargo', this.checked)">
-                        </div>
-                        <div class="flex justify-between items-center text-[11px]">
-                            <span class="text-rose-400 font-medium">Export Embargo</span>
-                            <input type="checkbox" ${ind.exportEmbargo ? 'checked' : ''} class="cursor-pointer accent-rose-500 scale-110" onchange="updateIndustryParam('${key}', 'exportEmbargo', this.checked)">
                         </div>
                     </div>
                 `;
                 container.appendChild(card);
             }
-        }
-
-        function triggerShock(type) {
-            if (type === 'oil_spike') {
-                gameState.oilPrice = 115.0;
-                document.getElementById('val-oil-price').innerText = '$115.00 / bbl';
-                logNews('GLOBAL EVENT', 'OPEC Middle East crisis triggers crude oil supply surge (+40%).', 'alert');
-            } else if (type === 'us_recession') {
-                gameState.usFedRate = 1.50;
-                document.getElementById('val-us-fed-rate').innerText = '1.50%';
-                logNews('GLOBAL EVENT', 'US Economy enters contraction. Demand for Canadian exports drops.', 'alert');
-            }
-            renderKPIs();
         }
 
         function logNews(category, text, type = 'info') {
@@ -1189,16 +1148,6 @@
             container.prepend(entry);
         }
 
-        function generateQuarterNewsLog() {
-            if (gameState.nationalDebt < 0) {
-                logNews('HISTORIC MILESTONE', `Canada achieves positive net asset surplus! National debt fully erased.`, 'success');
-            } else if (gameState.budgetDeficit < 0) {
-                logNews('FISCAL SURPLUS', `Department of Finance reports quarterly budget surplus of $${Math.abs(gameState.budgetDeficit).toFixed(1)}B.`, 'success');
-            } else {
-                logNews('STATSCAN DATA', `Quarterly report: GDP Growth ${gameState.gdpGrowthRate}%, Inflation ${gameState.cpiInflation}%, Deficit $${gameState.budgetDeficit.toFixed(1)}B.`, 'info');
-            }
-        }
-
         function clearNewsLog() {
             const container = document.getElementById('news-feed-container');
             if (container) container.innerHTML = '';
@@ -1206,29 +1155,12 @@
 
         const SCENARIOS = [
             {
-                id: 'zero_debt',
-                title: 'The Zero-Debt Sovereign Challenge',
-                desc: 'Erase Canada\'s national debt entirely and achieve a positive net asset surplus within 12 quarters.',
-                duration: 12,
-                setup: () => {
-                    gameState.debtToGdp = 65.0;
-                    gameState.nationalDebt = 1900.0;
-                    gameState.budgetDeficit = 25.0;
-                },
-                checkWin: () => gameState.nationalDebt < 0
-            },
-            {
-                id: 'stagflation',
-                title: 'The Great Stagflation Challenge',
-                desc: 'Tame high CPI inflation (7.5%) without triggering severe unemployment above 7.5%.',
+                id: 'balanced_budget',
+                title: 'The Centre-Right Balanced Budget Challenge',
+                desc: 'Eliminate all deficits and achieve a consistent budget surplus within 8 quarters while keeping inflation under 3%.',
                 duration: 8,
-                setup: () => {
-                    gameState.cpiInflation = 7.5;
-                    gameState.gdpGrowthRate = -0.4;
-                    gameState.unemploymentRate = 6.8;
-                    gameState.bocRate = 2.25;
-                },
-                checkWin: () => gameState.cpiInflation <= 2.5 && gameState.unemploymentRate < 7.0
+                setup: () => { gameState.budgetDeficit = 20.0; },
+                checkWin: () => gameState.budgetDeficit < 0 && gameState.cpiInflation <= 3.0
             }
         ];
 
@@ -1244,11 +1176,11 @@
                     <div class="space-y-2">
                         <div class="flex items-center justify-between">
                             <h4 class="font-bold text-slate-100 text-xs sm:text-sm">${sc.title}</h4>
-                            <span class="text-[9px] font-semibold text-rose-400 bg-rose-950/60 px-2 py-0.5 rounded border border-rose-800/40">${sc.duration} Qtrs</span>
+                            <span class="text-[9px] font-semibold text-rose-400 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">${sc.duration} Qtrs</span>
                         </div>
-                        <p class="text-[11px] sm:text-xs text-slate-400 leading-relaxed">${sc.desc}</p>
+                        <p class="text-[11px] text-slate-400 leading-relaxed">${sc.desc}</p>
                     </div>
-                    <button onclick="startScenario('${sc.id}')" class="w-full mt-2 py-2 bg-slate-800 hover:bg-sky-600 text-slate-200 hover:text-white font-semibold text-xs rounded transition cursor-pointer">
+                    <button onclick="startScenario('${sc.id}')" class="w-full py-2 bg-slate-800 hover:bg-sky-600 text-slate-200 hover:text-white font-semibold text-xs rounded transition cursor-pointer">
                         Launch Scenario
                     </button>
                 `;
@@ -1259,7 +1191,6 @@
         function startScenario(id) {
             const sc = SCENARIOS.find(s => s.id === id);
             if (!sc) return;
-
             gameState.activeScenario = sc;
             gameState.scenarioTimeLeft = sc.duration;
             sc.setup();
@@ -1271,7 +1202,7 @@
 
             renderKPIs();
             switchTab('dashboard');
-            logNews('SCENARIO STARTED', `Scenario '${sc.title}' initiated.`, 'info');
+            logNews('SCENARIO STARTED', `Initiated scenario: ${sc.title}`, 'info');
         }
 
         function checkScenarioProgress() {
@@ -1280,11 +1211,9 @@
             document.getElementById('scenario-timer').innerText = `Time Left: ${gameState.scenarioTimeLeft} Qtrs`;
 
             if (gameState.activeScenario.checkWin()) {
-                logNews('VICTORY!', `Congratulations! You successfully resolved ${gameState.activeScenario.title}!`, 'success');
-                alert(`🎉 Victory! You completed the ${gameState.activeScenario.title}!`);
+                alert(`🎉 Victory! You completed ${gameState.activeScenario.title}!`);
                 abandonScenario();
             } else if (gameState.scenarioTimeLeft <= 0) {
-                logNews('SCENARIO FAILED', `Time expired for ${gameState.activeScenario.title}.`, 'alert');
                 alert(`❌ Scenario Time Expired.`);
                 abandonScenario();
             }
@@ -1295,69 +1224,29 @@
             document.getElementById('scenario-banner').classList.add('hidden');
         }
 
-        const LESSONS = [
-            {
-                id: 'surplus_dynamics',
-                title: '1. Positive Net Assets & Surpluses',
-                content: `
-                    <h3 class="text-sm font-bold text-emerald-400 mb-2">Turning Debt Positive</h3>
-                    <p class="text-xs text-slate-300 leading-relaxed mb-3">When tax revenues (boosted by capital gains, wealth taxes, and custom duties) exceed public spending across health, education, and UBI, fiscal surpluses pay down national debt into positive net assets.</p>
-                `
-            },
-            {
-                id: 'industrial_embargoes',
-                title: '2. Industrial Duties & Embargoes',
-                content: `
-                    <h3 class="text-sm font-bold text-amber-400 mb-2">Managing 15 Key Sectors</h3>
-                    <p class="text-xs text-slate-300 leading-relaxed mb-3">Imposing import and export embargos on key industries protects domestic strategic reserves but creates GDP contraction penalties and supply chain friction.</p>
-                `
-            }
-        ];
-
-        function renderAcademy() {
-            const listContainer = document.getElementById('academy-topics-list');
-            if (!listContainer) return;
-            listContainer.innerHTML = '';
-
-            LESSONS.forEach((item, index) => {
-                const btn = document.createElement('button');
-                btn.className = `w-full text-left p-2.5 rounded-lg border border-slate-800 text-xs font-semibold transition cursor-pointer ${index === 0 ? 'bg-sky-950 text-sky-400 border-sky-800' : 'bg-slate-950 text-slate-300 hover:bg-slate-900'}`;
-                btn.innerText = item.title;
-                btn.onclick = (e) => {
-                    document.querySelectorAll('#academy-topics-list button').forEach(b => {
-                        b.className = 'w-full text-left p-2.5 rounded-lg border border-slate-800 text-xs font-semibold bg-slate-950 text-slate-300 hover:bg-slate-900 transition cursor-pointer';
-                    });
-                    e.currentTarget.className = 'w-full text-left p-2.5 rounded-lg border border-slate-800 text-xs font-semibold bg-sky-950 text-sky-400 border-sky-800 transition cursor-pointer';
-                    document.getElementById('academy-content-display').innerHTML = item.content;
-                };
-                listContainer.appendChild(btn);
-            });
-            const contentDisplay = document.getElementById('academy-content-display');
-            if (contentDisplay) contentDisplay.innerHTML = LESSONS[0].content;
-        }
-
-        // Loading Screen & PWA Service Worker Initialization
         window.onload = function() {
-            const loadingBar = document.getElementById('loading-bar');
-            loadingBar.style.width = '100%';
+            try {
+                const loadingBar = document.getElementById('loading-bar');
+                if (loadingBar) loadingBar.style.width = '100%';
 
-            setTimeout(() => {
-                const loader = document.getElementById('loading-screen');
-                loader.style.opacity = '0';
-                setTimeout(() => loader.remove(), 500);
-            }, 600);
+                setTimeout(() => {
+                    const loader = document.getElementById('loading-screen');
+                    if (loader) {
+                        loader.style.opacity = '0';
+                        setTimeout(() => loader.remove(), 500);
+                    }
+                }, 400);
 
-            initCharts();
-            renderKPIs();
-            renderFundingSliders();
-            renderIndustries();
-            renderScenarios();
-            renderAcademy();
-            logNews('SYSTEM READY', 'EconoMaster Engine v4.1 Initialized for Mobile PWA.', 'info');
-
-            // Register Service Worker for offline capabilities
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js').catch(() => {});
+                initCharts();
+                renderKPIs();
+                renderFundingSliders();
+                renderAssociations();
+                renderFtas();
+                renderIndustries();
+                renderScenarios();
+                logNews('SYSTEM READY', 'EconoMaster Engine v4.2 initialized successfully.', 'info');
+            } catch (err) {
+                console.error("Window onload initialization error fallback:", err);
             }
         };
     </script>
