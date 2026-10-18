@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EconoMaster: Canada & Global Economic Engine v4.0</title>
+    <title>EconoMaster: Canada & Global Economic Engine v4.1</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -23,8 +23,8 @@
             }
         }
     </script>
-    <!-- Chart.js CDN -->
-    <script src="https://jsdelivr.com/npm/chart.js"></script>
+    <!-- Chart.js CDN (Fixed & Validated) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts Inter -->
@@ -61,7 +61,7 @@
                     <div>
                         <div class="flex items-center gap-2">
                             <h1 class="font-bold text-base sm:text-lg text-slate-100 tracking-tight">EconoMaster</h1>
-                            <span class="text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">Sovereign Engine v4.0</span>
+                            <span class="text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">Sovereign Engine v4.1</span>
                         </div>
                         <p class="text-[11px] text-slate-400 hidden sm:block">Advanced Fiscal, Industrial & Social Feedback Simulator</p>
                     </div>
@@ -280,7 +280,7 @@
             </div>
         </section>
 
-        <!-- TAB 2: FINANCE & POLICY HUB (Original + 10 New Policy Adjustments) -->
+        <!-- TAB 2: FINANCE & POLICY HUB -->
         <section id="tab-policy" class="tab-content hidden space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Fiscal Policy Controls -->
@@ -462,7 +462,7 @@
             </div>
         </section>
 
-        <!-- TAB 3: PUBLIC SERVICES & FUNDING (10 Categories) -->
+        <!-- TAB 3: PUBLIC SERVICES & FUNDING -->
         <section id="tab-funding" class="tab-content hidden space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
@@ -479,7 +479,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="funding-sliders-container">
-                    <!-- Dynamically populated or explicitly structured 10 funding sliders -->
                 </div>
             </div>
         </section>
@@ -496,7 +495,6 @@
                     </div>
                 </div>
 
-                <!-- 15 Industries Container -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4" id="industry-cards-container">
                 </div>
             </div>
@@ -609,7 +607,7 @@
     <!-- Footer -->
     <footer class="bg-slate-900 border-t border-slate-800 py-4 px-4 sm:px-8 mt-auto text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
         <div>
-            EconoMaster Simulation Engine v4.0 &copy; 2026. Fully Interactive Sovereign Fiscal & Industrial Engine.
+            EconoMaster Simulation Engine v4.1 &copy; 2026. Fully Interactive Sovereign Fiscal & Industrial Engine.
         </div>
         <div class="flex gap-4">
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('learn')">Macro Theory</span>
@@ -618,7 +616,7 @@
         </div>
     </footer>
 
-    <!-- MAIN JAVASCRIPT ENGINE -->
+    <!-- MAIN JAVASCRIPT ENGINE (DEBUGGED & ROBUST) -->
     <script>
         const gameState = {
             quarter: 1,
@@ -630,32 +628,29 @@
             bocRate: 3.75, 
             usFedRate: 4.25, 
             debtToGdp: 64.2, 
-            nationalDebt: 1887.0, // $ Billion 
-            budgetDeficit: 32.5, // Positive = Deficit, Negative = Surplus
+            nationalDebt: 1887.0, 
+            budgetDeficit: 32.5, 
             cadToUsd: 0.745, 
             tradeBalance: 4.2, 
             oilPrice: 78.5, 
             publicApproval: 54, 
             carbonPrice: 65, 
             
-            // Core Fiscal
             pit: 24, 
             cit: 15, 
             gst: 5,  
             
-            // 10 New Department of Finance Policies
             capGainsRate: 50,
             luxuryTax: 1.0,
             smallBizTax: 9.0,
-            migrationInflow: 120, // thousands/qtr
+            migrationInflow: 120, 
             pensionRate: 5.9,
             foreignPropLevy: 15,
             cleanTechCredit: 30,
-            ubiAmount: 15, // $B/qtr
+            ubiAmount: 15, 
             digitalServTax: 3.0,
-            stockpileSpend: 5, // $B/qtr
+            stockpileSpend: 5, 
 
-            // 10 Public Services & Social Funding Categories ($B / qtr)
             funding: {
                 health: 95.0,
                 education: 55.0,
@@ -675,7 +670,6 @@
             monetaryLagQueue: [3.75, 3.75, 3.75], 
             bondRiskSpread: 0.0, 
             
-            // 15 Fully Fledged Industries
             industries: {
                 oil_gas: { name: "1. Oil, Gas & Mining", output: 340, duty: 2.0, exportTax: 1.5, subsidy: 8.0, exoneration: false, pricePerTon: 850, importEmbargo: false, exportEmbargo: false },
                 auto_mfg: { name: "2. Automotive & Heavy Mfg", output: 290, duty: 3.5, exportTax: 0.5, subsidy: 10.0, exoneration: false, pricePerTon: 1400, importEmbargo: false, exportEmbargo: false },
@@ -790,9 +784,11 @@
             document.getElementById(`tab-${tabId}`).classList.remove('hidden');
 
             document.querySelectorAll('#nav-tabs button').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
 
-            if (tabId === 'dashboard') {
+            if (tabId === 'dashboard' && macroChartObj && financeChartObj) {
                 macroChartObj.update();
                 financeChartObj.update();
             }
@@ -804,7 +800,6 @@
             gameState.gst = parseFloat(document.getElementById('slider-gst').value);
             gameState.carbonPrice = parseFloat(document.getElementById('slider-carbon').value);
 
-            // 10 new policies
             gameState.capGainsRate = parseFloat(document.getElementById('slider-capgains').value);
             gameState.luxuryTax = parseFloat(document.getElementById('slider-luxury').value);
             gameState.smallBizTax = parseFloat(document.getElementById('slider-smallbiz').value);
@@ -823,7 +818,6 @@
             gameState.tariffUs = parseFloat(document.getElementById('slider-tariff-us').value);
             gameState.tariffRow = parseFloat(document.getElementById('slider-tariff-row').value);
 
-            // Update UI text values
             document.getElementById('val-pit').innerText = gameState.pit + '%';
             document.getElementById('val-cit').innerText = gameState.cit + '%';
             document.getElementById('val-gst').innerText = gameState.gst + '%';
@@ -852,25 +846,29 @@
 
         function updateFunding(category, val) {
             gameState.funding[category] = parseFloat(val);
-            document.getElementById(`val-fund-${category}`).innerText = '$' + parseFloat(val).toFixed(1) + 'B';
+            const displayEl = document.getElementById(`val-fund-${category}`);
+            if (displayEl) {
+                displayEl.innerText = '$' + parseFloat(val).toFixed(1) + 'B';
+            }
             
             let total = 0;
             for (const key in gameState.funding) {
                 total += gameState.funding[key];
             }
-            document.getElementById('total-funding-display').innerText = '$' + total.toFixed(1) + 'B / qtr';
+            const totalDisplay = document.getElementById('total-funding-display');
+            if (totalDisplay) {
+                totalDisplay.innerText = '$' + total.toFixed(1) + 'B / qtr';
+            }
         }
 
         function updateIndustryParam(key, param, val) {
             if (param === 'exoneration' || param === 'importEmbargo' || param === 'exportEmbargo') {
                 gameState.industries[key][param] = val;
             } else {
-                gameState.industries[key][param] = parseFloat(val);
+                gameState.industries[key][param] = parseFloat(val) || 0;
             }
-            renderIndustries();
         }
 
-        // --- ADVANCED SOVEREIGN STRUGGLE ENGINE ---
         function advanceQuarter() {
             gameState.quarter++;
             if (gameState.quarter > 4) {
@@ -881,7 +879,6 @@
             const quarterLabel = `Year ${gameState.year} - Q${gameState.quarter}`;
             document.getElementById('current-quarter-display').innerText = quarterLabel;
 
-            // 1. BOND RISK & BORROWING RATE
             if (gameState.debtToGdp > 80.0) {
                 const excessDebt = gameState.debtToGdp - 80.0;
                 gameState.bondRiskSpread = parseFloat((excessDebt * 0.08).toFixed(2));
@@ -892,20 +889,17 @@
             }
             const effectiveBorrowingRate = Math.max(0.1, gameState.bocRate + gameState.bondRiskSpread);
 
-            // 2. REVENUES FROM TAXES & NEW POLICIES
             const pitRev = (gameState.gdp * 0.40) * (gameState.pit / 100);
             const citRev = (gameState.gdp * 0.20) * (gameState.cit / 100);
             const gstRev = (gameState.gdp * 0.35) * (gameState.gst / 100);
             const carbonRev = (gameState.carbonPrice * 0.25); 
             
-            // New Policy Revenues
             const capGainsRev = (gameState.gdp * 0.08) * (gameState.capGainsRate / 100) * 0.25;
             const luxuryRev = (gameState.gdp * 0.05) * (gameState.luxuryTax / 100);
             const smallBizRev = (gameState.gdp * 0.12) * (gameState.smallBizTax / 100);
             const digitalRev = (gameState.gdp * 0.06) * (gameState.digitalServTax / 100);
             const foreignPropRev = (gameState.gdp * 0.10) * (gameState.foreignPropLevy / 100) * 0.25;
 
-            // Industry custom duties & export taxes
             let industryTaxRev = 0;
             let totalSubsidyOutlays = 0;
             let totalIndustryOutput = 0;
@@ -921,7 +915,6 @@
 
             const totalTaxRev = pitRev + citRev + gstRev + carbonRev + capGainsRev + luxuryRev + smallBizRev + digitalRev + foreignPropRev + industryTaxRev;
 
-            // 3. PUBLIC OUTLAYS & SOCIAL FUNDING
             let totalSocialFunding = 0;
             for (const key in gameState.funding) {
                 totalSocialFunding += gameState.funding[key];
@@ -940,7 +933,6 @@
             gameState.nationalDebt += (gameState.budgetDeficit / 4);
             gameState.debtToGdp = (gameState.nationalDebt / gameState.gdp) * 100;
 
-            // 4. MONETARY TRANSMISSION & GROWTH
             gameState.monetaryLagQueue.push(effectiveBorrowingRate);
             const laggedRate = gameState.monetaryLagQueue.shift(); 
             const neutralRate = 2.5;
@@ -965,7 +957,6 @@
             gameState.gdpGrowthRate = newGdpGrowth;
             gameState.gdp = gameState.gdp * (1 + (newGdpGrowth / 400));
 
-            // 5. INFLATION & UNEMPLOYMENT
             const demandPullInflation = (newGdpGrowth - 2.0) * 0.25;
             const costPushCarbon = (gameState.carbonPrice - 65) * 0.008;
             const targetAnchor = 2.0;
@@ -980,7 +971,6 @@
             newUnemployment = Math.min(18.0, Math.max(3.2, parseFloat(newUnemployment.toFixed(2))));
             gameState.unemploymentRate = newUnemployment;
 
-            // 6. PUBLIC APPROVAL & TRADE
             let approvalChange = 0;
             if (gameState.cpiInflation > 4.0) approvalChange -= 3;
             if (gameState.unemploymentRate > 7.0) approvalChange -= 3;
@@ -990,7 +980,6 @@
             if (gameState.funding.education > 60) approvalChange += 1;
             gameState.publicApproval = Math.min(95, Math.max(15, gameState.publicApproval + approvalChange));
 
-            // RECORD HISTORY
             gameState.history.labels.push(`Y${gameState.year} Q${gameState.quarter}`);
             gameState.history.gdpGrowth.push(gameState.gdpGrowthRate);
             gameState.history.inflation.push(gameState.cpiInflation);
@@ -1005,8 +994,10 @@
                 gameState.history.debtGdp.shift();
             }
 
-            macroChartObj.update();
-            financeChartObj.update();
+            if (macroChartObj && financeChartObj) {
+                macroChartObj.update();
+                financeChartObj.update();
+            }
 
             generateQuarterNewsLog();
             checkScenarioProgress();
@@ -1128,19 +1119,19 @@
                     <div class="space-y-2 text-xs">
                         <div class="flex justify-between items-center">
                             <span class="text-slate-400">Regular Price/Ton ($)</span>
-                            <input type="number" value="${ind.pricePerTon}" class="w-20 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-sky-400 font-bold" onchange="updateIndustryParam('${key}', 'pricePerTon', this.value)">
+                            <input type="number" value="${ind.pricePerTon}" class="w-20 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-sky-400 font-bold" oninput="updateIndustryParam('${key}', 'pricePerTon', this.value)">
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-slate-400">Custom Duty / Tariff (%)</span>
-                            <input type="number" step="0.5" value="${ind.duty}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold" onchange="updateIndustryParam('${key}', 'duty', this.value)">
+                            <input type="number" step="0.5" value="${ind.duty}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold" oninput="updateIndustryParam('${key}', 'duty', this.value)">
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-slate-400">Export Tax (%)</span>
-                            <input type="number" step="0.5" value="${ind.exportTax}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold" onchange="updateIndustryParam('${key}', 'exportTax', this.value)">
+                            <input type="number" step="0.5" value="${ind.exportTax}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold" oninput="updateIndustryParam('${key}', 'exportTax', this.value)">
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-slate-400">Gov Subsidy ($B/yr)</span>
-                            <input type="number" step="1" value="${ind.subsidy}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-emerald-400 font-bold" onchange="updateIndustryParam('${key}', 'subsidy', this.value)">
+                            <input type="number" step="1" value="${ind.subsidy}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-emerald-400 font-bold" oninput="updateIndustryParam('${key}', 'subsidy', this.value)">
                         </div>
                         <div class="flex justify-between items-center pt-1 border-t border-slate-900">
                             <span class="text-slate-400">Tax Exoneration</span>
@@ -1175,6 +1166,7 @@
 
         function logNews(category, text, type = 'info') {
             const container = document.getElementById('news-feed-container');
+            if (!container) return;
             const entry = document.createElement('div');
 
             let badgeStyle = 'bg-sky-950 text-sky-400 border-sky-800';
@@ -1203,7 +1195,8 @@
         }
 
         function clearNewsLog() {
-            document.getElementById('news-feed-container').innerHTML = '';
+            const container = document.getElementById('news-feed-container');
+            if (container) container.innerHTML = '';
         }
 
         const SCENARIOS = [
@@ -1236,6 +1229,7 @@
 
         function renderScenarios() {
             const grid = document.getElementById('scenarios-grid');
+            if (!grid) return;
             grid.innerHTML = '';
 
             SCENARIOS.forEach(sc => {
@@ -1317,6 +1311,7 @@
 
         function renderAcademy() {
             const listContainer = document.getElementById('academy-topics-list');
+            if (!listContainer) return;
             listContainer.innerHTML = '';
 
             LESSONS.forEach((item, index) => {
@@ -1332,7 +1327,8 @@
                 };
                 listContainer.appendChild(btn);
             });
-            document.getElementById('academy-content-display').innerHTML = LESSONS[0].content;
+            const contentDisplay = document.getElementById('academy-content-display');
+            if (contentDisplay) contentDisplay.innerHTML = LESSONS[0].content;
         }
 
         window.onload = function() {
@@ -1342,7 +1338,7 @@
             renderIndustries();
             renderScenarios();
             renderAcademy();
-            logNews('SYSTEM READY', 'EconoMaster Engine v4.0 Initialized with 15 fully functional industries, 10 new finance policies, and 10 public service funding categories.', 'info');
+            logNews('SYSTEM READY', 'EconoMaster Engine v4.1 Initialized with 15 fully functional industries, 10 new finance policies, and 10 public service funding categories.', 'info');
         };
     </script>
 </body>
