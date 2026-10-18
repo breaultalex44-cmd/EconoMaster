@@ -2,8 +2,16 @@
 <html lang="en" class="dark h-full bg-slate-950 text-slate-100">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>EconoMaster: Canada & Global Economic Engine v4.1</title>
+    
+    <!-- PWA Meta Tags & Manifest Link -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#020617">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EconoMaster">
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -23,89 +31,105 @@
             }
         }
     </script>
-    <!-- Chart.js CDN (Fixed & Validated) -->
+    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
         .tab-btn.active {
             border-bottom: 2px solid #38bdf8;
             color: #38bdf8;
             background-color: rgba(56, 189, 248, 0.05);
         }
-        @keyframes pulse-subtle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        /* Mobile Touch Target & Layout Adjustments */
+        input[type="range"] { accent-color: #38bdf8; min-height: 24px; }
+        @keyframes spin-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        .animate-pulse-subtle { animation: pulse-subtle 3s infinite ease-in-out; }
+        .animate-spin-slow { animation: spin-slow 3s linear infinite; }
     </style>
 </head>
-<body class="h-full flex flex-col bg-slate-950 text-slate-100 overflow-x-hidden">
+<body class="h-full flex flex-col bg-slate-950 text-slate-100 overflow-x-hidden selection:bg-sky-500 selection:text-white">
+
+    <!-- Loading Screen Overlay -->
+    <div id="loading-screen" class="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-500">
+        <div class="relative flex items-center justify-center mb-6">
+            <div class="absolute w-20 h-20 rounded-2xl bg-gradient-to-tr from-red-600 to-sky-500 animate-ping opacity-25"></div>
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-red-600 to-sky-500 flex items-center justify-center font-bold text-3xl text-white shadow-xl shadow-sky-500/30 z-10">
+                <span>🍁</span>
+            </div>
+        </div>
+        <h2 class="text-lg font-bold text-slate-100 tracking-tight">EconoMaster Engine</h2>
+        <p class="text-xs text-slate-400 mt-1">Initializing Sovereign Financial & Industrial Matrix...</p>
+        <div class="w-48 h-1.5 bg-slate-800 rounded-full mt-6 overflow-hidden">
+            <div id="loading-bar" class="h-full bg-gradient-to-r from-sky-500 to-emerald-400 w-0 transition-all duration-300"></div>
+        </div>
+    </div>
 
     <!-- Top Navigation Bar -->
-    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
+    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40 shadow-md">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14 sm:h-16">
                 <!-- Brand Title -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-red-600 to-sky-500 flex items-center justify-center font-bold text-xl text-white shadow-lg shadow-sky-500/20">
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-red-600 to-sky-500 flex items-center justify-center font-bold text-sm sm:text-xl text-white shadow-lg shadow-sky-500/20 shrink-0">
                         <span>🍁</span>
                     </div>
                     <div>
-                        <div class="flex items-center gap-2">
-                            <h1 class="font-bold text-base sm:text-lg text-slate-100 tracking-tight">EconoMaster</h1>
-                            <span class="text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">Sovereign Engine v4.1</span>
+                        <div class="flex items-center gap-1.5">
+                            <h1 class="font-bold text-sm sm:text-lg text-slate-100 tracking-tight">EconoMaster</h1>
+                            <span class="text-[9px] sm:text-xs font-semibold px-1.5 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">v4.1</span>
                         </div>
-                        <p class="text-[11px] text-slate-400 hidden sm:block">Advanced Fiscal, Industrial & Social Feedback Simulator</p>
+                        <p class="text-[10px] text-slate-400 hidden md:block">Advanced Fiscal, Industrial & Social Feedback Simulator</p>
                     </div>
                 </div>
 
                 <!-- Simulation Controls & Info Header -->
-                <div class="flex items-center space-x-3 sm:space-x-4">
+                <div class="flex items-center space-x-2 sm:space-x-4">
                     <div class="flex flex-col text-right">
-                        <span class="text-[10px] text-slate-400 uppercase tracking-wider">Current Period</span>
+                        <span class="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-wider">Period</span>
                         <span id="current-quarter-display" class="font-bold text-sky-400 text-xs sm:text-sm">Year 1 - Q1</span>
                     </div>
 
-                    <div class="bg-slate-800/80 p-1.5 rounded-lg border border-slate-700 flex items-center gap-2">
-                        <button id="advance-btn" onclick="advanceQuarter()" class="px-3 sm:px-4 py-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-semibold rounded-md shadow-md text-xs sm:text-sm transition-all flex items-center gap-2 active:scale-95 cursor-pointer">
-                            <i class="fa-solid fa-forward text-xs"></i>
-                            <span>Advance Quarter</span>
+                    <div class="bg-slate-800/80 p-1 rounded-lg border border-slate-700 flex items-center">
+                        <button id="advance-btn" onclick="advanceQuarter()" class="px-2.5 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-semibold rounded shadow-md text-xs transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer">
+                            <i class="fa-solid fa-forward text-[10px]"></i>
+                            <span class="hidden xs:inline">Advance</span>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Navigation Tabs -->
-        <div class="bg-slate-900/90 border-t border-slate-800/80 px-4 sm:px-8 overflow-x-auto">
-            <nav class="flex space-x-2 sm:space-x-6 min-w-max" id="nav-tabs">
-                <button onclick="switchTab('dashboard')" class="tab-btn active px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-chart-line text-sky-400"></i> Executive Dashboard
+        <!-- Navigation Tabs (Horizontally Scrollable on Mobile) -->
+        <div class="bg-slate-900/90 border-t border-slate-800/80 px-2 sm:px-8 overflow-x-auto scrollbar-none">
+            <nav class="flex space-x-1 sm:space-x-6 min-w-max" id="nav-tabs">
+                <button onclick="switchTab('dashboard')" class="tab-btn active px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-chart-line text-sky-400"></i> Dashboard
                 </button>
-                <button onclick="switchTab('policy')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-building-columns text-emerald-400"></i> Finance & Policy Hub
+                <button onclick="switchTab('policy')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-building-columns text-emerald-400"></i> Finance & Policy
                 </button>
-                <button onclick="switchTab('funding')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-hand-holding-dollar text-purple-400"></i> Public Services & Funding
+                <button onclick="switchTab('funding')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-hand-holding-dollar text-purple-400"></i> Public Services
                 </button>
-                <button onclick="switchTab('industries')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-industry text-amber-400"></i> 15 Industries & Trade Hub
+                <button onclick="switchTab('industries')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-industry text-amber-400"></i> 15 Industries & Trade
                 </button>
-                <button onclick="switchTab('scenarios')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-bullseye text-rose-400"></i> Crisis Scenarios
+                <button onclick="switchTab('scenarios')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-bullseye text-rose-400"></i> Crises
                 </button>
-                <button onclick="switchTab('learn')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-graduation-cap text-indigo-400"></i> Economics Academy
+                <button onclick="switchTab('learn')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-graduation-cap text-indigo-400"></i> Academy
                 </button>
-                <button onclick="switchTab('news')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer">
+                <button onclick="switchTab('news')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
                     <i class="fa-solid fa-newspaper text-teal-400"></i> Press Ledger
                 </button>
             </nav>
@@ -113,185 +137,180 @@
     </header>
 
     <!-- Main Content Body -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+    <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8 space-y-4 sm:space-y-6">
 
         <!-- Active Scenario Banner -->
-        <div id="scenario-banner" class="hidden bg-slate-900 border border-sky-500/40 rounded-xl p-4 shadow-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div id="scenario-banner" class="hidden bg-slate-900 border border-sky-500/40 rounded-xl p-3 sm:p-4 shadow-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
             <div>
                 <div class="flex items-center gap-2">
-                    <span class="px-2 py-0.5 text-xs font-bold bg-rose-500/20 text-rose-300 rounded border border-rose-500/30 uppercase">Active Scenario Challenge</span>
-                    <h3 id="scenario-title" class="font-bold text-slate-100 text-sm">Crisis Mode</h3>
+                    <span class="px-2 py-0.5 text-[10px] font-bold bg-rose-500/20 text-rose-300 rounded border border-rose-500/30 uppercase">Active Scenario Challenge</span>
+                    <h3 id="scenario-title" class="font-bold text-slate-100 text-xs sm:text-sm">Crisis Mode</h3>
                 </div>
-                <p id="scenario-desc" class="text-xs text-slate-300 mt-1">Navigate the internal fiscal struggle and meet the target criteria.</p>
+                <p id="scenario-desc" class="text-[11px] sm:text-xs text-slate-300 mt-1">Navigate the internal fiscal struggle and meet target criteria.</p>
             </div>
-            <div class="flex items-center gap-3">
-                <span id="scenario-timer" class="text-xs font-semibold text-sky-400 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">Time Left: 8 Quarters</span>
-                <button onclick="abandonScenario()" class="text-xs text-slate-400 hover:text-rose-400 underline cursor-pointer">Abort Scenario</button>
+            <div class="flex items-center justify-between w-full sm:w-auto gap-3">
+                <span id="scenario-timer" class="text-[11px] font-semibold text-sky-400 bg-slate-800 px-2.5 py-1 rounded-lg border border-slate-700">Time Left: 8 Qtrs</span>
+                <button onclick="abandonScenario()" class="text-xs text-slate-400 hover:text-rose-400 underline cursor-pointer">Abort</button>
             </div>
         </div>
 
         <!-- TAB 1: EXECUTIVE DASHBOARD -->
-        <section id="tab-dashboard" class="tab-content space-y-6">
+        <section id="tab-dashboard" class="tab-content space-y-4 sm:space-y-6">
             <!-- Key Performance Indicators Matrix -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
-                    <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
+                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
                         <span>Real GDP ($ CAD)</span>
                         <i class="fa-solid fa-coins text-sky-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
-                        <span id="kpi-gdp" class="text-xl sm:text-2xl font-bold text-slate-100">$2.940 T</span>
-                        <span id="kpi-gdp-growth" class="text-xs font-semibold text-emerald-400">+2.1%</span>
+                        <span id="kpi-gdp" class="text-lg sm:text-2xl font-bold text-slate-100">$2.940 T</span>
+                        <span id="kpi-gdp-growth" class="text-[11px] sm:text-xs font-semibold text-emerald-400">+2.1%</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-1">Quarterly Annualized Growth Rate</p>
+                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Annualized Growth Rate</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
-                    <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
-                        <span>CPI Inflation (Anchored)</span>
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
+                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                        <span>CPI Inflation</span>
                         <i class="fa-solid fa-fire text-amber-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
-                        <span id="kpi-inflation" class="text-xl sm:text-2xl font-bold text-slate-100">2.4%</span>
-                        <span id="kpi-inflation-status" class="text-xs font-semibold text-emerald-400">Target Band</span>
+                        <span id="kpi-inflation" class="text-lg sm:text-2xl font-bold text-slate-100">2.4%</span>
+                        <span id="kpi-inflation-status" class="text-[11px] sm:text-xs font-semibold text-emerald-400">Target Band</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-1">Target: 1.0% - 3.0%</p>
+                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Target: 1.0% - 3.0%</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
-                    <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
-                        <span>Unemployment Rate</span>
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
+                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                        <span>Unemployment</span>
                         <i class="fa-solid fa-users text-purple-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
-                        <span id="kpi-unemployment" class="text-xl sm:text-2xl font-bold text-slate-100">5.8%</span>
-                        <span id="kpi-unemployment-trend" class="text-xs font-semibold text-slate-400">Stable</span>
+                        <span id="kpi-unemployment" class="text-lg sm:text-2xl font-bold text-slate-100">5.8%</span>
+                        <span id="kpi-unemployment-trend" class="text-[11px] sm:text-xs font-semibold text-slate-400">Stable</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-1">NAIRU Benchmark ~ 5.5%</p>
+                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">NAIRU ~ 5.5%</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
-                    <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
-                        <span>BoC Rate & Bond Yield</span>
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
+                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                        <span>BoC Rate & Yield</span>
                         <i class="fa-solid fa-landmark text-emerald-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
-                        <span id="kpi-rate" class="text-xl sm:text-2xl font-bold text-slate-100">3.75%</span>
-                        <span id="kpi-bond-spread" class="text-xs font-semibold text-sky-400">Spread: 0 bps</span>
+                        <span id="kpi-rate" class="text-lg sm:text-2xl font-bold text-slate-100">3.75%</span>
+                        <span id="kpi-bond-spread" class="text-[10px] sm:text-xs font-semibold text-sky-400">0 bps</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-1">Sovereign Yield Curve Risk</p>
+                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Sovereign Yield Curve</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
-                    <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
-                        <span>National Debt / Surplus</span>
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
+                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                        <span>Debt / Surplus</span>
                         <i class="fa-solid fa-vault text-rose-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
-                        <span id="kpi-debt" class="text-xl sm:text-2xl font-bold text-slate-100">64.2%</span>
-                        <span id="kpi-budget-balance" class="text-xs font-semibold text-rose-400">-$32.5B</span>
+                        <span id="kpi-debt" class="text-base sm:text-xl font-bold text-slate-100">64.2%</span>
+                        <span id="kpi-budget-balance" class="text-[11px] sm:text-xs font-semibold text-rose-400">-$32.5B</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-1">Surplus reduces national debt over time</p>
+                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Surplus reduces debt</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
-                    <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
-                        <span>Exchange Rate (CAD/USD)</span>
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
+                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                        <span>Exchange (CAD/USD)</span>
                         <i class="fa-solid fa-dollar-sign text-emerald-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
-                        <span id="kpi-fx" class="text-xl sm:text-2xl font-bold text-slate-100">$0.745</span>
-                        <span id="kpi-fx-trend" class="text-xs font-semibold text-emerald-400">Stable</span>
+                        <span id="kpi-fx" class="text-lg sm:text-2xl font-bold text-slate-100">$0.745</span>
+                        <span id="kpi-fx-trend" class="text-[11px] sm:text-xs font-semibold text-emerald-400">Stable</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-1">Floating Currency Terms of Trade</p>
+                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Floating Currency</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
-                    <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
+                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
                         <span>Trade Balance</span>
                         <i class="fa-solid fa-ship text-sky-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
-                        <span id="kpi-trade" class="text-xl sm:text-2xl font-bold text-slate-100">+$4.2B</span>
-                        <span class="text-xs font-semibold text-emerald-400">Surplus</span>
+                        <span id="kpi-trade" class="text-lg sm:text-2xl font-bold text-slate-100">+$4.2B</span>
+                        <span class="text-[11px] sm:text-xs font-semibold text-emerald-400">Surplus</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-1">Net Exports (X - M)</p>
+                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Net Exports (X - M)</p>
                 </div>
 
-                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 relative overflow-hidden group hover:border-slate-700 transition">
-                    <div class="text-xs font-medium text-slate-400 flex items-center justify-between">
-                        <span>Public Approval Rating</span>
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 relative overflow-hidden">
+                    <div class="text-[11px] sm:text-xs font-medium text-slate-400 flex items-center justify-between">
+                        <span>Voter Approval</span>
                         <i class="fa-solid fa-square-poll-vertical text-amber-400"></i>
                     </div>
                     <div class="mt-2 flex items-baseline justify-between">
-                        <span id="kpi-approval" class="text-xl sm:text-2xl font-bold text-slate-100">54%</span>
-                        <span id="kpi-approval-status" class="text-xs font-semibold text-emerald-400">Stable</span>
+                        <span id="kpi-approval" class="text-lg sm:text-2xl font-bold text-slate-100">54%</span>
+                        <span id="kpi-approval-status" class="text-[11px] sm:text-xs font-semibold text-emerald-400">Stable</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-1">Voter support base</p>
+                    <p class="text-[9px] sm:text-[10px] text-slate-500 mt-1">Public support base</p>
                 </div>
             </div>
 
             <!-- Charts Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="font-semibold text-slate-200 text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-chart-area text-sky-400"></i> Output Growth & Inertial CPI Inflation
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-semibold text-slate-200 text-xs sm:text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-chart-area text-sky-400"></i> Output Growth & CPI Inflation
                         </h3>
-                        <span class="text-[11px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Quarterly %</span>
                     </div>
-                    <div class="relative h-64 w-full">
+                    <div class="relative h-56 sm:h-64 w-full">
                         <canvas id="macroChart"></canvas>
                     </div>
                 </div>
 
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="font-semibold text-slate-200 text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-chart-line text-emerald-400"></i> Bond Yields & Debt-to-GDP Trajectory
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-semibold text-slate-200 text-xs sm:text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-emerald-400"></i> Bond Yields & Debt-to-GDP
                         </h3>
-                        <span class="text-[11px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Quarterly %</span>
                     </div>
-                    <div class="relative h-64 w-full">
+                    <div class="relative h-56 sm:h-64 w-full">
                         <canvas id="financeChart"></canvas>
                     </div>
                 </div>
             </div>
 
             <!-- AI Chief Advisor Diagnosis -->
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
-                <h3 class="font-semibold text-slate-200 text-sm mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-brain text-purple-400"></i> Cabinet Chief Advisor: Sovereign Economic Diagnosis
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
+                <h3 class="font-semibold text-slate-200 text-xs sm:text-sm mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-brain text-purple-400"></i> Cabinet Chief Advisor: Economic Diagnosis
                 </h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                    <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                        <span class="font-bold text-sky-400 block mb-1">Fiscal Dilemma & Surpluses</span>
-                        <p id="advisor-fiscal" class="text-slate-300 leading-relaxed">Running deficits piles up national debt and triggers bond risk spreads. Generating surpluses actively pays down debt and builds sovereign fiscal space.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+                        <span class="font-bold text-sky-400 block mb-1">Fiscal Dilemma</span>
+                        <p id="advisor-fiscal" class="text-slate-300 leading-relaxed text-[11px] sm:text-xs">Running deficits piles up national debt. Generating surpluses pays down debt and builds sovereign fiscal space.</p>
                     </div>
-                    <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                        <span class="font-bold text-emerald-400 block mb-1">Industrial Embargoes & Trade</span>
-                        <p id="advisor-transmission" class="text-slate-300 leading-relaxed">Adjusting tariffs, export taxes, and embargos across 15 key industries alters domestic supply security and trade balances.</p>
+                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+                        <span class="font-bold text-emerald-400 block mb-1">Trade & Embargoes</span>
+                        <p id="advisor-transmission" class="text-slate-300 leading-relaxed text-[11px] sm:text-xs">Adjusting tariffs, export taxes, and embargos across 15 key industries alters domestic supply security.</p>
                     </div>
-                    <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
+                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
                         <span class="font-bold text-amber-400 block mb-1">Public Funding Impact</span>
-                        <p id="advisor-political" class="text-slate-300 leading-relaxed">Funding health, research, education, and police directly boosts public approval and long-term productivity multipliers.</p>
+                        <p id="advisor-political" class="text-slate-300 leading-relaxed text-[11px] sm:text-xs">Funding health, research, and education boosts public approval and long-term productivity multipliers.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- TAB 2: FINANCE & POLICY HUB -->
-        <section id="tab-policy" class="tab-content hidden space-y-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <section id="tab-policy" class="tab-content hidden space-y-4 sm:space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 <!-- Fiscal Policy Controls -->
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-5">
-                    <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold text-slate-100 flex items-center gap-2">
-                                <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> Department of Finance: Core Fiscal & 10 New Policies
-                            </h3>
-                            <p class="text-xs text-slate-400">Fine-tune taxes, levies, and structural economic levers.</p>
-                        </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
+                    <div class="border-b border-slate-800 pb-3">
+                        <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> Department of Finance: Core & 10 New Policies
+                        </h3>
                     </div>
 
                     <div class="space-y-1">
@@ -299,7 +318,7 @@
                             <label for="slider-pit" class="text-slate-300">Avg Personal Income Tax Rate</label>
                             <span id="val-pit" class="text-sky-400 font-bold">24%</span>
                         </div>
-                        <input type="range" id="slider-pit" min="10" max="45" value="24" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        <input type="range" id="slider-pit" min="10" max="45" value="24" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                     </div>
 
                     <div class="space-y-1">
@@ -307,7 +326,7 @@
                             <label for="slider-cit" class="text-slate-300">Corporate Income Tax Rate</label>
                             <span id="val-cit" class="text-sky-400 font-bold">15%</span>
                         </div>
-                        <input type="range" id="slider-cit" min="5" max="35" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        <input type="range" id="slider-cit" min="5" max="35" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                     </div>
 
                     <div class="space-y-1">
@@ -315,7 +334,7 @@
                             <label for="slider-gst" class="text-slate-300">Federal Sales Tax Rate (GST/HST)</label>
                             <span id="val-gst" class="text-sky-400 font-bold">5%</span>
                         </div>
-                        <input type="range" id="slider-gst" min="0" max="15" value="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        <input type="range" id="slider-gst" min="0" max="15" value="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                     </div>
 
                     <div class="space-y-1">
@@ -323,19 +342,19 @@
                             <label for="slider-carbon" class="text-slate-300">Carbon Price ($ / Tonne CAD)</label>
                             <span id="val-carbon" class="text-sky-400 font-bold">$65</span>
                         </div>
-                        <input type="range" id="slider-carbon" min="0" max="170" value="65" step="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                        <input type="range" id="slider-carbon" min="0" max="170" value="65" step="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                     </div>
 
                     <!-- 10 NEW POLICY ADJUSTMENTS -->
-                    <div class="pt-3 border-t border-slate-800 space-y-4">
-                        <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider">Expanded Department of Finance Policy Levers (10 New)</h4>
+                    <div class="pt-3 border-t border-slate-800 space-y-3">
+                        <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider">Expanded Levers (10 New)</h4>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-capgains" class="text-slate-300">1. Capital Gains Tax Inclusion Rate (%)</label>
+                                <label for="slider-capgains" class="text-slate-300">1. Capital Gains Inclusion (%)</label>
                                 <span id="val-capgains" class="text-sky-400 font-bold">50%</span>
                             </div>
-                            <input type="range" id="slider-capgains" min="25" max="100" step="5" value="50" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                            <input type="range" id="slider-capgains" min="25" max="100" step="5" value="50" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                         </div>
 
                         <div class="space-y-1">
@@ -343,119 +362,116 @@
                                 <label for="slider-luxury" class="text-slate-300">2. Luxury & Wealth Asset Tax (%)</label>
                                 <span id="val-luxury" class="text-sky-400 font-bold">1.0%</span>
                             </div>
-                            <input type="range" id="slider-luxury" min="0" max="10" step="0.5" value="1.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                            <input type="range" id="slider-luxury" min="0" max="10" step="0.5" value="1.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                         </div>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-smallbiz" class="text-slate-300">3. Small Business Tax Deduction Rate (%)</label>
+                                <label for="slider-smallbiz" class="text-slate-300">3. Small Business Tax Rate (%)</label>
                                 <span id="val-smallbiz" class="text-sky-400 font-bold">9.0%</span>
                             </div>
-                            <input type="range" id="slider-smallbiz" min="0" max="15" step="0.5" value="9.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                            <input type="range" id="slider-smallbiz" min="0" max="15" step="0.5" value="9.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                         </div>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-migration" class="text-slate-300">4. Net Immigration Inflow (Thousands / Qtr)</label>
+                                <label for="slider-migration" class="text-slate-300">4. Net Immigration (Thousands/Qtr)</label>
                                 <span id="val-migration" class="text-sky-400 font-bold">120K</span>
                             </div>
-                            <input type="range" id="slider-migration" min="20" max="300" step="10" value="120" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                            <input type="range" id="slider-migration" min="20" max="300" step="10" value="120" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                         </div>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-pension" class="text-slate-300">5. National Pension Contribution Rate (%)</label>
+                                <label for="slider-pension" class="text-slate-300">5. National Pension Rate (%)</label>
                                 <span id="val-pension" class="text-sky-400 font-bold">5.9%</span>
                             </div>
-                            <input type="range" id="slider-pension" min="2.0" max="12.0" step="0.5" value="5.9" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                            <input type="range" id="slider-pension" min="2.0" max="12.0" step="0.5" value="5.9" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                         </div>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-foreignprop" class="text-slate-300">6. Foreign Real Estate Ownership Levy (%)</label>
+                                <label for="slider-foreignprop" class="text-slate-300">6. Foreign Property Levy (%)</label>
                                 <span id="val-foreignprop" class="text-sky-400 font-bold">15%</span>
                             </div>
-                            <input type="range" id="slider-foreignprop" min="0" max="35" step="1" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                            <input type="range" id="slider-foreignprop" min="0" max="35" step="1" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                         </div>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-cleantech" class="text-slate-300">7. Clean Energy Investment Tax Credit (%)</label>
+                                <label for="slider-cleantech" class="text-slate-300">7. Clean Energy Credit (%)</label>
                                 <span id="val-cleantech" class="text-sky-400 font-bold">30%</span>
                             </div>
-                            <input type="range" id="slider-cleantech" min="0" max="60" step="5" value="30" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                            <input type="range" id="slider-cleantech" min="0" max="60" step="5" value="30" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                         </div>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-ubi" class="text-slate-300">8. Universal Citizen Dividend / UBI ($B/qtr)</label>
+                                <label for="slider-ubi" class="text-slate-300">8. Universal Dividend / UBI ($B/qtr)</label>
                                 <span id="val-ubi" class="text-sky-400 font-bold">$15B</span>
                             </div>
-                            <input type="range" id="slider-ubi" min="0" max="60" step="5" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                            <input type="range" id="slider-ubi" min="0" max="60" step="5" value="15" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                         </div>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-digitalserv" class="text-slate-300">9. Digital Services & Tech Monopoly Tax (%)</label>
+                                <label for="slider-digitalserv" class="text-slate-300">9. Digital Services Tax (%)</label>
                                 <span id="val-digitalserv" class="text-sky-400 font-bold">3.0%</span>
                             </div>
-                            <input type="range" id="slider-digitalserv" min="0" max="15" step="0.5" value="3.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                            <input type="range" id="slider-digitalserv" min="0" max="15" step="0.5" value="3.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                         </div>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-stockpile" class="text-slate-300">10. Strategic National Reserve Stockpile ($B/qtr)</label>
+                                <label for="slider-stockpile" class="text-slate-300">10. Strategic Reserve Spend ($B/qtr)</label>
                                 <span id="val-stockpile" class="text-sky-400 font-bold">$5B</span>
                             </div>
-                            <input type="range" id="slider-stockpile" min="0" max="30" step="2" value="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" oninput="updatePolicies()">
+                            <input type="range" id="slider-stockpile" min="0" max="30" step="2" value="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                         </div>
                     </div>
                 </div>
 
                 <!-- Monetary Policy Controls -->
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-5">
-                    <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold text-slate-100 flex items-center gap-2">
-                                <i class="fa-solid fa-landmark text-sky-400"></i> Monetary Policy (Bank of Canada)
-                            </h3>
-                            <p class="text-xs text-slate-400">Independent central bank governing price stability and liquidity.</p>
-                        </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
+                    <div class="border-b border-slate-800 pb-3">
+                        <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-landmark text-sky-400"></i> Monetary Policy (Bank of Canada)
+                        </h3>
                     </div>
 
                     <div class="space-y-1">
                         <div class="flex justify-between text-xs font-medium">
-                            <label for="slider-boc-rate" class="text-slate-300">BoC Overnight Policy Rate (%)</label>
+                            <label for="slider-boc-rate" class="text-slate-300">BoC Overnight Rate (%)</label>
                             <span id="val-boc-rate" class="text-purple-400 font-bold">3.75%</span>
                         </div>
-                        <input type="range" id="slider-boc-rate" min="0.25" max="12.0" step="0.25" value="3.75" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400" oninput="updatePolicies()">
+                        <input type="range" id="slider-boc-rate" min="0.25" max="12.0" step="0.25" value="3.75" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                     </div>
 
                     <div class="space-y-1">
                         <div class="flex justify-between text-xs font-medium">
-                            <label for="slider-qe" class="text-slate-300">Quantitative Easing (+QE) / Tightening (-QT)</label>
+                            <label for="slider-qe" class="text-slate-300">Quantitative Easing / Tightening</label>
                             <span id="val-qe" class="text-purple-400 font-bold">$0 B/qtr</span>
                         </div>
-                        <input type="range" id="slider-qe" min="-50" max="50" step="5" value="0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400" oninput="updatePolicies()">
+                        <input type="range" id="slider-qe" min="-50" max="50" step="5" value="0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                     </div>
 
                     <div class="space-y-1">
                         <div class="flex justify-between text-xs font-medium">
-                            <label for="slider-reserve" class="text-slate-300">Bank Liquidity / Reserve Ratio (%)</label>
+                            <label for="slider-reserve" class="text-slate-300">Bank Reserve Ratio (%)</label>
                             <span id="val-reserve" class="text-purple-400 font-bold">3.5%</span>
                         </div>
-                        <input type="range" id="slider-reserve" min="1.0" max="10.0" step="0.5" value="3.5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400" oninput="updatePolicies()">
+                        <input type="range" id="slider-reserve" min="1.0" max="10.0" step="0.5" value="3.5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                     </div>
 
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs space-y-2 mt-4">
+                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 text-xs space-y-2 mt-4">
                         <span class="font-bold text-sky-400 flex items-center gap-1">
                             <i class="fa-solid fa-calculator"></i> Taylor Rule Model Estimate
                         </span>
-                        <p class="text-slate-300 leading-relaxed">
-                            <code class="bg-slate-900 px-1.5 py-0.5 rounded text-amber-300">Target Rate = Neutral Rate (2.5%) + Inflation Gap + Output Gap</code>
+                        <p class="text-slate-300 leading-relaxed text-[11px]">
+                            <code class="bg-slate-900 px-1 py-0.5 rounded text-amber-300">Target = Neutral (2.5%) + Inflation Gap + Output Gap</code>
                         </p>
                         <p class="text-[11px] text-slate-400">
-                            Current Computed Benchmark Rate: <span id="taylor-computed-val" class="font-bold text-slate-200">3.80%</span>
+                            Computed Benchmark Rate: <span id="taylor-computed-val" class="font-bold text-slate-200">3.80%</span>
                         </p>
                     </div>
                 </div>
@@ -463,89 +479,85 @@
         </section>
 
         <!-- TAB 3: PUBLIC SERVICES & FUNDING -->
-        <section id="tab-funding" class="tab-content hidden space-y-6">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
-                <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
+        <section id="tab-funding" class="tab-content hidden space-y-4 sm:space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
+                <div class="border-b border-slate-800 pb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                     <div>
-                        <h3 class="font-bold text-slate-100 flex items-center gap-2">
-                            <i class="fa-solid fa-hand-holding-dollar text-purple-400"></i> 10 Dedicated Public Services & Social Funding Categories
+                        <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-hand-holding-dollar text-purple-400"></i> 10 Public Services & Social Funding Categories
                         </h3>
-                        <p class="text-xs text-slate-400">Allocate federal budgets toward critical social infrastructure. Higher spending improves approval and productivity multipliers.</p>
                     </div>
-                    <div class="text-right">
-                        <span class="text-xs text-slate-400">Total Social & Public Outlays:</span>
-                        <span id="total-funding-display" class="text-sm font-bold text-purple-400 ml-2">$345.0B / qtr</span>
+                    <div class="text-left sm:text-right">
+                        <span class="text-xs text-slate-400">Total Outlays:</span>
+                        <span id="total-funding-display" class="text-xs sm:text-sm font-bold text-purple-400 ml-1">$345.0B / qtr</span>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="funding-sliders-container">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4" id="funding-sliders-container">
                 </div>
             </div>
         </section>
 
         <!-- TAB 4: 15 INDUSTRIES & GLOBAL TRADE -->
-        <section id="tab-industries" class="tab-content hidden space-y-6">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
-                <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
-                    <div>
-                        <h3 class="font-bold text-slate-100 flex items-center gap-2">
-                            <i class="fa-solid fa-industry text-amber-400"></i> 15 Fully Fledged Canadian Industries & Trade Controls
-                        </h3>
-                        <p class="text-xs text-slate-400">Adjust custom duties, export taxes, subsidies, tax exonerations, regular price per ton, and import/export embargos for each specific industry.</p>
-                    </div>
+        <section id="tab-industries" class="tab-content hidden space-y-4 sm:space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
+                <div class="border-b border-slate-800 pb-3">
+                    <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-industry text-amber-400"></i> 15 Fully Fledged Canadian Industries & Trade Controls
+                    </h3>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4" id="industry-cards-container">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4" id="industry-cards-container">
                 </div>
             </div>
 
             <!-- Global Trade & Tariff Settings -->
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3">
-                    <h3 class="font-bold text-slate-100 flex items-center gap-2">
-                        <i class="fa-solid fa-earth-americas text-sky-400"></i> International Trade Agreements & Global Shocks
+                    <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-earth-americas text-sky-400"></i> International Trade Agreements & Shocks
                     </h3>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
-                        <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider">General Tariff Baselines</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    <div class="space-y-3 bg-slate-950 p-3 sm:p-4 rounded-xl border border-slate-800">
+                        <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Tariff Baselines</h4>
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-tariff-us" class="text-slate-300">Avg Import Tariff on US Goods (%)</label>
+                                <label for="slider-tariff-us" class="text-slate-300">US Goods Import Tariff (%)</label>
                                 <span id="val-tariff-us" class="text-rose-400 font-bold">1.5%</span>
                             </div>
-                            <input type="range" id="slider-tariff-us" min="0" max="25" step="0.5" value="1.5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-rose-400" oninput="updatePolicies()">
+                            <input type="range" id="slider-tariff-us" min="0" max="25" step="0.5" value="1.5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                         </div>
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-tariff-row" class="text-slate-300">Tariff on Rest of World (EU/China/CPTPP) (%)</label>
+                                <label for="slider-tariff-row" class="text-slate-300">Rest of World Tariff (%)</label>
                                 <span id="val-tariff-row" class="text-rose-400 font-bold">4.0%</span>
                             </div>
-                            <input type="range" id="slider-tariff-row" min="0" max="30" step="0.5" value="4.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-rose-400" oninput="updatePolicies()">
+                            <input type="range" id="slider-tariff-row" min="0" max="30" step="0.5" value="4.0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updatePolicies()">
                         </div>
                     </div>
 
-                    <div class="space-y-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
-                        <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Global Exogenous Factors</h4>
+                    <div class="space-y-3 bg-slate-950 p-3 sm:p-4 rounded-xl border border-slate-800">
+                        <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Exogenous Factors</h4>
                         <div class="grid grid-cols-2 gap-3 text-xs">
                             <div class="bg-slate-900 p-2.5 rounded border border-slate-800">
-                                <span class="text-slate-400 block text-[10px]">WTI Crude Oil Price</span>
-                                <span id="val-oil-price" class="font-bold text-emerald-400 text-sm">$78.50 / bbl</span>
+                                <span class="text-slate-400 block text-[9px]">WTI Crude Oil Price</span>
+                                <span id="val-oil-price" class="font-bold text-emerald-400 text-xs sm:text-sm">$78.50 / bbl</span>
                             </div>
                             <div class="bg-slate-900 p-2.5 rounded border border-slate-800">
-                                <span class="text-slate-400 block text-[10px]">US Federal Reserve Rate</span>
-                                <span id="val-us-fed-rate" class="font-bold text-sky-400 text-sm">4.25%</span>
+                                <span class="text-slate-400 block text-[9px]">US Fed Rate</span>
+                                <span id="val-us-fed-rate" class="font-bold text-sky-400 text-xs sm:text-sm">4.25%</span>
                             </div>
                         </div>
-                        <div class="pt-2">
-                            <span class="text-xs font-semibold text-slate-300 block mb-2">Inject Global Shock Scenario:</span>
+                        <div class="pt-1">
+                            <span class="text-xs font-semibold text-slate-300 block mb-2">Inject Global Shock:</span>
                             <div class="grid grid-cols-2 gap-2">
-                                <button onclick="triggerShock('oil_spike')" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 rounded text-xs font-medium transition cursor-pointer">
-                                    ⚡ OPEC Oil Price Surge (+40%)
+                                <button onclick="triggerShock('oil_spike')" class="px-2 py-1.5 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 rounded text-[11px] font-medium transition cursor-pointer">
+                                    ⚡ Oil Surge (+40%)
                                 </button>
-                                <button onclick="triggerShock('us_recession')" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-rose-300 border border-rose-500/30 rounded text-xs font-medium transition cursor-pointer">
-                                    ⚡ US Demand Slump / Recession
+                                <button onclick="triggerShock('us_recession')" class="px-2 py-1.5 bg-slate-800 hover:bg-slate-700 text-rose-300 border border-rose-500/30 rounded text-[11px] font-medium transition cursor-pointer">
+                                    ⚡ US Slump / Recession
                                 </button>
                             </div>
                         </div>
@@ -555,68 +567,63 @@
         </section>
 
         <!-- TAB 5: CRISIS SCENARIOS -->
-        <section id="tab-scenarios" class="tab-content hidden space-y-6">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
+        <section id="tab-scenarios" class="tab-content hidden space-y-4 sm:space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
                 <div class="border-b border-slate-800 pb-3 mb-4">
-                    <h3 class="font-bold text-slate-100 flex items-center gap-2">
+                    <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
                         <i class="fa-solid fa-bullseye text-rose-400"></i> Macroeconomic Guided Scenario Challenges
                     </h3>
-                    <p class="text-xs text-slate-400">Take command during high-stakes economic crises.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="scenarios-grid">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="scenarios-grid">
                 </div>
             </div>
         </section>
 
         <!-- TAB 6: ECONOMICS ACADEMY -->
-        <section id="tab-learn" class="tab-content hidden space-y-6">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
-                <div class="border-b border-slate-800 pb-3 mb-6">
-                    <h3 class="font-bold text-slate-100 flex items-center gap-2">
+        <section id="tab-learn" class="tab-content hidden space-y-4 sm:space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
+                <div class="border-b border-slate-800 pb-3 mb-4">
+                    <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
                         <i class="fa-solid fa-graduation-cap text-indigo-400"></i> Economics Interactive Learning Hub
                     </h3>
-                    <p class="text-xs text-slate-400">Master sovereign debt dynamics, industrial embargos, and monetary transmission.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="space-y-2" id="academy-topics-list">
                     </div>
-                    <div class="md:col-span-2 bg-slate-950 p-6 rounded-xl border border-slate-800 space-y-4" id="academy-content-display">
+                    <div class="md:col-span-2 bg-slate-950 p-4 sm:p-6 rounded-xl border border-slate-800 space-y-3" id="academy-content-display">
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- TAB 7: PRESS LEDGER -->
-        <section id="tab-news" class="tab-content hidden space-y-6">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
+        <section id="tab-news" class="tab-content hidden space-y-4 sm:space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                     <div>
-                        <h3 class="font-bold text-slate-100 flex items-center gap-2">
+                        <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
                             <i class="fa-solid fa-newspaper text-teal-400"></i> Financial Times & Event Ledger
                         </h3>
-                        <p class="text-xs text-slate-400">Historical sequence of all policy actions and market reactions.</p>
                     </div>
-                    <button onclick="clearNewsLog()" class="text-xs text-slate-400 hover:text-white bg-slate-800 px-3 py-1.5 rounded border border-slate-700 cursor-pointer">Clear Logs</button>
+                    <button onclick="clearNewsLog()" class="text-xs text-slate-400 hover:text-white bg-slate-800 px-2.5 py-1 rounded border border-slate-700 cursor-pointer">Clear Logs</button>
                 </div>
-                <div class="space-y-3 max-h-[500px] overflow-y-auto pr-2" id="news-feed-container">
+                <div class="space-y-2.5 max-h-[450px] overflow-y-auto pr-1" id="news-feed-container">
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 py-4 px-4 sm:px-8 mt-auto text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
-        <div>
-            EconoMaster Simulation Engine v4.1 &copy; 2026. Fully Interactive Sovereign Fiscal & Industrial Engine.
-        </div>
+    <footer class="bg-slate-900 border-t border-slate-800 py-3 px-4 sm:px-8 mt-auto text-[11px] text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
+        <div>EconoMaster Engine v4.1 &copy; 2026. Mobile-Ready Progressive Web App.</div>
         <div class="flex gap-4">
-            <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('learn')">Macro Theory</span>
-            <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('policy')">Policy Tools</span>
+            <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('learn')">Academy</span>
+            <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('policy')">Policy</span>
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('dashboard')">Dashboard</span>
         </div>
     </footer>
 
-    <!-- MAIN JAVASCRIPT ENGINE (DEBUGGED & ROBUST) -->
+    <!-- MAIN JAVASCRIPT & APP LOGIC -->
     <script>
         const gameState = {
             quarter: 1,
@@ -722,7 +729,7 @@
                             tension: 0.3
                         },
                         {
-                            label: 'Inertial CPI Inflation (%)',
+                            label: 'Inflation (%)',
                             data: gameState.history.inflation,
                             borderColor: '#f59e0b',
                             backgroundColor: 'transparent',
@@ -735,10 +742,10 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } } },
+                    plugins: { legend: { labels: { color: '#94a3b8', font: { size: 10 } } } },
                     scales: {
-                        x: { ticks: { color: '#64748b', font: { size: 10 } }, grid: { color: '#1e293b' } },
-                        y: { ticks: { color: '#64748b', font: { size: 10 } }, grid: { color: '#1e293b' } }
+                        x: { ticks: { color: '#64748b', font: { size: 9 } }, grid: { color: '#1e293b' } },
+                        y: { ticks: { color: '#64748b', font: { size: 9 } }, grid: { color: '#1e293b' } }
                     }
                 }
             });
@@ -750,7 +757,7 @@
                     labels: gameState.history.labels,
                     datasets: [
                         {
-                            label: 'Effective Bond Yield (%)',
+                            label: 'Bond Yield (%)',
                             data: gameState.history.bocRate,
                             borderColor: '#10b981',
                             backgroundColor: 'transparent',
@@ -770,10 +777,10 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } } },
+                    plugins: { legend: { labels: { color: '#94a3b8', font: { size: 10 } } } },
                     scales: {
-                        x: { ticks: { color: '#64748b', font: { size: 10 } }, grid: { color: '#1e293b' } },
-                        y: { ticks: { color: '#64748b', font: { size: 10 } }, grid: { color: '#1e293b' } }
+                        x: { ticks: { color: '#64748b', font: { size: 9 } }, grid: { color: '#1e293b' } },
+                        y: { ticks: { color: '#64748b', font: { size: 9 } }, grid: { color: '#1e293b' } }
                     }
                 }
             });
@@ -840,8 +847,6 @@
 
             document.getElementById('val-tariff-us').innerText = gameState.tariffUs.toFixed(1) + '%';
             document.getElementById('val-tariff-row').innerText = gameState.tariffRow.toFixed(1) + '%';
-
-            updateAdvisorDiagnosis();
         }
 
         function updateFunding(category, val) {
@@ -1008,48 +1013,48 @@
             document.getElementById('kpi-gdp').innerText = '$' + (gameState.gdp / 1000).toFixed(3) + ' T';
             const growthEl = document.getElementById('kpi-gdp-growth');
             growthEl.innerText = (gameState.gdpGrowthRate >= 0 ? '+' : '') + gameState.gdpGrowthRate + '%';
-            growthEl.className = `text-xs font-semibold ${gameState.gdpGrowthRate >= 1.5 ? 'text-emerald-400' : gameState.gdpGrowthRate >= 0 ? 'text-amber-400' : 'text-rose-400'}`;
+            growthEl.className = `text-[11px] sm:text-xs font-semibold ${gameState.gdpGrowthRate >= 1.5 ? 'text-emerald-400' : gameState.gdpGrowthRate >= 0 ? 'text-amber-400' : 'text-rose-400'}`;
 
             document.getElementById('kpi-inflation').innerText = gameState.cpiInflation + '%';
             const cpiStatus = document.getElementById('kpi-inflation-status');
             if (gameState.cpiInflation >= 1.0 && gameState.cpiInflation <= 3.0) {
                 cpiStatus.innerText = 'Target Band';
-                cpiStatus.className = 'text-xs font-semibold text-emerald-400';
+                cpiStatus.className = 'text-[11px] sm:text-xs font-semibold text-emerald-400';
             } else {
                 cpiStatus.innerText = 'Out of Band';
-                cpiStatus.className = 'text-xs font-semibold text-rose-400';
+                cpiStatus.className = 'text-[11px] sm:text-xs font-semibold text-rose-400';
             }
 
             document.getElementById('kpi-unemployment').innerText = gameState.unemploymentRate + '%';
             document.getElementById('kpi-rate').innerText = gameState.bocRate.toFixed(2) + '%';
             
             const bondYieldEl = document.getElementById('kpi-bond-spread');
-            bondYieldEl.innerText = `Spread: ${(gameState.bondRiskSpread * 100).toFixed(0)} bps`;
+            bondYieldEl.innerText = `${(gameState.bondRiskSpread * 100).toFixed(0)} bps`;
             if (gameState.bondRiskSpread > 0) {
-                bondYieldEl.className = 'text-xs font-semibold text-rose-400';
+                bondYieldEl.className = 'text-[10px] sm:text-xs font-semibold text-rose-400';
             } else if (gameState.bondRiskSpread < 0) {
-                bondYieldEl.className = 'text-xs font-semibold text-emerald-400';
+                bondYieldEl.className = 'text-[10px] sm:text-xs font-semibold text-emerald-400';
             } else {
-                bondYieldEl.className = 'text-xs font-semibold text-sky-400';
+                bondYieldEl.className = 'text-[10px] sm:text-xs font-semibold text-sky-400';
             }
 
             const debtEl = document.getElementById('kpi-debt');
             if (gameState.nationalDebt >= 0) {
                 debtEl.innerText = gameState.debtToGdp.toFixed(1) + '% (Debt)';
-                debtEl.className = 'text-xl sm:text-2xl font-bold text-slate-100';
+                debtEl.className = 'text-base sm:text-xl font-bold text-slate-100';
             } else {
                 const assetGdp = Math.abs(gameState.debtToGdp);
-                debtEl.innerText = '+' + assetGdp.toFixed(1) + '% (Surplus Assets)';
-                debtEl.className = 'text-xl sm:text-2xl font-bold text-emerald-400';
+                debtEl.innerText = '+' + assetGdp.toFixed(1) + '% (Surplus)';
+                debtEl.className = 'text-base sm:text-xl font-bold text-emerald-400';
             }
 
             const deficitEl = document.getElementById('kpi-budget-balance');
             if (gameState.budgetDeficit > 0) {
                 deficitEl.innerText = '-$' + gameState.budgetDeficit.toFixed(1) + 'B (Deficit)';
-                deficitEl.className = 'text-xs font-semibold text-rose-400';
+                deficitEl.className = 'text-[11px] sm:text-xs font-semibold text-rose-400';
             } else {
                 deficitEl.innerText = '+$' + Math.abs(gameState.budgetDeficit).toFixed(1) + 'B (Surplus)';
-                deficitEl.className = 'text-xs font-semibold text-emerald-400';
+                deficitEl.className = 'text-[11px] sm:text-xs font-semibold text-emerald-400';
             }
 
             document.getElementById('kpi-fx').innerText = '$' + gameState.cadToUsd;
@@ -1061,11 +1066,11 @@
         function updateAdvisorDiagnosis() {
             const fiscalEl = document.getElementById('advisor-fiscal');
             if (gameState.nationalDebt < 0) {
-                fiscalEl.innerText = `Sovereign triumph! National debt fully eliminated. Positive net asset surplus (${Math.abs(gameState.debtToGdp).toFixed(1)}% of GDP) generating investment returns.`;
+                fiscalEl.innerText = `Sovereign triumph! National debt fully eliminated. Positive net asset surplus (${Math.abs(gameState.debtToGdp).toFixed(1)}% of GDP).`;
             } else if (gameState.budgetDeficit < 0) {
-                fiscalEl.innerText = `Active fiscal surplus of $${Math.abs(gameState.budgetDeficit).toFixed(1)}B/qtr. Debt is actively shrinking toward zero!`;
+                fiscalEl.innerText = `Active fiscal surplus of $${Math.abs(gameState.budgetDeficit).toFixed(1)}B/qtr. Debt is actively shrinking!`;
             } else {
-                fiscalEl.innerText = `Running a deficit of $${gameState.budgetDeficit.toFixed(1)}B/qtr. Use the 10 new finance policies or adjust funding to balance the budget.`;
+                fiscalEl.innerText = `Running a deficit of $${gameState.budgetDeficit.toFixed(1)}B/qtr. Use the finance policy levers to balance the budget.`;
             }
         }
 
@@ -1074,15 +1079,15 @@
             container.innerHTML = '';
 
             const fundingMeta = {
-                health: { name: "1. Universal Healthcare & Hospitals", max: 180 },
-                education: { name: "2. Public Education & Universities", max: 120 },
-                research: { name: "3. Scientific Research & R&D Grants", max: 50 },
-                police: { name: "4. Federal Law Enforcement & Police", max: 60 },
-                transport: { name: "5. Public Transportation & Rail", max: 90 },
-                defense: { name: "6. National Defense & Armed Forces", max: 100 },
-                environment: { name: "7. Environmental Protection & Parks", max: 40 },
-                housing: { name: "8. Social Housing & Affordability", max: 80 },
-                veterans: { name: "9. Veterans Affairs & Support", max: 40 },
+                health: { name: "1. Universal Healthcare", max: 180 },
+                education: { name: "2. Public Education", max: 120 },
+                research: { name: "3. Scientific Research & R&D", max: 50 },
+                police: { name: "4. Federal Law Enforcement", max: 60 },
+                transport: { name: "5. Public Transit & Rail", max: 90 },
+                defense: { name: "6. National Defense", max: 100 },
+                environment: { name: "7. Environmental Protection", max: 40 },
+                housing: { name: "8. Social Housing", max: 80 },
+                veterans: { name: "9. Veterans Affairs", max: 40 },
                 childcare: { name: "10. Childcare & Family Subsidies", max: 60 }
             };
 
@@ -1090,13 +1095,13 @@
                 const meta = fundingMeta[key];
                 const val = gameState.funding[key];
                 const card = document.createElement('div');
-                card.className = 'bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2';
+                card.className = 'bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1.5';
                 card.innerHTML = `
                     <div class="flex justify-between text-xs font-medium">
-                        <label for="fund-${key}" class="text-slate-300 font-semibold">${meta.name}</label>
+                        <label for="fund-${key}" class="text-slate-300 font-semibold text-[11px] sm:text-xs">${meta.name}</label>
                         <span id="val-fund-${key}" class="text-purple-400 font-bold">$${val.toFixed(1)}B</span>
                     </div>
-                    <input type="range" id="fund-${key}" min="5" max="${meta.max}" step="1" value="${val}" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400" oninput="updateFunding('${key}', this.value)">
+                    <input type="range" id="fund-${key}" min="5" max="${meta.max}" step="1" value="${val}" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="updateFunding('${key}', this.value)">
                 `;
                 container.appendChild(card);
             }
@@ -1110,40 +1115,40 @@
             for (const key in gameState.industries) {
                 const ind = gameState.industries[key];
                 const card = document.createElement('div');
-                card.className = 'bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3';
+                card.className = 'bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2.5';
                 card.innerHTML = `
                     <div class="flex justify-between items-center border-b border-slate-800 pb-2">
                         <span class="font-bold text-xs text-slate-100">${ind.name}</span>
-                        <span class="text-[11px] font-semibold text-emerald-400">$${ind.output}B GDP</span>
+                        <span class="text-[10px] font-semibold text-emerald-400">$${ind.output}B</span>
                     </div>
                     <div class="space-y-2 text-xs">
                         <div class="flex justify-between items-center">
-                            <span class="text-slate-400">Regular Price/Ton ($)</span>
-                            <input type="number" value="${ind.pricePerTon}" class="w-20 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-sky-400 font-bold" oninput="updateIndustryParam('${key}', 'pricePerTon', this.value)">
+                            <span class="text-slate-400 text-[11px]">Price/Ton ($)</span>
+                            <input type="number" value="${ind.pricePerTon}" class="w-20 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-sky-400 font-bold text-xs" oninput="updateIndustryParam('${key}', 'pricePerTon', this.value)">
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-slate-400">Custom Duty / Tariff (%)</span>
-                            <input type="number" step="0.5" value="${ind.duty}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold" oninput="updateIndustryParam('${key}', 'duty', this.value)">
+                            <span class="text-slate-400 text-[11px]">Duty (%)</span>
+                            <input type="number" step="0.5" value="${ind.duty}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold text-xs" oninput="updateIndustryParam('${key}', 'duty', this.value)">
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-slate-400">Export Tax (%)</span>
-                            <input type="number" step="0.5" value="${ind.exportTax}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold" oninput="updateIndustryParam('${key}', 'exportTax', this.value)">
+                            <span class="text-slate-400 text-[11px]">Export Tax (%)</span>
+                            <input type="number" step="0.5" value="${ind.exportTax}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold text-xs" oninput="updateIndustryParam('${key}', 'exportTax', this.value)">
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-slate-400">Gov Subsidy ($B/yr)</span>
-                            <input type="number" step="1" value="${ind.subsidy}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-emerald-400 font-bold" oninput="updateIndustryParam('${key}', 'subsidy', this.value)">
+                            <span class="text-slate-400 text-[11px]">Subsidy ($B/yr)</span>
+                            <input type="number" step="1" value="${ind.subsidy}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-emerald-400 font-bold text-xs" oninput="updateIndustryParam('${key}', 'subsidy', this.value)">
                         </div>
-                        <div class="flex justify-between items-center pt-1 border-t border-slate-900">
+                        <div class="flex justify-between items-center pt-1 border-t border-slate-900 text-[11px]">
                             <span class="text-slate-400">Tax Exoneration</span>
-                            <input type="checkbox" ${ind.exoneration ? 'checked' : ''} class="cursor-pointer accent-sky-500" onchange="updateIndustryParam('${key}', 'exoneration', this.checked)">
+                            <input type="checkbox" ${ind.exoneration ? 'checked' : ''} class="cursor-pointer accent-sky-500 scale-110" onchange="updateIndustryParam('${key}', 'exoneration', this.checked)">
                         </div>
-                        <div class="flex justify-between items-center">
+                        <div class="flex justify-between items-center text-[11px]">
                             <span class="text-rose-400 font-medium">Import Embargo</span>
-                            <input type="checkbox" ${ind.importEmbargo ? 'checked' : ''} class="cursor-pointer accent-rose-500" onchange="updateIndustryParam('${key}', 'importEmbargo', this.checked)">
+                            <input type="checkbox" ${ind.importEmbargo ? 'checked' : ''} class="cursor-pointer accent-rose-500 scale-110" onchange="updateIndustryParam('${key}', 'importEmbargo', this.checked)">
                         </div>
-                        <div class="flex justify-between items-center">
+                        <div class="flex justify-between items-center text-[11px]">
                             <span class="text-rose-400 font-medium">Export Embargo</span>
-                            <input type="checkbox" ${ind.exportEmbargo ? 'checked' : ''} class="cursor-pointer accent-rose-500" onchange="updateIndustryParam('${key}', 'exportEmbargo', this.checked)">
+                            <input type="checkbox" ${ind.exportEmbargo ? 'checked' : ''} class="cursor-pointer accent-rose-500 scale-110" onchange="updateIndustryParam('${key}', 'exportEmbargo', this.checked)">
                         </div>
                     </div>
                 `;
@@ -1155,11 +1160,11 @@
             if (type === 'oil_spike') {
                 gameState.oilPrice = 115.0;
                 document.getElementById('val-oil-price').innerText = '$115.00 / bbl';
-                logNews('GLOBAL EVENT', 'OPEC Middle East crisis triggers massive crude oil supply spike (+40% price surge).', 'alert');
+                logNews('GLOBAL EVENT', 'OPEC Middle East crisis triggers crude oil supply surge (+40%).', 'alert');
             } else if (type === 'us_recession') {
                 gameState.usFedRate = 1.50;
                 document.getElementById('val-us-fed-rate').innerText = '1.50%';
-                logNews('GLOBAL EVENT', 'US Economy enters deep contraction. Foreign demand for Canadian exports drops steeply.', 'alert');
+                logNews('GLOBAL EVENT', 'US Economy enters contraction. Demand for Canadian exports drops.', 'alert');
             }
             renderKPIs();
         }
@@ -1175,10 +1180,10 @@
 
             entry.className = 'bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs flex items-start gap-3';
             entry.innerHTML = `
-                <span class="px-2 py-0.5 rounded text-[10px] font-bold border uppercase ${badgeStyle} shrink-0">${category}</span>
+                <span class="px-2 py-0.5 rounded text-[9px] font-bold border uppercase ${badgeStyle} shrink-0">${category}</span>
                 <div class="flex-1">
-                    <p class="text-slate-200 leading-relaxed">${text}</p>
-                    <span class="text-[10px] text-slate-500 mt-1 block">Year ${gameState.year} - Q${gameState.quarter}</span>
+                    <p class="text-slate-200 leading-relaxed text-[11px] sm:text-xs">${text}</p>
+                    <span class="text-[9px] text-slate-500 mt-1 block">Year ${gameState.year} - Q${gameState.quarter}</span>
                 </div>
             `;
             container.prepend(entry);
@@ -1234,16 +1239,16 @@
 
             SCENARIOS.forEach(sc => {
                 const card = document.createElement('div');
-                card.className = 'bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-3 flex flex-col justify-between';
+                card.className = 'bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 flex flex-col justify-between';
                 card.innerHTML = `
                     <div class="space-y-2">
                         <div class="flex items-center justify-between">
-                            <h4 class="font-bold text-slate-100 text-sm">${sc.title}</h4>
-                            <span class="text-[10px] font-semibold text-rose-400 bg-rose-950/60 px-2 py-0.5 rounded border border-rose-800/40">${sc.duration} Quarters</span>
+                            <h4 class="font-bold text-slate-100 text-xs sm:text-sm">${sc.title}</h4>
+                            <span class="text-[9px] font-semibold text-rose-400 bg-rose-950/60 px-2 py-0.5 rounded border border-rose-800/40">${sc.duration} Qtrs</span>
                         </div>
-                        <p class="text-xs text-slate-400 leading-relaxed">${sc.desc}</p>
+                        <p class="text-[11px] sm:text-xs text-slate-400 leading-relaxed">${sc.desc}</p>
                     </div>
-                    <button onclick="startScenario('${sc.id}')" class="w-full mt-3 py-2 bg-slate-800 hover:bg-sky-600 text-slate-200 hover:text-white font-semibold text-xs rounded transition cursor-pointer">
+                    <button onclick="startScenario('${sc.id}')" class="w-full mt-2 py-2 bg-slate-800 hover:bg-sky-600 text-slate-200 hover:text-white font-semibold text-xs rounded transition cursor-pointer">
                         Launch Scenario
                     </button>
                 `;
@@ -1262,7 +1267,7 @@
             document.getElementById('scenario-banner').classList.remove('hidden');
             document.getElementById('scenario-title').innerText = sc.title;
             document.getElementById('scenario-desc').innerText = sc.desc;
-            document.getElementById('scenario-timer').innerText = `Time Left: ${sc.duration} Quarters`;
+            document.getElementById('scenario-timer').innerText = `Time Left: ${sc.duration} Qtrs`;
 
             renderKPIs();
             switchTab('dashboard');
@@ -1272,7 +1277,7 @@
         function checkScenarioProgress() {
             if (!gameState.activeScenario) return;
             gameState.scenarioTimeLeft--;
-            document.getElementById('scenario-timer').innerText = `Time Left: ${gameState.scenarioTimeLeft} Quarters`;
+            document.getElementById('scenario-timer').innerText = `Time Left: ${gameState.scenarioTimeLeft} Qtrs`;
 
             if (gameState.activeScenario.checkWin()) {
                 logNews('VICTORY!', `Congratulations! You successfully resolved ${gameState.activeScenario.title}!`, 'success');
@@ -1293,9 +1298,9 @@
         const LESSONS = [
             {
                 id: 'surplus_dynamics',
-                title: '1. Positive Net Assets & Sovereign Surpluses',
+                title: '1. Positive Net Assets & Surpluses',
                 content: `
-                    <h3 class="text-base font-bold text-emerald-400 mb-2">Turning Debt Positive</h3>
+                    <h3 class="text-sm font-bold text-emerald-400 mb-2">Turning Debt Positive</h3>
                     <p class="text-xs text-slate-300 leading-relaxed mb-3">When tax revenues (boosted by capital gains, wealth taxes, and custom duties) exceed public spending across health, education, and UBI, fiscal surpluses pay down national debt into positive net assets.</p>
                 `
             },
@@ -1303,7 +1308,7 @@
                 id: 'industrial_embargoes',
                 title: '2. Industrial Duties & Embargoes',
                 content: `
-                    <h3 class="text-base font-bold text-amber-400 mb-2">Managing 15 Key Sectors</h3>
+                    <h3 class="text-sm font-bold text-amber-400 mb-2">Managing 15 Key Sectors</h3>
                     <p class="text-xs text-slate-300 leading-relaxed mb-3">Imposing import and export embargos on key industries protects domestic strategic reserves but creates GDP contraction penalties and supply chain friction.</p>
                 `
             }
@@ -1316,13 +1321,13 @@
 
             LESSONS.forEach((item, index) => {
                 const btn = document.createElement('button');
-                btn.className = `w-full text-left p-3 rounded-lg border border-slate-800 text-xs font-semibold transition cursor-pointer ${index === 0 ? 'bg-sky-950 text-sky-400 border-sky-800' : 'bg-slate-950 text-slate-300 hover:bg-slate-900'}`;
+                btn.className = `w-full text-left p-2.5 rounded-lg border border-slate-800 text-xs font-semibold transition cursor-pointer ${index === 0 ? 'bg-sky-950 text-sky-400 border-sky-800' : 'bg-slate-950 text-slate-300 hover:bg-slate-900'}`;
                 btn.innerText = item.title;
                 btn.onclick = (e) => {
                     document.querySelectorAll('#academy-topics-list button').forEach(b => {
-                        b.className = 'w-full text-left p-3 rounded-lg border border-slate-800 text-xs font-semibold bg-slate-950 text-slate-300 hover:bg-slate-900 transition cursor-pointer';
+                        b.className = 'w-full text-left p-2.5 rounded-lg border border-slate-800 text-xs font-semibold bg-slate-950 text-slate-300 hover:bg-slate-900 transition cursor-pointer';
                     });
-                    e.currentTarget.className = 'w-full text-left p-3 rounded-lg border border-slate-800 text-xs font-semibold bg-sky-950 text-sky-400 border-sky-800 transition cursor-pointer';
+                    e.currentTarget.className = 'w-full text-left p-2.5 rounded-lg border border-slate-800 text-xs font-semibold bg-sky-950 text-sky-400 border-sky-800 transition cursor-pointer';
                     document.getElementById('academy-content-display').innerHTML = item.content;
                 };
                 listContainer.appendChild(btn);
@@ -1331,14 +1336,29 @@
             if (contentDisplay) contentDisplay.innerHTML = LESSONS[0].content;
         }
 
+        // Loading Screen & PWA Service Worker Initialization
         window.onload = function() {
+            const loadingBar = document.getElementById('loading-bar');
+            loadingBar.style.width = '100%';
+
+            setTimeout(() => {
+                const loader = document.getElementById('loading-screen');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 500);
+            }, 600);
+
             initCharts();
             renderKPIs();
             renderFundingSliders();
             renderIndustries();
             renderScenarios();
             renderAcademy();
-            logNews('SYSTEM READY', 'EconoMaster Engine v4.1 Initialized with 15 fully functional industries, 10 new finance policies, and 10 public service funding categories.', 'info');
+            logNews('SYSTEM READY', 'EconoMaster Engine v4.1 Initialized for Mobile PWA.', 'info');
+
+            // Register Service Worker for offline capabilities
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js').catch(() => {});
+            }
         };
     </script>
 </body>
