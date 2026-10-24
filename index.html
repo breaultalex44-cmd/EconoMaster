@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>EconoMaster: Canada & Global Economic Engine v4.2</title>
+    <title>EconoMaster: Canada & Global Economic Engine v5.0</title>
     
     <!-- PWA Meta Tags & Manifest Link -->
     <link rel="manifest" href="manifest.json">
@@ -60,8 +60,8 @@
                 <span>🍁</span>
             </div>
         </div>
-        <h2 class="text-lg font-bold text-slate-100 tracking-tight">EconoMaster Engine v4.2</h2>
-        <p class="text-xs text-slate-400 mt-1">Initializing Centre-Right Sovereign & Trade Matrix...</p>
+        <h2 class="text-lg font-bold text-slate-100 tracking-tight">EconoMaster Engine v5.0</h2>
+        <p class="text-xs text-slate-400 mt-1">Initializing Sovereign Defense, Trade & Global Intelligence Matrix...</p>
         <div class="w-48 h-1.5 bg-slate-800 rounded-full mt-6 overflow-hidden">
             <div id="loading-bar" class="h-full bg-gradient-to-r from-sky-500 to-emerald-400 w-0 transition-all duration-300"></div>
         </div>
@@ -78,9 +78,9 @@
                     <div>
                         <div class="flex items-center gap-1.5">
                             <h1 class="font-bold text-sm sm:text-lg text-slate-100 tracking-tight">EconoMaster</h1>
-                            <span class="text-[9px] sm:text-xs font-semibold px-1.5 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">v4.2</span>
+                            <span class="text-[9px] sm:text-xs font-semibold px-1.5 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">v5.0</span>
                         </div>
-                        <p class="text-[10px] text-slate-400 hidden md:block">Centre-Right Sovereign Fiscal, Trade & Defense Engine</p>
+                        <p class="text-[10px] text-slate-400 hidden md:block">Centre-Right Sovereign Fiscal, Trade & Defence Engine</p>
                     </div>
                 </div>
 
@@ -119,10 +119,7 @@
                     <i class="fa-solid fa-globe text-teal-400"></i> UN & Associations
                 </button>
                 <button onclick="switchTab('defense')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-shield-halved text-rose-400"></i> Defence Dept <span class="text-[9px] bg-rose-950 text-rose-300 px-1 py-0.2 rounded border border-rose-800">Soon</span>
-                </button>
-                <button onclick="switchTab('scenarios')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-bullseye text-rose-400"></i> Crises
+                    <i class="fa-solid fa-shield-halved text-rose-400"></i> Defence Dept <span class="text-[9px] bg-emerald-950 text-emerald-300 px-1 py-0.2 rounded border border-emerald-800">Live</span>
                 </button>
                 <button onclick="switchTab('news')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
                     <i class="fa-solid fa-newspaper text-indigo-400"></i> Press Ledger
@@ -133,21 +130,6 @@
 
     <!-- Main Content Body -->
     <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8 space-y-4 sm:space-y-6">
-
-        <!-- Active Scenario Banner -->
-        <div id="scenario-banner" class="hidden bg-slate-900 border border-sky-500/40 rounded-xl p-3 sm:p-4 shadow-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-            <div>
-                <div class="flex items-center gap-2">
-                    <span class="px-2 py-0.5 text-[10px] font-bold bg-rose-500/20 text-rose-300 rounded border border-rose-500/30 uppercase">Active Scenario Challenge</span>
-                    <h3 id="scenario-title" class="font-bold text-slate-100 text-xs sm:text-sm">Crisis Mode</h3>
-                </div>
-                <p id="scenario-desc" class="text-[11px] sm:text-xs text-slate-300 mt-1">Navigate sovereign fiscal targets.</p>
-            </div>
-            <div class="flex items-center justify-between w-full sm:w-auto gap-3">
-                <span id="scenario-timer" class="text-[11px] font-semibold text-sky-400 bg-slate-800 px-2.5 py-1 rounded-lg border border-slate-700">Time Left: 8 Qtrs</span>
-                <button onclick="abandonScenario()" class="text-xs text-slate-400 hover:text-rose-400 underline cursor-pointer">Abort</button>
-            </div>
-        </div>
 
         <!-- TAB 1: EXECUTIVE DASHBOARD -->
         <section id="tab-dashboard" class="tab-content space-y-4 sm:space-y-6">
@@ -241,7 +223,7 @@
                 </div>
             </div>
 
-            <!-- Charts Grid with robust error handling -->
+            <!-- Charts Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
                     <h3 class="font-semibold text-slate-200 text-xs sm:text-sm mb-3 flex items-center gap-2">
@@ -326,7 +308,6 @@
                         <input type="range" id="slider-carbon" min="0" max="170" value="30" step="5" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
                     </div>
 
-                    <!-- Additional Levers -->
                     <div class="pt-3 border-t border-slate-800 space-y-3">
                         <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider">Regulatory & Structural Levers</h4>
 
@@ -391,7 +372,7 @@
             </div>
         </section>
 
-        <!-- TAB 3: PUBLIC SERVICES & FUNDING (Less Liberal / Rationalized) -->
+        <!-- TAB 3: PUBLIC SERVICES & FUNDING -->
         <section id="tab-funding" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
@@ -429,10 +410,10 @@
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                     <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                         <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-handshake text-sky-400"></i> Bilateral Free Trade Agreements (FTAs)
+                            <i class="fa-solid fa-handshake text-sky-400"></i> Expanded Bilateral Free Trade Agreements (FTAs)
                         </h3>
                     </div>
-                    <p class="text-xs text-slate-400">Execute bilateral trade contracts to lower tariffs, boost exports, and secure vital resource supply chains.</p>
+                    <p class="text-xs text-slate-400">Execute and ratify advanced bilateral and multilateral trade pacts to secure global supply chains and lower export friction.</p>
                     <div class="space-y-3" id="fta-container">
                         <!-- FTA items populated dynamically -->
                     </div>
@@ -441,11 +422,11 @@
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                     <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                         <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-robot text-purple-400"></i> AI-Powered Live Negotiating Power
+                            <i class="fa-solid fa-robot text-purple-400"></i> Dynamic AI-Powered Live Negotiating Power
                         </h3>
                         <span id="ai-negotiation-status" class="text-[10px] font-semibold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Ready</span>
                     </div>
-                    <p class="text-xs text-slate-400">Deploy sovereign AI negotiators to secure favorable terms, tariff reductions, and trade concessions with global partners in real-time.</p>
+                    <p class="text-xs text-slate-400">Deploy adaptive neural negotiators featuring unpredictable diplomatic counter-measures to lock in trade concessions.</p>
                     
                     <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-3">
                         <div class="flex items-center justify-between text-xs">
@@ -455,7 +436,9 @@
                                 <option value="uk">United Kingdom (UK-Canada FTA)</option>
                                 <option value="eu">European Union (CETA Optimization)</option>
                                 <option value="japan">Japan (CPTPP Partner)</option>
-                                <option value="pacific">Pacific Alliance</option>
+                                <option value="india">India (Comprehensive Economic Partnership)</option>
+                                <option value="germany">Germany (Industrial Technology Pact)</option>
+                                <option value="australia">Australia (AUKUS & Mineral Alliance)</option>
                             </select>
                         </div>
                         <div class="flex items-center justify-between text-xs">
@@ -464,6 +447,7 @@
                                 <option value="aggressive">Aggressive Tariff Elimination</option>
                                 <option value="balanced">Balanced Bilateral Compromise</option>
                                 <option value="resource_swap">Critical Minerals for Tech Access</option>
+                                <option value="unpredictable">Dynamic High-Stakes Gamble</option>
                             </select>
                         </div>
                         <button onclick="runAiNegotiation()" class="w-full py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold rounded text-xs transition shadow cursor-pointer flex items-center justify-center gap-1.5">
@@ -472,13 +456,13 @@
                     </div>
 
                     <div id="ai-nego-result" class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 min-h-[70px] flex items-center justify-center text-center text-slate-400">
-                        AI negotiation engine standing by for sovereign instructions...
+                        AI neural negotiation matrices standing by for sovereign instructions...
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 5: UN & ASSOCIATIONS (Less Liberal Funding & Centre-Right Alignment) -->
+        <!-- TAB 5: UN & INTERNATIONAL ASSOCIATIONS -->
         <section id="tab-diplomacy" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
@@ -487,7 +471,7 @@
                     </h3>
                     <span class="text-xs text-slate-400">Sovereign Membership & Funding</span>
                 </div>
-                <p class="text-xs text-slate-300">Under centre-right governance, international financial commitments are rationalized to prioritize national interest, reciprocal trade, and strict auditing over unconditional foreign aid.</p>
+                <p class="text-xs text-slate-300">Manage Canada's financial contributions and voting alignment across expanded global bodies, multilateral forums, and security pacts.</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="associations-container">
                     <!-- Populated dynamically -->
@@ -495,82 +479,127 @@
             </div>
         </section>
 
-        <!-- TAB 6: DEFENCE DEPARTMENT (Coming Soon Banner) -->
+        <!-- TAB 6: DEFENCE DEPARTMENT (FULLY RELEASED & EXPANSIVE) -->
         <section id="tab-defense" class="tab-content hidden space-y-4 sm:space-y-6">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 sm:p-8 relative overflow-hidden text-center space-y-6">
-                <!-- Coming Soon Banner Overlay Badge -->
-                <div class="absolute top-4 right-4 bg-gradient-to-r from-rose-600 to-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider animate-pulse">
-                    Coming Soon in v5.0
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
+                <div class="border-b border-slate-800 pb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                    <div>
+                        <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-shield-halved text-rose-400"></i> Department of National Defence (DND) Command Matrix
+                        </h3>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Fully integrated with federal budgets, industrial aerospace output, and alliance readiness.</p>
+                    </div>
+                    <div class="text-left sm:text-right">
+                        <span class="text-xs text-slate-400">Total Defence Outlay:</span>
+                        <span id="total-defense-display" class="text-xs sm:text-sm font-bold text-rose-400 ml-1">$14.2B / qtr</span>
+                    </div>
                 </div>
 
-                <div class="w-16 h-16 mx-auto rounded-2xl bg-rose-950 border border-rose-800 flex items-center justify-center text-rose-400 text-2xl shadow-lg">
-                    <i class="fa-solid fa-shield-halved"></i>
+                <!-- DND Summary Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-1">
+                        <span class="text-[10px] uppercase text-slate-400 font-bold">Active Force Readiness</span>
+                        <div class="flex items-baseline justify-between">
+                            <span id="dnd-readiness-val" class="text-lg font-bold text-emerald-400">88.4%</span>
+                            <span class="text-xs text-slate-400">NATO Standard: 2.0% GDP</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-1">
+                        <span class="text-[10px] uppercase text-slate-400 font-bold">Active Personnel Level</span>
+                        <div class="flex items-baseline justify-between">
+                            <span id="dnd-personnel-val" class="text-lg font-bold text-sky-400">71,500</span>
+                            <span class="text-xs text-slate-400">Troops & Reserves</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-1">
+                        <span class="text-[10px] uppercase text-slate-400 font-bold">Arctic & Naval Fleet Power</span>
+                        <div class="flex items-baseline justify-between">
+                            <span id="dnd-fleet-val" class="text-lg font-bold text-amber-400">Tier-2 Sovereign</span>
+                            <span class="text-xs text-slate-400">Icebreakers & Frigates</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="max-w-xl mx-auto space-y-2">
-                    <h2 class="text-xl sm:text-2xl font-bold text-slate-100">Department of National Defence (DND)</h2>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                        Constructing a fully integrated military command matrix. Manage active troop deployments, naval fleets, Arctic sovereignty patrols, aerospace fighter procurement (F-35s), and strategic defense alliances.
+                <!-- DND Interactive Sliders & Controls -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2">
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-4">
+                        <h4 class="text-xs font-bold text-rose-400 uppercase tracking-wider">Personnel & Recruitment Quotas</h4>
+                        
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label class="text-slate-300">Active Duty Personnel Quota</label>
+                                <span id="val-dnd-troops" class="text-sky-400 font-bold">71.5K</span>
+                            </div>
+                            <input type="range" id="slider-dnd-troops" min="50" max="120" step="2.5" value="71.5" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updateDefensePolicy()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label class="text-slate-300">Reserve & Militia Funding Support</label>
+                                <span id="val-dnd-reserves" class="text-sky-400 font-bold">$3.2B/qtr</span>
+                            </div>
+                            <input type="range" id="slider-dnd-reserves" min="1.0" max="8.0" step="0.5" value="3.2" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updateDefensePolicy()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label class="text-slate-300">Military Cyber Warfare & Intelligence</label>
+                                <span id="val-dnd-cyber" class="text-sky-400 font-bold">$2.5B/qtr</span>
+                            </div>
+                            <input type="range" id="slider-dnd-cyber" min="0.5" max="6.0" step="0.5" value="2.5" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updateDefensePolicy()">
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-4">
+                        <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Procurement & Strategic Assets</h4>
+                        
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label class="text-slate-300">Aerospace (F-35 Lightning II & Drones)</label>
+                                <span id="val-dnd-air" class="text-amber-400 font-bold">$4.8B/qtr</span>
+                            </div>
+                            <input type="range" id="slider-dnd-air" min="1.0" max="15.0" step="0.5" value="4.8" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updateDefensePolicy()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label class="text-slate-300">Naval Surface Combatants & Arctic Patrols</label>
+                                <span id="val-dnd-naval" class="text-amber-400 font-bold">$3.6B/qtr</span>
+                            </div>
+                            <input type="range" id="slider-dnd-naval" min="1.0" max="12.0" step="0.5" value="3.6" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updateDefensePolicy()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label class="text-slate-300">NORAD & Arctic Radar Infrastructure</label>
+                                <span id="val-dnd-norad" class="text-amber-400 font-bold">$2.1B/qtr</span>
+                            </div>
+                            <input type="range" id="slider-dnd-norad" min="0.5" max="8.0" step="0.5" value="2.1" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updateDefensePolicy()">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 text-xs flex flex-col sm:flex-row justify-between items-center gap-3">
+                    <p class="text-slate-300">
+                        <i class="fa-solid fa-circle-info text-sky-400 mr-1"></i> Defence spending directly boosts the <strong>Aerospace & Defense</strong> and <strong>Shipping & Logistics</strong> domestic industries.
                     </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-left max-w-3xl mx-auto pt-2">
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1.5 opacity-75">
-                        <div class="flex items-center justify-between text-xs font-bold text-slate-200">
-                            <span>Active Personnel</span>
-                            <span class="text-rose-400">71,500</span>
-                        </div>
-                        <p class="text-[11px] text-slate-400">Manage recruitment quotas, reserve readiness, and payroll budgets.</p>
-                    </div>
-
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1.5 opacity-75">
-                        <div class="flex items-center justify-between text-xs font-bold text-slate-200">
-                            <span>Equipment & Procurement</span>
-                            <span class="text-amber-400">$14.2B</span>
-                        </div>
-                        <p class="text-[11px] text-slate-400">Procure destroyers, armored vehicles, radar networks, and aircraft.</p>
-                    </div>
-
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1.5 opacity-75">
-                        <div class="flex items-center justify-between text-xs font-bold text-slate-200">
-                            <span>NATO / NORAD Readiness</span>
-                            <span class="text-emerald-400">2.0% GDP</span>
-                        </div>
-                        <p class="text-[11px] text-slate-400">Meet alliance obligations and secure North American continental defense.</p>
-                    </div>
-                </div>
-
-                <div class="pt-2">
-                    <button onclick="alert('Defence Department command matrix is currently under active development for v5.0 release.')" class="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-lg transition border border-slate-700 cursor-pointer">
-                        <i class="fa-solid fa-bell mr-1.5"></i> Notify Me When Available
+                    <button onclick="executeDefenseAudit()" class="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded text-xs transition cursor-pointer shrink-0">
+                        Run Joint Staff Readiness Audit
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 7: CRISIS SCENARIOS -->
-        <section id="tab-scenarios" class="tab-content hidden space-y-4 sm:space-y-6">
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
-                <div class="border-b border-slate-800 pb-3 mb-4">
-                    <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-bullseye text-rose-400"></i> Macroeconomic Guided Scenario Challenges
-                    </h3>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="scenarios-grid">
-                </div>
-            </div>
-        </section>
-
-        <!-- TAB 8: PRESS LEDGER -->
+        <!-- TAB 7: PRESS LEDGER (EXPANDED GLOBAL NEWS) -->
         <section id="tab-news" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                     <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-newspaper text-teal-400"></i> Financial Times & Event Ledger
+                        <i class="fa-solid fa-newspaper text-indigo-400"></i> Expanded Global Financial Times & Event Ledger
                     </h3>
                     <button onclick="clearNewsLog()" class="text-xs text-slate-400 hover:text-white bg-slate-800 px-2.5 py-1 rounded border border-slate-700 cursor-pointer">Clear Logs</button>
                 </div>
-                <div class="space-y-2.5 max-h-[450px] overflow-y-auto pr-1" id="news-feed-container">
+                <div class="space-y-2.5 max-h-[480px] overflow-y-auto pr-1" id="news-feed-container">
                 </div>
             </div>
         </section>
@@ -578,10 +607,10 @@
 
     <!-- Footer -->
     <footer class="bg-slate-900 border-t border-slate-800 py-3 px-4 sm:px-8 mt-auto text-[11px] text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
-        <div>EconoMaster Engine v4.2 &copy; 2026. Centre-Right Sovereign Economic Simulator.</div>
+        <div>EconoMaster Engine v5.0 &copy; 2026. Centre-Right Sovereign Economic & Defence Simulator.</div>
         <div class="flex gap-4">
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('policy')">Policy</span>
-            <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('diplomacy')">UN & Orgs</span>
+            <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('defense')">Defence</span>
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('dashboard')">Dashboard</span>
         </div>
     </footer>
@@ -620,11 +649,19 @@
                 research: 16.0,
                 police: 28.0,
                 transport: 30.0,
-                defense: 38.0,
                 environment: 10.0,
                 housing: 20.0,
                 veterans: 14.0,
                 childcare: 15.0
+            },
+
+            defense: {
+                troops: 71.5,
+                reserves: 3.2,
+                cyber: 2.5,
+                air: 4.8,
+                naval: 3.6,
+                norad: 2.1
             },
             
             reserveRatio: 3.0,
@@ -632,21 +669,21 @@
             bondRiskSpread: 0.0, 
             
             industries: {
-                oil_gas: { name: "1. Oil, Gas & Mining", output: 360, duty: 1.5, exportTax: 1.0, subsidy: 10.0, exoneration: false, pricePerTon: 880, importEmbargo: false, exportEmbargo: false },
-                auto_mfg: { name: "2. Automotive & Heavy Mfg", output: 300, duty: 2.5, exportTax: 0.0, subsidy: 12.0, exoneration: false, pricePerTon: 1420, importEmbargo: false, exportEmbargo: false },
-                tech_ai: { name: "3. Tech, AI & Software", output: 280, duty: 0.5, exportTax: 0.0, subsidy: 16.0, exoneration: true, pricePerTon: 3300, importEmbargo: false, exportEmbargo: false },
-                real_estate: { name: "4. Real Estate & Construction", output: 410, duty: 0.0, exportTax: 0.0, subsidy: 3.0, exoneration: false, pricePerTon: 2150, importEmbargo: false, exportEmbargo: false },
-                agri_food: { name: "5. Agriculture & Food Processing", output: 150, duty: 3.0, exportTax: 0.5, subsidy: 8.0, exoneration: false, pricePerTon: 460, importEmbargo: false, exportEmbargo: false },
-                finance_bank: { name: "6. Banking & Financial Services", output: 380, duty: 0.0, exportTax: 0.0, subsidy: 2.0, exoneration: false, pricePerTon: 5100, importEmbargo: false, exportEmbargo: false },
-                aerospace: { name: "7. Aerospace & Defense", output: 125, duty: 1.0, exportTax: 1.0, subsidy: 18.0, exoneration: true, pricePerTon: 7800, importEmbargo: false, exportEmbargo: false },
-                forestry: { name: "8. Forestry & Wood Products", output: 100, duty: 2.0, exportTax: 1.5, subsidy: 5.0, exoneration: false, pricePerTon: 390, importEmbargo: false, exportEmbargo: false },
-                pharma_bio: { name: "9. Pharmaceuticals & Biotech", output: 135, duty: 1.0, exportTax: 0.0, subsidy: 14.0, exoneration: false, pricePerTon: 6300, importEmbargo: false, exportEmbargo: false },
-                clean_energy: { name: "10. Clean Energy & Renewables", output: 110, duty: 1.0, exportTax: 0.0, subsidy: 15.0, exoneration: false, pricePerTon: 970, importEmbargo: false, exportEmbargo: false },
-                telecom: { name: "11. Telecommunications & Media", output: 185, duty: 0.0, exportTax: 0.0, subsidy: 2.0, exoneration: false, pricePerTon: 2450, importEmbargo: false, exportEmbargo: false },
-                tourism: { name: "12. Tourism & Hospitality", output: 125, duty: 0.0, exportTax: 0.0, subsidy: 5.0, exoneration: false, pricePerTon: 1120, importEmbargo: false, exportEmbargo: false },
-                fisheries: { name: "13. Fisheries & Aquaculture", output: 70, duty: 2.5, exportTax: 1.0, subsidy: 3.0, exoneration: false, pricePerTon: 740, importEmbargo: false, exportEmbargo: false },
-                shipping_log: { name: "14. Shipping, Rail & Logistics", output: 160, duty: 0.5, exportTax: 0.0, subsidy: 9.0, exoneration: false, pricePerTon: 1280, importEmbargo: false, exportEmbargo: false },
-                chemicals: { name: "15. Chemicals & Plastics", output: 180, duty: 1.5, exportTax: 0.5, subsidy: 6.0, exoneration: false, pricePerTon: 1620, importEmbargo: false, exportEmbargo: false }
+                oil_gas: { name: "1. Oil, Gas & Mining", output: 360, duty: 1.5, exportTax: 1.0, subsidy: 10.0, exoneration: false, pricePerTon: 880 },
+                auto_mfg: { name: "2. Automotive & Heavy Mfg", output: 300, duty: 2.5, exportTax: 0.0, subsidy: 12.0, exoneration: false, pricePerTon: 1420 },
+                tech_ai: { name: "3. Tech, AI & Software", output: 280, duty: 0.5, exportTax: 0.0, subsidy: 16.0, exoneration: true, pricePerTon: 3300 },
+                real_estate: { name: "4. Real Estate & Construction", output: 410, duty: 0.0, exportTax: 0.0, subsidy: 3.0, exoneration: false, pricePerTon: 2150 },
+                agri_food: { name: "5. Agriculture & Food Processing", output: 150, duty: 3.0, exportTax: 0.5, subsidy: 8.0, exoneration: false, pricePerTon: 460 },
+                finance_bank: { name: "6. Banking & Financial Services", output: 380, duty: 0.0, exportTax: 0.0, subsidy: 2.0, exoneration: false, pricePerTon: 5100 },
+                aerospace: { name: "7. Aerospace & Defense", output: 125, duty: 1.0, exportTax: 1.0, subsidy: 18.0, exoneration: true, pricePerTon: 7800 },
+                forestry: { name: "8. Forestry & Wood Products", output: 100, duty: 2.0, exportTax: 1.5, subsidy: 5.0, exoneration: false, pricePerTon: 390 },
+                pharma_bio: { name: "9. Pharmaceuticals & Biotech", output: 135, duty: 1.0, exportTax: 0.0, subsidy: 14.0, exoneration: false, pricePerTon: 6300 },
+                clean_energy: { name: "10. Clean Energy & Renewables", output: 110, duty: 1.0, exportTax: 0.0, subsidy: 15.0, exoneration: false, pricePerTon: 970 },
+                telecom: { name: "11. Telecommunications & Media", output: 185, duty: 0.0, exportTax: 0.0, subsidy: 2.0, exoneration: false, pricePerTon: 2450 },
+                tourism: { name: "12. Tourism & Hospitality", output: 125, duty: 0.0, exportTax: 0.0, subsidy: 5.0, exoneration: false, pricePerTon: 1120 },
+                fisheries: { name: "13. Fisheries & Aquaculture", output: 70, duty: 2.5, exportTax: 1.0, subsidy: 3.0, exoneration: false, pricePerTon: 740 },
+                shipping_log: { name: "14. Shipping, Rail & Logistics", output: 160, duty: 0.5, exportTax: 0.0, subsidy: 9.0, exoneration: false, pricePerTon: 1280 },
+                chemicals: { name: "15. Chemicals & Plastics", output: 180, duty: 1.5, exportTax: 0.5, subsidy: 6.0, exoneration: false, pricePerTon: 1620 }
             },
 
             ftas: {
@@ -654,19 +691,21 @@
                 ceta: { name: "CETA (European Union)", active: true, bonus: "98% industrial tariff elimination" },
                 uk_fta: { name: "UK-Canada Continuity FTA", active: true, bonus: "Preserved bilateral financial trade" },
                 cptpp: { name: "CPTPP (Indo-Pacific)", active: true, bonus: "Access to Japan, Australia & Vietnam" },
-                latin_trade: { name: "Pacific Alliance FTA", active: false, bonus: "Latin American mining & tech corridors" }
+                latin_trade: { name: "Pacific Alliance FTA", active: false, bonus: "Latin American mining & tech corridors" },
+                india_cepa: { name: "India-Canada CEPA", active: false, bonus: "Expanded tech services & agricultural exports" },
+                germany_pact: { name: "German-Canadian Industrial Accord", active: true, bonus: "Hydrogen and critical minerals export corridor" },
+                aukus_minerals: { name: "AUKUS Defense & Mineral Pact", active: true, bonus: "Enhanced naval tech & defense manufacturing sharing" }
             },
 
             associations: {
                 un_core: { name: "United Nations Core Budget", funded: true, cost: 4.5, desc: "Mandatory UN membership dues." },
-                un_climate: { name: "UN Climate Adaptation Fund", funded: false, cost: 8.0, desc: "Multilateral climate grants (rationalized under centre-right policy)." },
+                un_climate: { name: "UN Climate Adaptation Fund", funded: false, cost: 8.0, desc: "Multilateral climate grants." },
                 who: { name: "World Health Organization", funded: true, cost: 3.2, desc: "Global health surveillance and standards." },
-                nato: { name: "NATO Defense Alliance", funded: true, cost: 12.5, desc: "Collective defense and interoperability." },
-                WEF: { name: "World Economic Forum Partnership", funded: false, cost: 2.0, desc: "Global economic policy forums." }
+                nato: { name: "NATO Collective Defense Alliance", funded: true, cost: 14.5, desc: "Transatlantic security and intelligence sharing." },
+                WEF: { name: "World Economic Forum Partnership", funded: false, cost: 2.0, desc: "Global economic policy forums." },
+                commonwealth: { name: "Commonwealth of Nations", funded: true, cost: 2.5, desc: "Diplomatic and legislative cooperation across member states." },
+                wto: { name: "World Trade Organization (WTO)", funded: true, cost: 3.0, desc: "Global trade dispute resolution and tariff arbitration." }
             },
-
-            activeScenario: null,
-            scenarioTimeLeft: 0,
 
             history: {
                 labels: ["Y1 Q1"],
@@ -681,7 +720,6 @@
         let macroChartObj = null;
         let financeChartObj = null;
 
-        // Fail-safe Chart Initialization
         function initCharts() {
             try {
                 const ctxMacro = document.getElementById('macroChart').getContext('2d');
@@ -815,7 +853,36 @@
             if (displayEl) {
                 displayEl.innerText = '$' + parseFloat(val).toFixed(1) + 'B';
             }
+            updateTotalOutlays();
+        }
+
+        function updateDefensePolicy() {
+            gameState.defense.troops = parseFloat(document.getElementById('slider-dnd-troops').value) || 71.5;
+            gameState.defense.reserves = parseFloat(document.getElementById('slider-dnd-reserves').value) || 3.2;
+            gameState.defense.cyber = parseFloat(document.getElementById('slider-dnd-cyber').value) || 2.5;
+            gameState.defense.air = parseFloat(document.getElementById('slider-dnd-air').value) || 4.8;
+            gameState.defense.naval = parseFloat(document.getElementById('slider-dnd-naval').value) || 3.6;
+            gameState.defense.norad = parseFloat(document.getElementById('slider-dnd-norad').value) || 2.1;
+
+            document.getElementById('val-dnd-troops').innerText = gameState.defense.troops.toFixed(1) + 'K';
+            document.getElementById('val-dnd-reserves').innerText = '$' + gameState.defense.reserves.toFixed(1) + 'B/qtr';
+            document.getElementById('val-dnd-cyber').innerText = '$' + gameState.defense.cyber.toFixed(1) + 'B/qtr';
+            document.getElementById('val-dnd-air').innerText = '$' + gameState.defense.air.toFixed(1) + 'B/qtr';
+            document.getElementById('val-dnd-naval').innerText = '$' + gameState.defense.naval.toFixed(1) + 'B/qtr';
+            document.getElementById('val-dnd-norad').innerText = '$' + gameState.defense.norad.toFixed(1) + 'B/qtr';
+
+            document.getElementById('dnd-personnel-val').innerText = (gameState.defense.troops * 1000).toLocaleString();
             
+            const totalDef = getTotalDefenseCost();
+            document.getElementById('total-defense-display').innerText = '$' + totalDef.toFixed(1) + 'B / qtr';
+            updateTotalOutlays();
+        }
+
+        function getTotalDefenseCost() {
+            return gameState.defense.reserves + gameState.defense.cyber + gameState.defense.air + gameState.defense.naval + gameState.defense.norad + (gameState.defense.troops * 0.08);
+        }
+
+        function updateTotalOutlays() {
             let total = 0;
             for (const key in gameState.funding) {
                 total += gameState.funding[key];
@@ -825,6 +892,8 @@
                     total += gameState.associations[key].cost;
                 }
             }
+            total += getTotalDefenseCost();
+            
             const totalDisplay = document.getElementById('total-funding-display');
             if (totalDisplay) {
                 totalDisplay.innerText = '$' + total.toFixed(1) + 'B / qtr';
@@ -835,7 +904,7 @@
             if (gameState.associations[key]) {
                 gameState.associations[key].funded = !gameState.associations[key].funded;
                 renderAssociations();
-                updateFunding('defense', gameState.funding.defense);
+                updateTotalOutlays();
             }
         }
 
@@ -848,36 +917,64 @@
         }
 
         function updateIndustryParam(key, param, val) {
-            if (param === 'exoneration' || param === 'importEmbargo' || param === 'exportEmbargo') {
-                gameState.industries[key][param] = val;
-            } else {
-                gameState.industries[key][param] = parseFloat(val) || 0;
-            }
+            gameState.industries[key][param] = parseFloat(val) || 0;
         }
 
+        // Expanded Dynamic AI Negotiating Power with hidden logic & unpredictable swings
         function runAiNegotiation() {
             const partner = document.getElementById('ai-nego-partner').value;
             const strategy = document.getElementById('ai-nego-strategy').value;
             const resultBox = document.getElementById('ai-nego-result');
             
-            resultBox.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-purple-400 mr-2"></i> AI agent analyzing trade tariffs and contracting terms with ${partner.toUpperCase()}...`;
+            resultBox.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-purple-400 mr-2"></i> AI neural network calculating trade counter-tactics with ${partner.toUpperCase()}...`;
             
             setTimeout(() => {
                 let outcomeText = "";
+                const randomVariance = Math.random();
+
                 if (strategy === 'aggressive') {
-                    gameState.tradeBalance += 1.8;
-                    outcomeText = `✅ AI Agent successfully negotiated aggressive tariff reductions with ${partner.toUpperCase()}. Trade surplus increased by +$1.8B.`;
+                    if (randomVariance > 0.4) {
+                        gameState.tradeBalance += 2.4;
+                        outcomeText = `🚀 Aggressive stance paid off! High-level breakthrough with ${partner.toUpperCase()}. Trade surplus surged by +$2.4B.`;
+                        logNews('AI TRADE NEGOTIATION', outcomeText, 'success');
+                    } else {
+                        gameState.tradeBalance -= 1.0;
+                        gameState.publicApproval -= 2;
+                        outcomeText = `⚠️ Aggressive tariff posturing backfired with ${partner.toUpperCase()}. Retaliatory duties imposed; surplus reduced by -$1.0B.`;
+                        logNews('AI TRADE NEGOTIATION', outcomeText, 'alert');
+                    }
                 } else if (strategy === 'resource_swap') {
-                    gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate + 0.15).toFixed(2));
-                    outcomeText = `✅ AI Agent secured critical mineral supply accords with ${partner.toUpperCase()}. Long-term industrial output augmented.`;
+                    gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate + 0.2).toFixed(2));
+                    gameState.industries.aerospace.output += 12;
+                    outcomeText = `⚡ Critical mineral & tech exchange pact ratified with ${partner.toUpperCase()}. Industrial aerospace and tech output augmented.`;
+                    logNews('AI TRADE NEGOTIATION', outcomeText, 'success');
+                } else if (strategy === 'unpredictable') {
+                    if (randomVariance > 0.5) {
+                        gameState.tradeBalance += 3.5;
+                        gameState.publicApproval += 3;
+                        outcomeText = `🎲 High-stakes gamble succeeded! Unpredictable diplomatic maneuvers outmaneuvered negotiators from ${partner.toUpperCase()}. +$3.5B trade boost!`;
+                        logNews('AI TRADE NEGOTIATION', outcomeText, 'success');
+                    } else {
+                        gameState.tradeBalance -= 2.0;
+                        outcomeText = `💥 High-stakes gamble stalled! Counterparty walked away from the table temporarily with ${partner.toUpperCase()}.`;
+                        logNews('AI TRADE NEGOTIATION', outcomeText, 'alert');
+                    }
                 } else {
                     gameState.publicApproval = Math.min(95, gameState.publicApproval + 2);
-                    outcomeText = `✅ Balanced bilateral trade pact ratified with ${partner.toUpperCase()}. Diplomatic and economic stability reinforced.`;
+                    gameState.tradeBalance += 1.2;
+                    outcomeText = `🤝 Balanced bilateral compromise ratified smoothly with ${partner.toUpperCase()}. Trade surplus improved by +$1.2B.`;
+                    logNews('AI TRADE NEGOTIATION', outcomeText, 'success');
                 }
                 resultBox.innerText = outcomeText;
-                logNews('AI TRADE NEGOTIATION', outcomeText, 'success');
                 renderKPIs();
-            }, 1200);
+            }, 1400);
+        }
+
+        function executeDefenseAudit() {
+            const defCost = getTotalDefenseCost();
+            gameState.publicApproval = Math.min(95, gameState.publicApproval + 3);
+            logNews('DEFENCE AUDIT', `Joint Chiefs of Staff completed readiness review. Defence spending stands at $${defCost.toFixed(1)}B/qtr. Public confidence in national security reinforced.`, 'success');
+            alert(`✅ DND Joint Staff Audit complete. Force readiness is optimal and public approval increased.`);
         }
 
         function advanceQuarter() {
@@ -931,6 +1028,7 @@
                         totalSocialFunding += gameState.associations[key].cost;
                     }
                 }
+                totalSocialFunding += getTotalDefenseCost();
 
                 let debtServiceCost = gameState.nationalDebt * (effectiveBorrowingRate / 100) * 0.25;
                 const totalGovOutlays = totalSocialFunding + totalSubsidyOutlays + Math.max(0, debtServiceCost);
@@ -978,11 +1076,25 @@
                 if (financeChartObj) financeChartObj.update();
 
                 renderKPIs();
-                checkScenarioProgress();
+                triggerRandomGlobalNews();
                 logNews('STATSCAN', `Quarterly report: GDP Growth ${gameState.gdpGrowthRate}%, Inflation ${gameState.cpiInflation}%, Deficit $${gameState.budgetDeficit.toFixed(1)}B.`, 'info');
             } catch (err) {
                 console.error("Error during advanceQuarter execution:", err);
             }
+        }
+
+        // Expanded Global News Generator
+        function triggerRandomGlobalNews() {
+            const globalEvents = [
+                { cat: 'GLOBAL MARKETS', text: 'Wall Street and European bourses hit record highs following upbeat semiconductor earnings and stabilized energy supplies.', type: 'success' },
+                { cat: 'GEOPOLITICS', text: 'OPEC+ announces surprise crude output adjustments, causing volatility across international energy benchmarks.', type: 'alert' },
+                { cat: 'CENTRAL BANKS', text: 'European Central Bank (ECB) hints at upcoming interest rate pivots as eurozone inflation nears the 2.0% medium-term target.', type: 'info' },
+                { cat: 'TRADE LEDGER', text: 'Pacific Rim container shipping volume increases by 4.2% year-over-year, easing global supply chain bottlenecks.', type: 'success' },
+                { cat: 'DIPLOMACY', text: 'G7 finance ministers conclude summit in Tokyo, pledging tighter coordination on international tax compliance and critical mineral supply resilience.', type: 'info' },
+                { cat: 'ENERGY TRANSITION', text: 'Global green hydrogen investments surpass $50B this quarter, accelerating demand for Canadian clean energy exports.', type: 'success' }
+            ];
+            const ev = globalEvents[Math.floor(Math.random() * globalEvents.length)];
+            logNews(ev.cat, ev.text, ev.type);
         }
 
         function renderKPIs() {
@@ -1021,11 +1133,10 @@
                 research: { name: "3. Scientific Research & R&D", max: 40 },
                 police: { name: "4. Federal Law Enforcement", max: 50 },
                 transport: { name: "5. Public Transit & Rail", max: 70 },
-                defense: { name: "6. National Defense (Prioritized)", max: 100 },
-                environment: { name: "7. Environmental Protection", max: 30 },
-                housing: { name: "8. Social Housing", max: 60 },
-                veterans: { name: "9. Veterans Affairs", max: 35 },
-                childcare: { name: "10. Childcare Subsidies", max: 45 }
+                environment: { name: "6. Environmental Protection", max: 30 },
+                housing: { name: "7. Social Housing", max: 60 },
+                veterans: { name: "8. Veterans Affairs", max: 35 },
+                childcare: { name: "9. Childcare Subsidies", max: 45 }
             };
 
             for (const key in fundingMeta) {
@@ -1063,7 +1174,7 @@
                         <p class="text-[11px] text-slate-400 mt-1">${assoc.desc}</p>
                     </div>
                     <div class="flex items-center justify-between pt-2 border-t border-slate-900 text-xs">
-                        <span class="text-slate-300">Sovereign Funding Membership</span>
+                        <span class="text-slate-300">Sovereign Membership</span>
                         <button onclick="toggleAssociation('${key}')" class="px-3 py-1 rounded text-xs font-semibold cursor-pointer ${assoc.funded ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-slate-900 text-slate-400 border border-slate-700'}">
                             ${assoc.funded ? 'Active & Funded' : 'Opted Out / Reduced'}
                         </button>
@@ -1153,77 +1264,6 @@
             if (container) container.innerHTML = '';
         }
 
-        const SCENARIOS = [
-            {
-                id: 'balanced_budget',
-                title: 'The Centre-Right Balanced Budget Challenge',
-                desc: 'Eliminate all deficits and achieve a consistent budget surplus within 8 quarters while keeping inflation under 3%.',
-                duration: 8,
-                setup: () => { gameState.budgetDeficit = 20.0; },
-                checkWin: () => gameState.budgetDeficit < 0 && gameState.cpiInflation <= 3.0
-            }
-        ];
-
-        function renderScenarios() {
-            const grid = document.getElementById('scenarios-grid');
-            if (!grid) return;
-            grid.innerHTML = '';
-
-            SCENARIOS.forEach(sc => {
-                const card = document.createElement('div');
-                card.className = 'bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 flex flex-col justify-between';
-                card.innerHTML = `
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <h4 class="font-bold text-slate-100 text-xs sm:text-sm">${sc.title}</h4>
-                            <span class="text-[9px] font-semibold text-rose-400 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">${sc.duration} Qtrs</span>
-                        </div>
-                        <p class="text-[11px] text-slate-400 leading-relaxed">${sc.desc}</p>
-                    </div>
-                    <button onclick="startScenario('${sc.id}')" class="w-full py-2 bg-slate-800 hover:bg-sky-600 text-slate-200 hover:text-white font-semibold text-xs rounded transition cursor-pointer">
-                        Launch Scenario
-                    </button>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function startScenario(id) {
-            const sc = SCENARIOS.find(s => s.id === id);
-            if (!sc) return;
-            gameState.activeScenario = sc;
-            gameState.scenarioTimeLeft = sc.duration;
-            sc.setup();
-
-            document.getElementById('scenario-banner').classList.remove('hidden');
-            document.getElementById('scenario-title').innerText = sc.title;
-            document.getElementById('scenario-desc').innerText = sc.desc;
-            document.getElementById('scenario-timer').innerText = `Time Left: ${sc.duration} Qtrs`;
-
-            renderKPIs();
-            switchTab('dashboard');
-            logNews('SCENARIO STARTED', `Initiated scenario: ${sc.title}`, 'info');
-        }
-
-        function checkScenarioProgress() {
-            if (!gameState.activeScenario) return;
-            gameState.scenarioTimeLeft--;
-            document.getElementById('scenario-timer').innerText = `Time Left: ${gameState.scenarioTimeLeft} Qtrs`;
-
-            if (gameState.activeScenario.checkWin()) {
-                alert(`🎉 Victory! You completed ${gameState.activeScenario.title}!`);
-                abandonScenario();
-            } else if (gameState.scenarioTimeLeft <= 0) {
-                alert(`❌ Scenario Time Expired.`);
-                abandonScenario();
-            }
-        }
-
-        function abandonScenario() {
-            gameState.activeScenario = null;
-            document.getElementById('scenario-banner').classList.add('hidden');
-        }
-
         window.onload = function() {
             try {
                 const loadingBar = document.getElementById('loading-bar');
@@ -1243,8 +1283,8 @@
                 renderAssociations();
                 renderFtas();
                 renderIndustries();
-                renderScenarios();
-                logNews('SYSTEM READY', 'EconoMaster Engine v4.2 initialized successfully.', 'info');
+                updateDefensePolicy();
+                logNews('SYSTEM READY', 'EconoMaster Engine v5.0 initialized successfully. Department of National Defence and global trade matrix active.', 'info');
             } catch (err) {
                 console.error("Window onload initialization error fallback:", err);
             }
