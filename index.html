@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>EconoMaster: Canada & Global Economic Engine v5.0</title>
+    <title>EconoMaster: Canada & Global Economic Engine v5.5</title>
     
     <!-- PWA Meta Tags & Manifest Link -->
     <link rel="manifest" href="manifest.json">
@@ -26,6 +26,10 @@
                             600: '#0369a1',
                             900: '#0c4a6e',
                         }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'radar-spin': 'spin 4s linear infinite',
                     }
                 }
             }
@@ -48,6 +52,26 @@
             background-color: rgba(56, 189, 248, 0.05);
         }
         input[type="range"] { accent-color: #38bdf8; min-height: 24px; }
+        
+        /* Radar Scanning Animation */
+        .radar-sweep {
+            background: conic-gradient(from 0deg, rgba(239, 68, 68, 0.4) 0deg, rgba(239, 68, 68, 0) 60deg, rgba(0, 0, 0, 0) 360deg);
+            border-radius: 50%;
+        }
+        
+        @keyframes hazard-stripes {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+        .hazard-bg {
+            background: repeating-linear-gradient(
+                -45deg,
+                #1e1b4b,
+                #1e1b4b 10px,
+                #31102f 10px,
+                #31102f 20px
+            );
+        }
     </style>
 </head>
 <body class="h-full flex flex-col bg-slate-950 text-slate-100 overflow-x-hidden">
@@ -60,8 +84,8 @@
                 <span>🍁</span>
             </div>
         </div>
-        <h2 class="text-lg font-bold text-slate-100 tracking-tight">EconoMaster Engine v5.0</h2>
-        <p class="text-xs text-slate-400 mt-1">Initializing Sovereign Defense, Trade & Global Intelligence Matrix...</p>
+        <h2 class="text-lg font-bold text-slate-100 tracking-tight">EconoMaster Engine v5.5</h2>
+        <p class="text-xs text-slate-400 mt-1">Initializing Sovereign Defense, Trade & Extended Policy Matrix...</p>
         <div class="w-48 h-1.5 bg-slate-800 rounded-full mt-6 overflow-hidden">
             <div id="loading-bar" class="h-full bg-gradient-to-r from-sky-500 to-emerald-400 w-0 transition-all duration-300"></div>
         </div>
@@ -78,9 +102,9 @@
                     <div>
                         <div class="flex items-center gap-1.5">
                             <h1 class="font-bold text-sm sm:text-lg text-slate-100 tracking-tight">EconoMaster</h1>
-                            <span class="text-[9px] sm:text-xs font-semibold px-1.5 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">v5.0</span>
+                            <span class="text-[9px] sm:text-xs font-semibold px-1.5 py-0.5 rounded bg-sky-950 text-sky-400 border border-sky-800/50">v5.5</span>
                         </div>
-                        <p class="text-[10px] text-slate-400 hidden md:block">Centre-Right Sovereign Fiscal, Trade & Defence Engine</p>
+                        <p class="text-[10px] text-slate-400 hidden md:block">Canada Sovereign Fiscal, Dynamic FTAs & Defence Engine</p>
                     </div>
                 </div>
 
@@ -107,7 +131,7 @@
                     <i class="fa-solid fa-chart-line text-sky-400"></i> Dashboard
                 </button>
                 <button onclick="switchTab('policy')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-building-columns text-emerald-400"></i> Finance & Policy
+                    <i class="fa-solid fa-building-columns text-emerald-400"></i> Finance & Policy <span class="text-[9px] bg-sky-950 text-sky-300 px-1 py-0.2 rounded border border-sky-800">+10 Metrics</span>
                 </button>
                 <button onclick="switchTab('funding')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
                     <i class="fa-solid fa-hand-holding-dollar text-purple-400"></i> Public Services
@@ -119,7 +143,7 @@
                     <i class="fa-solid fa-globe text-teal-400"></i> UN & Associations
                 </button>
                 <button onclick="switchTab('defense')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
-                    <i class="fa-solid fa-shield-halved text-rose-400"></i> Defence Dept <span class="text-[9px] bg-emerald-950 text-emerald-300 px-1 py-0.2 rounded border border-emerald-800">Live</span>
+                    <i class="fa-solid fa-shield-halved text-rose-400"></i> Defence Dept <span class="text-[9px] bg-rose-950 text-rose-300 px-1 py-0.2 rounded border border-rose-800">Missiles & NPT</span>
                 </button>
                 <button onclick="switchTab('news')" class="tab-btn px-3 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer">
                     <i class="fa-solid fa-newspaper text-indigo-400"></i> Press Ledger
@@ -244,35 +268,36 @@
                 </div>
             </div>
 
-            <!-- Centre-Right Cabinet Advisor -->
+            <!-- Cabinet Advisory Board -->
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5">
                 <h3 class="font-semibold text-slate-200 text-xs sm:text-sm mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-brain text-purple-400"></i> Centre-Right Cabinet Advisory Board
+                    <i class="fa-solid fa-brain text-purple-400"></i> Canadian Sovereign Cabinet Advisory Board
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
                     <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
-                        <span class="font-bold text-sky-400 block mb-1">Fiscal Discipline</span>
-                        <p id="advisor-fiscal" class="text-slate-300 leading-relaxed text-[11px]">Lower corporate taxes, streamlined spending, and restrained public bureaucracy stimulate capital investment and growth.</p>
+                        <span class="font-bold text-sky-400 block mb-1">Fiscal & Structural Levers</span>
+                        <p id="advisor-fiscal" class="text-slate-300 leading-relaxed text-[11px]">10 newly configured fiscal sliders dynamically impact FDI inflows, infrastructure productivity, labor bargaining balance, and R&D capital output.</p>
                     </div>
                     <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
-                        <span class="font-bold text-emerald-400 block mb-1">Bilateral Trade & FTAs</span>
-                        <p class="text-slate-300 leading-relaxed text-[11px]">Leverage AI negotiation power and bilateral free trade agreements to expand market access without supranational regulatory drag.</p>
+                        <span class="font-bold text-emerald-400 block mb-1">Bilateral FTAs & Diplomatic Friction</span>
+                        <p class="text-slate-300 leading-relaxed text-[11px]">Ratifying new FTAs requires formal "Request to Sign" submission with randomized diplomatic outcomes biased by Canadian historic alliance scores.</p>
                     </div>
                     <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
-                        <span class="font-bold text-amber-400 block mb-1">Rationalized Services</span>
-                        <p class="text-slate-300 leading-relaxed text-[11px]">Prioritize core security, defense readiness, and targeted tax relief over expansive entitlement programs.</p>
+                        <span class="font-bold text-amber-400 block mb-1">DND Strategic Sovereign Shield</span>
+                        <p class="text-slate-300 leading-relaxed text-[11px]">Manage domestic hypersonic and interceptor missile production while ensuring compliance under the Non-Proliferation Treaty (NPT).</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 2: FINANCE & POLICY HUB -->
+        <!-- TAB 2: FINANCE & POLICY HUB (EXPANDED WITH 10 NEW CONFIGURABLE METRICS) -->
         <section id="tab-policy" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <!-- Primary Tax Controls -->
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                     <div class="border-b border-slate-800 pb-3">
                         <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> Centre-Right Fiscal Levers & Taxes
+                            <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> Baseline Fiscal & Tax Levers
                         </h3>
                     </div>
 
@@ -286,7 +311,7 @@
 
                     <div class="space-y-1">
                         <div class="flex justify-between text-xs font-medium">
-                            <label for="slider-cit" class="text-slate-300">Corporate Income Tax Rate (Competitive)</label>
+                            <label for="slider-cit" class="text-slate-300">Corporate Income Tax Rate</label>
                             <span id="val-cit" class="text-sky-400 font-bold">13%</span>
                         </div>
                         <input type="range" id="slider-cit" min="5" max="35" value="13" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
@@ -302,14 +327,30 @@
 
                     <div class="space-y-1">
                         <div class="flex justify-between text-xs font-medium">
-                            <label for="slider-carbon" class="text-slate-300">Carbon Price ($ / Tonne CAD - Reduced)</label>
+                            <label for="slider-carbon" class="text-slate-300">Carbon Price ($ / Tonne CAD)</label>
                             <span id="val-carbon" class="text-sky-400 font-bold">$30</span>
                         </div>
                         <input type="range" id="slider-carbon" min="0" max="170" value="30" step="5" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
                     </div>
 
                     <div class="pt-3 border-t border-slate-800 space-y-3">
-                        <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider">Regulatory & Structural Levers</h4>
+                        <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider">Monetary & Capital Controls</h4>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="slider-boc-rate" class="text-slate-300">BoC Overnight Rate (%)</label>
+                                <span id="val-boc-rate" class="text-purple-400 font-bold">3.50%</span>
+                            </div>
+                            <input type="range" id="slider-boc-rate" min="0.25" max="12.0" step="0.25" value="3.50" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="slider-reserve" class="text-slate-300">Bank Reserve Ratio (%)</label>
+                                <span id="val-reserve" class="text-purple-400 font-bold">3.0%</span>
+                            </div>
+                            <input type="range" id="slider-reserve" min="1.0" max="10.0" step="0.5" value="3.0" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
+                        </div>
 
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
@@ -318,55 +359,118 @@
                             </div>
                             <input type="range" id="slider-capgains" min="25" max="100" step="5" value="40" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
                         </div>
-
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-smallbiz" class="text-slate-300">Small Business Tax Rate (%)</label>
-                                <span id="val-smallbiz" class="text-sky-400 font-bold">8.0%</span>
-                            </div>
-                            <input type="range" id="slider-smallbiz" min="0" max="15" step="0.5" value="8.0" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
-                        </div>
-
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-medium">
-                                <label for="slider-migration" class="text-slate-300">Controlled Net Immigration (K/Qtr)</label>
-                                <span id="val-migration" class="text-sky-400 font-bold">80K</span>
-                            </div>
-                            <input type="range" id="slider-migration" min="20" max="300" step="10" value="80" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
-                        </div>
                     </div>
                 </div>
 
+                <!-- 10 NEW CONFIGURABLE METRICS SECTION -->
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
-                    <div class="border-b border-slate-800 pb-3">
+                    <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                         <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-landmark text-sky-400"></i> Monetary Policy (Bank of Canada)
+                            <i class="fa-solid fa-sliders text-sky-400"></i> 10 New Configurable Sovereign Metrics
                         </h3>
+                        <span class="text-[10px] text-emerald-400 font-semibold bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Dynamic Links Active</span>
                     </div>
 
-                    <div class="space-y-1">
-                        <div class="flex justify-between text-xs font-medium">
-                            <label for="slider-boc-rate" class="text-slate-300">BoC Overnight Rate (%)</label>
-                            <span id="val-boc-rate" class="text-purple-400 font-bold">3.50%</span>
+                    <div class="space-y-3 text-xs max-h-[520px] overflow-y-auto pr-1">
+                        <!-- Metric 1 -->
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                            <div class="flex justify-between">
+                                <label class="text-slate-200 font-semibold">1. Property Tax Assessment Base (%)</label>
+                                <span id="val-prop-tax" class="text-sky-400 font-bold">1.2%</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400">Tied directly to Municipal Revenue & Real Estate Output.</p>
+                            <input type="range" id="slider-prop-tax" min="0.2" max="4.0" step="0.1" value="1.2" class="w-full h-1.5 bg-slate-800 rounded cursor-pointer" oninput="updatePolicies()">
                         </div>
-                        <input type="range" id="slider-boc-rate" min="0.25" max="12.0" step="0.25" value="3.50" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
-                    </div>
 
-                    <div class="space-y-1">
-                        <div class="flex justify-between text-xs font-medium">
-                            <label for="slider-reserve" class="text-slate-300">Bank Reserve Ratio (%)</label>
-                            <span id="val-reserve" class="text-purple-400 font-bold">3.0%</span>
+                        <!-- Metric 2 -->
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                            <div class="flex justify-between">
+                                <label class="text-slate-200 font-semibold">2. Federal Infrastructure Multiplier (x)</label>
+                                <span id="val-infra-mult" class="text-emerald-400 font-bold">1.4x</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400">Tied to GDP Growth Acceleration & Transport/Construction Output.</p>
+                            <input type="range" id="slider-infra-mult" min="0.8" max="2.5" step="0.1" value="1.4" class="w-full h-1.5 bg-slate-800 rounded cursor-pointer" oninput="updatePolicies()">
                         </div>
-                        <input type="range" id="slider-reserve" min="1.0" max="10.0" step="0.5" value="3.0" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePolicies()">
-                    </div>
 
-                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 text-xs space-y-2 mt-4">
-                        <span class="font-bold text-sky-400 flex items-center gap-1">
-                            <i class="fa-solid fa-calculator"></i> Taylor Rule Benchmark
-                        </span>
-                        <p class="text-slate-300 leading-relaxed text-[11px]">
-                            Computed Benchmark Rate: <span id="taylor-computed-val" class="font-bold text-slate-200">3.50%</span>
-                        </p>
+                        <!-- Metric 3 -->
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                            <div class="flex justify-between">
+                                <label class="text-slate-200 font-semibold">3. Clean Energy Investment Tax Credit (%)</label>
+                                <span id="val-clean-itc" class="text-teal-400 font-bold">15%</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400">Tied to Clean Energy Industry output & Capital Outlays.</p>
+                            <input type="range" id="slider-clean-itc" min="0" max="40" step="1" value="15" class="w-full h-1.5 bg-slate-800 rounded cursor-pointer" oninput="updatePolicies()">
+                        </div>
+
+                        <!-- Metric 4 -->
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                            <div class="flex justify-between">
+                                <label class="text-slate-200 font-semibold">4. Resource Royalty & Extraction Surcharge (%)</label>
+                                <span id="val-royalty-rate" class="text-amber-400 font-bold">8.5%</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400">Tied to Oil, Gas, Mining revenue & resource price elasticity.</p>
+                            <input type="range" id="slider-royalty-rate" min="1.0" max="25.0" step="0.5" value="8.5" class="w-full h-1.5 bg-slate-800 rounded cursor-pointer" oninput="updatePolicies()">
+                        </div>
+
+                        <!-- Metric 5 -->
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                            <div class="flex justify-between">
+                                <label class="text-slate-200 font-semibold">5. Wealth Tax on Ultra-High Net Worth (%)</label>
+                                <span id="val-wealth-tax" class="text-rose-400 font-bold">0.5%</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400">Tied to Capital Flight risks, Federal Revenue & Voter Approval.</p>
+                            <input type="range" id="slider-wealth-tax" min="0.0" max="5.0" step="0.25" value="0.5" class="w-full h-1.5 bg-slate-800 rounded cursor-pointer" oninput="updatePolicies()">
+                        </div>
+
+                        <!-- Metric 6 -->
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                            <div class="flex justify-between">
+                                <label class="text-slate-200 font-semibold">6. Bank Transactions Financial Levy (%)</label>
+                                <span id="val-bank-levy" class="text-purple-400 font-bold">0.15%</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400">Tied to Banking Output, Liquidity Velocity & Financial Revenues.</p>
+                            <input type="range" id="slider-bank-levy" min="0.0" max="1.0" step="0.05" value="0.15" class="w-full h-1.5 bg-slate-800 rounded cursor-pointer" oninput="updatePolicies()">
+                        </div>
+
+                        <!-- Metric 7 -->
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                            <div class="flex justify-between">
+                                <label class="text-slate-200 font-semibold">7. Import Tariff Surcharge Base Rate (%)</label>
+                                <span id="val-tariff-base" class="text-indigo-400 font-bold">2.0%</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400">Tied directly to Trade Balances, Import Prices & CPI Inflation.</p>
+                            <input type="range" id="slider-tariff-base" min="0.0" max="15.0" step="0.5" value="2.0" class="w-full h-1.5 bg-slate-800 rounded cursor-pointer" oninput="updatePolicies()">
+                        </div>
+
+                        <!-- Metric 8 -->
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                            <div class="flex justify-between">
+                                <label class="text-slate-200 font-semibold">8. Labor Union Bargaining Power Index</label>
+                                <span id="val-union-power" class="text-sky-400 font-bold">50</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400">Tied to Wage-Push CPI Inflation, Real Purchasing Power & Hiring Costs.</p>
+                            <input type="range" id="slider-union-power" min="10" max="100" step="5" value="50" class="w-full h-1.5 bg-slate-800 rounded cursor-pointer" oninput="updatePolicies()">
+                        </div>
+
+                        <!-- Metric 9 -->
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                            <div class="flex justify-between">
+                                <label class="text-slate-200 font-semibold">9. Federal R&D Innovation Rebate (%)</label>
+                                <span id="val-rd-rebate" class="text-purple-400 font-bold">12%</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400">Tied to Tech/AI Output, Total Factor Productivity & High-Skill Wages.</p>
+                            <input type="range" id="slider-rd-rebate" min="0" max="35" step="1" value="12" class="w-full h-1.5 bg-slate-800 rounded cursor-pointer" oninput="updatePolicies()">
+                        </div>
+
+                        <!-- Metric 10 -->
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                            <div class="flex justify-between">
+                                <label class="text-slate-200 font-semibold">10. FDI Capital Incentive Rate (%)</label>
+                                <span id="val-fdi-incentive" class="text-emerald-400 font-bold">6.0%</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400">Tied to Foreign Direct Investment inflow, Exchange Rate (CAD/USD) & Capital stock.</p>
+                            <input type="range" id="slider-fdi-incentive" min="0.0" max="20.0" step="0.5" value="6.0" class="w-full h-1.5 bg-slate-800 rounded cursor-pointer" oninput="updatePolicies()">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -378,7 +482,7 @@
                 <div class="border-b border-slate-800 pb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                     <div>
                         <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-hand-holding-dollar text-purple-400"></i> Rationalized Public Services & Funding
+                            <i class="fa-solid fa-hand-holding-dollar text-purple-400"></i> Public Services & Federal Appropriations
                         </h3>
                         <p class="text-[11px] text-slate-400 mt-0.5">Optimized for fiscal restraint, value for taxpayers, and core infrastructure.</p>
                     </div>
@@ -393,12 +497,12 @@
             </div>
         </section>
 
-        <!-- TAB 4: 15 INDUSTRIES & FREE TRADE AGREEMENTS (FTAs) & AI NEGOTIATION -->
+        <!-- TAB 4: 15 INDUSTRIES & DYNAMIC FTAS WITH DIPLOMATIC NEGOTIATION -->
         <section id="tab-industries" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                     <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-industry text-amber-400"></i> 15 Canadian Industries & Trade Controls
+                        <i class="fa-solid fa-industry text-amber-400"></i> 15 Canadian Key Industries & Tariff Controls
                     </h3>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4" id="industry-cards-container">
@@ -410,11 +514,12 @@
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                     <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                         <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-handshake text-sky-400"></i> Expanded Bilateral Free Trade Agreements (FTAs)
+                            <i class="fa-solid fa-handshake text-sky-400"></i> Dynamic Bilateral Free Trade Agreements (FTAs)
                         </h3>
+                        <span class="text-[10px] bg-sky-950 text-sky-400 px-2 py-0.5 rounded border border-sky-800">11 Global Possibilities</span>
                     </div>
-                    <p class="text-xs text-slate-400">Execute and ratify advanced bilateral and multilateral trade pacts to secure global supply chains and lower export friction.</p>
-                    <div class="space-y-3" id="fta-container">
+                    <p class="text-xs text-slate-400">Ratification is not instant. Click <strong>"Request to Sign"</strong> to initiate background negotiations with heavy variance based on Canada's historic alliances.</p>
+                    <div class="space-y-3 max-h-[420px] overflow-y-auto pr-1" id="fta-container">
                         <!-- FTA items populated dynamically -->
                     </div>
                 </div>
@@ -422,7 +527,7 @@
                 <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                     <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                         <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-robot text-purple-400"></i> Dynamic AI-Powered Live Negotiating Power
+                            <i class="fa-solid fa-robot text-purple-400"></i> Dynamic AI-Powered Live Negotiating Engine
                         </h3>
                         <span id="ai-negotiation-status" class="text-[10px] font-semibold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">Ready</span>
                     </div>
@@ -439,6 +544,8 @@
                                 <option value="india">India (Comprehensive Economic Partnership)</option>
                                 <option value="germany">Germany (Industrial Technology Pact)</option>
                                 <option value="australia">Australia (AUKUS & Mineral Alliance)</option>
+                                <option value="africa">AfCFTA Trade Commission</option>
+                                <option value="mercosur">MERCOSUR Trade Council</option>
                             </select>
                         </div>
                         <div class="flex items-center justify-between text-xs">
@@ -455,7 +562,7 @@
                         </button>
                     </div>
 
-                    <div id="ai-nego-result" class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 min-h-[70px] flex items-center justify-center text-center text-slate-400">
+                    <div id="ai-nego-result" class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 min-h-[90px] flex items-center justify-center text-center text-slate-400">
                         AI neural negotiation matrices standing by for sovereign instructions...
                     </div>
                 </div>
@@ -467,11 +574,11 @@
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                     <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-globe text-teal-400"></i> United Nations & International Associations
+                        <i class="fa-solid fa-globe text-teal-400"></i> United Nations & Expanded Associations
                     </h3>
-                    <span class="text-xs text-slate-400">Sovereign Membership & Funding</span>
+                    <span class="text-xs text-slate-400">10 Multilateral Bodies</span>
                 </div>
-                <p class="text-xs text-slate-300">Manage Canada's financial contributions and voting alignment across expanded global bodies, multilateral forums, and security pacts.</p>
+                <p class="text-xs text-slate-300">Manage Canada's financial contributions and voting alignment across expanded global bodies, multilateral forums, arctic sovereignty pacts, and security coalitions.</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="associations-container">
                     <!-- Populated dynamically -->
@@ -479,7 +586,7 @@
             </div>
         </section>
 
-        <!-- TAB 6: DEFENCE DEPARTMENT (FULLY RELEASED & EXPANSIVE) -->
+        <!-- TAB 6: DEFENCE DEPARTMENT (EXPANDED WITH MISSILES, NPT & IN DEVELOPMENT NUCLEAR PROGRAM) -->
         <section id="tab-defense" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
@@ -487,43 +594,100 @@
                         <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
                             <i class="fa-solid fa-shield-halved text-rose-400"></i> Department of National Defence (DND) Command Matrix
                         </h3>
-                        <p class="text-[11px] text-slate-400 mt-0.5">Fully integrated with federal budgets, industrial aerospace output, and alliance readiness.</p>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Sovereign defense, missile production, NORAD shield & Treaty Compliance.</p>
                     </div>
                     <div class="text-left sm:text-right">
                         <span class="text-xs text-slate-400">Total Defence Outlay:</span>
-                        <span id="total-defense-display" class="text-xs sm:text-sm font-bold text-rose-400 ml-1">$14.2B / qtr</span>
+                        <span id="total-defense-display" class="text-xs sm:text-sm font-bold text-rose-400 ml-1">$16.8B / qtr</span>
                     </div>
                 </div>
 
                 <!-- DND Summary Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-1">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
                         <span class="text-[10px] uppercase text-slate-400 font-bold">Active Force Readiness</span>
                         <div class="flex items-baseline justify-between">
-                            <span id="dnd-readiness-val" class="text-lg font-bold text-emerald-400">88.4%</span>
-                            <span class="text-xs text-slate-400">NATO Standard: 2.0% GDP</span>
+                            <span id="dnd-readiness-val" class="text-base sm:text-lg font-bold text-emerald-400">88.4%</span>
+                            <span class="text-[10px] text-slate-400">NATO Standard</span>
                         </div>
                     </div>
-                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-1">
-                        <span class="text-[10px] uppercase text-slate-400 font-bold">Active Personnel Level</span>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
+                        <span class="text-[10px] uppercase text-slate-400 font-bold">Personnel Level</span>
                         <div class="flex items-baseline justify-between">
-                            <span id="dnd-personnel-val" class="text-lg font-bold text-sky-400">71,500</span>
-                            <span class="text-xs text-slate-400">Troops & Reserves</span>
+                            <span id="dnd-personnel-val" class="text-base sm:text-lg font-bold text-sky-400">71,500</span>
+                            <span class="text-[10px] text-slate-400">Troops</span>
                         </div>
                     </div>
-                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-1">
-                        <span class="text-[10px] uppercase text-slate-400 font-bold">Arctic & Naval Fleet Power</span>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
+                        <span class="text-[10px] uppercase text-slate-400 font-bold">Active Missile Stockpile</span>
                         <div class="flex items-baseline justify-between">
-                            <span id="dnd-fleet-val" class="text-lg font-bold text-amber-400">Tier-2 Sovereign</span>
-                            <span class="text-xs text-slate-400">Icebreakers & Frigates</span>
+                            <span id="dnd-missile-stockpile" class="text-base sm:text-lg font-bold text-amber-400">2,450 Units</span>
+                            <span class="text-[10px] text-slate-400">Domestic</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
+                        <span class="text-[10px] uppercase text-slate-400 font-bold">NPT Compliance Status</span>
+                        <div class="flex items-baseline justify-between">
+                            <span id="npt-status-display" class="text-xs font-bold text-emerald-400">Signatory (Compliant)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategic Missile Production & NPT Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2">
+                    <!-- Direct Missile Production Controls -->
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                            <h4 class="text-xs font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-rocket"></i> Domestic Direct Missile Production
+                            </h4>
+                            <span class="text-[10px] font-semibold text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800">Aerospace Linked</span>
+                        </div>
+                        
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label class="text-slate-300">Guided Interceptor & SAM Production</label>
+                                <span id="val-dnd-interceptor" class="text-amber-400 font-bold">250 / qtr</span>
+                            </div>
+                            <input type="range" id="slider-dnd-interceptor" min="50" max="800" step="25" value="250" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updateDefensePolicy()">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label class="text-slate-300">Hypersonic / Cruise Missile Munitions</label>
+                                <span id="val-dnd-hypersonic" class="text-amber-400 font-bold">80 / qtr</span>
+                            </div>
+                            <input type="range" id="slider-dnd-hypersonic" min="0" max="400" step="10" value="80" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updateDefensePolicy()">
+                        </div>
+
+                        <p class="text-[10px] text-slate-400 italic">
+                            Direct missile production boosts Canadian Aerospace & Defense industrial output while increasing quarterly maintenance outlays by $0.8B.
+                        </p>
+                    </div>
+
+                    <!-- Non-Proliferation Treaty (NPT) Management -->
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                            <h4 class="text-xs font-bold text-teal-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-contract"></i> Non-Proliferation Treaty (NPT) Stance
+                            </h4>
+                        </div>
+                        <p class="text-[11px] text-slate-300 leading-relaxed">
+                            Canada is currently a fully compliant signatory of the Treaty on the Non-Proliferation of Nuclear Weapons (NPT), ensuring high international standing and trade benefits.
+                        </p>
+                        <div class="flex items-center justify-between pt-2">
+                            <button onclick="toggleNptStatus()" id="npt-toggle-btn" class="px-3 py-1.5 rounded text-xs font-bold transition cursor-pointer bg-emerald-950 text-emerald-400 border border-emerald-800 hover:bg-emerald-900">
+                                <i class="fa-solid fa-check-double mr-1"></i> Ratified & Compliant
+                            </button>
+                            <span class="text-[10px] text-slate-400">Toggling impacts UN/IAEA diplomatic approval</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- DND Interactive Sliders & Controls -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-4">
-                        <h4 class="text-xs font-bold text-rose-400 uppercase tracking-wider">Personnel & Recruitment Quotas</h4>
+                        <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider">Personnel & Cyber Readiness</h4>
                         
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
@@ -551,7 +715,7 @@
                     </div>
 
                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-4">
-                        <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Procurement & Strategic Assets</h4>
+                        <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Procurement & NORAD Shield</h4>
                         
                         <div class="space-y-1">
                             <div class="flex justify-between text-xs font-medium">
@@ -579,9 +743,32 @@
                     </div>
                 </div>
 
+                <!-- UPCOMING FEATURE BANNER: NUCLEAR WEAPONS PROGRAM -->
+                <div class="relative overflow-hidden bg-gradient-to-r from-purple-950 via-slate-900 to-rose-950 p-5 rounded-xl border border-rose-800/60 shadow-xl cursor-pointer transition hover:border-rose-500 group" onclick="openNuclearModal()">
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-rose-600/10 rounded-full blur-2xl group-hover:bg-rose-600/20 transition"></div>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 rounded-xl bg-rose-950 border border-rose-600/50 flex items-center justify-center text-rose-500 text-2xl shrink-0 animate-pulse-slow">
+                                <i class="fa-solid fa-radiation"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-bold text-slate-100 text-sm">Strategic Sovereign Nuclear Deterrent Matrix</h4>
+                                    <span class="text-[10px] font-black tracking-widest px-2 py-0.5 rounded bg-rose-600 text-white animate-pulse">IN DEVELOPMENT</span>
+                                </div>
+                                <p class="text-xs text-slate-300 mt-1">Build, Acquire, Enrichment Logistics & Strategic Launch Capabilities (Teaser Console).</p>
+                            </div>
+                        </div>
+                        <button class="px-4 py-2 bg-rose-600 group-hover:bg-rose-500 text-white font-bold rounded-lg text-xs transition shadow-lg shrink-0 flex items-center gap-2">
+                            <span>Open Nuclear Interface</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 text-xs flex flex-col sm:flex-row justify-between items-center gap-3">
                     <p class="text-slate-300">
-                        <i class="fa-solid fa-circle-info text-sky-400 mr-1"></i> Defence spending directly boosts the <strong>Aerospace & Defense</strong> and <strong>Shipping & Logistics</strong> domestic industries.
+                        <i class="fa-solid fa-circle-info text-sky-400 mr-1"></i> Missile production and defense outlays directly stimulate Canadian high-tech manufacturing and aerospace exports.
                     </p>
                     <button onclick="executeDefenseAudit()" class="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded text-xs transition cursor-pointer shrink-0">
                         Run Joint Staff Readiness Audit
@@ -595,7 +782,7 @@
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
                     <h3 class="font-bold text-slate-100 text-xs sm:text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-newspaper text-indigo-400"></i> Expanded Global Financial Times & Event Ledger
+                        <i class="fa-solid fa-newspaper text-indigo-400"></i> Global Financial Times & Event Ledger
                     </h3>
                     <button onclick="clearNewsLog()" class="text-xs text-slate-400 hover:text-white bg-slate-800 px-2.5 py-1 rounded border border-slate-700 cursor-pointer">Clear Logs</button>
                 </div>
@@ -605,9 +792,77 @@
         </section>
     </main>
 
+    <!-- IN DEVELOPMENT NUCLEAR MODAL WITH ANIMATIONS -->
+    <div id="nuclear-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border-2 border-rose-600 rounded-2xl max-w-2xl w-full p-6 space-y-6 relative overflow-hidden shadow-2xl">
+            <!-- Animated Scan Line -->
+            <div class="absolute inset-0 hazard-bg opacity-20 pointer-events-none"></div>
+
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4 relative z-10">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-rose-950 border border-rose-500 flex items-center justify-center text-rose-500 text-xl animate-spin" style="animation-duration: 8s;">
+                        <i class="fa-solid fa-radiation"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="font-bold text-slate-100 text-base tracking-wide">CANADIAN NUCLEAR PROGRAM CONSOLE</h3>
+                            <span class="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-rose-600 text-white animate-pulse">IN DEVELOPMENT</span>
+                        </div>
+                        <p class="text-xs text-rose-400 font-mono">CLASSIFIED TOP SECRET // DND CLEARANCE LEVEL 5</p>
+                    </div>
+                </div>
+                <button onclick="closeNuclearModal()" class="text-slate-400 hover:text-white text-xl font-bold p-1 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Animated Radar / Scanner Visualization -->
+            <div class="relative bg-slate-950 border border-rose-900/50 rounded-xl p-6 flex flex-col items-center justify-center space-y-4 overflow-hidden min-h-[220px]">
+                <div class="absolute w-44 h-44 rounded-full border border-rose-800/40 flex items-center justify-center">
+                    <div class="w-28 h-28 rounded-full border border-rose-700/60 flex items-center justify-center">
+                        <div class="w-12 h-12 rounded-full border border-rose-500/80"></div>
+                    </div>
+                </div>
+                <!-- Radar Sweep -->
+                <div class="absolute w-44 h-44 radar-sweep animate-radar-spin opacity-70"></div>
+
+                <div class="relative z-10 text-center space-y-2">
+                    <div class="text-rose-500 font-mono text-2xl font-black tracking-widest animate-pulse">
+                        [ IN DEVELOPMENT ]
+                    </div>
+                    <p class="text-xs text-slate-300 max-w-md mx-auto leading-relaxed">
+                        The sovereign nuclear option module is currently under development for EconoMaster. Once released, players will be able to construct enrichment centrifuges, acquire warhead designs, manage launch silos, and navigate extreme UN economic sanctions.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Features Teaser Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 relative z-10 text-xs">
+                <div class="bg-slate-950/80 p-3 rounded-lg border border-slate-800 space-y-1">
+                    <span class="font-bold text-rose-400 block"><i class="fa-solid fa-atom mr-1"></i> Uranium Enrichment</span>
+                    <p class="text-[10px] text-slate-400">Centrifuge facility construction & IAEA inspection evasion.</p>
+                </div>
+                <div class="bg-slate-950/80 p-3 rounded-lg border border-slate-800 space-y-1">
+                    <span class="font-bold text-amber-400 block"><i class="fa-solid fa-rocket mr-1"></i> ICBM Silos</span>
+                    <p class="text-[10px] text-slate-400">Deployment of land-based and submarine deterrence platforms.</p>
+                </div>
+                <div class="bg-slate-950/80 p-3 rounded-lg border border-slate-800 space-y-1">
+                    <span class="font-bold text-sky-400 block"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Global Sanctions</span>
+                    <p class="text-[10px] text-slate-400">High-stakes economic fallout and international retaliation mechanics.</p>
+                </div>
+            </div>
+
+            <div class="flex justify-end pt-2 border-t border-slate-800 relative z-10">
+                <button onclick="closeNuclearModal()" class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-lg text-xs transition cursor-pointer">
+                    Acknowledge & Exit
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-slate-900 border-t border-slate-800 py-3 px-4 sm:px-8 mt-auto text-[11px] text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
-        <div>EconoMaster Engine v5.0 &copy; 2026. Centre-Right Sovereign Economic & Defence Simulator.</div>
+        <div>EconoMaster Engine v5.5 &copy; 2026. Canada Sovereign Fiscal, Trade & Defence Simulator.</div>
         <div class="flex gap-4">
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('policy')">Policy</span>
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('defense')">Defence</span>
@@ -615,7 +870,7 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT & FAIL-SAFE LOGIC -->
+    <!-- JAVASCRIPT LOGIC & FULL INTEGRATION -->
     <script>
         const gameState = {
             quarter: 1,
@@ -635,6 +890,7 @@
             publicApproval: 58, 
             carbonPrice: 30, 
             
+            // Baseline Taxes
             pit: 22, 
             cit: 13, 
             gst: 5,  
@@ -642,6 +898,18 @@
             capGainsRate: 40,
             smallBizTax: 8.0,
             migrationInflow: 80, 
+
+            // 10 NEW CONFIGURABLE METRICS
+            propTaxRate: 1.2,        // 1. Property Tax Assessment Base (%)
+            infraMultiplier: 1.4,    // 2. Federal Infrastructure Multiplier (x)
+            cleanItcRate: 15,        // 3. Clean Energy Investment Tax Credit (%)
+            royaltyRate: 8.5,        // 4. Resource Royalty Rate (%)
+            wealthTaxRate: 0.5,      // 5. Wealth Tax (%)
+            bankLevyRate: 0.15,      // 6. Bank Financial Transactions Levy (%)
+            tariffBaseRate: 2.0,     // 7. Import Tariff Base Rate (%)
+            unionPowerIndex: 50,     // 8. Union Bargaining Power Index (10-100)
+            rdRebateRate: 12,        // 9. Federal R&D Innovation Rebate (%)
+            fdiIncentiveRate: 6.0,   // 10. FDI Capital Incentive Rate (%)
 
             funding: {
                 health: 85.0,
@@ -661,8 +929,13 @@
                 cyber: 2.5,
                 air: 4.8,
                 naval: 3.6,
-                norad: 2.1
+                norad: 2.1,
+                interceptorProd: 250, // Guided missiles produced per quarter
+                hypersonicProd: 80,    // Hypersonic missiles produced per quarter
+                missileStockpile: 2450 // Active stockpile count
             },
+
+            nptCompliant: true, // Non-Proliferation Treaty status
             
             reserveRatio: 3.0,
             monetaryLagQueue: [3.50, 3.50, 3.50], 
@@ -686,17 +959,23 @@
                 chemicals: { name: "15. Chemicals & Plastics", output: 180, duty: 1.5, exportTax: 0.5, subsidy: 6.0, exoneration: false, pricePerTon: 1620 }
             },
 
+            // FTAs - Includes Historic Ally Affinity Score for Canada
             ftas: {
-                usmca: { name: "USMCA (North America)", active: true, bonus: "Tariff-free automotive & energy access" },
-                ceta: { name: "CETA (European Union)", active: true, bonus: "98% industrial tariff elimination" },
-                uk_fta: { name: "UK-Canada Continuity FTA", active: true, bonus: "Preserved bilateral financial trade" },
-                cptpp: { name: "CPTPP (Indo-Pacific)", active: true, bonus: "Access to Japan, Australia & Vietnam" },
-                latin_trade: { name: "Pacific Alliance FTA", active: false, bonus: "Latin American mining & tech corridors" },
-                india_cepa: { name: "India-Canada CEPA", active: false, bonus: "Expanded tech services & agricultural exports" },
-                germany_pact: { name: "German-Canadian Industrial Accord", active: true, bonus: "Hydrogen and critical minerals export corridor" },
-                aukus_minerals: { name: "AUKUS Defense & Mineral Pact", active: true, bonus: "Enhanced naval tech & defense manufacturing sharing" }
+                usmca: { name: "USMCA (North America)", active: true, allyScore: 95, bonus: "Tariff-free automotive & energy access" },
+                ceta: { name: "CETA (European Union)", active: true, allyScore: 85, bonus: "98% industrial tariff elimination" },
+                uk_fta: { name: "UK-Canada Continuity FTA", active: true, allyScore: 90, bonus: "Preserved bilateral financial trade" },
+                cptpp: { name: "CPTPP (Indo-Pacific)", active: true, allyScore: 80, bonus: "Access to Japan, Australia & Vietnam" },
+                germany_pact: { name: "German-Canadian Industrial Accord", active: true, allyScore: 85, bonus: "Hydrogen and critical minerals export corridor" },
+                aukus_minerals: { name: "AUKUS Defense & Mineral Pact", active: true, allyScore: 92, bonus: "Enhanced naval tech & defense manufacturing sharing" },
+                latin_trade: { name: "Pacific Alliance FTA", active: false, allyScore: 60, bonus: "Latin American mining & tech corridors" },
+                india_cepa: { name: "India-Canada CEPA", active: false, allyScore: 55, bonus: "Expanded tech services & agricultural exports" },
+                // 3 NEW FTAS
+                afcfta: { name: "African Continental FTA (AfCFTA Partner)", active: false, allyScore: 45, bonus: "Access to emerging African mineral & trade hubs" },
+                mercosur: { name: "MERCOSUR-Canada Strategic Trade Pact", active: false, allyScore: 50, bonus: "Agricultural tariff offsets & industrial machinery exports" },
+                asean: { name: "ASEAN Economic Alliance", active: false, allyScore: 65, bonus: "Southeast Asian semiconductor & manufacturing pipeline" }
             },
 
+            // ASSOCIATIONS - Includes 3 New Associations
             associations: {
                 un_core: { name: "United Nations Core Budget", funded: true, cost: 4.5, desc: "Mandatory UN membership dues." },
                 un_climate: { name: "UN Climate Adaptation Fund", funded: false, cost: 8.0, desc: "Multilateral climate grants." },
@@ -704,7 +983,11 @@
                 nato: { name: "NATO Collective Defense Alliance", funded: true, cost: 14.5, desc: "Transatlantic security and intelligence sharing." },
                 WEF: { name: "World Economic Forum Partnership", funded: false, cost: 2.0, desc: "Global economic policy forums." },
                 commonwealth: { name: "Commonwealth of Nations", funded: true, cost: 2.5, desc: "Diplomatic and legislative cooperation across member states." },
-                wto: { name: "World Trade Organization (WTO)", funded: true, cost: 3.0, desc: "Global trade dispute resolution and tariff arbitration." }
+                wto: { name: "World Trade Organization (WTO)", funded: true, cost: 3.0, desc: "Global trade dispute resolution and tariff arbitration." },
+                // 3 NEW ASSOCIATIONS
+                arctic_council: { name: "Arctic Council Sovereignty Framework", funded: true, cost: 5.0, desc: "Multi-nation polar defense, icebreaking coordination & environmental monitoring." },
+                iea: { name: "International Energy Agency (IEA)", funded: true, cost: 2.8, desc: "Global oil reserves balancing and energy market stabilization." },
+                cyber_coalition: { name: "Global AI & Cyber Security Coalition", funded: true, cost: 4.0, desc: "Bilateral defense against state-sponsored cyber offensives." }
             },
 
             history: {
@@ -818,30 +1101,57 @@
             }
         }
 
+        // UPDATE POLICIES WITH 10 NEW METRICS TIED DIRECTLY
         function updatePolicies() {
             try {
+                // Baseline Controls
                 gameState.pit = parseFloat(document.getElementById('slider-pit').value) || 22;
                 gameState.cit = parseFloat(document.getElementById('slider-cit').value) || 13;
                 gameState.gst = parseFloat(document.getElementById('slider-gst').value) || 5;
                 gameState.carbonPrice = parseFloat(document.getElementById('slider-carbon').value) || 30;
 
                 gameState.capGainsRate = parseFloat(document.getElementById('slider-capgains').value) || 40;
-                gameState.smallBizTax = parseFloat(document.getElementById('slider-smallbiz').value) || 8;
-                gameState.migrationInflow = parseFloat(document.getElementById('slider-migration').value) || 80;
-
                 gameState.bocRate = parseFloat(document.getElementById('slider-boc-rate').value) || 3.50;
                 gameState.reserveRatio = parseFloat(document.getElementById('slider-reserve').value) || 3.0;
 
+                // 10 NEW CONFIGURABLE METRICS READOUTS
+                gameState.propTaxRate = parseFloat(document.getElementById('slider-prop-tax').value) || 1.2;
+                gameState.infraMultiplier = parseFloat(document.getElementById('slider-infra-mult').value) || 1.4;
+                gameState.cleanItcRate = parseFloat(document.getElementById('slider-clean-itc').value) || 15;
+                gameState.royaltyRate = parseFloat(document.getElementById('slider-royalty-rate').value) || 8.5;
+                gameState.wealthTaxRate = parseFloat(document.getElementById('slider-wealth-tax').value) || 0.5;
+                gameState.bankLevyRate = parseFloat(document.getElementById('slider-bank-levy').value) || 0.15;
+                gameState.tariffBaseRate = parseFloat(document.getElementById('slider-tariff-base').value) || 2.0;
+                gameState.unionPowerIndex = parseFloat(document.getElementById('slider-union-power').value) || 50;
+                gameState.rdRebateRate = parseFloat(document.getElementById('slider-rd-rebate').value) || 12;
+                gameState.fdiIncentiveRate = parseFloat(document.getElementById('slider-fdi-incentive').value) || 6.0;
+
+                // Update UI Labels
                 document.getElementById('val-pit').innerText = gameState.pit + '%';
                 document.getElementById('val-cit').innerText = gameState.cit + '%';
                 document.getElementById('val-gst').innerText = gameState.gst + '%';
                 document.getElementById('val-carbon').innerText = '$' + gameState.carbonPrice;
                 document.getElementById('val-capgains').innerText = gameState.capGainsRate + '%';
-                document.getElementById('val-smallbiz').innerText = gameState.smallBizTax + '%';
-                document.getElementById('val-migration').innerText = gameState.migrationInflow + 'K';
                 document.getElementById('val-boc-rate').innerText = gameState.bocRate.toFixed(2) + '%';
                 document.getElementById('val-reserve').innerText = gameState.reserveRatio.toFixed(1) + '%';
-                document.getElementById('taylor-computed-val').innerText = gameState.bocRate.toFixed(2) + '%';
+
+                document.getElementById('val-prop-tax').innerText = gameState.propTaxRate.toFixed(1) + '%';
+                document.getElementById('val-infra-mult').innerText = gameState.infraMultiplier.toFixed(1) + 'x';
+                document.getElementById('val-clean-itc').innerText = gameState.cleanItcRate + '%';
+                document.getElementById('val-royalty-rate').innerText = gameState.royaltyRate.toFixed(1) + '%';
+                document.getElementById('val-wealth-tax').innerText = gameState.wealthTaxRate.toFixed(2) + '%';
+                document.getElementById('val-bank-levy').innerText = gameState.bankLevyRate.toFixed(2) + '%';
+                document.getElementById('val-tariff-base').innerText = gameState.tariffBaseRate.toFixed(1) + '%';
+                document.getElementById('val-union-power').innerText = gameState.unionPowerIndex;
+                document.getElementById('val-rd-rebate').innerText = gameState.rdRebateRate + '%';
+                document.getElementById('val-fdi-incentive').innerText = gameState.fdiIncentiveRate.toFixed(1) + '%';
+
+                // Synchronize industry subsidies and outputs dynamically with policies
+                gameState.industries.clean_energy.subsidy = 10 + (gameState.cleanItcRate * 0.5);
+                gameState.industries.tech_ai.subsidy = 10 + (gameState.rdRebateRate * 0.6);
+                gameState.industries.oil_gas.exportTax = gameState.royaltyRate * 0.1;
+                gameState.cadToUsd = parseFloat((0.72 + (gameState.fdiIncentiveRate * 0.005) - (gameState.wealthTaxRate * 0.01)).toFixed(3));
+
             } catch (err) {
                 console.error("Policy update error:", err);
             }
@@ -863,6 +1173,8 @@
             gameState.defense.air = parseFloat(document.getElementById('slider-dnd-air').value) || 4.8;
             gameState.defense.naval = parseFloat(document.getElementById('slider-dnd-naval').value) || 3.6;
             gameState.defense.norad = parseFloat(document.getElementById('slider-dnd-norad').value) || 2.1;
+            gameState.defense.interceptorProd = parseInt(document.getElementById('slider-dnd-interceptor').value) || 250;
+            gameState.defense.hypersonicProd = parseInt(document.getElementById('slider-dnd-hypersonic').value) || 80;
 
             document.getElementById('val-dnd-troops').innerText = gameState.defense.troops.toFixed(1) + 'K';
             document.getElementById('val-dnd-reserves').innerText = '$' + gameState.defense.reserves.toFixed(1) + 'B/qtr';
@@ -871,15 +1183,52 @@
             document.getElementById('val-dnd-naval').innerText = '$' + gameState.defense.naval.toFixed(1) + 'B/qtr';
             document.getElementById('val-dnd-norad').innerText = '$' + gameState.defense.norad.toFixed(1) + 'B/qtr';
 
+            document.getElementById('val-dnd-interceptor').innerText = gameState.defense.interceptorProd + ' / qtr';
+            document.getElementById('val-dnd-hypersonic').innerText = gameState.defense.hypersonicProd + ' / qtr';
+
             document.getElementById('dnd-personnel-val').innerText = (gameState.defense.troops * 1000).toLocaleString();
             
+            // Direct missile production stimulates Aerospace industry
+            gameState.industries.aerospace.output = 120 + ((gameState.defense.interceptorProd + gameState.defense.hypersonicProd) * 0.15);
+
             const totalDef = getTotalDefenseCost();
             document.getElementById('total-defense-display').innerText = '$' + totalDef.toFixed(1) + 'B / qtr';
             updateTotalOutlays();
         }
 
+        function toggleNptStatus() {
+            gameState.nptCompliant = !gameState.nptCompliant;
+            const btn = document.getElementById('npt-toggle-btn');
+            const display = document.getElementById('npt-status-display');
+
+            if (gameState.nptCompliant) {
+                btn.className = 'px-3 py-1.5 rounded text-xs font-bold transition cursor-pointer bg-emerald-950 text-emerald-400 border border-emerald-800 hover:bg-emerald-900';
+                btn.innerHTML = '<i class="fa-solid fa-check-double mr-1"></i> Ratified & Compliant';
+                display.innerText = 'Signatory (Compliant)';
+                display.className = 'text-xs font-bold text-emerald-400';
+                gameState.publicApproval += 2;
+                logNews('DIPLOMACY', 'Canada reaffirmed full compliance with the Non-Proliferation Treaty (NPT). IAEA relations normalized.', 'success');
+            } else {
+                btn.className = 'px-3 py-1.5 rounded text-xs font-bold transition cursor-pointer bg-rose-950 text-rose-400 border border-rose-800 hover:bg-rose-900';
+                btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-1"></i> Treaty Withdrawn';
+                display.innerText = 'Withdrawn (Unsanctioned)';
+                display.className = 'text-xs font-bold text-rose-400';
+                gameState.publicApproval -= 4;
+                logNews('SECURITY ALERT', 'Canada suspended participation in the Non-Proliferation Treaty (NPT). Sovereign defense capabilities expanded under international scrutiny.', 'alert');
+            }
+        }
+
+        function openNuclearModal() {
+            document.getElementById('nuclear-modal').classList.remove('hidden');
+        }
+
+        function closeNuclearModal() {
+            document.getElementById('nuclear-modal').classList.add('hidden');
+        }
+
         function getTotalDefenseCost() {
-            return gameState.defense.reserves + gameState.defense.cyber + gameState.defense.air + gameState.defense.naval + gameState.defense.norad + (gameState.defense.troops * 0.08);
+            const missileOutlay = (gameState.defense.interceptorProd * 0.001) + (gameState.defense.hypersonicProd * 0.004);
+            return gameState.defense.reserves + gameState.defense.cyber + gameState.defense.air + gameState.defense.naval + gameState.defense.norad + (gameState.defense.troops * 0.08) + missileOutlay;
         }
 
         function updateTotalOutlays() {
@@ -908,11 +1257,48 @@
             }
         }
 
+        // REQUEST TO SIGN FTA ENGINE - Heavily randomized diplomatic results biased by Canada's historic allies
+        function requestToSignFta(key) {
+            const fta = gameState.ftas[key];
+            if (!fta || fta.active) return;
+
+            const btn = document.getElementById(`fta-btn-${key}`);
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i> Negotiating...`;
+            }
+
+            setTimeout(() => {
+                // Background calculation combining historic ally bias, random variance, and current trade status
+                const allyBias = fta.allyScore || 50;
+                const randomRoll = Math.floor(Math.random() * 100);
+                const nptPenalty = gameState.nptCompliant ? 0 : 20; // Withdrawal from NPT hurts trade negotiations
+                const calculatedSuccessThreshold = (100 - allyBias) + 15 + nptPenalty; // Higher threshold = harder to pass
+
+                if (randomRoll > calculatedSuccessThreshold) {
+                    fta.active = true;
+                    logNews('FTA RATIFIED', `Sovereign trade request to sign ${fta.name} APPROVED! Diplomatic protocols executed successfully.`, 'success');
+                    gameState.tradeBalance += 3.2;
+                    gameState.publicApproval += 2;
+                } else {
+                    logNews('FTA DIPLOMATIC STALEMATE', `Diplomatic request to sign ${fta.name} REJECTED or suspended by counterparty negotiators. Strategic variance roll failed.`, 'alert');
+                    gameState.publicApproval -= 1;
+                }
+
+                renderFtas();
+                renderKPIs();
+            }, 1200);
+        }
+
         function toggleFta(key) {
             if (gameState.ftas[key]) {
-                gameState.ftas[key].active = !gameState.ftas[key].active;
-                renderFtas();
-                logNews('TRADE POLICY', `FTA status updated for ${gameState.ftas[key].name}.`, 'info');
+                if (gameState.ftas[key].active) {
+                    gameState.ftas[key].active = false;
+                    logNews('TRADE POLICY', `Canada suspended bilateral agreement: ${gameState.ftas[key].name}.`, 'alert');
+                    renderFtas();
+                } else {
+                    requestToSignFta(key);
+                }
             }
         }
 
@@ -920,7 +1306,6 @@
             gameState.industries[key][param] = parseFloat(val) || 0;
         }
 
-        // Expanded Dynamic AI Negotiating Power with hidden logic & unpredictable swings
         function runAiNegotiation() {
             const partner = document.getElementById('ai-nego-partner').value;
             const strategy = document.getElementById('ai-nego-strategy').value;
@@ -973,8 +1358,8 @@
         function executeDefenseAudit() {
             const defCost = getTotalDefenseCost();
             gameState.publicApproval = Math.min(95, gameState.publicApproval + 3);
-            logNews('DEFENCE AUDIT', `Joint Chiefs of Staff completed readiness review. Defence spending stands at $${defCost.toFixed(1)}B/qtr. Public confidence in national security reinforced.`, 'success');
-            alert(`✅ DND Joint Staff Audit complete. Force readiness is optimal and public approval increased.`);
+            logNews('DEFENCE AUDIT', `Joint Chiefs of Staff completed readiness review. Missile stockpile stands at ${gameState.defense.missileStockpile} units. Public confidence reinforced.`, 'success');
+            alert(`✅ DND Joint Staff Audit complete. Force readiness & missile defense stock verified.`);
         }
 
         function advanceQuarter() {
@@ -987,6 +1372,10 @@
 
                 document.getElementById('current-quarter-display').innerText = `Year ${gameState.year} - Q${gameState.quarter}`;
 
+                // Missile Production Quarterly Stockpile Increment
+                gameState.defense.missileStockpile += (gameState.defense.interceptorProd + gameState.defense.hypersonicProd);
+                document.getElementById('dnd-missile-stockpile').innerText = gameState.defense.missileStockpile.toLocaleString() + ' Units';
+
                 if (gameState.debtToGdp > 80.0) {
                     const excess = gameState.debtToGdp - 80.0;
                     gameState.bondRiskSpread = parseFloat((excess * 0.07).toFixed(2));
@@ -997,12 +1386,15 @@
                 }
                 const effectiveBorrowingRate = Math.max(0.1, gameState.bocRate + gameState.bondRiskSpread);
 
+                // Revenue Computations including 10 New Configurable Metrics
                 const pitRev = (gameState.gdp * 0.38) * (gameState.pit / 100);
                 const citRev = (gameState.gdp * 0.22) * (gameState.cit / 100);
                 const gstRev = (gameState.gdp * 0.35) * (gameState.gst / 100);
                 const carbonRev = (gameState.carbonPrice * 0.20); 
-                const capGainsRev = (gameState.gdp * 0.08) * (gameState.capGainsRate / 100) * 0.25;
-                const smallBizRev = (gameState.gdp * 0.12) * (gameState.smallBizTax / 100);
+                const propTaxRev = (gameState.gdp * 0.15) * (gameState.propTaxRate / 100);
+                const wealthTaxRev = (gameState.gdp * 0.05) * (gameState.wealthTaxRate / 100);
+                const bankLevyRev = (gameState.gdp * 0.18) * (gameState.bankLevyRate / 100);
+                const tariffRev = (gameState.gdp * 0.10) * (gameState.tariffBaseRate / 100);
 
                 let industryTaxRev = 0;
                 let totalSubsidyOutlays = 0;
@@ -1017,7 +1409,7 @@
                     }
                 }
 
-                const totalTaxRev = pitRev + citRev + gstRev + carbonRev + capGainsRev + smallBizRev + industryTaxRev;
+                const totalTaxRev = pitRev + citRev + gstRev + carbonRev + propTaxRev + wealthTaxRev + bankLevyRev + tariffRev + industryTaxRev;
 
                 let totalSocialFunding = 0;
                 for (const key in gameState.funding) {
@@ -1041,21 +1433,23 @@
                 const laggedRate = gameState.monetaryLagQueue.shift(); 
                 const monetaryDrag = (laggedRate - 2.5) * 0.25;
 
-                const migrationBoost = (gameState.migrationInflow - 75) * 0.004;
+                // GDP Dynamics tied to Infrastructure Multiplier & Union Bargaining Power
+                const infraBoost = (gameState.infraMultiplier - 1.0) * 0.18;
+                const unionWagePush = (gameState.unionPowerIndex - 50) * 0.005;
                 const surplusDrag = (gameState.budgetDeficit < 0) ? (Math.abs(gameState.budgetDeficit) * 0.003) : 0;
 
-                let newGdpGrowth = 2.2 - monetaryDrag + migrationBoost - surplusDrag + (totalIndustryOutput / 4200);
+                let newGdpGrowth = 2.1 - monetaryDrag + infraBoost - surplusDrag + (totalIndustryOutput / 4300);
                 newGdpGrowth = parseFloat((newGdpGrowth + (Math.random() - 0.5) * 0.2).toFixed(2));
 
                 gameState.gdpGrowthRate = newGdpGrowth;
                 gameState.gdp = gameState.gdp * (1 + (newGdpGrowth / 400));
 
-                const demandPullInflation = (newGdpGrowth - 2.0) * 0.22;
+                const demandPullInflation = (newGdpGrowth - 2.0) * 0.22 + unionWagePush;
                 const rawInstantInflation = 2.0 + demandPullInflation;
                 let newInflation = (0.7 * gameState.cpiInflation) + (0.3 * rawInstantInflation);
                 gameState.cpiInflation = Math.max(0.1, parseFloat(newInflation.toFixed(2)));
 
-                let newUnemployment = gameState.unemploymentRate + ((2.0 - newGdpGrowth) * 0.2) - (gameState.migrationInflow * 0.0008);
+                let newUnemployment = gameState.unemploymentRate + ((2.0 - newGdpGrowth) * 0.2);
                 gameState.unemploymentRate = Math.min(15.0, Math.max(3.2, parseFloat(newUnemployment.toFixed(2))));
 
                 gameState.history.labels.push(`Y${gameState.year} Q${gameState.quarter}`);
@@ -1077,21 +1471,19 @@
 
                 renderKPIs();
                 triggerRandomGlobalNews();
-                logNews('STATSCAN', `Quarterly report: GDP Growth ${gameState.gdpGrowthRate}%, Inflation ${gameState.cpiInflation}%, Deficit $${gameState.budgetDeficit.toFixed(1)}B.`, 'info');
+                logNews('STATSCAN', `Quarterly report: GDP Growth ${gameState.gdpGrowthRate}%, CPI ${gameState.cpiInflation}%, Deficit $${gameState.budgetDeficit.toFixed(1)}B, Missile Stock ${gameState.defense.missileStockpile}.`, 'info');
             } catch (err) {
                 console.error("Error during advanceQuarter execution:", err);
             }
         }
 
-        // Expanded Global News Generator
         function triggerRandomGlobalNews() {
             const globalEvents = [
                 { cat: 'GLOBAL MARKETS', text: 'Wall Street and European bourses hit record highs following upbeat semiconductor earnings and stabilized energy supplies.', type: 'success' },
                 { cat: 'GEOPOLITICS', text: 'OPEC+ announces surprise crude output adjustments, causing volatility across international energy benchmarks.', type: 'alert' },
-                { cat: 'CENTRAL BANKS', text: 'European Central Bank (ECB) hints at upcoming interest rate pivots as eurozone inflation nears the 2.0% medium-term target.', type: 'info' },
+                { cat: 'ARCTIC SECURITY', text: 'Arctic Council Joint Patrols detect foreign surveillance submersibles near Canadian territorial waters; icebreaker response deployed.', type: 'alert' },
                 { cat: 'TRADE LEDGER', text: 'Pacific Rim container shipping volume increases by 4.2% year-over-year, easing global supply chain bottlenecks.', type: 'success' },
-                { cat: 'DIPLOMACY', text: 'G7 finance ministers conclude summit in Tokyo, pledging tighter coordination on international tax compliance and critical mineral supply resilience.', type: 'info' },
-                { cat: 'ENERGY TRANSITION', text: 'Global green hydrogen investments surpass $50B this quarter, accelerating demand for Canadian clean energy exports.', type: 'success' }
+                { cat: 'CYBER DEFENCE', text: 'Global AI Cyber Security Coalition neutralizes coordinated distributed attack against North American energy infrastructure.', type: 'success' }
             ];
             const ev = globalEvents[Math.floor(Math.random() * globalEvents.length)];
             logNews(ev.cat, ev.text, ev.type);
@@ -1193,14 +1585,33 @@
                 const fta = gameState.ftas[key];
                 const item = document.createElement('div');
                 item.className = 'bg-slate-950 p-3 rounded-xl border border-slate-800 flex items-center justify-between text-xs';
+                
+                let buttonHtml = '';
+                if (fta.active) {
+                    buttonHtml = `
+                        <button onclick="toggleFta('${key}')" class="px-2.5 py-1 rounded font-semibold text-[11px] cursor-pointer bg-emerald-950 text-emerald-400 border border-emerald-800 hover:bg-emerald-900">
+                            Ratified (Active)
+                        </button>
+                    `;
+                } else {
+                    buttonHtml = `
+                        <button id="fta-btn-${key}" onclick="requestToSignFta('${key}')" class="px-2.5 py-1 rounded font-semibold text-[11px] cursor-pointer bg-sky-600 hover:bg-sky-500 text-white shadow-md transition">
+                            Request to Sign
+                        </button>
+                    `;
+                }
+
                 item.innerHTML = `
                     <div>
-                        <span class="font-bold text-slate-200 block">${fta.name}</span>
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-bold text-slate-200 block">${fta.name}</span>
+                            <span class="text-[9px] px-1.5 py-0.2 rounded bg-slate-900 text-slate-400 border border-slate-800">Ally Score: ${fta.allyScore}/100</span>
+                        </div>
                         <span class="text-[10px] text-slate-400">${fta.bonus}</span>
                     </div>
-                    <button onclick="toggleFta('${key}')" class="px-2.5 py-1 rounded font-semibold cursor-pointer ${fta.active ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-slate-900 text-slate-400 border border-slate-700'}">
-                        ${fta.active ? 'Ratified' : 'Suspended'}
-                    </button>
+                    <div>
+                        ${buttonHtml}
+                    </div>
                 `;
                 container.appendChild(item);
             }
@@ -1218,7 +1629,7 @@
                 card.innerHTML = `
                     <div class="flex justify-between items-center border-b border-slate-800 pb-2">
                         <span class="font-bold text-xs text-slate-100">${ind.name}</span>
-                        <span class="text-[10px] font-semibold text-emerald-400">$${ind.output}B</span>
+                        <span class="text-[10px] font-semibold text-emerald-400">$${ind.output.toFixed(0)}B</span>
                     </div>
                     <div class="space-y-2 text-xs">
                         <div class="flex justify-between items-center">
@@ -1283,8 +1694,9 @@
                 renderAssociations();
                 renderFtas();
                 renderIndustries();
+                updatePolicies();
                 updateDefensePolicy();
-                logNews('SYSTEM READY', 'EconoMaster Engine v5.0 initialized successfully. Department of National Defence and global trade matrix active.', 'info');
+                logNews('SYSTEM INITIALIZED', 'EconoMaster Engine v5.5 online. 10 new policy levers, dynamic FTAs, missile production & NPT protocols integrated.', 'info');
             } catch (err) {
                 console.error("Window onload initialization error fallback:", err);
             }
