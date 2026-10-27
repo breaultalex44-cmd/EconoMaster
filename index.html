@@ -518,7 +518,7 @@
                         </h3>
                         <span class="text-[10px] bg-sky-950 text-sky-400 px-2 py-0.5 rounded border border-sky-800">11 Global Possibilities</span>
                     </div>
-                    <p class="text-xs text-slate-400">Ratification is not instant. Click <strong>"Request to Sign"</strong> to initiate background negotiations with heavy variance based on Canada's historic alliances.</p>
+                    <p class="text-xs text-slate-400">Ratification is not instant. Click <strong>"Request to Sign"</strong> to initiate background negotiations with heavy variance based on Canada's historic alliances. Opting out triggers severe economic downturns.</p>
                     <div class="space-y-3 max-h-[420px] overflow-y-auto pr-1" id="fta-container">
                         <!-- FTA items populated dynamically -->
                     </div>
@@ -578,7 +578,7 @@
                     </h3>
                     <span class="text-xs text-slate-400">10 Multilateral Bodies</span>
                 </div>
-                <p class="text-xs text-slate-300">Manage Canada's financial contributions and voting alignment across expanded global bodies, multilateral forums, arctic sovereignty pacts, and security coalitions.</p>
+                <p class="text-xs text-slate-300">Manage Canada's financial contributions and voting alignment across expanded global bodies, multilateral forums, arctic sovereignty pacts, and security coalitions. Opting out or joining has direct consequences on approval and macro metrics.</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="associations-container">
                     <!-- Populated dynamically -->
@@ -941,6 +941,7 @@
             monetaryLagQueue: [3.50, 3.50, 3.50], 
             bondRiskSpread: 0.0, 
             
+            // 15 Key Canadian Industries
             industries: {
                 oil_gas: { name: "1. Oil, Gas & Mining", output: 360, duty: 1.5, exportTax: 1.0, subsidy: 10.0, exoneration: false, pricePerTon: 880 },
                 auto_mfg: { name: "2. Automotive & Heavy Mfg", output: 300, duty: 2.5, exportTax: 0.0, subsidy: 12.0, exoneration: false, pricePerTon: 1420 },
@@ -961,33 +962,31 @@
 
             // FTAs - Includes Historic Ally Affinity Score for Canada
             ftas: {
-                usmca: { name: "USMCA (North America)", active: true, allyScore: 95, bonus: "Tariff-free automotive & energy access" },
-                ceta: { name: "CETA (European Union)", active: true, allyScore: 85, bonus: "98% industrial tariff elimination" },
-                uk_fta: { name: "UK-Canada Continuity FTA", active: true, allyScore: 90, bonus: "Preserved bilateral financial trade" },
-                cptpp: { name: "CPTPP (Indo-Pacific)", active: true, allyScore: 80, bonus: "Access to Japan, Australia & Vietnam" },
-                germany_pact: { name: "German-Canadian Industrial Accord", active: true, allyScore: 85, bonus: "Hydrogen and critical minerals export corridor" },
-                aukus_minerals: { name: "AUKUS Defense & Mineral Pact", active: true, allyScore: 92, bonus: "Enhanced naval tech & defense manufacturing sharing" },
-                latin_trade: { name: "Pacific Alliance FTA", active: false, allyScore: 60, bonus: "Latin American mining & tech corridors" },
-                india_cepa: { name: "India-Canada CEPA", active: false, allyScore: 55, bonus: "Expanded tech services & agricultural exports" },
-                // 3 NEW FTAS
-                afcfta: { name: "African Continental FTA (AfCFTA Partner)", active: false, allyScore: 45, bonus: "Access to emerging African mineral & trade hubs" },
-                mercosur: { name: "MERCOSUR-Canada Strategic Trade Pact", active: false, allyScore: 50, bonus: "Agricultural tariff offsets & industrial machinery exports" },
-                asean: { name: "ASEAN Economic Alliance", active: false, allyScore: 65, bonus: "Southeast Asian semiconductor & manufacturing pipeline" }
+                usmca: { name: "USMCA (North America)", active: true, allyScore: 95, bonus: "Tariff-free automotive & energy access", tradeValue: 12.5 },
+                ceta: { name: "CETA (European Union)", active: true, allyScore: 85, bonus: "98% industrial tariff elimination", tradeValue: 5.2 },
+                uk_fta: { name: "UK-Canada Continuity FTA", active: true, allyScore: 90, bonus: "Preserved bilateral financial trade", tradeValue: 3.8 },
+                cptpp: { name: "CPTPP (Indo-Pacific)", active: true, allyScore: 80, bonus: "Access to Japan, Australia & Vietnam", tradeValue: 4.5 },
+                germany_pact: { name: "German-Canadian Industrial Accord", active: true, allyScore: 85, bonus: "Hydrogen and critical minerals export corridor", tradeValue: 3.0 },
+                aukus_minerals: { name: "AUKUS Defense & Mineral Pact", active: true, allyScore: 92, bonus: "Enhanced naval tech & defense manufacturing sharing", tradeValue: 2.5 },
+                latin_trade: { name: "Pacific Alliance FTA", active: false, allyScore: 60, bonus: "Latin American mining & tech corridors", tradeValue: 2.0 },
+                india_cepa: { name: "India-Canada CEPA", active: false, allyScore: 55, bonus: "Expanded tech services & agricultural exports", tradeValue: 3.5 },
+                afcfta: { name: "African Continental FTA (AfCFTA Partner)", active: false, allyScore: 45, bonus: "Access to emerging African mineral & trade hubs", tradeValue: 2.2 },
+                mercosur: { name: "MERCOSUR-Canada Strategic Trade Pact", active: false, allyScore: 50, bonus: "Agricultural tariff offsets & industrial machinery exports", tradeValue: 2.8 },
+                asean: { name: "ASEAN Economic Alliance", active: false, allyScore: 65, bonus: "Southeast Asian semiconductor & manufacturing pipeline", tradeValue: 3.2 }
             },
 
-            // ASSOCIATIONS - Includes 3 New Associations
+            // ASSOCIATIONS - Multilateral bodies with specific voting/approval/macro consequences
             associations: {
-                un_core: { name: "United Nations Core Budget", funded: true, cost: 4.5, desc: "Mandatory UN membership dues." },
-                un_climate: { name: "UN Climate Adaptation Fund", funded: false, cost: 8.0, desc: "Multilateral climate grants." },
-                who: { name: "World Health Organization", funded: true, cost: 3.2, desc: "Global health surveillance and standards." },
-                nato: { name: "NATO Collective Defense Alliance", funded: true, cost: 14.5, desc: "Transatlantic security and intelligence sharing." },
-                WEF: { name: "World Economic Forum Partnership", funded: false, cost: 2.0, desc: "Global economic policy forums." },
-                commonwealth: { name: "Commonwealth of Nations", funded: true, cost: 2.5, desc: "Diplomatic and legislative cooperation across member states." },
-                wto: { name: "World Trade Organization (WTO)", funded: true, cost: 3.0, desc: "Global trade dispute resolution and tariff arbitration." },
-                // 3 NEW ASSOCIATIONS
-                arctic_council: { name: "Arctic Council Sovereignty Framework", funded: true, cost: 5.0, desc: "Multi-nation polar defense, icebreaking coordination & environmental monitoring." },
-                iea: { name: "International Energy Agency (IEA)", funded: true, cost: 2.8, desc: "Global oil reserves balancing and energy market stabilization." },
-                cyber_coalition: { name: "Global AI & Cyber Security Coalition", funded: true, cost: 4.0, desc: "Bilateral defense against state-sponsored cyber offensives." }
+                un_core: { name: "United Nations Core Budget", funded: true, cost: 4.5, desc: "Mandatory UN membership dues. Opting out tanks global standing & approval.", approvalImpact: 8, gdpImpact: 0.1, bondRisk: 0.15 },
+                un_climate: { name: "UN Climate Adaptation Fund", funded: false, cost: 8.0, desc: "Multilateral climate grants. Funding boosts environmental approval & clean tech output.", approvalImpact: 5, gdpImpact: 0.15, bondRisk: 0.05 },
+                who: { name: "World Health Organization", funded: true, cost: 3.2, desc: "Global health surveillance and standards. Opting out hurts public trust.", approvalImpact: 6, gdpImpact: 0.08, bondRisk: 0.05 },
+                nato: { name: "NATO Collective Defense Alliance", funded: true, cost: 14.5, desc: "Transatlantic security and intelligence sharing. Defunding causes severe diplomatic backlash.", approvalImpact: 10, gdpImpact: 0.25, bondRisk: 0.35 },
+                WEF: { name: "World Economic Forum Partnership", funded: false, cost: 2.0, desc: "Global economic policy forums.", approvalImpact: 3, gdpImpact: 0.05, bondRisk: 0.0 },
+                commonwealth: { name: "Commonwealth of Nations", funded: true, cost: 2.5, desc: "Diplomatic and legislative cooperation across member states.", approvalImpact: 4, gdpImpact: 0.05, bondRisk: 0.02 },
+                wto: { name: "World Trade Organization (WTO)", funded: true, cost: 3.0, desc: "Global trade dispute resolution and tariff arbitration. Opting out raises export barriers.", approvalImpact: 7, gdpImpact: 0.3, bondRisk: 0.2 },
+                arctic_council: { name: "Arctic Council Sovereignty Framework", funded: true, cost: 5.0, desc: "Multi-nation polar defense, icebreaking coordination & environmental monitoring.", approvalImpact: 6, gdpImpact: 0.12, bondRisk: 0.1 },
+                iea: { name: "International Energy Agency (IEA)", funded: true, cost: 2.8, desc: "Global oil reserves balancing and energy market stabilization.", approvalImpact: 5, gdpImpact: 0.1, bondRisk: 0.05 },
+                cyber_coalition: { name: "Global AI & Cyber Security Coalition", funded: true, cost: 4.0, desc: "Bilateral defense against state-sponsored cyber offensives.", approvalImpact: 5, gdpImpact: 0.15, bondRisk: 0.08 }
             },
 
             history: {
@@ -1249,15 +1248,32 @@
             }
         }
 
+        // UN & ASSOCIATIONS LOGIC REINFORCED: Opting out or joining has direct metrics, approval, and risk impact
         function toggleAssociation(key) {
-            if (gameState.associations[key]) {
-                gameState.associations[key].funded = !gameState.associations[key].funded;
+            const assoc = gameState.associations[key];
+            if (assoc) {
+                assoc.funded = !assoc.funded;
+                
+                if (assoc.funded) {
+                    // Benefit logic on joining/funding
+                    gameState.publicApproval = Math.min(100, gameState.publicApproval + assoc.approvalImpact);
+                    gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate + assoc.gdpImpact).toFixed(2));
+                    logNews('MULTILATERAL DIPLOMACY', `Canada fully funded & aligned with ${assoc.name}. Sovereign standing and diplomatic approval increased (+${assoc.approvalImpact}% Approval).`, 'success');
+                } else {
+                    // Severe consequence logic on opting out
+                    gameState.publicApproval = Math.max(0, gameState.publicApproval - (assoc.approvalImpact * 1.5));
+                    gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate - (assoc.gdpImpact * 1.2)).toFixed(2));
+                    gameState.bondRiskSpread = parseFloat((gameState.bondRiskSpread + assoc.bondRisk).toFixed(2));
+                    logNews('ASSOCIATION OPT-OUT', `Canada withdrew funding/membership from ${assoc.name}. Diplomatic isolation triggered public approval drop (-${Math.round(assoc.approvalImpact * 1.5)}%) and bond risk spread increase.`, 'alert');
+                }
+
                 renderAssociations();
                 updateTotalOutlays();
+                renderKPIs();
             }
         }
 
-        // REQUEST TO SIGN FTA ENGINE - Heavily randomized diplomatic results biased by Canada's historic allies
+        // REQUEST TO SIGN FTA ENGINE - Direct impact and randomized diplomatic results biased by Canada's historic allies
         function requestToSignFta(key) {
             const fta = gameState.ftas[key];
             if (!fta || fta.active) return;
@@ -1277,12 +1293,13 @@
 
                 if (randomRoll > calculatedSuccessThreshold) {
                     fta.active = true;
-                    logNews('FTA RATIFIED', `Sovereign trade request to sign ${fta.name} APPROVED! Diplomatic protocols executed successfully.`, 'success');
-                    gameState.tradeBalance += 3.2;
-                    gameState.publicApproval += 2;
+                    logNews('FTA RATIFIED', `Sovereign trade request to sign ${fta.name} APPROVED! Diplomatic protocols executed successfully. Trade boosted by +$${fta.tradeValue}B.`, 'success');
+                    gameState.tradeBalance += fta.tradeValue;
+                    gameState.publicApproval = Math.min(100, gameState.publicApproval + 3);
+                    gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate + 0.3).toFixed(2));
                 } else {
                     logNews('FTA DIPLOMATIC STALEMATE', `Diplomatic request to sign ${fta.name} REJECTED or suspended by counterparty negotiators. Strategic variance roll failed.`, 'alert');
-                    gameState.publicApproval -= 1;
+                    gameState.publicApproval = Math.max(0, gameState.publicApproval - 1);
                 }
 
                 renderFtas();
@@ -1290,20 +1307,65 @@
             }, 1200);
         }
 
+        // FREE TRADE AGREEMENTS OPTING OUT LOGIC: Opting out spur economic downturn & trade pain
         function toggleFta(key) {
-            if (gameState.ftas[key]) {
-                if (gameState.ftas[key].active) {
-                    gameState.ftas[key].active = false;
-                    logNews('TRADE POLICY', `Canada suspended bilateral agreement: ${gameState.ftas[key].name}.`, 'alert');
+            const fta = gameState.ftas[key];
+            if (fta) {
+                if (fta.active) {
+                    fta.active = false;
+                    // Severe Economic Downturn logic from FTA Opt-Out
+                    const downturnLoss = fta.tradeValue || 4.0;
+                    gameState.tradeBalance -= (downturnLoss * 1.5);
+                    gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate - 0.8).toFixed(2)); // GDP contraction
+                    gameState.unemploymentRate = parseFloat((gameState.unemploymentRate + 0.5).toFixed(2)); // Unemployment spikes
+                    gameState.cpiInflation = parseFloat((gameState.cpiInflation + 0.4).toFixed(2)); // Tariff import cost inflation
+                    gameState.publicApproval = Math.max(0, gameState.publicApproval - 6);
+
+                    logNews('ECONOMIC DOWNTURN WARNING', `Canada OPTED OUT of ${fta.name}! Severe trade shock & economic pain triggered. Trade balance crashed by -$${(downturnLoss * 1.5).toFixed(1)}B, GDP growth contracted, and CPI inflation surged due to new foreign tariffs.`, 'alert');
                     renderFtas();
+                    renderKPIs();
                 } else {
                     requestToSignFta(key);
                 }
             }
         }
 
+        // 15 KEY CANADIAN INDUSTRIES DIRECT IMPACT LOGIC
         function updateIndustryParam(key, param, val) {
-            gameState.industries[key][param] = parseFloat(val) || 0;
+            const ind = gameState.industries[key];
+            if (!ind) return;
+
+            const oldVal = ind[param];
+            ind[param] = parseFloat(val) || 0;
+            const diff = ind[param] - oldVal;
+
+            // Direct consequences/benefits logic across macro variables
+            if (param === 'duty') {
+                // Higher duties boost industry revenues but increase CPI inflation and risk retaliation
+                gameState.cpiInflation = parseFloat((gameState.cpiInflation + (diff * 0.05)).toFixed(2));
+                if (diff > 0) {
+                    logNews('INDUSTRY TARIFF ADJUSTMENT', `${ind.name} import duty raised to ${ind.duty}%. Local market protected, but CPI import inflation nudged upward.`, 'info');
+                }
+            } else if (param === 'subsidy') {
+                // Higher subsidies boost output & GDP growth but drain federal balance
+                ind.output = Math.max(20, parseFloat((ind.output + (diff * 2.5)).toFixed(1)));
+                gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate + (diff * 0.02)).toFixed(2));
+                if (diff > 0) {
+                    logNews('INDUSTRIAL SUBSIDY BOOST', `Federal subsidy for ${ind.name} increased to $${ind.subsidy}B. Industry production accelerated.`, 'success');
+                }
+            } else if (param === 'exportTax') {
+                // Export tax raises revenue but shrinks trade balance and output
+                ind.output = Math.max(20, parseFloat((ind.output - (diff * 1.8)).toFixed(1)));
+                gameState.tradeBalance -= (diff * 0.2);
+            } else if (param === 'pricePerTon') {
+                // Price changes directly impact industry valuation, CPI inflation & output value
+                const pctChange = (diff / oldVal) * 100;
+                ind.output = Math.max(20, parseFloat((ind.output * (1 + (pctChange / 200))).toFixed(1)));
+                gameState.cpiInflation = Math.max(0.1, parseFloat((gameState.cpiInflation + (pctChange * 0.015)).toFixed(2)));
+                logNews('INDUSTRY COMMODITY RE-PRICING', `${ind.name} price adjusted to $${ind.pricePerTon}/unit. Direct CPI and production output updated.`, 'info');
+            }
+
+            renderKPIs();
         }
 
         function runAiNegotiation() {
@@ -1324,7 +1386,7 @@
                         logNews('AI TRADE NEGOTIATION', outcomeText, 'success');
                     } else {
                         gameState.tradeBalance -= 1.0;
-                        gameState.publicApproval -= 2;
+                        gameState.publicApproval = Math.max(0, gameState.publicApproval - 2);
                         outcomeText = `⚠️ Aggressive tariff posturing backfired with ${partner.toUpperCase()}. Retaliatory duties imposed; surplus reduced by -$1.0B.`;
                         logNews('AI TRADE NEGOTIATION', outcomeText, 'alert');
                     }
@@ -1336,7 +1398,7 @@
                 } else if (strategy === 'unpredictable') {
                     if (randomVariance > 0.5) {
                         gameState.tradeBalance += 3.5;
-                        gameState.publicApproval += 3;
+                        gameState.publicApproval = Math.min(100, gameState.publicApproval + 3);
                         outcomeText = `🎲 High-stakes gamble succeeded! Unpredictable diplomatic maneuvers outmaneuvered negotiators from ${partner.toUpperCase()}. +$3.5B trade boost!`;
                         logNews('AI TRADE NEGOTIATION', outcomeText, 'success');
                     } else {
@@ -1345,7 +1407,7 @@
                         logNews('AI TRADE NEGOTIATION', outcomeText, 'alert');
                     }
                 } else {
-                    gameState.publicApproval = Math.min(95, gameState.publicApproval + 2);
+                    gameState.publicApproval = Math.min(100, gameState.publicApproval + 2);
                     gameState.tradeBalance += 1.2;
                     outcomeText = `🤝 Balanced bilateral compromise ratified smoothly with ${partner.toUpperCase()}. Trade surplus improved by +$1.2B.`;
                     logNews('AI TRADE NEGOTIATION', outcomeText, 'success');
@@ -1357,7 +1419,7 @@
 
         function executeDefenseAudit() {
             const defCost = getTotalDefenseCost();
-            gameState.publicApproval = Math.min(95, gameState.publicApproval + 3);
+            gameState.publicApproval = Math.min(100, gameState.publicApproval + 3);
             logNews('DEFENCE AUDIT', `Joint Chiefs of Staff completed readiness review. Missile stockpile stands at ${gameState.defense.missileStockpile} units. Public confidence reinforced.`, 'success');
             alert(`✅ DND Joint Staff Audit complete. Force readiness & missile defense stock verified.`);
         }
@@ -1376,13 +1438,21 @@
                 gameState.defense.missileStockpile += (gameState.defense.interceptorProd + gameState.defense.hypersonicProd);
                 document.getElementById('dnd-missile-stockpile').innerText = gameState.defense.missileStockpile.toLocaleString() + ' Units';
 
+                // Association Penalty Accumulation: Check defunded essential associations
+                let unfundedAssociationPenalties = 0;
+                for (const k in gameState.associations) {
+                    if (!gameState.associations[k].funded) {
+                        unfundedAssociationPenalties += (gameState.associations[k].bondRisk || 0.05);
+                    }
+                }
+
                 if (gameState.debtToGdp > 80.0) {
                     const excess = gameState.debtToGdp - 80.0;
-                    gameState.bondRiskSpread = parseFloat((excess * 0.07).toFixed(2));
+                    gameState.bondRiskSpread = parseFloat((excess * 0.07 + unfundedAssociationPenalties).toFixed(2));
                 } else if (gameState.debtToGdp < 35.0) {
-                    gameState.bondRiskSpread = -0.20; 
+                    gameState.bondRiskSpread = parseFloat((-0.20 + unfundedAssociationPenalties).toFixed(2)); 
                 } else {
-                    gameState.bondRiskSpread = 0.0;
+                    gameState.bondRiskSpread = parseFloat(unfundedAssociationPenalties.toFixed(2));
                 }
                 const effectiveBorrowingRate = Math.max(0.1, gameState.bocRate + gameState.bondRiskSpread);
 
@@ -1433,12 +1503,18 @@
                 const laggedRate = gameState.monetaryLagQueue.shift(); 
                 const monetaryDrag = (laggedRate - 2.5) * 0.25;
 
-                // GDP Dynamics tied to Infrastructure Multiplier & Union Bargaining Power
+                // GDP Dynamics tied to Infrastructure Multiplier & Union Bargaining Power & FTAs
+                let activeFtaCount = 0;
+                for (const f in gameState.ftas) {
+                    if (gameState.ftas[f].active) activeFtaCount++;
+                }
+                const ftaTradeBonus = (activeFtaCount - 4) * 0.1; // Penalty if too many FTAs are broken
+
                 const infraBoost = (gameState.infraMultiplier - 1.0) * 0.18;
                 const unionWagePush = (gameState.unionPowerIndex - 50) * 0.005;
                 const surplusDrag = (gameState.budgetDeficit < 0) ? (Math.abs(gameState.budgetDeficit) * 0.003) : 0;
 
-                let newGdpGrowth = 2.1 - monetaryDrag + infraBoost - surplusDrag + (totalIndustryOutput / 4300);
+                let newGdpGrowth = 2.1 - monetaryDrag + infraBoost + ftaTradeBonus - surplusDrag + (totalIndustryOutput / 4300);
                 newGdpGrowth = parseFloat((newGdpGrowth + (Math.random() - 0.5) * 0.2).toFixed(2));
 
                 gameState.gdpGrowthRate = newGdpGrowth;
@@ -1471,7 +1547,7 @@
 
                 renderKPIs();
                 triggerRandomGlobalNews();
-                logNews('STATSCAN', `Quarterly report: GDP Growth ${gameState.gdpGrowthRate}%, CPI ${gameState.cpiInflation}%, Deficit $${gameState.budgetDeficit.toFixed(1)}B, Missile Stock ${gameState.defense.missileStockpile}.`, 'info');
+                logNews('STATSCAN', `Quarterly report: GDP Growth ${gameState.gdpGrowthRate}%, CPI ${gameState.cpiInflation}%, Deficit $${gameState.budgetDeficit.toFixed(1)}B, Active FTAs: ${activeFtaCount}/11.`, 'info');
             } catch (err) {
                 console.error("Error during advanceQuarter execution:", err);
             }
@@ -1489,28 +1565,67 @@
             logNews(ev.cat, ev.text, ev.type);
         }
 
+        function logNews(category, text, type = 'info') {
+            const container = document.getElementById('news-feed-container');
+            if (!container) return;
+
+            let badgeStyle = 'bg-sky-950 text-sky-400 border-sky-800';
+            if (type === 'success') badgeStyle = 'bg-emerald-950 text-emerald-400 border-emerald-800';
+            if (type === 'alert') badgeStyle = 'bg-rose-950 text-rose-400 border-rose-800';
+
+            const timeStamp = `Y${gameState.year}-Q${gameState.quarter}`;
+            const item = document.createElement('div');
+            item.className = 'bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs space-y-1';
+            item.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <span class="font-bold text-[10px] uppercase px-1.5 py-0.5 rounded border ${badgeStyle}">${category}</span>
+                    <span class="text-[10px] text-slate-500">${timeStamp}</span>
+                </div>
+                <p class="text-slate-300 leading-relaxed">${text}</p>
+            `;
+            container.prepend(item);
+        }
+
+        function clearNewsLog() {
+            const container = document.getElementById('news-feed-container');
+            if (container) container.innerHTML = '';
+        }
+
         function renderKPIs() {
             try {
-                document.getElementById('kpi-gdp').innerText = '$' + (gameState.gdp / 1000).toFixed(3) + ' T';
-                document.getElementById('kpi-gdp-growth').innerText = (gameState.gdpGrowthRate >= 0 ? '+' : '') + gameState.gdpGrowthRate + '%';
-                document.getElementById('kpi-inflation').innerText = gameState.cpiInflation + '%';
-                document.getElementById('kpi-unemployment').innerText = gameState.unemploymentRate + '%';
-                document.getElementById('kpi-rate').innerText = gameState.bocRate.toFixed(2) + '%';
-                document.getElementById('kpi-debt').innerText = gameState.debtToGdp.toFixed(1) + '%';
-                document.getElementById('kpi-fx').innerText = '$' + gameState.cadToUsd;
-                document.getElementById('kpi-approval').innerText = gameState.publicApproval + '%';
-                document.getElementById('kpi-trade').innerText = (gameState.tradeBalance >= 0 ? '+$' : '-$') + Math.abs(gameState.tradeBalance).toFixed(1) + 'B';
+                document.getElementById('kpi-gdp').innerText = '$' + gameState.gdp.toFixed(3) + ' T';
+                
+                const growthEl = document.getElementById('kpi-gdp-growth');
+                growthEl.innerText = (gameState.gdpGrowthRate >= 0 ? '+' : '') + gameState.gdpGrowthRate.toFixed(1) + '%';
+                growthEl.className = `text-[11px] font-semibold ${gameState.gdpGrowthRate >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
 
-                const deficitEl = document.getElementById('kpi-budget-balance');
+                document.getElementById('kpi-inflation').innerText = gameState.cpiInflation.toFixed(1) + '%';
+                document.getElementById('kpi-unemployment').innerText = gameState.unemploymentRate.toFixed(1) + '%';
+                document.getElementById('kpi-rate').innerText = gameState.bocRate.toFixed(2) + '%';
+                
+                const spreadEl = document.getElementById('kpi-bond-spread');
+                spreadEl.innerText = (gameState.bondRiskSpread >= 0 ? '+' : '') + Math.round(gameState.bondRiskSpread * 100) + ' bps';
+
+                document.getElementById('kpi-debt').innerText = gameState.debtToGdp.toFixed(1) + '%';
+                
+                const balanceEl = document.getElementById('kpi-budget-balance');
                 if (gameState.budgetDeficit > 0) {
-                    deficitEl.innerText = '-$' + gameState.budgetDeficit.toFixed(1) + 'B';
-                    deficitEl.className = 'text-[11px] font-semibold text-rose-400';
+                    balanceEl.innerText = '-$' + gameState.budgetDeficit.toFixed(1) + 'B';
+                    balanceEl.className = 'text-[11px] font-semibold text-rose-400';
                 } else {
-                    deficitEl.innerText = '+$' + Math.abs(gameState.budgetDeficit).toFixed(1) + 'B (Surplus)';
-                    deficitEl.className = 'text-[11px] font-semibold text-emerald-400';
+                    balanceEl.innerText = '+$' + Math.abs(gameState.budgetDeficit).toFixed(1) + 'B';
+                    balanceEl.className = 'text-[11px] font-semibold text-emerald-400';
                 }
-            } catch (err) {
-                console.error("Error rendering KPIs:", err);
+
+                document.getElementById('kpi-fx').innerText = '$' + gameState.cadToUsd.toFixed(3);
+                
+                const tradeEl = document.getElementById('kpi-trade');
+                tradeEl.innerText = (gameState.tradeBalance >= 0 ? '+$' : '-$') + Math.abs(gameState.tradeBalance).toFixed(1) + 'B';
+                tradeEl.className = `text-lg sm:text-2xl font-bold ${gameState.tradeBalance >= 0 ? 'text-slate-100' : 'text-rose-400'}`;
+
+                document.getElementById('kpi-approval').innerText = Math.round(gameState.publicApproval) + '%';
+            } catch (e) {
+                console.error("KPI render error:", e);
             }
         }
 
@@ -1519,57 +1634,63 @@
             if (!container) return;
             container.innerHTML = '';
 
-            const fundingMeta = {
-                health: { name: "1. Universal Healthcare", max: 150 },
-                education: { name: "2. Public Education", max: 100 },
-                research: { name: "3. Scientific Research & R&D", max: 40 },
-                police: { name: "4. Federal Law Enforcement", max: 50 },
-                transport: { name: "5. Public Transit & Rail", max: 70 },
-                environment: { name: "6. Environmental Protection", max: 30 },
-                housing: { name: "7. Social Housing", max: 60 },
-                veterans: { name: "8. Veterans Affairs", max: 35 },
-                childcare: { name: "9. Childcare Subsidies", max: 45 }
-            };
+            const categories = [
+                { id: 'health', name: 'Universal Healthcare & Hospitals', val: gameState.funding.health, min: 30, max: 180 },
+                { id: 'education', name: 'Post-Secondary Education & Schools', val: gameState.funding.education, min: 20, max: 100 },
+                { id: 'research', name: 'Scientific Research & AI Grants', val: gameState.funding.research, min: 5, max: 60 },
+                { id: 'police', name: 'RCMP & Federal Law Enforcement', val: gameState.funding.police, min: 10, max: 70 },
+                { id: 'transport', name: 'High-Speed Rail & Transport Hubs', val: gameState.funding.transport, min: 10, max: 90 },
+                { id: 'environment', name: 'Clean Tech & Parks Protection', val: gameState.funding.environment, min: 2, max: 40 },
+                { id: 'housing', name: 'Affordable Housing Construction', val: gameState.funding.housing, min: 5, max: 80 },
+                { id: 'veterans', name: 'Veterans Affairs & Pensions', val: gameState.funding.veterans, min: 5, max: 40 },
+                { id: 'childcare', name: 'Early Childhood Education & Care', val: gameState.funding.childcare, min: 5, max: 50 }
+            ];
 
-            for (const key in fundingMeta) {
-                const meta = fundingMeta[key];
-                const val = gameState.funding[key];
-                const card = document.createElement('div');
-                card.className = 'bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1.5';
-                card.innerHTML = `
-                    <div class="flex justify-between text-xs font-medium">
-                        <label class="text-slate-300 font-semibold text-[11px]">${meta.name}</label>
-                        <span id="val-fund-${key}" class="text-purple-400 font-bold">$${val.toFixed(1)}B</span>
+            categories.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'bg-slate-950 p-3 rounded-lg border border-slate-800 space-y-1.5 text-xs';
+                div.innerHTML = `
+                    <div class="flex justify-between font-semibold">
+                        <span class="text-slate-200">${item.name}</span>
+                        <span id="val-fund-${item.id}" class="text-purple-400 font-bold">$${item.val.toFixed(1)}B</span>
                     </div>
-                    <input type="range" min="5" max="${meta.max}" step="1" value="${val}" class="w-full h-2 bg-slate-800 rounded-lg cursor-pointer" oninput="updateFunding('${key}', this.value)">
+                    <input type="range" min="${item.min}" max="${item.max}" step="1" value="${item.val}" class="w-full h-1.5 bg-slate-800 rounded cursor-pointer" oninput="updateFunding('${item.id}', this.value)">
                 `;
-                container.appendChild(card);
-            }
-            updateFunding('health', gameState.funding.health);
+                container.appendChild(div);
+            });
         }
 
-        function renderAssociations() {
-            const container = document.getElementById('associations-container');
+        function renderIndustries() {
+            const container = document.getElementById('industry-cards-container');
             if (!container) return;
             container.innerHTML = '';
 
-            for (const key in gameState.associations) {
-                const assoc = gameState.associations[key];
+            for (const key in gameState.industries) {
+                const ind = gameState.industries[key];
                 const card = document.createElement('div');
-                card.className = 'bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2 flex flex-col justify-between';
+                card.className = 'bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2 text-xs';
                 card.innerHTML = `
-                    <div>
-                        <div class="flex items-center justify-between">
-                            <span class="font-bold text-xs text-slate-100">${assoc.name}</span>
-                            <span class="text-[10px] font-semibold text-purple-400">$${assoc.cost}B/qtr</span>
-                        </div>
-                        <p class="text-[11px] text-slate-400 mt-1">${assoc.desc}</p>
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-1.5">
+                        <span class="font-bold text-slate-100">${ind.name}</span>
+                        <span class="text-[10px] text-amber-400 font-mono font-bold">$${ind.output}B/yr</span>
                     </div>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-900 text-xs">
-                        <span class="text-slate-300">Sovereign Membership</span>
-                        <button onclick="toggleAssociation('${key}')" class="px-3 py-1 rounded text-xs font-semibold cursor-pointer ${assoc.funded ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-slate-900 text-slate-400 border border-slate-700'}">
-                            ${assoc.funded ? 'Active & Funded' : 'Opted Out / Reduced'}
-                        </button>
+                    <div class="grid grid-cols-2 gap-2 text-[11px]">
+                        <div>
+                            <label class="text-slate-400 block text-[10px]">Import Tariff (%)</label>
+                            <input type="number" min="0" max="30" value="${ind.duty}" class="w-full bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-slate-200" onchange="updateIndustryParam('${key}', 'duty', this.value)">
+                        </div>
+                        <div>
+                            <label class="text-slate-400 block text-[10px]">Subsidy ($B)</label>
+                            <input type="number" min="0" max="50" value="${ind.subsidy}" class="w-full bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-slate-200" onchange="updateIndustryParam('${key}', 'subsidy', this.value)">
+                        </div>
+                        <div>
+                            <label class="text-slate-400 block text-[10px]">Export Tax (%)</label>
+                            <input type="number" min="0" max="20" value="${ind.exportTax}" class="w-full bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-slate-200" onchange="updateIndustryParam('${key}', 'exportTax', this.value)">
+                        </div>
+                        <div>
+                            <label class="text-slate-400 block text-[10px]">Price Benchmark ($)</label>
+                            <input type="number" min="100" max="10000" value="${ind.pricePerTon}" class="w-full bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-slate-200" onchange="updateIndustryParam('${key}', 'pricePerTon', this.value)">
+                        </div>
                     </div>
                 `;
                 container.appendChild(card);
@@ -1583,123 +1704,85 @@
 
             for (const key in gameState.ftas) {
                 const fta = gameState.ftas[key];
-                const item = document.createElement('div');
-                item.className = 'bg-slate-950 p-3 rounded-xl border border-slate-800 flex items-center justify-between text-xs';
-                
-                let buttonHtml = '';
-                if (fta.active) {
-                    buttonHtml = `
-                        <button onclick="toggleFta('${key}')" class="px-2.5 py-1 rounded font-semibold text-[11px] cursor-pointer bg-emerald-950 text-emerald-400 border border-emerald-800 hover:bg-emerald-900">
-                            Ratified (Active)
-                        </button>
-                    `;
-                } else {
-                    buttonHtml = `
-                        <button id="fta-btn-${key}" onclick="requestToSignFta('${key}')" class="px-2.5 py-1 rounded font-semibold text-[11px] cursor-pointer bg-sky-600 hover:bg-sky-500 text-white shadow-md transition">
-                            Request to Sign
-                        </button>
-                    `;
-                }
-
-                item.innerHTML = `
-                    <div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="font-bold text-slate-200 block">${fta.name}</span>
-                            <span class="text-[9px] px-1.5 py-0.2 rounded bg-slate-900 text-slate-400 border border-slate-800">Ally Score: ${fta.allyScore}/100</span>
+                const div = document.createElement('div');
+                div.className = 'bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs space-y-1.5';
+                div.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-slate-200">${fta.name}</span>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] text-slate-400">Ally Score: <strong class="text-sky-400">${fta.allyScore}%</strong></span>
+                            <button id="fta-btn-${key}" onclick="toggleFta('${key}')" class="px-2.5 py-1 rounded text-[11px] font-bold transition cursor-pointer ${fta.active ? 'bg-emerald-950 text-emerald-400 border border-emerald-800 hover:bg-emerald-900' : 'bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700'}">
+                                ${fta.active ? '<i class="fa-solid fa-check mr-1"></i> Active (Ratified)' : '<i class="fa-solid fa-file-signature mr-1"></i> Request to Sign'}
+                            </button>
                         </div>
-                        <span class="text-[10px] text-slate-400">${fta.bonus}</span>
                     </div>
-                    <div>
-                        ${buttonHtml}
-                    </div>
+                    <p class="text-[10px] text-slate-400 leading-normal">${fta.bonus} — Estimated Annual Value: <strong class="text-amber-400">+$${fta.tradeValue}B</strong></p>
                 `;
-                container.appendChild(item);
+                container.appendChild(div);
             }
         }
 
-        function renderIndustries() {
-            const container = document.getElementById('industry-cards-container');
+        function renderAssociations() {
+            const container = document.getElementById('associations-container');
             if (!container) return;
             container.innerHTML = '';
 
-            for (const key in gameState.industries) {
-                const ind = gameState.industries[key];
+            for (const key in gameState.associations) {
+                const assoc = gameState.associations[key];
                 const card = document.createElement('div');
-                card.className = 'bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2.5';
+                card.className = 'bg-slate-950 p-3.5 rounded-xl border border-slate-800 text-xs space-y-2 flex flex-col justify-between';
                 card.innerHTML = `
-                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-                        <span class="font-bold text-xs text-slate-100">${ind.name}</span>
-                        <span class="text-[10px] font-semibold text-emerald-400">$${ind.output.toFixed(0)}B</span>
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <span class="font-bold text-slate-100">${assoc.name}</span>
+                            <span class="text-teal-400 font-bold">$${assoc.cost}B / yr</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">${assoc.desc}</p>
                     </div>
-                    <div class="space-y-2 text-xs">
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400 text-[11px]">Price/Ton ($)</span>
-                            <input type="number" value="${ind.pricePerTon}" class="w-20 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-sky-400 font-bold text-xs" oninput="updateIndustryParam('${key}', 'pricePerTon', this.value)">
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400 text-[11px]">Duty (%)</span>
-                            <input type="number" step="0.5" value="${ind.duty}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-amber-400 font-bold text-xs" oninput="updateIndustryParam('${key}', 'duty', this.value)">
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400 text-[11px]">Subsidy ($B/yr)</span>
-                            <input type="number" step="1" value="${ind.subsidy}" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-right text-emerald-400 font-bold text-xs" oninput="updateIndustryParam('${key}', 'subsidy', this.value)">
-                        </div>
+                    <div class="pt-2 border-t border-slate-800/80 flex justify-between items-center">
+                        <span class="text-[10px] ${assoc.funded ? 'text-emerald-400' : 'text-rose-400'} font-semibold">
+                            ${assoc.funded ? 'Status: Fully Funded & Aligned' : 'Status: Defunded / Opted Out'}
+                        </span>
+                        <button onclick="toggleAssociation('${key}')" class="px-3 py-1 rounded text-[11px] font-bold transition cursor-pointer ${assoc.funded ? 'bg-rose-950 text-rose-400 border border-rose-800 hover:bg-rose-900' : 'bg-emerald-950 text-emerald-400 border border-emerald-800 hover:bg-emerald-900'}">
+                            ${assoc.funded ? 'Opt Out / Defund' : 'Fund & Join'}
+                        </button>
                     </div>
                 `;
                 container.appendChild(card);
             }
         }
 
-        function logNews(category, text, type = 'info') {
-            const container = document.getElementById('news-feed-container');
-            if (!container) return;
-            const entry = document.createElement('div');
+        // Window Initialization
+        window.onload = function () {
+            // Loading Bar Simulation
+            const loadingBar = document.getElementById('loading-bar');
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 25;
+                if (loadingBar) loadingBar.style.width = progress + '%';
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        const loader = document.getElementById('loading-screen');
+                        if (loader) {
+                            loader.style.opacity = '0';
+                            setTimeout(() => loader.style.display = 'none', 500);
+                        }
+                    }, 200);
+                }
+            }, 100);
 
-            let badgeStyle = 'bg-sky-950 text-sky-400 border-sky-800';
-            if (type === 'alert') badgeStyle = 'bg-rose-950 text-rose-400 border-rose-800';
-            if (type === 'success') badgeStyle = 'bg-emerald-950 text-emerald-400 border-emerald-800';
+            // Render Dynamic UI Layouts
+            renderKPIs();
+            renderFundingSliders();
+            renderIndustries();
+            renderFtas();
+            renderAssociations();
+            updatePolicies();
+            updateDefensePolicy();
+            initCharts();
 
-            entry.className = 'bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs flex items-start gap-3';
-            entry.innerHTML = `
-                <span class="px-2 py-0.5 rounded text-[9px] font-bold border uppercase ${badgeStyle} shrink-0">${category}</span>
-                <div class="flex-1">
-                    <p class="text-slate-200 leading-relaxed text-[11px] sm:text-xs">${text}</p>
-                    <span class="text-[9px] text-slate-500 mt-1 block">Year ${gameState.year} - Q${gameState.quarter}</span>
-                </div>
-            `;
-            container.prepend(entry);
-        }
-
-        function clearNewsLog() {
-            const container = document.getElementById('news-feed-container');
-            if (container) container.innerHTML = '';
-        }
-
-        window.onload = function() {
-            try {
-                const loadingBar = document.getElementById('loading-bar');
-                if (loadingBar) loadingBar.style.width = '100%';
-
-                setTimeout(() => {
-                    const loader = document.getElementById('loading-screen');
-                    if (loader) {
-                        loader.style.opacity = '0';
-                        setTimeout(() => loader.remove(), 500);
-                    }
-                }, 400);
-
-                initCharts();
-                renderKPIs();
-                renderFundingSliders();
-                renderAssociations();
-                renderFtas();
-                renderIndustries();
-                updatePolicies();
-                updateDefensePolicy();
-                logNews('SYSTEM INITIALIZED', 'EconoMaster Engine v5.5 online. 10 new policy levers, dynamic FTAs, missile production & NPT protocols integrated.', 'info');
-            } catch (err) {
-                console.error("Window onload initialization error fallback:", err);
-            }
+            logNews('SYSTEM READY', 'EconoMaster Engine v5.5 initialized with sovereign trade, DND missile production, and dynamic association logic.', 'success');
         };
     </script>
 </body>
