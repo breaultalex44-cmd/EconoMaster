@@ -290,7 +290,7 @@
             </div>
         </section>
 
-        <!-- TAB 2: FINANCE & POLICY HUB (EXPANDED WITH 10 NEW CONFIGURABLE METRICS) -->
+        <!-- TAB 2: FINANCE & POLICY HUB -->
         <section id="tab-policy" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 <!-- Primary Tax Controls -->
@@ -586,7 +586,7 @@
             </div>
         </section>
 
-        <!-- TAB 6: DEFENCE DEPARTMENT (EXPANDED WITH MISSILES, NPT & IN DEVELOPMENT NUCLEAR PROGRAM) -->
+        <!-- TAB 6: DEFENCE DEPARTMENT -->
         <section id="tab-defense" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
@@ -743,8 +743,8 @@
                     </div>
                 </div>
 
-                <!-- UPCOMING FEATURE BANNER: NUCLEAR WEAPONS PROGRAM -->
-                <div class="relative overflow-hidden bg-gradient-to-r from-purple-950 via-slate-900 to-rose-950 p-5 rounded-xl border border-rose-800/60 shadow-xl cursor-pointer transition hover:border-rose-500 group" onclick="openNuclearModal()">
+                <!-- NUCLEAR WEAPONS PROGRAM CONSOLE BANNER -->
+                <div id="nuclear-program-banner" class="relative overflow-hidden bg-gradient-to-r from-purple-950 via-slate-900 to-rose-950 p-5 rounded-xl border border-rose-800/60 shadow-xl cursor-pointer transition hover:border-rose-500 group" onclick="openNuclearModal()">
                     <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-rose-600/10 rounded-full blur-2xl group-hover:bg-rose-600/20 transition"></div>
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
                         <div class="flex items-center space-x-3">
@@ -754,13 +754,13 @@
                             <div>
                                 <div class="flex items-center gap-2">
                                     <h4 class="font-bold text-slate-100 text-sm">Strategic Sovereign Nuclear Deterrent Matrix</h4>
-                                    <span class="text-[10px] font-black tracking-widest px-2 py-0.5 rounded bg-rose-600 text-white animate-pulse">IN DEVELOPMENT</span>
+                                    <span id="nuke-status-badge" class="text-[10px] font-black tracking-widest px-2 py-0.5 rounded bg-rose-600 text-white animate-pulse">CLASSIFIED</span>
                                 </div>
-                                <p class="text-xs text-slate-300 mt-1">Build, Acquire, Enrichment Logistics & Strategic Launch Capabilities (Teaser Console).</p>
+                                <p id="nuke-status-desc" class="text-xs text-slate-300 mt-1">Initiate Feasibility Analysis, Warhead Fabrication & Strategic Deployment Matrix.</p>
                             </div>
                         </div>
                         <button class="px-4 py-2 bg-rose-600 group-hover:bg-rose-500 text-white font-bold rounded-lg text-xs transition shadow-lg shrink-0 flex items-center gap-2">
-                            <span>Open Nuclear Interface</span>
+                            <span id="nuke-btn-text">Open Nuclear Console</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
@@ -777,7 +777,7 @@
             </div>
         </section>
 
-        <!-- TAB 7: PRESS LEDGER (EXPANDED GLOBAL NEWS) -->
+        <!-- TAB 7: PRESS LEDGER -->
         <section id="tab-news" class="tab-content hidden space-y-4 sm:space-y-6">
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
                 <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
@@ -792,10 +792,10 @@
         </section>
     </main>
 
-    <!-- IN DEVELOPMENT NUCLEAR MODAL WITH ANIMATIONS -->
+    <!-- FULL NUCLEAR PROGRAM MODAL CONSOLE -->
     <div id="nuclear-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 hidden">
-        <div class="bg-slate-900 border-2 border-rose-600 rounded-2xl max-w-2xl w-full p-6 space-y-6 relative overflow-hidden shadow-2xl">
-            <!-- Animated Scan Line -->
+        <div class="bg-slate-900 border-2 border-rose-600 rounded-2xl max-w-3xl w-full p-6 space-y-6 relative overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto">
+            <!-- Animated Hazard Background -->
             <div class="absolute inset-0 hazard-bg opacity-20 pointer-events-none"></div>
 
             <div class="flex items-center justify-between border-b border-slate-800 pb-4 relative z-10">
@@ -806,9 +806,9 @@
                     <div>
                         <div class="flex items-center gap-2">
                             <h3 class="font-bold text-slate-100 text-base tracking-wide">CANADIAN NUCLEAR PROGRAM CONSOLE</h3>
-                            <span class="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-rose-600 text-white animate-pulse">IN DEVELOPMENT</span>
+                            <span id="nuke-modal-phase-badge" class="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-rose-600 text-white">UNAUTHORIZED</span>
                         </div>
-                        <p class="text-xs text-rose-400 font-mono">CLASSIFIED TOP SECRET // DND CLEARANCE LEVEL 5</p>
+                        <p class="text-xs text-rose-400 font-mono">TOP SECRET // DND CLEARANCE LEVEL 5 // WEAPONS OF MASS DESTRUCTION</p>
                     </div>
                 </div>
                 <button onclick="closeNuclearModal()" class="text-slate-400 hover:text-white text-xl font-bold p-1 cursor-pointer">
@@ -816,45 +816,14 @@
                 </button>
             </div>
 
-            <!-- Animated Radar / Scanner Visualization -->
-            <div class="relative bg-slate-950 border border-rose-900/50 rounded-xl p-6 flex flex-col items-center justify-center space-y-4 overflow-hidden min-h-[220px]">
-                <div class="absolute w-44 h-44 rounded-full border border-rose-800/40 flex items-center justify-center">
-                    <div class="w-28 h-28 rounded-full border border-rose-700/60 flex items-center justify-center">
-                        <div class="w-12 h-12 rounded-full border border-rose-500/80"></div>
-                    </div>
-                </div>
-                <!-- Radar Sweep -->
-                <div class="absolute w-44 h-44 radar-sweep animate-radar-spin opacity-70"></div>
-
-                <div class="relative z-10 text-center space-y-2">
-                    <div class="text-rose-500 font-mono text-2xl font-black tracking-widest animate-pulse">
-                        [ IN DEVELOPMENT ]
-                    </div>
-                    <p class="text-xs text-slate-300 max-w-md mx-auto leading-relaxed">
-                        The sovereign nuclear option module is currently under development for EconoMaster. Once released, players will be able to construct enrichment centrifuges, acquire warhead designs, manage launch silos, and navigate extreme UN economic sanctions.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Features Teaser Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 relative z-10 text-xs">
-                <div class="bg-slate-950/80 p-3 rounded-lg border border-slate-800 space-y-1">
-                    <span class="font-bold text-rose-400 block"><i class="fa-solid fa-atom mr-1"></i> Uranium Enrichment</span>
-                    <p class="text-[10px] text-slate-400">Centrifuge facility construction & IAEA inspection evasion.</p>
-                </div>
-                <div class="bg-slate-950/80 p-3 rounded-lg border border-slate-800 space-y-1">
-                    <span class="font-bold text-amber-400 block"><i class="fa-solid fa-rocket mr-1"></i> ICBM Silos</span>
-                    <p class="text-[10px] text-slate-400">Deployment of land-based and submarine deterrence platforms.</p>
-                </div>
-                <div class="bg-slate-950/80 p-3 rounded-lg border border-slate-800 space-y-1">
-                    <span class="font-bold text-sky-400 block"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Global Sanctions</span>
-                    <p class="text-[10px] text-slate-400">High-stakes economic fallout and international retaliation mechanics.</p>
-                </div>
+            <!-- DYNAMIC UI SCREEN CONTAINER -->
+            <div id="nuclear-console-body" class="relative z-10 space-y-4">
+                <!-- RENDERED DYNAMICALLY VIA JavaScript: State 0 (Default Screen), State 1 (Feasibility In Progress), State 2 (Feasibility Sheet Choice), State 3 (Construction In Progress), State 4 (Inventory & Stockpile UI) -->
             </div>
 
             <div class="flex justify-end pt-2 border-t border-slate-800 relative z-10">
                 <button onclick="closeNuclearModal()" class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-lg text-xs transition cursor-pointer">
-                    Acknowledge & Exit
+                    Close Console
                 </button>
             </div>
         </div>
@@ -937,6 +906,20 @@
 
             nptCompliant: true, // Non-Proliferation Treaty status
             
+            // NUCLEAR PROGRAM ENGINE STATE MATRIX
+            nuclear: {
+                state: 'uninitiated', // 'uninitiated', 'feasibility_active', 'feasibility_complete', 'construction_active', 'stockpile_unlocked'
+                feasibilityQuarterCount: 0,
+                constructionQuarterCount: 0,
+                fundingApproved: false,
+                quarterlyProgramCost: 1.5, // $1.5B per quarter
+                stockpile: {
+                    tactical: 0,   // 0.5 - 5kt Low-Yield Tactical Warheads
+                    thermonuclear: 0, // 500kt Strategic Multi-Megaton Hydrogen Warheads
+                    cobalt: 0      // Doomsday Radiation Salted Cobalt Warheads
+                }
+            },
+
             reserveRatio: 3.0,
             monetaryLagQueue: [3.50, 3.50, 3.50], 
             bondRiskSpread: 0.0, 
@@ -1100,7 +1083,6 @@
             }
         }
 
-        // UPDATE POLICIES WITH 10 NEW METRICS TIED DIRECTLY
         function updatePolicies() {
             try {
                 // Baseline Controls
@@ -1217,7 +1199,9 @@
             }
         }
 
+        /* --- NUCLEAR PROGRAM CONSOLE ENGINE LOGIC --- */
         function openNuclearModal() {
+            renderNuclearConsole();
             document.getElementById('nuclear-modal').classList.remove('hidden');
         }
 
@@ -1225,9 +1209,310 @@
             document.getElementById('nuclear-modal').classList.add('hidden');
         }
 
+        function startNuclearFeasibility() {
+            gameState.nuclear.state = 'feasibility_active';
+            gameState.nuclear.feasibilityQuarterCount = 0;
+            logNews('NUCLEAR CONSOLE', 'Sovereign Nuclear Feasibility Analysis initiated. Defense scientists & engineers assessing centrifuges & warhead design over 6 quarters.', 'alert');
+            renderNuclearConsole();
+            updateNuclearBannerUI();
+        }
+
+        function confirmNuclearFundingChoice(proceed) {
+            if (proceed) {
+                gameState.nuclear.state = 'construction_active';
+                gameState.nuclear.fundingApproved = true;
+                gameState.nuclear.constructionQuarterCount = 0;
+                // Withdrawing from NPT automatically upon active weapons development
+                if (gameState.nptCompliant) {
+                    toggleNptStatus();
+                }
+                logNews('NUCLEAR CONSOLE', 'SOVEREIGN DECISION: Cabinet approved $1.5B/qtr nuclear weapons development program. 12-quarter construction timeline launched!', 'alert');
+                
+                // FTA Ally scores weaken across the board due to secret nuclear proliferation
+                for (const f in gameState.ftas) {
+                    gameState.ftas[f].allyScore = Math.max(10, gameState.ftas[f].allyScore - 15);
+                }
+                renderFtas();
+            } else {
+                gameState.nuclear.state = 'uninitiated';
+                gameState.nuclear.feasibilityQuarterCount = 0;
+                gameState.nuclear.fundingApproved = false;
+                logNews('NUCLEAR CONSOLE', 'Sovereign decision: Feasibility analysis shelved. Canada declined $1.5B/qtr nuclear weapons investment.', 'info');
+            }
+            renderNuclearConsole();
+            updateNuclearBannerUI();
+        }
+
+        function dismantleWarhead(type) {
+            if (gameState.nuclear.stockpile[type] > 0) {
+                gameState.nuclear.stockpile[type]--;
+                gameState.publicApproval = Math.min(100, gameState.publicApproval + 3);
+                
+                // Dismantling reduces hinder on relations via FTA ally score boost
+                for (const f in gameState.ftas) {
+                    gameState.ftas[f].allyScore = Math.min(100, gameState.ftas[f].allyScore + 4);
+                }
+                
+                logNews('NUCLEAR DISMANTLEMENT', `1x ${type.toUpperCase()} nuclear warhead dismantled under international oversight. Public approval increased (+3%) & FTA ally standings restored!`, 'success');
+                renderFtas();
+                renderKPIs();
+                renderNuclearConsole();
+            }
+        }
+
+        function deployNuclearWarhead(type) {
+            if (gameState.nuclear.stockpile[type] > 0) {
+                gameState.nuclear.stockpile[type]--;
+                gameState.publicApproval = Math.max(0, gameState.publicApproval - 25);
+                gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate - 3.5).toFixed(2));
+                
+                // Severe global backlash on trade
+                for (const f in gameState.ftas) {
+                    gameState.ftas[f].allyScore = Math.max(0, gameState.ftas[f].allyScore - 30);
+                    if (Math.random() > 0.4) gameState.ftas[f].active = false;
+                }
+                
+                logNews('GLOBAL CATASTROPHE', `CRITICAL WARNING: 1x ${type.toUpperCase()} WARHEAD DEPLOYED & DETONATED! Immediate UN sanctions, supply chain collapse, and diplomatic embargoes triggered!`, 'alert');
+                renderFtas();
+                renderKPIs();
+                renderNuclearConsole();
+            }
+        }
+
+        function updateNuclearBannerUI() {
+            const badge = document.getElementById('nuke-status-badge');
+            const desc = document.getElementById('nuke-status-desc');
+            const btnText = document.getElementById('nuke-btn-text');
+            const st = gameState.nuclear.state;
+
+            if (st === 'uninitiated') {
+                badge.innerText = 'UNINITIATED';
+                badge.className = 'text-[10px] font-black tracking-widest px-2 py-0.5 rounded bg-rose-600 text-white animate-pulse';
+                desc.innerText = 'Start acquiring Weapons of Mass Destruction with full strategic capabilities.';
+                btnText.innerText = 'Start Feasibility Analysis';
+            } else if (st === 'feasibility_active') {
+                badge.innerText = `FEASIBILITY (${gameState.nuclear.feasibilityQuarterCount}/6 Qtrs)`;
+                badge.className = 'text-[10px] font-black tracking-widest px-2 py-0.5 rounded bg-amber-600 text-white animate-pulse';
+                desc.innerText = 'Sovereign scientists evaluating centrifuges, heavy water reactors & delivery vector designs.';
+                btnText.innerText = 'View Progress';
+            } else if (st === 'feasibility_complete') {
+                badge.innerText = 'DECISION REQUIRED';
+                badge.className = 'text-[10px] font-black tracking-widest px-2 py-0.5 rounded bg-purple-600 text-white animate-bounce';
+                desc.innerText = 'Feasibility Analysis Complete! Cabinet decision required on $1.5B/qtr funding.';
+                btnText.innerText = 'Open Decision Sheet';
+            } else if (st === 'construction_active') {
+                badge.innerText = `BUILDING (${gameState.nuclear.constructionQuarterCount}/12 Qtrs)`;
+                badge.className = 'text-[10px] font-black tracking-widest px-2 py-0.5 rounded bg-rose-700 text-white animate-pulse';
+                desc.innerText = 'Enrichment facilities & warhead manufacturing underway ($1.5B/qtr outlay).';
+                btnText.innerText = 'View Construction Status';
+            } else if (st === 'stockpile_unlocked') {
+                const totalWarheads = gameState.nuclear.stockpile.tactical + gameState.nuclear.stockpile.thermonuclear + gameState.nuclear.stockpile.cobalt;
+                badge.innerText = `ACTIVE STOCKPILE (${totalWarheads} WARHEADS)`;
+                badge.className = 'text-[10px] font-black tracking-widest px-2 py-0.5 rounded bg-emerald-600 text-white';
+                desc.innerText = 'Sovereign Nuclear Deterrent active! Manage stockpile, deployment & dismantlement.';
+                btnText.innerText = 'Open Stockpile & Inventory';
+            }
+        }
+
+        function renderNuclearConsole() {
+            const body = document.getElementById('nuclear-console-body');
+            const badge = document.getElementById('nuke-modal-phase-badge');
+            const st = gameState.nuclear.state;
+
+            if (st === 'uninitiated') {
+                badge.innerText = 'DEFAULT SCREEN // UNINITIATED';
+                badge.className = 'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-rose-600 text-white';
+                
+                body.innerHTML = `
+                    <div class="relative bg-slate-950 border-2 border-rose-900/60 rounded-xl p-8 flex flex-col items-center justify-center text-center space-y-5 overflow-hidden shadow-2xl">
+                        <div class="absolute inset-0 hazard-bg opacity-30"></div>
+                        <div class="relative z-10 w-24 h-24 rounded-full bg-rose-950 border-2 border-rose-500 flex items-center justify-center text-rose-500 text-5xl shadow-xl shadow-rose-900/50 animate-pulse">
+                            <i class="fa-solid fa-radiation"></i>
+                        </div>
+                        <div class="relative z-10 space-y-2 max-w-lg">
+                            <h3 class="text-xl font-black text-slate-100 tracking-wider uppercase">Start Acquiring Weapons of Mass Destruction</h3>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Establish an independent sovereign nuclear triad. Initiating this classified program requires a mandatory <strong class="text-amber-400">6-Quarter Feasibility Analysis</strong> to assess heavy water enrichment, missile warhead miniaturization, and clandestine supply chain logistics.
+                            </p>
+                        </div>
+                        <button onclick="startNuclearFeasibility()" class="relative z-10 px-6 py-3 bg-gradient-to-r from-rose-600 to-red-700 hover:from-rose-500 hover:to-red-600 text-white font-bold rounded-xl text-sm transition shadow-xl cursor-pointer flex items-center gap-2">
+                            <i class="fa-solid fa-flask font-bold"></i>
+                            <span>Initiate 6-Quarter Feasibility Analysis</span>
+                        </button>
+                    </div>
+                `;
+            } else if (st === 'feasibility_active') {
+                badge.innerText = `FEASIBILITY IN PROGRESS (${gameState.nuclear.feasibilityQuarterCount}/6 QTRS)`;
+                badge.className = 'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-amber-600 text-white';
+
+                body.innerHTML = `
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-6 text-center">
+                        <div class="w-16 h-16 rounded-full bg-amber-950/60 border border-amber-500 mx-auto flex items-center justify-center text-amber-400 text-3xl animate-spin" style="animation-duration: 6s;">
+                            <i class="fa-solid fa-atom"></i>
+                        </div>
+                        <div class="space-y-2 max-w-md mx-auto">
+                            <h4 class="font-bold text-slate-100 text-base">Feasibility Analysis In Progress...</h4>
+                            <p class="text-xs text-slate-400">Canadian nuclear scientists and DND engineers are synthesizing enrichment data. Advance turns to complete the 6-quarter evaluation.</p>
+                        </div>
+                        <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden max-w-md mx-auto border border-slate-700">
+                            <div class="bg-gradient-to-r from-amber-500 to-rose-500 h-full transition-all duration-300" style="width: ${(gameState.nuclear.feasibilityQuarterCount / 6) * 100}%"></div>
+                        </div>
+                        <span class="text-xs font-mono text-amber-400 font-bold block">${gameState.nuclear.feasibilityQuarterCount} of 6 Quarters Completed</span>
+                    </div>
+                `;
+            } else if (st === 'feasibility_complete') {
+                badge.innerText = 'FEASIBILITY COMPLETE // SHEET DECISION';
+                badge.className = 'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-purple-600 text-white';
+
+                body.innerHTML = `
+                    <div class="bg-slate-950 border-2 border-purple-600/80 rounded-xl p-6 space-y-6">
+                        <div class="border-b border-slate-800 pb-3 flex items-center justify-between">
+                            <h4 class="font-bold text-slate-100 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-scroll text-purple-400"></i> FEASIBILITY ANALYSIS EXECUTIVE SHEET
+                            </h4>
+                            <span class="text-[10px] bg-purple-950 text-purple-300 border border-purple-800 px-2 py-0.5 rounded font-bold">TOP SECRET REPORT</span>
+                        </div>
+                        <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800 space-y-3 text-xs text-slate-300 leading-relaxed">
+                            <p><strong class="text-purple-400">Analysis Summary:</strong> Canada possesses sufficient domestic uranium reserves (Saskatchewan Basin) and CANDU heavy-water reactor infrastructure to fabricate weapon-grade Plutonium-239 and Enriched Uranium-235.</p>
+                            <div class="p-3 bg-purple-950/40 border border-purple-800/60 rounded-lg text-purple-200 font-bold text-center">
+                                "Would you like to proceed with funding worth $1.5b of your economy per quarter towards your nuclear program?"
+                            </div>
+                            <p class="text-[11px] text-slate-400 italic">* Proceeding launches a 12-quarter warhead construction program. Rejecting shelving the program and returns to the default UI screen.</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="confirmNuclearFundingChoice(true)" class="py-3 bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-500 hover:to-purple-500 text-white font-bold rounded-xl text-xs transition shadow-lg cursor-pointer flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-check-double"></i>
+                                <span>YES — Commit $1.5B/qtr (12 Qtr Build)</span>
+                            </button>
+                            <button onclick="confirmNuclearFundingChoice(false)" class="py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl text-xs transition cursor-pointer flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-xmark"></i>
+                                <span>NO — Cancel Program</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else if (st === 'construction_active') {
+                badge.innerText = `FABRICATION IN PROGRESS (${gameState.nuclear.constructionQuarterCount}/12 QTRS)`;
+                badge.className = 'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-rose-700 text-white';
+
+                body.innerHTML = `
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-6 text-center">
+                        <div class="w-16 h-16 rounded-full bg-rose-950/60 border border-rose-500 mx-auto flex items-center justify-center text-rose-500 text-3xl animate-pulse">
+                            <i class="fa-solid fa-industry"></i>
+                        </div>
+                        <div class="space-y-2 max-w-md mx-auto">
+                            <h4 class="font-bold text-slate-100 text-base">Centrifuges & Warhead Fabrication Active</h4>
+                            <p class="text-xs text-slate-400">Consuming $1.5B/quarter from sovereign outlays. Enriching core isotopes and assembling initial warhead stockpiles over 12 quarters.</p>
+                        </div>
+                        <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden max-w-md mx-auto border border-slate-700">
+                            <div class="bg-gradient-to-r from-purple-600 via-rose-600 to-amber-500 h-full transition-all duration-300" style="width: ${(gameState.nuclear.constructionQuarterCount / 12) * 100}%"></div>
+                        </div>
+                        <div class="flex justify-between items-center max-w-md mx-auto text-xs font-mono text-slate-400">
+                            <span>Quarterly Cost: <strong class="text-rose-400">$1.5B</strong></span>
+                            <span class="text-amber-400 font-bold">${gameState.nuclear.constructionQuarterCount} of 12 Quarters</span>
+                        </div>
+                    </div>
+                `;
+            } else if (st === 'stockpile_unlocked') {
+                badge.innerText = 'INVENTORY & STOCKPILE UI // ACTIVE DETERRENT';
+                badge.className = 'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-emerald-600 text-white';
+
+                const totalWarheads = gameState.nuclear.stockpile.tactical + gameState.nuclear.stockpile.thermonuclear + gameState.nuclear.stockpile.cobalt;
+
+                body.innerHTML = `
+                    <div class="space-y-4">
+                        <!-- Stockpile Header Metrics -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <div>
+                                <span class="text-[10px] text-slate-400 font-bold uppercase block">Total Warheads</span>
+                                <span class="text-xl font-extrabold text-emerald-400">${totalWarheads} Units</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-400 font-bold uppercase block">Status</span>
+                                <span class="text-xs font-bold text-rose-400">Armed & Ready</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-400 font-bold uppercase block">FTA Ally Impact</span>
+                                <span class="text-xs font-bold text-amber-400">-15% Penalty</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-400 font-bold uppercase block">Dismantlement Boost</span>
+                                <span class="text-xs font-bold text-sky-400">+3% Approval/unit</span>
+                            </div>
+                        </div>
+
+                        <!-- 3 UNIQUE WARHEAD TYPES GRID -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <!-- Type 1: Tactical W80-4 Low-Yield -->
+                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 flex flex-col justify-between">
+                                <div class="space-y-2">
+                                    <div class="flex justify-between items-start">
+                                        <h5 class="font-bold text-slate-100 text-xs">1. Tactical W80-4 Low-Yield</h5>
+                                        <span class="text-[10px] bg-amber-950 text-amber-400 px-1.5 py-0.5 rounded border border-amber-800 font-mono">5.0 kt</span>
+                                    </div>
+                                    <p class="text-[10px] text-slate-400">Precision theater nuclear warhead. Designed for localized tactical strike vector options.</p>
+                                    <div class="text-lg font-black text-amber-400">${gameState.nuclear.stockpile.tactical} <span class="text-xs text-slate-400 font-normal">in stock</span></div>
+                                </div>
+                                <div class="space-y-1.5 pt-2 border-t border-slate-800">
+                                    <button onclick="dismantleWarhead('tactical')" class="w-full py-1.5 bg-emerald-950 hover:bg-emerald-900 text-emerald-400 border border-emerald-800 rounded font-bold text-[11px] transition cursor-pointer">
+                                        <i class="fa-solid fa-wrench mr-1"></i> Dismantle (+Approval / Restores FTAs)
+                                    </button>
+                                    <button onclick="deployNuclearWarhead('tactical')" class="w-full py-1.5 bg-rose-950 hover:bg-rose-900 text-rose-400 border border-rose-800 rounded font-bold text-[11px] transition cursor-pointer">
+                                        <i class="fa-solid fa-radiation mr-1"></i> Deploy Warhead
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Type 2: Strategic Thermonuclear B83-1 -->
+                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 flex flex-col justify-between">
+                                <div class="space-y-2">
+                                    <div class="flex justify-between items-start">
+                                        <h5 class="font-bold text-slate-100 text-xs">2. Thermonuclear B83 Strategic</h5>
+                                        <span class="text-[10px] bg-rose-950 text-rose-400 px-1.5 py-0.5 rounded border border-rose-800 font-mono">1.2 MT</span>
+                                    </div>
+                                    <p class="text-[10px] text-slate-400">Multi-megaton strategic two-stage hydrogen warhead for total MAD deterrence.</p>
+                                    <div class="text-lg font-black text-rose-400">${gameState.nuclear.stockpile.thermonuclear} <span class="text-xs text-slate-400 font-normal">in stock</span></div>
+                                </div>
+                                <div class="space-y-1.5 pt-2 border-t border-slate-800">
+                                    <button onclick="dismantleWarhead('thermonuclear')" class="w-full py-1.5 bg-emerald-950 hover:bg-emerald-900 text-emerald-400 border border-emerald-800 rounded font-bold text-[11px] transition cursor-pointer">
+                                        <i class="fa-solid fa-wrench mr-1"></i> Dismantle (+Approval / Restores FTAs)
+                                    </button>
+                                    <button onclick="deployNuclearWarhead('thermonuclear')" class="w-full py-1.5 bg-rose-950 hover:bg-rose-900 text-rose-400 border border-rose-800 rounded font-bold text-[11px] transition cursor-pointer">
+                                        <i class="fa-solid fa-radiation mr-1"></i> Deploy Warhead
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Type 3: Doomsday Salted Cobalt-60 Warhead -->
+                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 flex flex-col justify-between">
+                                <div class="space-y-2">
+                                    <div class="flex justify-between items-start">
+                                        <h5 class="font-bold text-slate-100 text-xs">3. Doomsday Salted Cobalt-60</h5>
+                                        <span class="text-[10px] bg-purple-950 text-purple-400 px-1.5 py-0.5 rounded border border-purple-800 font-mono">Max Fallout</span>
+                                    </div>
+                                    <p class="text-[10px] text-slate-400">Heavy radiological dirty device engineered to produce long-lasting lethal gamma fallout.</p>
+                                    <div class="text-lg font-black text-purple-400">${gameState.nuclear.stockpile.cobalt} <span class="text-xs text-slate-400 font-normal">in stock</span></div>
+                                </div>
+                                <div class="space-y-1.5 pt-2 border-t border-slate-800">
+                                    <button onclick="dismantleWarhead('cobalt')" class="w-full py-1.5 bg-emerald-950 hover:bg-emerald-900 text-emerald-400 border border-emerald-800 rounded font-bold text-[11px] transition cursor-pointer">
+                                        <i class="fa-solid fa-wrench mr-1"></i> Dismantle (+Approval / Restores FTAs)
+                                    </button>
+                                    <button onclick="deployNuclearWarhead('cobalt')" class="w-full py-1.5 bg-rose-950 hover:bg-rose-900 text-rose-400 border border-rose-800 rounded font-bold text-[11px] transition cursor-pointer">
+                                        <i class="fa-solid fa-radiation mr-1"></i> Deploy Warhead
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
         function getTotalDefenseCost() {
             const missileOutlay = (gameState.defense.interceptorProd * 0.001) + (gameState.defense.hypersonicProd * 0.004);
-            return gameState.defense.reserves + gameState.defense.cyber + gameState.defense.air + gameState.defense.naval + gameState.defense.norad + (gameState.defense.troops * 0.08) + missileOutlay;
+            // $1.5B/qtr nuclear outlay added if active building
+            const nuclearOutlay = (gameState.nuclear.state === 'construction_active') ? gameState.nuclear.quarterlyProgramCost : 0;
+            return gameState.defense.reserves + gameState.defense.cyber + gameState.defense.air + gameState.defense.naval + gameState.defense.norad + (gameState.defense.troops * 0.08) + missileOutlay + nuclearOutlay;
         }
 
         function updateTotalOutlays() {
@@ -1248,19 +1533,17 @@
             }
         }
 
-        // UN & ASSOCIATIONS LOGIC REINFORCED: Opting out or joining has direct metrics, approval, and risk impact
+        // UN & ASSOCIATIONS LOGIC REINFORCED
         function toggleAssociation(key) {
             const assoc = gameState.associations[key];
             if (assoc) {
                 assoc.funded = !assoc.funded;
                 
                 if (assoc.funded) {
-                    // Benefit logic on joining/funding
                     gameState.publicApproval = Math.min(100, gameState.publicApproval + assoc.approvalImpact);
                     gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate + assoc.gdpImpact).toFixed(2));
                     logNews('MULTILATERAL DIPLOMACY', `Canada fully funded & aligned with ${assoc.name}. Sovereign standing and diplomatic approval increased (+${assoc.approvalImpact}% Approval).`, 'success');
                 } else {
-                    // Severe consequence logic on opting out
                     gameState.publicApproval = Math.max(0, gameState.publicApproval - (assoc.approvalImpact * 1.5));
                     gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate - (assoc.gdpImpact * 1.2)).toFixed(2));
                     gameState.bondRiskSpread = parseFloat((gameState.bondRiskSpread + assoc.bondRisk).toFixed(2));
@@ -1273,7 +1556,7 @@
             }
         }
 
-        // REQUEST TO SIGN FTA ENGINE - Direct impact and randomized diplomatic results biased by Canada's historic allies
+        // REQUEST TO SIGN FTA ENGINE
         function requestToSignFta(key) {
             const fta = gameState.ftas[key];
             if (!fta || fta.active) return;
@@ -1285,11 +1568,10 @@
             }
 
             setTimeout(() => {
-                // Background calculation combining historic ally bias, random variance, and current trade status
                 const allyBias = fta.allyScore || 50;
                 const randomRoll = Math.floor(Math.random() * 100);
-                const nptPenalty = gameState.nptCompliant ? 0 : 20; // Withdrawal from NPT hurts trade negotiations
-                const calculatedSuccessThreshold = (100 - allyBias) + 15 + nptPenalty; // Higher threshold = harder to pass
+                const nptPenalty = gameState.nptCompliant ? 0 : 20; 
+                const calculatedSuccessThreshold = (100 - allyBias) + 15 + nptPenalty; 
 
                 if (randomRoll > calculatedSuccessThreshold) {
                     fta.active = true;
@@ -1307,18 +1589,17 @@
             }, 1200);
         }
 
-        // FREE TRADE AGREEMENTS OPTING OUT LOGIC: Opting out spur economic downturn & trade pain
+        // FREE TRADE AGREEMENTS OPTING OUT LOGIC
         function toggleFta(key) {
             const fta = gameState.ftas[key];
             if (fta) {
                 if (fta.active) {
                     fta.active = false;
-                    // Severe Economic Downturn logic from FTA Opt-Out
                     const downturnLoss = fta.tradeValue || 4.0;
                     gameState.tradeBalance -= (downturnLoss * 1.5);
-                    gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate - 0.8).toFixed(2)); // GDP contraction
-                    gameState.unemploymentRate = parseFloat((gameState.unemploymentRate + 0.5).toFixed(2)); // Unemployment spikes
-                    gameState.cpiInflation = parseFloat((gameState.cpiInflation + 0.4).toFixed(2)); // Tariff import cost inflation
+                    gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate - 0.8).toFixed(2)); 
+                    gameState.unemploymentRate = parseFloat((gameState.unemploymentRate + 0.5).toFixed(2)); 
+                    gameState.cpiInflation = parseFloat((gameState.cpiInflation + 0.4).toFixed(2)); 
                     gameState.publicApproval = Math.max(0, gameState.publicApproval - 6);
 
                     logNews('ECONOMIC DOWNTURN WARNING', `Canada OPTED OUT of ${fta.name}! Severe trade shock & economic pain triggered. Trade balance crashed by -$${(downturnLoss * 1.5).toFixed(1)}B, GDP growth contracted, and CPI inflation surged due to new foreign tariffs.`, 'alert');
@@ -1339,26 +1620,21 @@
             ind[param] = parseFloat(val) || 0;
             const diff = ind[param] - oldVal;
 
-            // Direct consequences/benefits logic across macro variables
             if (param === 'duty') {
-                // Higher duties boost industry revenues but increase CPI inflation and risk retaliation
                 gameState.cpiInflation = parseFloat((gameState.cpiInflation + (diff * 0.05)).toFixed(2));
                 if (diff > 0) {
                     logNews('INDUSTRY TARIFF ADJUSTMENT', `${ind.name} import duty raised to ${ind.duty}%. Local market protected, but CPI import inflation nudged upward.`, 'info');
                 }
             } else if (param === 'subsidy') {
-                // Higher subsidies boost output & GDP growth but drain federal balance
                 ind.output = Math.max(20, parseFloat((ind.output + (diff * 2.5)).toFixed(1)));
                 gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate + (diff * 0.02)).toFixed(2));
                 if (diff > 0) {
                     logNews('INDUSTRIAL SUBSIDY BOOST', `Federal subsidy for ${ind.name} increased to $${ind.subsidy}B. Industry production accelerated.`, 'success');
                 }
             } else if (param === 'exportTax') {
-                // Export tax raises revenue but shrinks trade balance and output
                 ind.output = Math.max(20, parseFloat((ind.output - (diff * 1.8)).toFixed(1)));
                 gameState.tradeBalance -= (diff * 0.2);
             } else if (param === 'pricePerTon') {
-                // Price changes directly impact industry valuation, CPI inflation & output value
                 const pctChange = (diff / oldVal) * 100;
                 ind.output = Math.max(20, parseFloat((ind.output * (1 + (pctChange / 200))).toFixed(1)));
                 gameState.cpiInflation = Math.max(0.1, parseFloat((gameState.cpiInflation + (pctChange * 0.015)).toFixed(2)));
@@ -1438,6 +1714,31 @@
                 gameState.defense.missileStockpile += (gameState.defense.interceptorProd + gameState.defense.hypersonicProd);
                 document.getElementById('dnd-missile-stockpile').innerText = gameState.defense.missileStockpile.toLocaleString() + ' Units';
 
+                /* --- ADVANCE NUCLEAR PROGRAM TIMELINES --- */
+                if (gameState.nuclear.state === 'feasibility_active') {
+                    gameState.nuclear.feasibilityQuarterCount++;
+                    if (gameState.nuclear.feasibilityQuarterCount >= 6) {
+                        gameState.nuclear.state = 'feasibility_complete';
+                        logNews('NUCLEAR CONSOLE', 'Sovereign Nuclear Feasibility Analysis completed after 6 quarters! Cabinet Decision Sheet generated.', 'alert');
+                    }
+                } else if (gameState.nuclear.state === 'construction_active') {
+                    gameState.nuclear.constructionQuarterCount++;
+                    // Industry boost: Aerospace & Chemicals industrial outputs stimulated by $1.5B/qtr spending
+                    gameState.industries.aerospace.output += 8;
+                    gameState.industries.chemicals.output += 5;
+
+                    if (gameState.nuclear.constructionQuarterCount >= 12) {
+                        gameState.nuclear.state = 'stockpile_unlocked';
+                        // Initial bomb stockpile delivery after 12 quarters
+                        gameState.nuclear.stockpile.tactical = 3;
+                        gameState.nuclear.stockpile.thermonuclear = 2;
+                        gameState.nuclear.stockpile.cobalt = 1;
+                        logNews('NUCLEAR MILESTONE', 'WEAPONS OF MASS DESTRUCTION READY! Initial sovereign warhead stockpile unlocked in Inventory & Stockpile UI.', 'alert');
+                    }
+                }
+
+                updateNuclearBannerUI();
+
                 // Association Penalty Accumulation: Check defunded essential associations
                 let unfundedAssociationPenalties = 0;
                 for (const k in gameState.associations) {
@@ -1503,12 +1804,11 @@
                 const laggedRate = gameState.monetaryLagQueue.shift(); 
                 const monetaryDrag = (laggedRate - 2.5) * 0.25;
 
-                // GDP Dynamics tied to Infrastructure Multiplier & Union Bargaining Power & FTAs
                 let activeFtaCount = 0;
                 for (const f in gameState.ftas) {
                     if (gameState.ftas[f].active) activeFtaCount++;
                 }
-                const ftaTradeBonus = (activeFtaCount - 4) * 0.1; // Penalty if too many FTAs are broken
+                const ftaTradeBonus = (activeFtaCount - 4) * 0.1;
 
                 const infraBoost = (gameState.infraMultiplier - 1.0) * 0.18;
                 const unionWagePush = (gameState.unionPowerIndex - 50) * 0.005;
@@ -1780,9 +2080,10 @@
             renderAssociations();
             updatePolicies();
             updateDefensePolicy();
+            updateNuclearBannerUI();
             initCharts();
 
-            logNews('SYSTEM READY', 'EconoMaster Engine v5.5 initialized with sovereign trade, DND missile production, and dynamic association logic.', 'success');
+            logNews('SYSTEM READY', 'EconoMaster Engine v5.5 initialized with sovereign trade, DND missile production, and dynamic nuclear program matrix.', 'success');
         };
     </script>
 </body>
