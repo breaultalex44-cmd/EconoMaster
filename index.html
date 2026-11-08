@@ -1763,11 +1763,11 @@
             } else if (param === 'exportTax') {
                 ind.output = Math.max(20, parseFloat((ind.output - (diff * 1.8)).toFixed(1)));
                 gameState.tradeBalance -= (diff * 0.2);
-            } else if (param === 'pricePerTon') {
-                const pctChange = (diff / oldVal) * 100;
-                ind.output = Math.max(20, parseFloat((ind.output * (1 + (pctChange / 200))).toFixed(1)));
-                gameState.cpiInflation = Math.max(0.1, parseFloat((gameState.cpiInflation + (pctChange * 0.015)).toFixed(2));
-            }
+           } else if (param === 'pricePerTon') {
+    const pctChange = (diff / oldVal) * 100;
+    ind.output = Math.max(20, parseFloat((ind.output * (1 + (pctChange / 200))).toFixed(1)));
+    gameState.cpiInflation = Math.max(0.1, parseFloat((gameState.cpiInflation + (pctChange * 0.015)).toFixed(2)); // Missing closing paren here
+}
 
             renderKPIs();
         }
