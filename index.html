@@ -91,6 +91,51 @@
         </div>
     </div>
 
+    <!-- GAME OVER SCREEN MODAL -->
+    <div id="game-over-modal" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border-2 border-rose-600 rounded-2xl max-w-lg w-full p-6 space-y-6 text-center shadow-2xl">
+            <div class="w-16 h-16 rounded-full bg-rose-950 border border-rose-500 mx-auto flex items-center justify-center text-rose-500 text-3xl animate-bounce">
+                <i class="fa-solid fa-skull-crossbones"></i>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-xl font-black text-rose-500 tracking-wider">GOVERNMENT DISSOLVED // GAME OVER</h3>
+                <p id="game-over-reason" class="text-xs text-slate-300 leading-relaxed">
+                    Voter approval remained at 0% for 4 consecutive quarters. Mass general strikes, legislative deadlock, and a constitutional crisis have forced the dissolution of parliament.
+                </p>
+            </div>
+            <button onclick="resetGameToDefault()" class="w-full py-3 bg-gradient-to-r from-rose-600 to-red-700 hover:from-rose-500 hover:to-red-600 text-white font-bold rounded-xl text-xs transition shadow-lg cursor-pointer">
+                Restart Back to Default Game
+            </button>
+        </div>
+    </div>
+
+    <!-- PORTABLE THUMB TAB SYSTEM MODAL (JSON SAVE / LOAD) -->
+    <div id="thumb-tab-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 class="font-bold text-slate-100 text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-memory text-sky-400"></i> Portable Thumb Tab System (JSON Save)
+                </h3>
+                <button onclick="closeThumbTabModal()" class="text-slate-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+                Your game state is automatically remembered across sessions. Use the Portable Thumb Tab system below to export/import JSON save files or forcefully restart.
+            </p>
+            <div class="space-y-2.5">
+                <button onclick="exportGameSave()" class="w-full py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded text-xs transition cursor-pointer flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-download"></i> Export Save File (.json)
+                </button>
+                <label class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded text-xs transition cursor-pointer flex items-center justify-center gap-2 block text-center">
+                    <i class="fa-solid fa-upload"></i> Import Save File (.json)
+                    <input type="file" id="import-save-file" accept=".json" class="hidden" onchange="importGameSave(event)">
+                </label>
+                <button onclick="forceResetGame()" class="w-full py-2 bg-rose-950 hover:bg-rose-900 text-rose-400 border border-rose-800 font-bold rounded text-xs transition cursor-pointer flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-trash-can"></i> Forcefully Reset Game / Wipe Memory
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Top Navigation Bar -->
     <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40 shadow-md">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
@@ -818,7 +863,7 @@
 
             <!-- DYNAMIC UI SCREEN CONTAINER -->
             <div id="nuclear-console-body" class="relative z-10 space-y-4">
-                <!-- RENDERED DYNAMICALLY VIA JavaScript: State 0 (Default Screen), State 1 (Feasibility In Progress), State 2 (Feasibility Sheet Choice), State 3 (Construction In Progress), State 4 (Inventory & Stockpile UI) -->
+                <!-- RENDERED DYNAMICALLY VIA JavaScript -->
             </div>
 
             <div class="flex justify-end pt-2 border-t border-slate-800 relative z-10">
@@ -832,7 +877,10 @@
     <!-- Footer -->
     <footer class="bg-slate-900 border-t border-slate-800 py-3 px-4 sm:px-8 mt-auto text-[11px] text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
         <div>EconoMaster Engine v5.5 &copy; 2026. Canada Sovereign Fiscal, Trade & Defence Simulator.</div>
-        <div class="flex gap-4">
+        <div class="flex items-center gap-4">
+            <button onclick="openThumbTabModal()" class="px-3 py-1 bg-sky-950 hover:bg-sky-900 text-sky-400 border border-sky-800 rounded text-[11px] font-bold transition cursor-pointer flex items-center gap-1.5">
+                <i class="fa-solid fa-scissors"></i> I want to cut the line
+            </button>
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('policy')">Policy</span>
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('defense')">Defence</span>
             <span class="hover:text-slate-300 cursor-pointer" onclick="switchTab('dashboard')">Dashboard</span>
@@ -899,24 +947,24 @@
                 air: 4.8,
                 naval: 3.6,
                 norad: 2.1,
-                interceptorProd: 250, // Guided missiles produced per quarter
-                hypersonicProd: 80,    // Hypersonic missiles produced per quarter
-                missileStockpile: 2450 // Active stockpile count
+                interceptorProd: 250,
+                hypersonicProd: 80,
+                missileStockpile: 2450
             },
 
-            nptCompliant: true, // Non-Proliferation Treaty status
+            nptCompliant: true,
             
             // NUCLEAR PROGRAM ENGINE STATE MATRIX
             nuclear: {
-                state: 'uninitiated', // 'uninitiated', 'feasibility_active', 'feasibility_complete', 'construction_active', 'stockpile_unlocked'
+                state: 'uninitiated',
                 feasibilityQuarterCount: 0,
                 constructionQuarterCount: 0,
                 fundingApproved: false,
-                quarterlyProgramCost: 1.5, // $1.5B per quarter
+                quarterlyProgramCost: 1.5,
                 stockpile: {
-                    tactical: 0,   // 0.5 - 5kt Low-Yield Tactical Warheads
-                    thermonuclear: 0, // 500kt Strategic Multi-Megaton Hydrogen Warheads
-                    cobalt: 0      // Doomsday Radiation Salted Cobalt Warheads
+                    tactical: 0,
+                    thermonuclear: 0,
+                    cobalt: 0
                 }
             },
 
@@ -924,7 +972,6 @@
             monetaryLagQueue: [3.50, 3.50, 3.50], 
             bondRiskSpread: 0.0, 
             
-            // 15 Key Canadian Industries
             industries: {
                 oil_gas: { name: "1. Oil, Gas & Mining", output: 360, duty: 1.5, exportTax: 1.0, subsidy: 10.0, exoneration: false, pricePerTon: 880 },
                 auto_mfg: { name: "2. Automotive & Heavy Mfg", output: 300, duty: 2.5, exportTax: 0.0, subsidy: 12.0, exoneration: false, pricePerTon: 1420 },
@@ -943,7 +990,6 @@
                 chemicals: { name: "15. Chemicals & Plastics", output: 180, duty: 1.5, exportTax: 0.5, subsidy: 6.0, exoneration: false, pricePerTon: 1620 }
             },
 
-            // FTAs - Includes Historic Ally Affinity Score for Canada
             ftas: {
                 usmca: { name: "USMCA (North America)", active: true, allyScore: 95, bonus: "Tariff-free automotive & energy access", tradeValue: 12.5 },
                 ceta: { name: "CETA (European Union)", active: true, allyScore: 85, bonus: "98% industrial tariff elimination", tradeValue: 5.2 },
@@ -958,7 +1004,6 @@
                 asean: { name: "ASEAN Economic Alliance", active: false, allyScore: 65, bonus: "Southeast Asian semiconductor & manufacturing pipeline", tradeValue: 3.2 }
             },
 
-            // ASSOCIATIONS - Multilateral bodies with specific voting/approval/macro consequences
             associations: {
                 un_core: { name: "United Nations Core Budget", funded: true, cost: 4.5, desc: "Mandatory UN membership dues. Opting out tanks global standing & approval.", approvalImpact: 8, gdpImpact: 0.1, bondRisk: 0.15 },
                 un_climate: { name: "UN Climate Adaptation Fund", funded: false, cost: 8.0, desc: "Multilateral climate grants. Funding boosts environmental approval & clean tech output.", approvalImpact: 5, gdpImpact: 0.15, bondRisk: 0.05 },
@@ -982,8 +1027,104 @@
             logs: []
         };
 
+        let consecutiveZeroApprovalQuarters = 0;
         let macroChartObj = null;
         let financeChartObj = null;
+
+        // --- SAVE / LOAD & PORTABLE THUMB TAB SYSTEM ---
+        function saveGameToStorage() {
+            try {
+                localStorage.setItem('econmaster_save_v55', JSON.stringify(gameState));
+            } catch (e) {
+                console.error("Save error:", e);
+            }
+        }
+
+        function loadGameFromStorage() {
+            try {
+                const saved = localStorage.getItem('econmaster_save_v55');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    Object.assign(gameState, parsed);
+                    return true;
+                }
+            } catch (e) {
+                console.error("Load error:", e);
+            }
+            return false;
+        }
+
+        function openThumbTabModal() {
+            document.getElementById('thumb-tab-modal').classList.remove('hidden');
+        }
+
+        function closeThumbTabModal() {
+            document.getElementById('thumb-tab-modal').classList.add('hidden');
+        }
+
+        function exportGameSave() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(gameState, null, 2));
+            const dlAnchorElem = document.createElement('a');
+            dlAnchorElem.setAttribute("href", dataStr);
+            dlAnchorElem.setAttribute("download", `EconoMaster_Save_Y${gameState.year}_Q${gameState.quarter}.json`);
+            document.body.appendChild(dlAnchorElem);
+            dlAnchorElem.click();
+            dlAnchorElem.remove();
+            logNews('PORTABLE THUMB TAB', 'Game state successfully exported as a Portable JSON save file.', 'success');
+        }
+
+        function importGameSave(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (imported && imported.quarter && imported.year) {
+                        Object.assign(gameState, imported);
+                        saveGameToStorage();
+                        refreshAllUI();
+                        closeThumbTabModal();
+                        logNews('PORTABLE THUMB TAB', 'Game state successfully imported from JSON save file!', 'success');
+                    } else {
+                        alert('Invalid save file format.');
+                    }
+                } catch (err) {
+                    alert('Error parsing JSON save file.');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function forceResetGame() {
+            if (confirm("Are you sure you want to forcefully reset the game and wipe saved memory?")) {
+                localStorage.removeItem('econmaster_save_v55');
+                location.reload();
+            }
+        }
+
+        function resetGameToDefault() {
+            localStorage.removeItem('econmaster_save_v55');
+            location.reload();
+        }
+
+        function triggerGameOver(reasonText) {
+            document.getElementById('game-over-reason').innerText = reasonText;
+            document.getElementById('game-over-modal').classList.remove('hidden');
+        }
+
+        function refreshAllUI() {
+            document.getElementById('current-quarter-display').innerText = `Year ${gameState.year} - Q${gameState.quarter}`;
+            renderKPIs();
+            renderFundingSliders();
+            renderIndustries();
+            renderFtas();
+            renderAssociations();
+            updatePolicies();
+            updateDefensePolicy();
+            updateNuclearBannerUI();
+            initCharts();
+        }
 
         function initCharts() {
             try {
@@ -1085,7 +1226,6 @@
 
         function updatePolicies() {
             try {
-                // Baseline Controls
                 gameState.pit = parseFloat(document.getElementById('slider-pit').value) || 22;
                 gameState.cit = parseFloat(document.getElementById('slider-cit').value) || 13;
                 gameState.gst = parseFloat(document.getElementById('slider-gst').value) || 5;
@@ -1095,7 +1235,6 @@
                 gameState.bocRate = parseFloat(document.getElementById('slider-boc-rate').value) || 3.50;
                 gameState.reserveRatio = parseFloat(document.getElementById('slider-reserve').value) || 3.0;
 
-                // 10 NEW CONFIGURABLE METRICS READOUTS
                 gameState.propTaxRate = parseFloat(document.getElementById('slider-prop-tax').value) || 1.2;
                 gameState.infraMultiplier = parseFloat(document.getElementById('slider-infra-mult').value) || 1.4;
                 gameState.cleanItcRate = parseFloat(document.getElementById('slider-clean-itc').value) || 15;
@@ -1107,7 +1246,6 @@
                 gameState.rdRebateRate = parseFloat(document.getElementById('slider-rd-rebate').value) || 12;
                 gameState.fdiIncentiveRate = parseFloat(document.getElementById('slider-fdi-incentive').value) || 6.0;
 
-                // Update UI Labels
                 document.getElementById('val-pit').innerText = gameState.pit + '%';
                 document.getElementById('val-cit').innerText = gameState.cit + '%';
                 document.getElementById('val-gst').innerText = gameState.gst + '%';
@@ -1127,7 +1265,6 @@
                 document.getElementById('val-rd-rebate').innerText = gameState.rdRebateRate + '%';
                 document.getElementById('val-fdi-incentive').innerText = gameState.fdiIncentiveRate.toFixed(1) + '%';
 
-                // Synchronize industry subsidies and outputs dynamically with policies
                 gameState.industries.clean_energy.subsidy = 10 + (gameState.cleanItcRate * 0.5);
                 gameState.industries.tech_ai.subsidy = 10 + (gameState.rdRebateRate * 0.6);
                 gameState.industries.oil_gas.exportTax = gameState.royaltyRate * 0.1;
@@ -1169,7 +1306,6 @@
 
             document.getElementById('dnd-personnel-val').innerText = (gameState.defense.troops * 1000).toLocaleString();
             
-            // Direct missile production stimulates Aerospace industry
             gameState.industries.aerospace.output = 120 + ((gameState.defense.interceptorProd + gameState.defense.hypersonicProd) * 0.15);
 
             const totalDef = getTotalDefenseCost();
@@ -1199,7 +1335,7 @@
             }
         }
 
-        /* --- NUCLEAR PROGRAM CONSOLE ENGINE LOGIC --- */
+        /* --- NUCLEAR PROGRAM CONSOLE ENGINE LOGIC & FALLOUT --- */
         function openNuclearModal() {
             renderNuclearConsole();
             document.getElementById('nuclear-modal').classList.remove('hidden');
@@ -1222,13 +1358,11 @@
                 gameState.nuclear.state = 'construction_active';
                 gameState.nuclear.fundingApproved = true;
                 gameState.nuclear.constructionQuarterCount = 0;
-                // Withdrawing from NPT automatically upon active weapons development
                 if (gameState.nptCompliant) {
                     toggleNptStatus();
                 }
                 logNews('NUCLEAR CONSOLE', 'SOVEREIGN DECISION: Cabinet approved $1.5B/qtr nuclear weapons development program. 12-quarter construction timeline launched!', 'alert');
                 
-                // FTA Ally scores weaken across the board due to secret nuclear proliferation
                 for (const f in gameState.ftas) {
                     gameState.ftas[f].allyScore = Math.max(10, gameState.ftas[f].allyScore - 15);
                 }
@@ -1248,7 +1382,6 @@
                 gameState.nuclear.stockpile[type]--;
                 gameState.publicApproval = Math.min(100, gameState.publicApproval + 3);
                 
-                // Dismantling reduces hinder on relations via FTA ally score boost
                 for (const f in gameState.ftas) {
                     gameState.ftas[f].allyScore = Math.min(100, gameState.ftas[f].allyScore + 4);
                 }
@@ -1263,19 +1396,31 @@
         function deployNuclearWarhead(type) {
             if (gameState.nuclear.stockpile[type] > 0) {
                 gameState.nuclear.stockpile[type]--;
-                gameState.publicApproval = Math.max(0, gameState.publicApproval - 25);
-                gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate - 3.5).toFixed(2));
+                // Huge fallout metrics impact
+                gameState.publicApproval = 0;
+                gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate - 8.5).toFixed(2));
+                gameState.gdp = gameState.gdp * 0.90; // Massive 10% GDP shock from nuclear fallout & embargoes
+                gameState.cpiInflation = parseFloat((gameState.cpiInflation + 12.5).toFixed(2)); // Hyper-inflation spike
+                gameState.unemploymentRate = parseFloat((gameState.unemploymentRate + 4.5).toFixed(2));
                 
-                // Severe global backlash on trade
+                // Total global trade collapse & FTA severance
+                gameState.tradeBalance -= 25.0;
                 for (const f in gameState.ftas) {
-                    gameState.ftas[f].allyScore = Math.max(0, gameState.ftas[f].allyScore - 30);
-                    if (Math.random() > 0.4) gameState.ftas[f].active = false;
+                    gameState.ftas[f].active = false;
+                    gameState.ftas[f].allyScore = 0;
+                }
+                for (const a in gameState.associations) {
+                    gameState.associations[a].funded = false;
                 }
                 
-                logNews('GLOBAL CATASTROPHE', `CRITICAL WARNING: 1x ${type.toUpperCase()} WARHEAD DEPLOYED & DETONATED! Immediate UN sanctions, supply chain collapse, and diplomatic embargoes triggered!`, 'alert');
+                consecutiveZeroApprovalQuarters = 4; // Trigger instant game over check
+                logNews('GLOBAL CATASTROPHE // NUCLEAR FALLOUT', `CRITICAL APOCALYPTIC EVENT: 1x ${type.toUpperCase()} WARHEAD DEPLOYED! Radioactive fallout, global trade embargoes, financial market collapse (-10% GDP), and total diplomatic severance triggered!`, 'alert');
+                
                 renderFtas();
+                renderAssociations();
                 renderKPIs();
                 renderNuclearConsole();
+                checkGameOver();
             }
         }
 
@@ -1421,7 +1566,6 @@
 
                 body.innerHTML = `
                     <div class="space-y-4">
-                        <!-- Stockpile Header Metrics -->
                         <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-3">
                             <div>
                                 <span class="text-[10px] text-slate-400 font-bold uppercase block">Total Warheads</span>
@@ -1441,9 +1585,7 @@
                             </div>
                         </div>
 
-                        <!-- 3 UNIQUE WARHEAD TYPES GRID -->
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                            <!-- Type 1: Tactical W80-4 Low-Yield -->
                             <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 flex flex-col justify-between">
                                 <div class="space-y-2">
                                     <div class="flex justify-between items-start">
@@ -1458,12 +1600,11 @@
                                         <i class="fa-solid fa-wrench mr-1"></i> Dismantle (+Approval / Restores FTAs)
                                     </button>
                                     <button onclick="deployNuclearWarhead('tactical')" class="w-full py-1.5 bg-rose-950 hover:bg-rose-900 text-rose-400 border border-rose-800 rounded font-bold text-[11px] transition cursor-pointer">
-                                        <i class="fa-solid fa-radiation mr-1"></i> Deploy Warhead
+                                        <i class="fa-solid fa-radiation mr-1"></i> Deploy Warhead (Huge Fallout)
                                     </button>
                                 </div>
                             </div>
 
-                            <!-- Type 2: Strategic Thermonuclear B83-1 -->
                             <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 flex flex-col justify-between">
                                 <div class="space-y-2">
                                     <div class="flex justify-between items-start">
@@ -1478,12 +1619,11 @@
                                         <i class="fa-solid fa-wrench mr-1"></i> Dismantle (+Approval / Restores FTAs)
                                     </button>
                                     <button onclick="deployNuclearWarhead('thermonuclear')" class="w-full py-1.5 bg-rose-950 hover:bg-rose-900 text-rose-400 border border-rose-800 rounded font-bold text-[11px] transition cursor-pointer">
-                                        <i class="fa-solid fa-radiation mr-1"></i> Deploy Warhead
+                                        <i class="fa-solid fa-radiation mr-1"></i> Deploy Warhead (Huge Fallout)
                                     </button>
                                 </div>
                             </div>
 
-                            <!-- Type 3: Doomsday Salted Cobalt-60 Warhead -->
                             <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 flex flex-col justify-between">
                                 <div class="space-y-2">
                                     <div class="flex justify-between items-start">
@@ -1498,7 +1638,7 @@
                                         <i class="fa-solid fa-wrench mr-1"></i> Dismantle (+Approval / Restores FTAs)
                                     </button>
                                     <button onclick="deployNuclearWarhead('cobalt')" class="w-full py-1.5 bg-rose-950 hover:bg-rose-900 text-rose-400 border border-rose-800 rounded font-bold text-[11px] transition cursor-pointer">
-                                        <i class="fa-solid fa-radiation mr-1"></i> Deploy Warhead
+                                        <i class="fa-solid fa-radiation mr-1"></i> Deploy Warhead (Huge Fallout)
                                     </button>
                                 </div>
                             </div>
@@ -1510,7 +1650,6 @@
 
         function getTotalDefenseCost() {
             const missileOutlay = (gameState.defense.interceptorProd * 0.001) + (gameState.defense.hypersonicProd * 0.004);
-            // $1.5B/qtr nuclear outlay added if active building
             const nuclearOutlay = (gameState.nuclear.state === 'construction_active') ? gameState.nuclear.quarterlyProgramCost : 0;
             return gameState.defense.reserves + gameState.defense.cyber + gameState.defense.air + gameState.defense.naval + gameState.defense.norad + (gameState.defense.troops * 0.08) + missileOutlay + nuclearOutlay;
         }
@@ -1533,7 +1672,6 @@
             }
         }
 
-        // UN & ASSOCIATIONS LOGIC REINFORCED
         function toggleAssociation(key) {
             const assoc = gameState.associations[key];
             if (assoc) {
@@ -1556,7 +1694,6 @@
             }
         }
 
-        // REQUEST TO SIGN FTA ENGINE
         function requestToSignFta(key) {
             const fta = gameState.ftas[key];
             if (!fta || fta.active) return;
@@ -1589,7 +1726,6 @@
             }, 1200);
         }
 
-        // FREE TRADE AGREEMENTS OPTING OUT LOGIC
         function toggleFta(key) {
             const fta = gameState.ftas[key];
             if (fta) {
@@ -1611,7 +1747,6 @@
             }
         }
 
-        // 15 KEY CANADIAN INDUSTRIES DIRECT IMPACT LOGIC
         function updateIndustryParam(key, param, val) {
             const ind = gameState.industries[key];
             if (!ind) return;
@@ -1622,23 +1757,16 @@
 
             if (param === 'duty') {
                 gameState.cpiInflation = parseFloat((gameState.cpiInflation + (diff * 0.05)).toFixed(2));
-                if (diff > 0) {
-                    logNews('INDUSTRY TARIFF ADJUSTMENT', `${ind.name} import duty raised to ${ind.duty}%. Local market protected, but CPI import inflation nudged upward.`, 'info');
-                }
             } else if (param === 'subsidy') {
                 ind.output = Math.max(20, parseFloat((ind.output + (diff * 2.5)).toFixed(1)));
                 gameState.gdpGrowthRate = parseFloat((gameState.gdpGrowthRate + (diff * 0.02)).toFixed(2));
-                if (diff > 0) {
-                    logNews('INDUSTRIAL SUBSIDY BOOST', `Federal subsidy for ${ind.name} increased to $${ind.subsidy}B. Industry production accelerated.`, 'success');
-                }
             } else if (param === 'exportTax') {
                 ind.output = Math.max(20, parseFloat((ind.output - (diff * 1.8)).toFixed(1)));
                 gameState.tradeBalance -= (diff * 0.2);
             } else if (param === 'pricePerTon') {
                 const pctChange = (diff / oldVal) * 100;
                 ind.output = Math.max(20, parseFloat((ind.output * (1 + (pctChange / 200))).toFixed(1)));
-                gameState.cpiInflation = Math.max(0.1, parseFloat((gameState.cpiInflation + (pctChange * 0.015)).toFixed(2)));
-                logNews('INDUSTRY COMMODITY RE-PRICING', `${ind.name} price adjusted to $${ind.pricePerTon}/unit. Direct CPI and production output updated.`, 'info');
+                gameState.cpiInflation = Math.max(0.1, parseFloat((gameState.cpiInflation + (pctChange * 0.015)).toFixed(2));
             }
 
             renderKPIs();
@@ -1694,10 +1822,23 @@
         }
 
         function executeDefenseAudit() {
-            const defCost = getTotalDefenseCost();
             gameState.publicApproval = Math.min(100, gameState.publicApproval + 3);
             logNews('DEFENCE AUDIT', `Joint Chiefs of Staff completed readiness review. Missile stockpile stands at ${gameState.defense.missileStockpile} units. Public confidence reinforced.`, 'success');
             alert(`✅ DND Joint Staff Audit complete. Force readiness & missile defense stock verified.`);
+        }
+
+        function checkGameOver() {
+            if (gameState.publicApproval <= 0) {
+                consecutiveZeroApprovalQuarters++;
+            } else {
+                consecutiveZeroApprovalQuarters = 0;
+            }
+
+            if (consecutiveZeroApprovalQuarters >= 4) {
+                triggerGameOver("Voter approval remained at 0% for 4 consecutive quarters. Mass general strikes, legislative deadlock, and a constitutional crisis have forced the dissolution of parliament.");
+                return true;
+            }
+            return false;
         }
 
         function advanceQuarter() {
@@ -1710,11 +1851,9 @@
 
                 document.getElementById('current-quarter-display').innerText = `Year ${gameState.year} - Q${gameState.quarter}`;
 
-                // Missile Production Quarterly Stockpile Increment
                 gameState.defense.missileStockpile += (gameState.defense.interceptorProd + gameState.defense.hypersonicProd);
                 document.getElementById('dnd-missile-stockpile').innerText = gameState.defense.missileStockpile.toLocaleString() + ' Units';
 
-                /* --- ADVANCE NUCLEAR PROGRAM TIMELINES --- */
                 if (gameState.nuclear.state === 'feasibility_active') {
                     gameState.nuclear.feasibilityQuarterCount++;
                     if (gameState.nuclear.feasibilityQuarterCount >= 6) {
@@ -1723,13 +1862,11 @@
                     }
                 } else if (gameState.nuclear.state === 'construction_active') {
                     gameState.nuclear.constructionQuarterCount++;
-                    // Industry boost: Aerospace & Chemicals industrial outputs stimulated by $1.5B/qtr spending
                     gameState.industries.aerospace.output += 8;
                     gameState.industries.chemicals.output += 5;
 
                     if (gameState.nuclear.constructionQuarterCount >= 12) {
                         gameState.nuclear.state = 'stockpile_unlocked';
-                        // Initial bomb stockpile delivery after 12 quarters
                         gameState.nuclear.stockpile.tactical = 3;
                         gameState.nuclear.stockpile.thermonuclear = 2;
                         gameState.nuclear.stockpile.cobalt = 1;
@@ -1739,7 +1876,6 @@
 
                 updateNuclearBannerUI();
 
-                // Association Penalty Accumulation: Check defunded essential associations
                 let unfundedAssociationPenalties = 0;
                 for (const k in gameState.associations) {
                     if (!gameState.associations[k].funded) {
@@ -1757,7 +1893,6 @@
                 }
                 const effectiveBorrowingRate = Math.max(0.1, gameState.bocRate + gameState.bondRiskSpread);
 
-                // Revenue Computations including 10 New Configurable Metrics
                 const pitRev = (gameState.gdp * 0.38) * (gameState.pit / 100);
                 const citRev = (gameState.gdp * 0.22) * (gameState.cit / 100);
                 const gstRev = (gameState.gdp * 0.35) * (gameState.gst / 100);
@@ -1847,6 +1982,13 @@
 
                 renderKPIs();
                 triggerRandomGlobalNews();
+
+                // Check Game Over via zero approval
+                if (checkGameOver()) return;
+
+                // Auto-save game state on every quarter advance
+                saveGameToStorage();
+
                 logNews('STATSCAN', `Quarterly report: GDP Growth ${gameState.gdpGrowthRate}%, CPI ${gameState.cpiInflation}%, Deficit $${gameState.budgetDeficit.toFixed(1)}B, Active FTAs: ${activeFtaCount}/11.`, 'info');
             } catch (err) {
                 console.error("Error during advanceQuarter execution:", err);
@@ -2054,6 +2196,9 @@
 
         // Window Initialization
         window.onload = function () {
+            // Load saved game if exists
+            loadGameFromStorage();
+
             // Loading Bar Simulation
             const loadingBar = document.getElementById('loading-bar');
             let progress = 0;
@@ -2073,15 +2218,7 @@
             }, 100);
 
             // Render Dynamic UI Layouts
-            renderKPIs();
-            renderFundingSliders();
-            renderIndustries();
-            renderFtas();
-            renderAssociations();
-            updatePolicies();
-            updateDefensePolicy();
-            updateNuclearBannerUI();
-            initCharts();
+            refreshAllUI();
 
             logNews('SYSTEM READY', 'EconoMaster Engine v5.5 initialized with sovereign trade, DND missile production, and dynamic nuclear program matrix.', 'success');
         };
